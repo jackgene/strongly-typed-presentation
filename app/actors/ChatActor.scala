@@ -1,29 +1,24 @@
 package actors
 
-import akka.actor.{Actor, ActorLogging, ActorRef, Props}
+import akka.actor.{Actor, ActorLogging, ActorRef, Props, Terminated}
 import model.ChatMessage
-import play.api.Configuration
 
 object ChatActor {
   // Incoming messages
   case class ListenerRegistration(listener: ActorRef)
+
+  // Incoming and Outgoing messages
   case class New(chatMessage: ChatMessage)
 
-  // Outgoing messages
-
-  // Internal messages
-
-  def props(cfg: Configuration): Props = Props(new ChatActor(cfg))
+  val props: Props = Props(new ChatActor)
 }
-private class ChatActor(cfg: Configuration) extends Actor with ActorLogging {
+private class ChatActor extends Actor with ActorLogging {
   import ChatActor._
 
   private def running(listeners: Set[ActorRef]): Receive = {
     case ListenerRegistration(listener: ActorRef) =>
       context.watch(listener)
-      context.become(
-        running(listeners + listener)
-      )
+      context.become(running(listeners + listener))
 
     case event @ New(chatMessage: ChatMessage) =>
       log.info(s"Received chat message: ${chatMessage}")
@@ -31,7 +26,8 @@ private class ChatActor(cfg: Configuration) extends Actor with ActorLogging {
         listener ! event
       }
 
-    case other => unhandled(other)
+    case Terminated(listener: ActorRef) if listeners.contains(listener) =>
+      context.become(running(listeners - listener))
   }
 
   override val receive: Receive = running(Set())
