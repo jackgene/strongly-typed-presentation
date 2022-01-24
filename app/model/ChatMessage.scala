@@ -1,7 +1,7 @@
 package model
 
 case class ChatMessage(
-  from: String,
-  to: String,
+  sender: String,
+  recipient: String,
   text: String
 )

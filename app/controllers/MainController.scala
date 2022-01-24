@@ -25,11 +25,11 @@ class MainController @Inject()
   def chat(): Action[Unit] = Action(parse.empty) { implicit request: Request[Unit] =>
     val chatMessageOpt: Option[ChatMessage] =
       for {
-        (from: String, to: String) <- request.getQueryString("route").collect {
-          case RoutePattern(from: String, to: String) => from -> to
+        (sender: String, recipient: String) <- request.getQueryString("route").collect {
+          case RoutePattern(sender, recipient) => sender -> recipient
         }
         text: String <- request.getQueryString("text")
-      } yield ChatMessage(from, to, text)
+      } yield ChatMessage(sender, recipient, text)
 
     chatMessageOpt match {
       case Some(chatMessage: ChatMessage) =>
