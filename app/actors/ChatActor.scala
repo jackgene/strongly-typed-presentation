@@ -16,18 +16,22 @@ private class ChatActor extends Actor with ActorLogging {
   import ChatActor._
 
   private def running(listeners: Set[ActorRef]): Receive = {
-    case ListenerRegistration(listener: ActorRef) =>
-      context.watch(listener)
-      context.become(running(listeners + listener))
-
     case event @ New(chatMessage: ChatMessage) =>
-      log.info(s"Received chat message: ${chatMessage}")
+      log.info(s"Received chat message - ${chatMessage}")
       for (listener: ActorRef <- listeners) {
         listener ! event
       }
 
+    case ListenerRegistration(listener: ActorRef) =>
+      context.watch(listener)
+      context.become(
+        running(listeners + listener)
+      )
+
     case Terminated(listener: ActorRef) if listeners.contains(listener) =>
-      context.become(running(listeners - listener))
+      context.become(
+        running(listeners - listener)
+      )
   }
 
   override val receive: Receive = running(Set())
