@@ -11,7 +11,7 @@ class WebSocketActor(webSocketClient: ActorRef, counts: ActorRef) extends Actor 
   counts ! BySenderCounterActor.ListenerRegistration(self)
 
   override def receive: Receive = {
-    case BySenderCounterActor.Counts(countsBySender: Map[String,Int]) =>
-      webSocketClient ! Json.toJson(countsBySender)
+    case BySenderCounterActor.Counts(sendersByCount: Map[Int,Seq[String]]) =>
+      webSocketClient ! Json.toJson(sendersByCount)
   }
 }
