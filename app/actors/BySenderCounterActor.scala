@@ -34,7 +34,7 @@ private class BySenderCounterActor(chatActor: ActorRef) extends Actor with Actor
           ).
           updated(
             newCount,
-            sendersByCount.getOrElse(newCount, IndexedSeq()).prepended(msg.sender)
+            sendersByCount.getOrElse(newCount, IndexedSeq()).appended(msg.sender)
           ).
           filter {
             case (_, senders: Seq[String]) => senders.nonEmpty
