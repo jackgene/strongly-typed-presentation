@@ -3,6 +3,8 @@
 # https://www.playframework.com/documentation/latest/ScalaRouting
 # ~~~~
 
+GET     /                           controllers.Assets.at(path="/public", file="html/deck.html")
+GET     /admin                      controllers.Assets.at(path="/public", file="html/admin.html")
 POST    /chat                       controllers.MainController.chat
 GET     /events                     controllers.MainController.events
 
