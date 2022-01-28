@@ -118,6 +118,7 @@ horizontalBarView value maxValue =
     , textAlign center
     , transition [ Css.Transitions.width3 500 0 easeInOut ]
     ]
+  , title (toString value)
   ]
   [ text (toString value) ]
 
