@@ -1,7 +1,11 @@
 module Deck exposing (..)
 
+import Css exposing (..)
+import Css.Transitions exposing (easeInOut, transition)
 import Dict
-import Html exposing (..)
+import Html.Styled exposing (Html, div, h2, text)
+import Html.Styled.Attributes exposing (id, css, title)
+import Html.Styled.Keyed as Keyed
 import Json.Decode as Decode exposing (Decoder)
 import Navigation exposing (Location)
 import WebSocket
@@ -95,16 +99,75 @@ update msg model =
 
 
 -- View
+idEscape : String -> String
+idEscape input =
+  String.toLower
+  ( String.join "-"
+    ( String.words input )
+  )
+
+
+horizontalBarView : Int -> Int -> Html Msg
+horizontalBarView value maxValue =
+  div
+  [ css
+    [ width (pct (100 * (toFloat value / toFloat maxValue)))
+    , height (em 1)
+    , border3 (px 1) solid (rgb 160 160 160)
+    , backgroundColor (rgb 200 200 200)
+    , textAlign center
+    , transition [ Css.Transitions.width3 500 0 easeInOut ]
+    ]
+  ]
+  [ text (toString value) ]
+
+
 view : Model -> Html Msg
 view model =
-  div []
-  [ h2 [] [ text ("Top " ++ toString(maxDisplayCount) ++ " Chattiest") ]
-  , ( ul []
-      ( List.map
-        ( \(sender, count) ->
-          li [] [ text (sender ++ ": " ++ (toString count)) ]
+  div [ css [ (padding (em 1)) ] ]
+  [ h2 [] [ text ("Top " ++ (toString maxDisplayCount) ++ " Chattiest") ]
+  , ( Keyed.node "div" [ css [ position relative ] ]
+      ( let
+          maxCount : Int
+          maxCount =
+            Maybe.withDefault 0
+            ( Maybe.map Tuple.second (List.head model.sendersAndCounts) )
+        in
+        List.sortBy Tuple.first
+        ( List.indexedMap
+          ( \idx (sender, count) ->
+            ( sender
+            , div
+              [ id (idEscape sender)
+              , css
+                [ position absolute
+                , top (px (toFloat idx * 24))
+                , width (px 640)
+                , transition [ Css.Transitions.top3 500 0 easeInOut ]
+                ]
+              ]
+              [ div
+                [ css
+                  [ position absolute
+                  , top zero
+                  , width (px 200)
+                  ]
+                ]
+                [ text sender ]
+              , div
+                [ css
+                  [ position absolute
+                  , top zero
+                  , left (px 200)
+                  , right zero
+                  ]
+                ]
+                [ horizontalBarView count maxCount ]
+              ]
+            )
+          )
+          model.sendersAndCounts
         )
-        model.sendersAndCounts
       )
     )
   ]
@@ -124,6 +187,6 @@ main =
   ( always NoOp )
   { init = init
   , update = update
-  , view = view
+  , view = Html.Styled.toUnstyled << view
   , subscriptions = subscriptions
   }
