@@ -1,5 +1,6 @@
 module Deck exposing (..)
 
+import Array exposing (Array)
 import Css exposing (..)
 import Css.Transitions exposing (easeInOut, transition)
 import Dict
@@ -7,19 +8,36 @@ import Html.Styled exposing (Html, div, h2, text)
 import Html.Styled.Attributes exposing (id, css, title)
 import Html.Styled.Keyed as Keyed
 import Json.Decode as Decode exposing (Decoder)
+import Keyboard
 import Navigation exposing (Location)
 import WebSocket
 
 
-type alias Model =
-  { eventsWsUrl : Maybe String
-  , sendersAndCounts : List (String, Int)
+-- Messages
+type Msg
+  = Next
+  | Last
+  | Event String
+  | NoOp
+
+
+-- Model
+type alias SlideModel =
+  { init : Model -> (Model, Cmd Msg)
+  , update : Msg -> Model -> (Model, Cmd Msg)
+  , view : Model -> Html Msg
   }
 
 
-type Msg
-  = Event String
-  | NoOp
+type Slide = Slide SlideModel
+
+
+type alias Model =
+  { eventsWsUrl : Maybe String
+  , slides : Array Slide
+  , slideIndex: Int
+  , sendersAndCounts : List (String, Int)
+  }
 
 
 -- Constants
@@ -34,6 +52,13 @@ webSocketBaseUrl location =
   else Just ("ws" ++ (String.dropLeft 4 location.protocol) ++ "//" ++ location.host)
 
 
+slideTemplate : SlideModel
+slideTemplate =
+  { init = ( \model -> (model, Cmd.none) )
+  , update = ( \_ model -> (model, Cmd.none) )
+  , view = ( \_ -> text "(Placeholder)" )
+  }
+
 init : Location -> (Model, Cmd Msg)
 init location =
   ( Model
@@ -41,6 +66,71 @@ init location =
       ( \baseUrl -> baseUrl ++ "/events" )
       ( webSocketBaseUrl location )
     )
+    ( Array.fromList
+      [ Slide
+        { slideTemplate
+        | view = ( \model -> text ("Slide " ++ (toString model.slideIndex)) )
+        }
+      , Slide
+        { slideTemplate
+        | view =
+          ( \model ->
+            div []
+            [ h2 [] [ text ("Top " ++ (toString maxDisplayCount) ++ " Chattiest") ]
+            , ( Keyed.node "div" [ css [ position relative ] ]
+                ( let
+                    maxCount : Int
+                    maxCount =
+                      Maybe.withDefault 0
+                      ( Maybe.map Tuple.second (List.head model.sendersAndCounts) )
+                  in
+                  List.sortBy Tuple.first
+                  ( List.indexedMap
+                    ( \idx (sender, count) ->
+                      ( sender
+                      , div
+                        [ id (idEscape sender)
+                        , css
+                          [ position absolute
+                          , top (px (toFloat idx * 24))
+                          , width (px 640)
+                          , transition [ Css.Transitions.top3 500 0 easeInOut ]
+                          ]
+                        ]
+                        [ div
+                          [ css
+                            [ position absolute
+                            , top zero
+                            , width (px 200)
+                            ]
+                          ]
+                          [ text sender ]
+                        , div
+                          [ css
+                            [ position absolute
+                            , top zero
+                            , left (px 200)
+                            , right zero
+                            ]
+                          ]
+                          [ horizontalBarView count maxCount ]
+                        ]
+                      )
+                    )
+                    model.sendersAndCounts
+                  )
+                )
+              )
+            ]
+          )
+        }
+      , Slide
+        { slideTemplate
+        | view = ( \model -> text ("Slide " ++ (toString model.slideIndex)) )
+        }
+      ]
+    )
+    0
     []
   , Cmd.none
   )
@@ -50,6 +140,16 @@ init location =
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
+    Next ->
+      ( { model | slideIndex = min ((Array.length model.slides) - 1) (model.slideIndex + 1) }
+      , Cmd.none
+      )
+
+    Last ->
+      ( { model | slideIndex = max 0 (model.slideIndex - 1) }
+      , Cmd.none
+      )
+
     Event body ->
       let
         sendersByCountRes : Result String (List (Int, (List String)))
@@ -113,7 +213,8 @@ horizontalBarView value maxValue =
   [ css
     [ width (pct (100 * (toFloat value / toFloat maxValue)))
     , height (em 1)
-    , border3 (px 1) solid (rgb 160 160 160)
+    , border3 (px 1) solid (rgb 128 128 128)
+    , color (rgb 128 128 128)
     , backgroundColor (rgb 200 200 200)
     , textAlign center
     , transition [ Css.Transitions.width3 500 0 easeInOut ]
@@ -126,60 +227,29 @@ horizontalBarView value maxValue =
 view : Model -> Html Msg
 view model =
   div [ css [ (padding (em 1)) ] ]
-  [ h2 [] [ text ("Top " ++ (toString maxDisplayCount) ++ " Chattiest") ]
-  , ( Keyed.node "div" [ css [ position relative ] ]
-      ( let
-          maxCount : Int
-          maxCount =
-            Maybe.withDefault 0
-            ( Maybe.map Tuple.second (List.head model.sendersAndCounts) )
-        in
-        List.sortBy Tuple.first
-        ( List.indexedMap
-          ( \idx (sender, count) ->
-            ( sender
-            , div
-              [ id (idEscape sender)
-              , css
-                [ position absolute
-                , top (px (toFloat idx * 24))
-                , width (px 640)
-                , transition [ Css.Transitions.top3 500 0 easeInOut ]
-                ]
-              ]
-              [ div
-                [ css
-                  [ position absolute
-                  , top zero
-                  , width (px 200)
-                  ]
-                ]
-                [ text sender ]
-              , div
-                [ css
-                  [ position absolute
-                  , top zero
-                  , left (px 200)
-                  , right zero
-                  ]
-                ]
-                [ horizontalBarView count maxCount ]
-              ]
-            )
-          )
-          model.sendersAndCounts
-        )
-      )
-    )
+  [ case Array.get model.slideIndex model.slides of
+    Just (Slide slide) ->
+      slide.view model
+    Nothing -> text "Something's Wrong"
   ]
-
 
 -- Subscriptions
 subscriptions : Model -> Sub Msg
 subscriptions model =
-  case model.eventsWsUrl of
+  Sub.batch
+  [ case model.eventsWsUrl of
     Just url -> WebSocket.listen url Event
     Nothing -> Sub.none
+  , Keyboard.ups
+    ( \keyCode ->
+      case keyCode of
+        37 -> Last
+        38 -> Last
+        39 -> Next
+        40 -> Next
+        _ -> NoOp
+    )
+  ]
 
 
 main : Program Never Model Msg
