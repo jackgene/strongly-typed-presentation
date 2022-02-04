@@ -21,21 +21,21 @@ private class ByMessengerCounterActor(chatActor: ActorRef) extends Actor with Ac
       countsByMessenger: Map[String,Int], sendersByCount: Map[Int,Seq[String]],
       listeners: Set[ActorRef]): Receive = {
     case ChatActor.New(msg: ChatMessage) =>
-      val key: String = msg.sender
-      val oldCount: Int = countsByMessenger.getOrElse(key, 0)
+      val messenger: String = msg.sender
+      val oldCount: Int = countsByMessenger.getOrElse(messenger, 0)
       val newCount: Int = oldCount + 1
       val newCountsBySender: Map[String,Int] = {
-        countsByMessenger.updated(key, newCount)
+        countsByMessenger.updated(messenger, newCount)
       }
       val newSendersByCount: Map[Int,Seq[String]] =
         sendersByCount.
           updated(
             oldCount,
-            sendersByCount.getOrElse(oldCount, IndexedSeq()).diff(Seq(key))
+            sendersByCount.getOrElse(oldCount, IndexedSeq()).diff(Seq(messenger))
           ).
           updated(
             newCount,
-            sendersByCount.getOrElse(newCount, IndexedSeq()).appended(key)
+            sendersByCount.getOrElse(newCount, IndexedSeq()).appended(messenger)
           ).
           filter {
             case (_, senders: Seq[String]) => senders.nonEmpty
