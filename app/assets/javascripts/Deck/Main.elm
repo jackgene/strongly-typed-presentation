@@ -4,13 +4,13 @@ import Array exposing (Array)
 import Css exposing
   ( property
   -- Container
-  , display, float, height, left, margin2, marginRight, width, overflow
-  , paddingTop, position, right, top
+  , display, float, height, left, margin, margin2, marginRight
+  , width, overflow, paddingTop, position, right, top
   -- Content
   , backgroundColor, before, color, fontFamilies, fontSize, fontWeight
   , lineHeight, textAlign
   -- Sizes
-  , em, int, pct, vw, zero
+  , auto, em, int, pct, vw, zero
   -- Positions
   , absolute, relative, static
   -- Other values
@@ -244,7 +244,7 @@ init location =
                 [ position absolute
                 , top (pct 30), left (pct 30)
                 , fontFamilies [ "GoodRx Bolton", "sans-serif" ]
-                , fontSize (em 4)
+                , fontSize (vw 6)
                 ]
               ]
               [ i [] [ text "Nobody knows..." ] ]
@@ -353,10 +353,10 @@ view model =
     Just (Slide slide) ->
       div
       [ css
-        [ position static
-        , width (pct 100)
+        [ property "display" "grid", position absolute
+        , width (pct 100), height (pct 100)
+        , backgroundColor (rgb 0 0 0)
         , overflow hidden
-        , property "aspect-ratio" "16 / 9"
         ]
       ]
       [ node "style" [ type_ "text/css" ]
@@ -392,7 +392,17 @@ view model =
             """
           )
         ]
-      , slide.view model
+      , div
+        [ css
+          [ position static
+          , width (pct 100)
+          , margin auto
+          , backgroundColor (rgb 255 255 255)
+          , overflow hidden
+          , property "aspect-ratio" "16 / 9"
+          ]
+        ]
+        [ slide.view model ]
       ]
     Nothing -> text "Something's Wrong"
 
