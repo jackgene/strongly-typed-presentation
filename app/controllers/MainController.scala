@@ -1,6 +1,6 @@
 package controllers
 
-import actors.{BySenderCounterActor, ChatActor, WebSocketActor}
+import actors.{ByMessengerCounterActor, ChatActor, WebSocketActor}
 import akka.actor.{ActorRef, ActorSystem}
 import akka.stream.Materializer
 import model.ChatMessage
@@ -24,7 +24,7 @@ class MainController @Inject()
   private val chatActor: ActorRef =
     system.actorOf(ChatActor.props, "chat")
   private val bySenderCounterActor: ActorRef =
-    system.actorOf(BySenderCounterActor.props(chatActor), "bySenderCounter")
+    system.actorOf(ByMessengerCounterActor.props(chatActor), "bySenderCounter")
 
   def chat(): Action[Unit] = Action(parse.empty) { implicit request: Request[Unit] =>
     val chatMessageOpt: Option[ChatMessage] =

@@ -17,48 +17,29 @@ private class ByMessengerCounterActor(chatActor: ActorRef) extends Actor with Ac
 
   chatActor ! ChatActor.ListenerRegistration(self)
 
-  private def running(
-      countsByMessenger: Map[String,Int], messengersByCount: Map[Int,Seq[String]],
-      listeners: Set[ActorRef]): Receive = {
+  private def running(messengerCount: ItemCount, listeners: Set[ActorRef]): Receive = {
     case ChatActor.New(msg: ChatMessage) =>
       val messenger: String = msg.sender
-      val oldCount: Int = countsByMessenger.getOrElse(messenger, 0)
-      val newCount: Int = oldCount + 1
-      val newCountsBySender: Map[String,Int] = {
-        countsByMessenger.updated(messenger, newCount)
-      }
-      val newMessengersByCount: Map[Int,Seq[String]] =
-        messengersByCount.
-          updated(
-            oldCount,
-            messengersByCount.getOrElse(oldCount, IndexedSeq()).diff(Seq(messenger))
-          ).
-          updated(
-            newCount,
-            messengersByCount.getOrElse(newCount, IndexedSeq()).appended(messenger)
-          ).
-          filter {
-            case (_, messengers: Seq[String]) => messengers.nonEmpty
-          }
+      val newMessengerCount: ItemCount = messengerCount.updated(messenger, 1)
       for (listener: ActorRef <- listeners) {
-        listener ! Counts(newMessengersByCount)
+        listener ! Counts(newMessengerCount.itemsByCount)
       }
       context.become(
-        running(newCountsBySender, newMessengersByCount, listeners)
+        running(newMessengerCount, listeners)
       )
 
     case ListenerRegistration(listener: ActorRef) =>
-      listener ! Counts(messengersByCount)
+      listener ! Counts(messengerCount.itemsByCount)
       context.watch(listener)
       context.become(
-        running(countsByMessenger, messengersByCount, listeners + listener)
+        running(messengerCount, listeners + listener)
       )
 
     case Terminated(listener: ActorRef) if listeners.contains(listener) =>
       context.become(
-        running(countsByMessenger, messengersByCount, listeners - listener)
+        running(messengerCount, listeners - listener)
       )
   }
 
-  override def receive: Receive = running(Map(), Map(), Set())
+  override def receive: Receive = running(ItemCount(), Set())
 }
