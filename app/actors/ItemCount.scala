@@ -20,7 +20,8 @@ case class ItemCount(
           itemsByCount.getOrElse(newCount, IndexedSeq()).appended(item)
         ).
         filter {
-          case (_, messengers: Seq[String]) => messengers.nonEmpty
+          case (count: Int, messengers: Seq[String]) =>
+            count > 0 && messengers.nonEmpty
         }
     )
   }
