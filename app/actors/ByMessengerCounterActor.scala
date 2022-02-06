@@ -18,7 +18,7 @@ private class ByMessengerCounterActor(chatActor: ActorRef) extends Actor with Ac
   chatActor ! ChatActor.ListenerRegistration(self)
 
   private def running(
-      countsByMessenger: Map[String,Int], sendersByCount: Map[Int,Seq[String]],
+      countsByMessenger: Map[String,Int], messengersByCount: Map[Int,Seq[String]],
       listeners: Set[ActorRef]): Receive = {
     case ChatActor.New(msg: ChatMessage) =>
       val messenger: String = msg.sender
@@ -27,36 +27,36 @@ private class ByMessengerCounterActor(chatActor: ActorRef) extends Actor with Ac
       val newCountsBySender: Map[String,Int] = {
         countsByMessenger.updated(messenger, newCount)
       }
-      val newSendersByCount: Map[Int,Seq[String]] =
-        sendersByCount.
+      val newMessengersByCount: Map[Int,Seq[String]] =
+        messengersByCount.
           updated(
             oldCount,
-            sendersByCount.getOrElse(oldCount, IndexedSeq()).diff(Seq(messenger))
+            messengersByCount.getOrElse(oldCount, IndexedSeq()).diff(Seq(messenger))
           ).
           updated(
             newCount,
-            sendersByCount.getOrElse(newCount, IndexedSeq()).appended(messenger)
+            messengersByCount.getOrElse(newCount, IndexedSeq()).appended(messenger)
           ).
           filter {
-            case (_, senders: Seq[String]) => senders.nonEmpty
+            case (_, messengers: Seq[String]) => messengers.nonEmpty
           }
       for (listener: ActorRef <- listeners) {
-        listener ! Counts(newSendersByCount)
+        listener ! Counts(newMessengersByCount)
       }
       context.become(
-        running(newCountsBySender, newSendersByCount, listeners)
+        running(newCountsBySender, newMessengersByCount, listeners)
       )
 
     case ListenerRegistration(listener: ActorRef) =>
-      listener ! Counts(sendersByCount)
+      listener ! Counts(messengersByCount)
       context.watch(listener)
       context.become(
-        running(countsByMessenger, sendersByCount, listeners + listener)
+        running(countsByMessenger, messengersByCount, listeners + listener)
       )
 
     case Terminated(listener: ActorRef) if listeners.contains(listener) =>
       context.become(
-        running(countsByMessenger, sendersByCount, listeners - listener)
+        running(countsByMessenger, messengersByCount, listeners - listener)
       )
   }
 
