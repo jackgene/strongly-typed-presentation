@@ -1,6 +1,6 @@
 package controllers
 
-import actors.{ByMessengerCounterActor, ChatActor, WebSocketActor}
+import actors.{ByTokenBySenderCounterActor, ChatMessageActor, WebSocketActor}
 import akka.actor.{ActorRef, ActorSystem}
 import akka.stream.Materializer
 import model.ChatMessage
@@ -21,10 +21,15 @@ class MainController @Inject()
     (implicit system: ActorSystem, mat: Materializer)
     extends AbstractController(cc) {
   private val RoutePattern = "(.*) to (Everyone|Me)".r
-  private val chatActor: ActorRef =
-    system.actorOf(ChatActor.props, "chat")
+  private val chatMsgActor: ActorRef =
+    system.actorOf(ChatMessageActor.props, "chat")
+  private val rejectedMsgActor: ActorRef =
+    system.actorOf(ChatMessageActor.props, "rejected")
   private val bySenderCounterActor: ActorRef =
-    system.actorOf(ByMessengerCounterActor.props(chatActor), "bySenderCounter")
+    system.actorOf(
+      ByTokenBySenderCounterActor.props(chatMsgActor, rejectedMsgActor),
+      "bySenderCounter"
+    )
 
   def chat(): Action[Unit] = Action(parse.empty) { implicit request: Request[Unit] =>
     val chatMessageOpt: Option[ChatMessage] =
@@ -37,7 +42,7 @@ class MainController @Inject()
 
     chatMessageOpt match {
       case Some(chatMessage: ChatMessage) =>
-        chatActor ! ChatActor.New(chatMessage)
+        chatMsgActor ! ChatMessageActor.New(chatMessage)
         NoContent
       case None => BadRequest
     }

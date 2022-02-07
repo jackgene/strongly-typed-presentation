@@ -3,21 +3,21 @@ package actors
 import akka.actor.{Actor, ActorLogging, ActorRef, Props, Terminated}
 import model.ChatMessage
 
-object ChatActor {
+object ChatMessageActor {
   // Incoming messages
   case class ListenerRegistration(listener: ActorRef)
 
   // Incoming and Outgoing messages
   case class New(chatMessage: ChatMessage)
 
-  val props: Props = Props(new ChatActor)
+  val props: Props = Props(new ChatMessageActor)
 }
-private class ChatActor extends Actor with ActorLogging {
-  import ChatActor._
+private class ChatMessageActor extends Actor with ActorLogging {
+  import ChatMessageActor._
 
   private def running(listeners: Set[ActorRef]): Receive = {
     case event @ New(chatMessage: ChatMessage) =>
-      log.info(s"Received chat message - ${chatMessage}")
+      log.info(s"Received ${self.path.name} message - ${chatMessage}")
       for (listener: ActorRef <- listeners) {
         listener ! event
       }

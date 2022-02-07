@@ -15,10 +15,10 @@ object ByMessengerCounterActor {
 private class ByMessengerCounterActor(chatActor: ActorRef) extends Actor with ActorLogging {
   import ByMessengerCounterActor._
 
-  chatActor ! ChatActor.ListenerRegistration(self)
+  chatActor ! ChatMessageActor.ListenerRegistration(self)
 
   private def running(messengerCount: ItemCount, listeners: Set[ActorRef]): Receive = {
-    case ChatActor.New(msg: ChatMessage) =>
+    case ChatMessageActor.New(msg: ChatMessage) =>
       val messenger: String = msg.sender
       val newMessengerCount: ItemCount = messengerCount.updated(messenger, 1)
       for (listener: ActorRef <- listeners) {
