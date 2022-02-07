@@ -55,6 +55,7 @@ object ByTokenBySenderCounterActor {
     "elm" -> "ML",
     "f#" -> "ML",
     "ocaml" -> "ML",
+    "rust" -> "ML",
     // Perl
     "perl" -> "Perl",
     // PHP
@@ -62,8 +63,6 @@ object ByTokenBySenderCounterActor {
     // Ruby
     "ruby" -> "Ruby",
     "rb" -> "Ruby",
-    // Rust
-    "rust" -> "Rust",
     // Scala
     "scala" -> "Scala",
   )
