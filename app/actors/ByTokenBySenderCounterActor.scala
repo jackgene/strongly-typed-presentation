@@ -11,63 +11,18 @@ object ByTokenBySenderCounterActor {
   // Outgoing messages
   case class Counts(tokensByCount: Map[Int,Seq[String]])
 
-  def props(chatMessageActor: ActorRef, rejectedMessageActor: ActorRef): Props =
-    Props(new ByTokenBySenderCounterActor(chatMessageActor, rejectedMessageActor))
-
-  private val TokensByString: Map[String,String] = Map(
-    // GoodRx Languages
-    // Go
-    "go" -> "Go",
-    "golang" -> "Go",
-    // Kotlin
-    "kotlin" -> "Kotlin",
-    "kt" -> "Kotlin",
-    // Python
-    "py" -> "Python",
-    "python" -> "Python",
-    // Swift
-    "swift" -> "Swift",
-    // TypeScript
-    "ts" -> "TypeScript",
-    "typescript" -> "TypeScript",
-
-    // Others
-    // C/C++
-    "c" -> "C",
-    "c++" -> "C",
-    // C#
-    "c#" -> "C#",
-    "csharp" -> "C#",
-    // Java
-    "java" -> "Java",
-    // Javascript
-    "js" -> "JavaScript",
-    "javascript" -> "JavaScript",
-    // Lisp
-    "lisp" -> "Lisp",
-    "clojure" -> "Lisp",
-    "racket" -> "Lisp",
-    "scheme" -> "Lisp",
-    // ML
-    "ml" -> "ML",
-    "haskell" -> "ML",
-    "caml" -> "ML",
-    "elm" -> "ML",
-    "f#" -> "ML",
-    "ocaml" -> "ML",
-    "rust" -> "ML",
-    // Perl
-    "perl" -> "Perl",
-    // PHP
-    "php" -> "PHP",
-    // Ruby
-    "ruby" -> "Ruby",
-    "rb" -> "Ruby",
-    // Scala
-    "scala" -> "Scala",
-  )
+  def props(
+      extractToken: String => Option[String],
+      chatMessageActor: ActorRef, rejectedMessageActor: ActorRef):
+      Props =
+    Props(
+      new ByTokenBySenderCounterActor(
+        extractToken, chatMessageActor, rejectedMessageActor
+      )
+    )
 }
 private class ByTokenBySenderCounterActor(
+    extractToken: String => Option[String],
     chatMessageActor: ActorRef, rejectedMessageActor: ActorRef)
     extends Actor with ActorLogging {
   import ByTokenBySenderCounterActor._
@@ -81,11 +36,8 @@ private class ByTokenBySenderCounterActor(
       val (messenger: String, newMeCount:Int) =
         if (msg.sender != "Me") (msg.sender, meCount)
         else (s"Me@${meCount}", meCount + 1)
-      val normalizedFirstWordOpt: Option[String] = msg.text.trim.
-        split("""[\s/]""").headOption.
-        map { _.toLowerCase }
       val oldTokenOpt: Option[String] = tokensByMessenger.get(messenger)
-      val newTokenOpt: Option[String] = normalizedFirstWordOpt.flatMap { TokensByString.get }
+      val newTokenOpt: Option[String] = extractToken(msg.text)
 
       newTokenOpt match {
         case Some(newToken: String) =>

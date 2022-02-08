@@ -3,12 +3,10 @@ package controllers
 import actors.{ByTokenBySenderCounterActor, ChatMessageActor, WebSocketActor}
 import akka.actor.{ActorRef, ActorSystem}
 import akka.stream.Materializer
-import model.ChatMessage
-import play.api._
+import model.{ChatMessage, Token}
 import play.api.libs.json.JsValue
 import play.api.libs.streams.ActorFlow
 import play.api.mvc._
-
 import javax.inject._
 
 /**
@@ -16,8 +14,7 @@ import javax.inject._
  * application's home page.
  */
 @Singleton
-class MainController @Inject()
-    (cc: ControllerComponents, cfg: Configuration)
+class MainController @Inject() (cc: ControllerComponents)
     (implicit system: ActorSystem, mat: Materializer)
     extends AbstractController(cc) {
   private val RoutePattern = "(.*) to (Everyone|Me)".r
@@ -27,7 +24,9 @@ class MainController @Inject()
     system.actorOf(ChatMessageActor.props, "rejected")
   private val bySenderCounterActor: ActorRef =
     system.actorOf(
-      ByTokenBySenderCounterActor.props(chatMsgActor, rejectedMsgActor),
+      ByTokenBySenderCounterActor.props(
+        Token.languageFromFirstLetter, chatMsgActor, rejectedMsgActor
+      ),
       "bySenderCounter"
     )
 
