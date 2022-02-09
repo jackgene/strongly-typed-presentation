@@ -8,20 +8,20 @@ import Css exposing
   , width, overflow, paddingTop, position, right, top
   -- Content
   , backgroundColor, before, color, fontFamilies, fontSize, fontWeight
-  , lineHeight, textAlign
+  , lineHeight, textAlign, visibility
   -- Sizes
   , auto, em, int, pct, vw, zero
   -- Positions
   , absolute, relative, static
   -- Other values
-  , block, center, hidden, rgb
+  , block, center, hidden, rgb, visible
   )
 import Css.Transitions exposing (easeInOut, transition)
 import Deck.Common exposing (..)
 import Deck.Graphics exposing (..)
 import Dict exposing (Dict)
-import Html.Styled exposing (Html, div, h1, h2, i, node, p, text)
-import Html.Styled.Attributes exposing (id, css, title, type_)
+import Html.Styled exposing (Html, div, h1, h2, i, li, node, p, text, ul)
+import Html.Styled.Attributes exposing (id, css, type_)
 import Html.Styled.Keyed as Keyed
 import Json.Decode as Decode exposing (Decoder)
 import Keyboard
@@ -50,7 +50,7 @@ type alias Model =
 
 -- Constants
 maxDisplayCount : Int
-maxDisplayCount = 7
+maxDisplayCount = 8
 
 
 fontGoodRxMoonBoldBase64 : String
@@ -81,7 +81,7 @@ fontGoodRxBoltonBoldItalicBase64 =
 -- Init
 webSocketBaseUrl : Location -> Maybe String
 webSocketBaseUrl location =
-  if location.protocol /= "http:" && location.protocol /= "https:" then Nothing
+  if location.protocol /= "http:" || location.hostname /= "localhost" then Nothing
   else Just ("ws" ++ (String.dropLeft 4 location.protocol) ++ "//" ++ location.host)
 
 
@@ -92,6 +92,173 @@ slideTemplate =
   , view = ( \_ -> text "(Placeholder)" )
   }
 
+
+slides : Array Slide
+slides =
+  Array.fromList
+  [ Slide
+    { slideTemplate
+    | view =
+      ( \_ ->
+        div []
+        [ backgroundHalfCircles
+        , h1
+          [ css
+            [ position absolute
+            , top (pct 20), left (pct 36)
+            , fontFamilies [ "GoodRx Moon", "sans-serif" ]
+            , fontSize (vw 7)
+            ]
+          ]
+          [ text "Zoom Chat Behavior" ]
+        ]
+      )
+    }
+  , Slide
+    { slideTemplate
+    | view =
+      ( \model ->
+        div []
+        [ h1
+          [ css
+            [ fontFamilies [ "GoodRx Moon", "sans-serif" ]
+            , fontSize (vw 4)
+            , before
+              [ property "content" "''"
+              , display block, float left
+              , width (em 0.2), height (em 1.2)
+              , marginRight (em 1.4)
+              , backgroundColor (rgb 245 218 121)
+              ]
+            ]
+          ]
+          [ text "Audience Poll" ]
+        , div [ css [ margin2 zero (pct 7) ] ]
+          [ h2
+            [ css
+              [ paddingTop (vw (if List.isEmpty model.languagesAndCounts then 5 else 0))
+              , fontFamilies [ "GoodRx Moon", "sans-serif" ]
+              , fontSize (vw 2.5)
+              , transition [ Css.Transitions.padding3 500 0 easeInOut ]
+              ]
+            ]
+            [ text "What is your prefered programming language?" ]
+          , div []
+            ( if List.isEmpty model.languagesAndCounts then
+                [ p
+                  [ css
+                    [ fontFamilies [ "GoodRx Bolton", "sans-serif" ]
+                    , fontSize (vw 2.2) ]
+                    ]
+                  [ text "In other words, the one that you..."
+                  , ul []
+                    [ li [] [ text "...are most familiar with" ]
+                    , li [] [ text "...would select for personal projects" ]
+                    , li [] [ text "...would choose to be tested on in a technical interview" ]
+                    ]
+                  ]
+                ]
+              else
+                [ p
+                  [ css
+                    [ fontFamilies [ "GoodRx Bolton", "sans-serif" ]
+                    , fontSize (vw 2.2) ]
+                    ]
+                  [ text ("The GoodRx Software Engineering Top " ++ (toString maxDisplayCount) ++ ":") ]
+                , ( Keyed.node "div" [ css [ position relative ] ]
+                    ( let
+                        maxCount : Int
+                        maxCount =
+                          Maybe.withDefault 0
+                          ( Maybe.map Tuple.second (List.head model.languagesAndCounts) )
+                      in
+                      List.sortBy Tuple.first
+                      ( List.indexedMap
+                        ( \idx (language, count) ->
+                          ( language
+                          , div
+                            [ id (idEscape language)
+                            , css
+                              [ if idx < maxDisplayCount then visibility visible else visibility hidden
+                              , position absolute
+                              , top (em (toFloat idx * 2))
+                              , width (pct 80)
+                              , fontFamilies [ "GoodRx Bolton", "sans-serif" ], fontSize (vw 1.6)
+                              , lineHeight (em 1.6)
+                              , transition
+                                [ Css.Transitions.top3 500 0 easeInOut
+                                , Css.Transitions.visibility3 500 0 easeInOut
+                                ]
+                              ]
+                            ]
+                            [ div
+                              [ css
+                                [ position absolute
+                                , top zero
+                                , width (pct 22)
+                                , textAlign right
+                                ]
+                              ]
+                              [ Maybe.withDefault
+                                ( text language )
+                                ( Dict.get language logosByLanguage )
+                              ]
+                            , div
+                              [ css
+                                [ position absolute
+                                , top zero
+                                , left (pct 23)
+                                , right zero
+                                ]
+                              ]
+                              [ horizontalBarView count maxCount ]
+                            ]
+                          )
+                        )
+                        model.languagesAndCounts
+                      )
+                    )
+                  )
+                ]
+            )
+          ]
+        ]
+      )
+    }
+  , Slide
+    { slideTemplate
+    | view =
+      ( \_ ->
+        div []
+        [ h1
+          [ css
+            [ fontFamilies [ "GoodRx Moon", "sans-serif" ]
+            , fontSize (vw 4)
+            , before
+              [ property "content" "''"
+              , display block, float left
+              , width (em 0.2), height (em 1.2)
+              , marginRight (em 1.4)
+              , backgroundColor (rgb 245 218 121)
+              ]
+            ]
+          ]
+          [ text "Answer" ]
+        , p
+          [ css
+            [ position absolute
+            , top (pct 30), left (pct 30)
+            , fontFamilies [ "GoodRx Bolton", "sans-serif" ]
+            , fontSize (vw 6)
+            ]
+          ]
+          [ i [] [ text "Nobody knows..." ] ]
+        ]
+      )
+    }
+  ]
+
+
 init : Location -> (Model, Cmd Msg)
 init location =
   ( Model
@@ -99,153 +266,16 @@ init location =
       ( \baseUrl -> baseUrl ++ "/events" )
       ( webSocketBaseUrl location )
     )
-    ( Array.fromList
-      [ Slide
-        { slideTemplate
-        | view =
-          ( \_ ->
-            div []
-            [ backgroundHalfCircles
-            , h1
-              [ css
-                [ position absolute
-                , top (pct 20), left (pct 36)
-                , fontFamilies [ "GoodRx Moon", "sans-serif" ]
-                , fontSize (vw 7)
-                ]
-              ]
-              [ text "Zoom Chat Behavior" ]
-            ]
+    slides
+    ( min ( ( Array.length slides ) - 1 )
+      ( max 0
+        ( Maybe.withDefault 0
+          ( Result.toMaybe
+            ( String.toInt ( String.dropLeft 7 location.hash ) )
           )
-        }
-      , Slide
-        { slideTemplate
-        | view =
-          ( \model ->
-            div []
-            [ h1
-              [ css
-                [ fontFamilies [ "GoodRx Moon", "sans-serif" ]
-                , fontSize (vw 4)
-                , before
-                  [ property "content" "''"
-                  , display block, float left
-                  , width (em 0.2), height (em 1.2)
-                  , marginRight (em 1.4)
-                  , backgroundColor (rgb 245 218 121)
-                  ]
-                ]
-              ]
-              [ text "Audience Poll" ]
-            , div [ css [ margin2 zero (pct 7) ] ]
-              [ h2
-                [ css
-                  [ paddingTop (pct (if List.isEmpty model.languagesAndCounts then 18 else 0))
-                  , fontFamilies [ "GoodRx Moon", "sans-serif" ]
-                  , fontSize (vw 2.5)
-                  , transition [ Css.Transitions.padding3 500 0 easeInOut ]
-                  ]
-                ]
-                [ text "What programming language are you most familiar with?" ]
-              , div []
-                ( if List.isEmpty model.languagesAndCounts then []
-                  else
-                    [ p
-                      [ css
-                        [ fontFamilies [ "GoodRx Bolton", "sans-serif" ]
-                        , fontSize (vw 2.2) ]
-                        ]
-                      [ text ("The top " ++ (toString maxDisplayCount) ++ " languages at GoodRx:") ]
-                    , ( Keyed.node "div" [ css [ position relative ] ]
-                        ( let
-                            maxCount : Int
-                            maxCount =
-                              Maybe.withDefault 0
-                              ( Maybe.map Tuple.second (List.head model.languagesAndCounts) )
-                          in
-                          List.sortBy Tuple.first
-                          ( List.indexedMap
-                            ( \idx (language, count) ->
-                              ( language
-                              , div
-                                [ id (idEscape language)
-                                , css
-                                  [ position absolute
-                                  , top (em (toFloat idx * 2))
-                                  , width (pct 80)
-                                  , fontFamilies [ "GoodRx Bolton", "sans-serif" ], fontSize (vw 1.6)
-                                  , lineHeight (em 1.6)
-                                  , transition [ Css.Transitions.top3 500 0 easeInOut ]
-                                  ]
-                                ]
-                                [ div
-                                  [ css
-                                    [ position absolute
-                                    , top zero
-                                    , width (pct 22)
-                                    , textAlign right
-                                    ]
-                                  ]
-                                  [ Maybe.withDefault
-                                    ( text language )
-                                    ( Dict.get language logosByLanguage )
-                                  ]
-                                , div
-                                  [ css
-                                    [ position absolute
-                                    , top zero
-                                    , left (pct 23)
-                                    , right zero
-                                    ]
-                                  ]
-                                  [ horizontalBarView count maxCount ]
-                                ]
-                              )
-                            )
-                            model.languagesAndCounts
-                          )
-                        )
-                      )
-                    ]
-                )
-              ]
-            ]
-          )
-        }
-      , Slide
-        { slideTemplate
-        | view =
-          ( \_ ->
-            div []
-            [ h1
-              [ css
-                [ fontFamilies [ "GoodRx Moon", "sans-serif" ]
-                , fontSize (vw 4)
-                , before
-                  [ property "content" "''"
-                  , display block, float left
-                  , width (em 0.2), height (em 1.2)
-                  , marginRight (em 1.4)
-                  , backgroundColor (rgb 245 218 121)
-                  ]
-                ]
-              ]
-              [ text "Answer" ]
-            , p
-              [ css
-                [ position absolute
-                , top (pct 30), left (pct 30)
-                , fontFamilies [ "GoodRx Bolton", "sans-serif" ]
-                , fontSize (vw 6)
-                ]
-              ]
-              [ i [] [ text "Nobody knows..." ] ]
-            ]
-          )
-        }
-      ]
+        )
+      )
     )
-    0
     []
   , Cmd.none
   )
@@ -256,13 +286,21 @@ update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
     Next ->
-      ( { model | slideIndex = min ((Array.length model.slides) - 1) (model.slideIndex + 1) }
-      , Cmd.none
+      let
+        slideIndex : Int
+        slideIndex = min ((Array.length model.slides) - 1) (model.slideIndex + 1)
+      in
+      ( { model | slideIndex = slideIndex }
+      , Navigation.newUrl ("#slide-" ++ toString slideIndex)
       )
 
     Last ->
-      ( { model | slideIndex = max 0 (model.slideIndex - 1) }
-      , Cmd.none
+      let
+        slideIndex : Int
+        slideIndex = max 0 (model.slideIndex - 1)
+      in
+      ( { model | slideIndex = slideIndex }
+      , Navigation.newUrl ("#slide-" ++ toString slideIndex)
       )
 
     Event body ->
@@ -284,15 +322,11 @@ update msg model =
           ( \langsByCount ->
             ( Dict.foldr
               ( \count langs accum ->
-                if List.length accum >= maxDisplayCount then accum
-                else
-                  List.take maxDisplayCount
-                  ( accum ++ (
-                      List.map
-                      ( \lang -> (lang, count) )
-                      langs
-                    )
-                  )
+                accum ++ (
+                  List.map
+                  ( \lang -> (lang, count) )
+                  langs
+                )
               )
               []
               ( Dict.fromList langsByCount ) -- Sorts by count
