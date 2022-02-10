@@ -25,25 +25,19 @@ class MainController @Inject() (cc: ControllerComponents)
   private val bySenderCounterActor: ActorRef =
     system.actorOf(
       ByTokenBySenderCounterActor.props(
-        Token.languageFromFirstLetter, chatMsgActor, rejectedMsgActor
+        Token.languageFromFirstWord, chatMsgActor, rejectedMsgActor
       ),
-      "bySenderCounter"
+      "byLanguageBySenderCounter"
     )
 
-  def chat(): Action[Unit] = Action(parse.empty) { implicit request: Request[Unit] =>
-    val chatMessageOpt: Option[ChatMessage] =
-      for {
-        (sender: String, recipient: String) <- request.getQueryString("route").collect {
-          case RoutePattern(sender, recipient) => sender -> recipient
-        }
-        text: String <- request.getQueryString("text")
-      } yield ChatMessage(sender, recipient, text)
+  def chat(route: String, text: String): Action[Unit] = Action(parse.empty) {
+    implicit request: Request[Unit] =>
 
-    chatMessageOpt match {
-      case Some(chatMessage: ChatMessage) =>
-        chatMsgActor ! ChatMessageActor.New(chatMessage)
+    route match {
+      case RoutePattern(sender, recipient) =>
+        chatMsgActor ! ChatMessageActor.New(ChatMessage(sender, recipient, text))
         NoContent
-      case None => BadRequest
+      case _ => BadRequest
     }
   }
 
@@ -51,5 +45,10 @@ class MainController @Inject() (cc: ControllerComponents)
     ActorFlow.actorRef { webSocketClient: ActorRef =>
       WebSocketActor.props(webSocketClient, bySenderCounterActor)
     }
+  }
+
+  def reset(): Action[Unit] = Action(parse.empty) { implicit request: Request[Unit] =>
+    bySenderCounterActor ! ByTokenBySenderCounterActor.Reset
+    NoContent
   }
 }

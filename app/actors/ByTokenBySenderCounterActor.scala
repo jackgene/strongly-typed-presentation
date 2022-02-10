@@ -7,6 +7,7 @@ import model.ChatMessage
 object ByTokenBySenderCounterActor {
   // Incoming messages
   case class ListenerRegistration(listener: ActorRef)
+  case object Reset
 
   // Outgoing messages
   case class Counts(tokensByCount: Map[Int,Seq[String]])
@@ -62,6 +63,14 @@ private class ByTokenBySenderCounterActor(
           log.info(s"No token extracted")
           rejectedMessageActor ! event
       }
+
+    case Reset =>
+      for (listener: ActorRef <- listeners) {
+        listener ! Counts(Map())
+      }
+      context.become(
+        running(Map(), ItemCount(), 0, listeners)
+      )
 
     case ListenerRegistration(listener: ActorRef) =>
       listener ! Counts(tokenCount.itemsByCount)
