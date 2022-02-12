@@ -42,7 +42,6 @@ object Token {
     "elm" -> "ML",
     "f#" -> "ML",
     "ocaml" -> "ML",
-    "rust" -> "ML",
     // Perl
     "perl" -> "Perl",
     // PHP
@@ -50,6 +49,8 @@ object Token {
     // Ruby
     "ruby" -> "Ruby",
     "rb" -> "Ruby",
+    // Rust
+    "rust" -> "Rust",
     // Scala
     "scala" -> "Scala",
   )
@@ -87,7 +88,7 @@ object Token {
     'j' -> "C#",
     'x' -> "Java",
     'q' -> "Lisp",
-    'z' -> "ML",
+    'z' -> "Rust",
   )
 
   def languageFromFirstLetter(text: String): Option[String] = {
