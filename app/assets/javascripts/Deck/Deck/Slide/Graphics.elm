@@ -1,4 +1,4 @@
-module Deck.Graphics exposing (..)
+module Deck.Slide.Graphics exposing (..)
 
 import Deck.Common exposing (Msg)
 import Dict exposing (Dict)
