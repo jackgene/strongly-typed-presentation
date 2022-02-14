@@ -4,9 +4,12 @@
 # ~~~~
 
 GET     /                           controllers.Assets.at(path="/public", file="html/deck.html")
-GET     /admin                      controllers.Assets.at(path="/public", file="html/admin.html")
-POST    /chat                       controllers.MainController.chat(route, text)
 GET     /events                     controllers.MainController.presentationEvents()
+
+GET     /moderator                  controllers.Assets.at(path="/public", file="html/moderator.html")
+GET     /moderator/events           controllers.MainController.moderationEvents()
+
+POST    /chat                       controllers.MainController.chat(route, text)
 GET     /reset                      controllers.MainController.reset()
 
 # Map static resources from the /public folder to the /assets URL path

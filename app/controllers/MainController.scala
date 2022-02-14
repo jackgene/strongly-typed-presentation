@@ -1,6 +1,6 @@
 package controllers
 
-import actors.{ByTokenBySenderCounterActor, ChatMessageActor, PresentationWebSocketActor}
+import actors._
 import akka.actor.{ActorRef, ActorSystem}
 import akka.stream.Materializer
 import model.{ChatMessage, Token}
@@ -30,6 +30,18 @@ class MainController @Inject() (cc: ControllerComponents)
       "byLanguageBySenderCounter"
     )
 
+  def presentationEvents(): WebSocket = WebSocket.accept[JsValue,JsValue] { _: RequestHeader =>
+    ActorFlow.actorRef { webSocketClient: ActorRef =>
+      PresentationWebSocketActor.props(webSocketClient, bySenderCounterActor)
+    }
+  }
+
+  def moderationEvents(): WebSocket = WebSocket.accept[JsValue,JsValue] { _: RequestHeader =>
+    ActorFlow.actorRef { webSocketClient: ActorRef =>
+      ModerationWebSocketActor.props(webSocketClient, rejectedMsgActor)
+    }
+  }
+
   def chat(route: String, text: String): Action[Unit] = Action(parse.empty) {
     implicit request: Request[Unit] =>
 
@@ -38,12 +50,6 @@ class MainController @Inject() (cc: ControllerComponents)
         chatMsgActor ! ChatMessageActor.New(ChatMessage(sender, recipient, text))
         NoContent
       case _ => BadRequest
-    }
-  }
-
-  def presentationEvents(): WebSocket = WebSocket.accept[JsValue,JsValue] { _: RequestHeader =>
-    ActorFlow.actorRef { webSocketClient: ActorRef =>
-      PresentationWebSocketActor.props(webSocketClient, bySenderCounterActor)
     }
   }
 
