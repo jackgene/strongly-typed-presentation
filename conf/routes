@@ -6,7 +6,7 @@
 GET     /                           controllers.Assets.at(path="/public", file="html/deck.html")
 GET     /admin                      controllers.Assets.at(path="/public", file="html/admin.html")
 POST    /chat                       controllers.MainController.chat(route, text)
-GET     /events                     controllers.MainController.events()
+GET     /events                     controllers.MainController.presentationEvents()
 GET     /reset                      controllers.MainController.reset()
 
 # Map static resources from the /public folder to the /assets URL path

@@ -3,11 +3,12 @@ package actors
 import akka.actor.{Actor, ActorLogging, ActorRef, Props}
 import play.api.libs.json.Json
 
-object WebSocketActor {
+object PresentationWebSocketActor {
   def props(webSocketClient: ActorRef, counts: ActorRef): Props =
-    Props(new WebSocketActor(webSocketClient, counts))
+    Props(new PresentationWebSocketActor(webSocketClient, counts))
 }
-class WebSocketActor(webSocketClient: ActorRef, counts: ActorRef) extends Actor with ActorLogging {
+class PresentationWebSocketActor(webSocketClient: ActorRef, counts: ActorRef)
+    extends Actor with ActorLogging {
   log.info("WebSocket connection opened")
   counts ! ByTokenBySenderCounterActor.ListenerRegistration(self)
 

@@ -1,6 +1,6 @@
 package controllers
 
-import actors.{ByTokenBySenderCounterActor, ChatMessageActor, WebSocketActor}
+import actors.{ByTokenBySenderCounterActor, ChatMessageActor, PresentationWebSocketActor}
 import akka.actor.{ActorRef, ActorSystem}
 import akka.stream.Materializer
 import model.{ChatMessage, Token}
@@ -41,9 +41,9 @@ class MainController @Inject() (cc: ControllerComponents)
     }
   }
 
-  def events(): WebSocket = WebSocket.accept[JsValue,JsValue] { _: RequestHeader =>
+  def presentationEvents(): WebSocket = WebSocket.accept[JsValue,JsValue] { _: RequestHeader =>
     ActorFlow.actorRef { webSocketClient: ActorRef =>
-      WebSocketActor.props(webSocketClient, bySenderCounterActor)
+      PresentationWebSocketActor.props(webSocketClient, bySenderCounterActor)
     }
   }
 
