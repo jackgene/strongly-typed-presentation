@@ -30,13 +30,13 @@ class MainController @Inject() (cc: ControllerComponents)
       "byLanguageBySenderCounter"
     )
 
-  def presentationEvents(): WebSocket = WebSocket.accept[JsValue,JsValue] { _: RequestHeader =>
+  def presentationEvent(): WebSocket = WebSocket.accept[JsValue,JsValue] { _: RequestHeader =>
     ActorFlow.actorRef { webSocketClient: ActorRef =>
       PresentationWebSocketActor.props(webSocketClient, bySenderCounterActor)
     }
   }
 
-  def moderationEvents(): WebSocket = WebSocket.accept[JsValue,JsValue] { _: RequestHeader =>
+  def moderationEvent(): WebSocket = WebSocket.accept[JsValue,JsValue] { _: RequestHeader =>
     ActorFlow.actorRef { webSocketClient: ActorRef =>
       ModerationWebSocketActor.props(webSocketClient, rejectedMsgActor)
     }

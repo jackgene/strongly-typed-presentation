@@ -22,7 +22,7 @@ init : Location -> (Model, Cmd Msg)
 init location =
   ( { eventsWsUrl =
       ( Maybe.map
-        ( \baseUrl -> baseUrl ++ "/events" )
+        ( \baseUrl -> baseUrl ++ "/event" )
         ( webSocketBaseUrl location )
       )
     , slides = slides

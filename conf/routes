@@ -4,10 +4,10 @@
 # ~~~~
 
 GET     /                           controllers.Assets.at(path="/public", file="html/deck.html")
-GET     /events                     controllers.MainController.presentationEvents()
+GET     /event                      controllers.MainController.presentationEvent()
 
 GET     /moderator                  controllers.Assets.at(path="/public", file="html/moderator.html")
-GET     /moderator/events           controllers.MainController.moderationEvents()
+GET     /moderator/event            controllers.MainController.moderationEvent()
 
 POST    /chat                       controllers.MainController.chat(route, text)
 GET     /reset                      controllers.MainController.reset()

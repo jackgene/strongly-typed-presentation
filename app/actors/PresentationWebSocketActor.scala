@@ -9,7 +9,7 @@ object PresentationWebSocketActor {
 }
 class PresentationWebSocketActor(webSocketClient: ActorRef, counts: ActorRef)
     extends Actor with ActorLogging {
-  log.info("WebSocket connection opened")
+  log.info("Presentation WebSocket connection opened")
   counts ! ByTokenBySenderCounterActor.ListenerRegistration(self)
 
   override def receive: Receive = {
@@ -18,6 +18,6 @@ class PresentationWebSocketActor(webSocketClient: ActorRef, counts: ActorRef)
   }
 
   override def postStop(): Unit = {
-    log.info("WebSocket connection closed")
+    log.info("Presentation WebSocket connection closed")
   }
 }
