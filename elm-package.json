@@ -1,6 +1,6 @@
 { "version": "1.0.0"
-, "summary": "Open Spaces Board"
-, "repository": "https://github.com/WinterTechForum/open-spaces-board.git"
+, "summary": "Live Presentation Deck"
+, "repository": "https://github.com/jackgene/live-deck.git"
 , "license": "WTF"
 , "source-directories": ["."]
 , "exposed-modules": []
