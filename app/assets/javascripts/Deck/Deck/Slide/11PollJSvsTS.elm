@@ -17,7 +17,7 @@ import Css exposing
   -- Other values
   , auto, center, hidden, inherit, none, rgb
   )
-import Css.Transitions exposing (easeInOut, transition)
+import Css.Transitions exposing (easeIn, easeInOut, easeOut, transition)
 import Deck.Common exposing (Msg, Slide(Slide))
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Graphics exposing (logosByLanguage)
@@ -85,16 +85,15 @@ slide =
                         div
                         [ css
                           [ opacity (num 1.0)
-                          , position absolute, top zero, height (vw 32), width (vw 32)
-                          , borderRadius (pct 50), margin2 (vw 1) (vw 26)
-                          , backgroundColor (rgb 247 231 146)
+                          , position absolute, top zero, height (vw 30), width (vw 30)
+                          , borderRadius (pct 50), margin2 (vw 1) (vw 28)
                           , overflow hidden
                           , transition
-                            [ Css.Transitions.opacity3 500 0 easeInOut
-                            , Css.Transitions.top3 500 0 easeInOut
-                            , Css.Transitions.borderRadius3 500 0 easeInOut
-                            , Css.Transitions.marginLeft3 500 0 easeInOut
-                            , Css.Transitions.backgroundColor3 500 0 easeInOut
+                            [ Css.Transitions.opacity3 transitionDurationMs 0 easeInOut
+                            , Css.Transitions.top3 transitionDurationMs 0 easeInOut
+                            , Css.Transitions.width3 transitionDurationMs 0 easeInOut
+                            , Css.Transitions.borderRadius3 transitionDurationMs 0 easeInOut
+                            , Css.Transitions.marginLeft3 transitionDurationMs 0 easeInOut
                             ]
                           ]
                         ]
@@ -103,8 +102,8 @@ slide =
                             [ position absolute, top (pct 46), left (pct (if isTs then 8 else 85))
                             , zIndex (int 20)
                             , transition
-                              [ Css.Transitions.left3 500 0 easeInOut
-                              , Css.Transitions.top3 500 0 easeInOut
+                              [ Css.Transitions.left3 transitionDurationMs 0 easeIn
+                              , Css.Transitions.top3 transitionDurationMs 0 easeOut
                               ]
                             ]
                           ]
@@ -130,10 +129,11 @@ slide =
                               , transform (rotate (deg (180 * (if isTs then tsFrac + 0.5 else tsFrac - 0.5))))
                               , property "transform-origin" "left"
                               , transition
-                                [ Css.Transitions.width3 500 0 easeInOut
-                                , Css.Transitions.height3 500 0 easeInOut
-                                , Css.Transitions.backgroundColor3 500 0 easeInOut
-                                , Css.Transitions.transform3 500 0 easeInOut
+                                [ Css.Transitions.left3 transitionDurationMs 0 easeInOut
+                                , Css.Transitions.width3 transitionDurationMs 0 easeInOut
+                                , Css.Transitions.height3 transitionDurationMs 0 easeInOut
+                                , Css.Transitions.backgroundColor3 transitionDurationMs 0 easeInOut
+                                , Css.Transitions.transform3 transitionDurationMs 0 easeInOut
                                 ]
                               ]
                             ]
@@ -146,9 +146,9 @@ slide =
                                     , transform (rotate (deg (360 * (if isTs then 0.5 - tsFrac else 0.5 - tsFrac))))
                                     , property "transform-origin" "left"
                                     , transition
-                                      [ Css.Transitions.width3 500 0 easeInOut
-                                      , Css.Transitions.height3 500 0 easeInOut
-                                      , Css.Transitions.transform3 500 0 easeInOut
+                                      [ Css.Transitions.width3 transitionDurationMs 0 easeInOut
+                                      , Css.Transitions.height3 transitionDurationMs 0 easeInOut
+                                      , Css.Transitions.transform3 transitionDurationMs 0 easeInOut
                                       ]
                                     ]
                                   ]
@@ -167,8 +167,8 @@ slide =
                           , paragraphFontFamily, fontSize (vw 1.6)
                           , lineHeight (em 1.6)
                           , transition
-                            [ Css.Transitions.opacity3 500 0 easeInOut
-                            , Css.Transitions.top3 500 0 easeInOut
+                            [ Css.Transitions.opacity3 transitionDurationMs 0 easeInOut
+                            , Css.Transitions.top3 transitionDurationMs 0 easeInOut
                             ]
                           ]
                         ]

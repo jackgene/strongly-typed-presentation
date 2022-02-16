@@ -19,6 +19,11 @@ import Deck.Common exposing (SlideModel)
 import Html.Styled exposing (text)
 
 
+-- Constants
+transitionDurationMs : Float
+transitionDurationMs = 500
+
+
 slideTemplate : SlideModel
 slideTemplate =
   { init = ( \model -> (model, Cmd.none) )

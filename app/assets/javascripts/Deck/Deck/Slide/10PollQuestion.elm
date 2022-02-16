@@ -34,13 +34,14 @@ horizontalBarView : Int -> Int -> Html Msg
 horizontalBarView value maxValue =
   div
   [ css
-    [ width (pct (100 * (toFloat value / toFloat maxValue)))
+    [ left zero
+    , width (pct (100 * (toFloat value / toFloat maxValue)))
     , height (vw 2.5)
     , color (rgb 215 194 93)
     , backgroundColor (rgb 251 230 133)
     , textAlign center
     , fontWeight (int 900)
-    , transition [ Css.Transitions.width3 500 0 easeInOut ]
+    , transition [ Css.Transitions.width3 transitionDurationMs 0 easeInOut ]
     ]
   ]
   [ text (toString value) ]
@@ -64,8 +65,8 @@ slide =
             , height (vw (if List.isEmpty model.languagesAndCounts then 20 else 0))
             , overflow hidden
             , transition
-              [ Css.Transitions.opacity3 500 0 easeInOut
-              , Css.Transitions.height3 500 0 easeInOut
+              [ Css.Transitions.opacity3 transitionDurationMs 0 easeInOut
+              , Css.Transitions.height3 transitionDurationMs 0 easeInOut
               ]
             ]
           ]
@@ -108,15 +109,15 @@ slide =
                         , paragraphFontFamily, fontSize (vw 1.6)
                         , lineHeight (em 1.6)
                         , transition
-                          [ Css.Transitions.opacity3 500 0 easeInOut
-                          , Css.Transitions.top3 500 0 easeInOut
-                          , Css.Transitions.marginLeft3 500 0 easeInOut
+                          [ Css.Transitions.opacity3 transitionDurationMs 0 easeInOut
+                          , Css.Transitions.top3 transitionDurationMs 0 easeInOut
+                          , Css.Transitions.marginLeft3 transitionDurationMs 0 easeInOut
                           ]
                         ]
                       ]
                       [ div
                         [ css
-                          [ position absolute, top zero, width (pct 16)
+                          [ position absolute, top zero, left zero, width (pct 16)
                           , textAlign right
                           ]
                         ]
