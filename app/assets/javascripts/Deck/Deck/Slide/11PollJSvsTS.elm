@@ -102,8 +102,8 @@ slide =
                             [ position absolute, top (pct 46), left (pct (if isTs then 8 else 85))
                             , zIndex (int 20)
                             , transition
-                              [ Css.Transitions.left3 transitionDurationMs 0 easeIn
-                              , Css.Transitions.top3 transitionDurationMs 0 easeOut
+                              [ Css.Transitions.left3 (transitionDurationMs*1.2) 0 easeIn
+                              , Css.Transitions.top3 (transitionDurationMs*1.2) 0 easeOut
                               ]
                             ]
                           ]
