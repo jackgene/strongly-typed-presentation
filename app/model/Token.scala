@@ -29,6 +29,7 @@ object Token {
     "java" -> "Java",
     // Javascript
     "js" -> "JavaScript",
+    "ecmascript" -> "JavaScript",
     "javascript" -> "JavaScript",
     // Lisp
     "lisp" -> "Lisp",
