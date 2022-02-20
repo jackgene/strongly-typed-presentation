@@ -61,7 +61,8 @@ elmMakeModerator := {
   ) match {
     case 0 =>
       streams.value.log.success("elm-make (for Moderator) completed.")
-      file(outputPath) +: (file("elm-stuff/build-artifacts") ** "*").get()
+//      file(outputPath) +: (file("elm-stuff/build-artifacts") ** "*").get()
+      Seq(file(outputPath))
 
     case 127 =>
       streams.value.log.warn("elm-make not found in PATH. Skipping Elm build.")
@@ -131,7 +132,8 @@ elmMakeDeck := {
   ) match {
     case 0 =>
       streams.value.log.success("elm-make (for Deck) completed.")
-      file(outputPath) +: (file("elm-stuff/build-artifacts") ** "*").get()
+//      file(outputPath) +: (file("elm-stuff/build-artifacts") ** "*").get()
+      Seq(file(outputPath))
 
     case 127 =>
       streams.value.log.warn("elm-make not found in PATH. Skipping Elm build.")
