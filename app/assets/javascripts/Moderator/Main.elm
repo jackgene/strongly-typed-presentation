@@ -1,16 +1,51 @@
 module Moderator exposing (..)
 
-import Html.Styled as Html exposing (Html)
+import Css exposing
+  -- Container
+  ( display, left, width, top
+  -- Content
+  , color, textAlign, verticalAlign
+  -- Sizes
+  , em, pct
+  -- Positions
+  -- Other values
+  , block, none, rgb
+  )
+import Http
+import Html.Styled as Html exposing
+  ( Html, button, datalist, div, input, option, table, td, text, th, tr )
+import Html.Styled.Attributes exposing
+  ( css, id, list, size, type_, value )
+import Html.Styled.Events exposing (..)
 import Json.Decode as Decode
 import Navigation exposing (Location)
 import WebSocket
 
+
+-- Constants
+languages : List String
+languages =
+  [ "C", "C++"
+  , "C#"
+  , "Elm"
+  , "Go"
+  , "Java"
+  , "JavaScript"
+  , "Kotlin"
+  , "Lisp"
+  , "ML"
+  , "Perl"
+  , "PHP"
+  , "Python"
+  , "Ruby"
+  , "Rust"
+  , "Scala"
+  , "Swift"
+  , "TypeScript"
+  ]
+
+
 -- Types
-type Msg
-  = Event String
-  | NoOp
-
-
 type alias ChatMessage =
   { sender : String
   , recipient : String
@@ -18,8 +53,19 @@ type alias ChatMessage =
   }
 
 
+type Msg
+  = NewMessageText String
+  | NewOverrideMessageText Int String
+  | SendMessageRequest (Maybe Int)
+  | SendMessageResponse (Result Http.Error ())
+  | RemoveMessage Int (Maybe ChatMessage)
+  | Event String
+  | NoOp
+
+
 type alias Model =
   { eventsWsUrl : String
+  , messageText : String
   , chatMessages : List ChatMessage
   , errors : List String
   }
@@ -34,6 +80,7 @@ webSocketBaseUrl location =
 init : Location -> (Model, Cmd Msg)
 init location =
   ( { eventsWsUrl = webSocketBaseUrl location ++ "/moderator/event"
+    , messageText = ""
     , chatMessages = []
     , errors = []
     }
@@ -50,25 +97,143 @@ chatMessageDecoder =
   ( Decode.field "t" Decode.string )
 
 
+postChat : ChatMessage -> Cmd Msg
+postChat chatMessage =
+    Http.send
+    SendMessageResponse
+    ( Http.post
+      ( "/chat?route="
+      ++(Http.encodeUri (chatMessage.sender ++ " to " ++ chatMessage.recipient))
+      ++"&text=" ++ (Http.encodeUri chatMessage.text)
+      )
+      Http.emptyBody
+      ( Decode.succeed () )
+    )
+
+
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
-  ( case msg of
+  case msg of
+    NewMessageText text ->
+      ( { model | messageText = text}
+      , Cmd.none
+      )
+
+    NewOverrideMessageText index text ->
+      ( { model
+        | chatMessages =
+          List.indexedMap
+          ( \idx chatMsg ->
+            if idx /= index then chatMsg
+            else { chatMsg | text = text }
+          )
+          model.chatMessages
+        }
+      , Cmd.none
+      )
+    SendMessageRequest _ ->
+      ( model
+      , postChat (ChatMessage "Me" "Everyone" model.messageText)
+      )
+
+    SendMessageResponse (Ok ()) -> ( model, Cmd.none )
+
+    SendMessageResponse (Err httpConnError) ->
+      ( let
+          error : String
+          error =
+            case httpConnError of
+              Http.BadUrl url ->
+                "The URL " ++ url ++ " was invalid"
+              Http.Timeout ->
+                "Timed out attempting to reach the server, try again"
+              Http.NetworkError ->
+                "Unable to reach the server, check your network connection"
+              Http.BadStatus resp ->
+                "Bad HTTP status " ++
+                toString resp.status.code ++ " (" ++ resp.status.message ++
+                ") for: " ++ resp.url
+              Http.BadPayload errorMessage _ ->
+                errorMessage
+        in
+        { model | errors = error :: model.errors }
+      , Cmd.none
+      )
+
+    RemoveMessage index maybeChatMsg ->
+      ( { model
+        | chatMessages =
+          (List.take index model.chatMessages) ++ (List.drop (index+1) model.chatMessages)
+        }
+      , case maybeChatMsg of
+          Just chatMsg -> postChat chatMsg
+          Nothing -> Cmd.none
+      )
+
     Event json ->
-      case Decode.decodeString chatMessageDecoder json of
+      ( case Decode.decodeString chatMessageDecoder json of
         Ok chatMessage ->
           { model | chatMessages = chatMessage :: model.chatMessages }
 
         Err error ->
           { model | errors = error :: model.errors }
+      , Cmd.none
+      )
 
-    NoOp -> model
-  , Cmd.none
-  )
+    NoOp -> ( model, Cmd.none )
 
 
 -- View
 view : Model -> Html Msg
-view model = Html.text ("Number of rejected messages: " ++ (toString (List.length model.chatMessages)))
+view model =
+  div []
+  [ datalist [ id "languages" ]
+    ( List.map ( \lang -> option [ value lang ] [] ) languages )
+  , div
+    [ css
+      [ if model.errors == [] then display none else display block
+      , color (rgb 255 0 0)
+      ]
+    ]
+    []
+  , div []
+    [ input [ type_ "text", list "languages", size 80, onInput NewMessageText ] []
+    , button [ onClick (SendMessageRequest Nothing) ] [ text "Send" ]
+    ]
+  , table [ css [ width (em 60) ] ]
+    ( tr [ css [ textAlign left ] ]
+      [ th [ css [ width (pct 15) ] ] [ text "From" ]
+      , th [ css [ width (pct 60) ] ] [ text "Text" ]
+      , th [ css [ width (pct 25) ] ] []
+      ]
+    ::( List.reverse <| List.indexedMap
+        ( \idx chatMsg ->
+          tr []
+          [ td [ css [ verticalAlign top ] ] [ text chatMsg.sender ]
+          , td []
+            [ input
+              [ type_ "text", value chatMsg.text, list "languages", size 80
+              , onInput (NewOverrideMessageText idx)
+              ]
+              []
+            ]
+          , td []
+            [ button
+              [ onClick (RemoveMessage idx (Just chatMsg)) ]
+              [ text "Accept" ]
+            , button
+              [ onClick (RemoveMessage idx (Just { chatMsg | sender = "Me" })) ]
+              [ text "Accept (as Me)" ]
+            , button
+              [ onClick (RemoveMessage idx Nothing) ]
+              [ text "Reject" ]
+            ]
+          ]
+        )
+        model.chatMessages
+      )
+    )
+  ]
 
 
 -- Subscriptions

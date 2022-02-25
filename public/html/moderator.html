@@ -8496,6 +8496,364 @@ var _elm_lang$html$Html$details = _elm_lang$html$Html$node('details');
 var _elm_lang$html$Html$summary = _elm_lang$html$Html$node('summary');
 var _elm_lang$html$Html$menuitem = _elm_lang$html$Html$node('menuitem');
 var _elm_lang$html$Html$menu = _elm_lang$html$Html$node('menu');
+var _elm_lang$http$Native_Http = function() {
+
+
+// ENCODING AND DECODING
+
+function encodeUri(string)
+{
+	return encodeURIComponent(string);
+}
+
+function decodeUri(string)
+{
+	try
+	{
+		return _elm_lang$core$Maybe$Just(decodeURIComponent(string));
+	}
+	catch(e)
+	{
+		return _elm_lang$core$Maybe$Nothing;
+	}
+}
+
+
+// SEND REQUEST
+
+function toTask(request, maybeProgress)
+{
+	return _elm_lang$core$Native_Scheduler.nativeBinding(function(callback)
+	{
+		var xhr = new XMLHttpRequest();
+
+		configureProgress(xhr, maybeProgress);
+
+		xhr.addEventListener('error', function() {
+			callback(_elm_lang$core$Native_Scheduler.fail({ ctor: 'NetworkError' }));
+		});
+		xhr.addEventListener('timeout', function() {
+			callback(_elm_lang$core$Native_Scheduler.fail({ ctor: 'Timeout' }));
+		});
+		xhr.addEventListener('load', function() {
+			callback(handleResponse(xhr, request.expect.responseToResult));
+		});
+
+		try
+		{
+			xhr.open(request.method, request.url, true);
+		}
+		catch (e)
+		{
+			return callback(_elm_lang$core$Native_Scheduler.fail({ ctor: 'BadUrl', _0: request.url }));
+		}
+
+		configureRequest(xhr, request);
+		send(xhr, request.body);
+
+		return function() { xhr.abort(); };
+	});
+}
+
+function configureProgress(xhr, maybeProgress)
+{
+	if (maybeProgress.ctor === 'Nothing')
+	{
+		return;
+	}
+
+	xhr.addEventListener('progress', function(event) {
+		if (!event.lengthComputable)
+		{
+			return;
+		}
+		_elm_lang$core$Native_Scheduler.rawSpawn(maybeProgress._0({
+			bytes: event.loaded,
+			bytesExpected: event.total
+		}));
+	});
+}
+
+function configureRequest(xhr, request)
+{
+	function setHeader(pair)
+	{
+		xhr.setRequestHeader(pair._0, pair._1);
+	}
+
+	A2(_elm_lang$core$List$map, setHeader, request.headers);
+	xhr.responseType = request.expect.responseType;
+	xhr.withCredentials = request.withCredentials;
+
+	if (request.timeout.ctor === 'Just')
+	{
+		xhr.timeout = request.timeout._0;
+	}
+}
+
+function send(xhr, body)
+{
+	switch (body.ctor)
+	{
+		case 'EmptyBody':
+			xhr.send();
+			return;
+
+		case 'StringBody':
+			xhr.setRequestHeader('Content-Type', body._0);
+			xhr.send(body._1);
+			return;
+
+		case 'FormDataBody':
+			xhr.send(body._0);
+			return;
+	}
+}
+
+
+// RESPONSES
+
+function handleResponse(xhr, responseToResult)
+{
+	var response = toResponse(xhr);
+
+	if (xhr.status < 200 || 300 <= xhr.status)
+	{
+		response.body = xhr.responseText;
+		return _elm_lang$core$Native_Scheduler.fail({
+			ctor: 'BadStatus',
+			_0: response
+		});
+	}
+
+	var result = responseToResult(response);
+
+	if (result.ctor === 'Ok')
+	{
+		return _elm_lang$core$Native_Scheduler.succeed(result._0);
+	}
+	else
+	{
+		response.body = xhr.responseText;
+		return _elm_lang$core$Native_Scheduler.fail({
+			ctor: 'BadPayload',
+			_0: result._0,
+			_1: response
+		});
+	}
+}
+
+function toResponse(xhr)
+{
+	return {
+		status: { code: xhr.status, message: xhr.statusText },
+		headers: parseHeaders(xhr.getAllResponseHeaders()),
+		url: xhr.responseURL,
+		body: xhr.response
+	};
+}
+
+function parseHeaders(rawHeaders)
+{
+	var headers = _elm_lang$core$Dict$empty;
+
+	if (!rawHeaders)
+	{
+		return headers;
+	}
+
+	var headerPairs = rawHeaders.split('\u000d\u000a');
+	for (var i = headerPairs.length; i--; )
+	{
+		var headerPair = headerPairs[i];
+		var index = headerPair.indexOf('\u003a\u0020');
+		if (index > 0)
+		{
+			var key = headerPair.substring(0, index);
+			var value = headerPair.substring(index + 2);
+
+			headers = A3(_elm_lang$core$Dict$update, key, function(oldValue) {
+				if (oldValue.ctor === 'Just')
+				{
+					return _elm_lang$core$Maybe$Just(value + ', ' + oldValue._0);
+				}
+				return _elm_lang$core$Maybe$Just(value);
+			}, headers);
+		}
+	}
+
+	return headers;
+}
+
+
+// EXPECTORS
+
+function expectStringResponse(responseToResult)
+{
+	return {
+		responseType: 'text',
+		responseToResult: responseToResult
+	};
+}
+
+function mapExpect(func, expect)
+{
+	return {
+		responseType: expect.responseType,
+		responseToResult: function(response) {
+			var convertedResponse = expect.responseToResult(response);
+			return A2(_elm_lang$core$Result$map, func, convertedResponse);
+		}
+	};
+}
+
+
+// BODY
+
+function multipart(parts)
+{
+	var formData = new FormData();
+
+	while (parts.ctor !== '[]')
+	{
+		var part = parts._0;
+		formData.append(part._0, part._1);
+		parts = parts._1;
+	}
+
+	return { ctor: 'FormDataBody', _0: formData };
+}
+
+return {
+	toTask: F2(toTask),
+	expectStringResponse: expectStringResponse,
+	mapExpect: F2(mapExpect),
+	multipart: multipart,
+	encodeUri: encodeUri,
+	decodeUri: decodeUri
+};
+
+}();
+var _elm_lang$http$Http_Internal$map = F2(
+	function (func, request) {
+		return _elm_lang$core$Native_Utils.update(
+			request,
+			{
+				expect: A2(_elm_lang$http$Native_Http.mapExpect, func, request.expect)
+			});
+	});
+var _elm_lang$http$Http_Internal$RawRequest = F7(
+	function (a, b, c, d, e, f, g) {
+		return {method: a, headers: b, url: c, body: d, expect: e, timeout: f, withCredentials: g};
+	});
+var _elm_lang$http$Http_Internal$Request = function (a) {
+	return {ctor: 'Request', _0: a};
+};
+var _elm_lang$http$Http_Internal$Expect = {ctor: 'Expect'};
+var _elm_lang$http$Http_Internal$FormDataBody = {ctor: 'FormDataBody'};
+var _elm_lang$http$Http_Internal$StringBody = F2(
+	function (a, b) {
+		return {ctor: 'StringBody', _0: a, _1: b};
+	});
+var _elm_lang$http$Http_Internal$EmptyBody = {ctor: 'EmptyBody'};
+var _elm_lang$http$Http_Internal$Header = F2(
+	function (a, b) {
+		return {ctor: 'Header', _0: a, _1: b};
+	});
+var _elm_lang$http$Http$decodeUri = _elm_lang$http$Native_Http.decodeUri;
+var _elm_lang$http$Http$encodeUri = _elm_lang$http$Native_Http.encodeUri;
+var _elm_lang$http$Http$expectStringResponse = _elm_lang$http$Native_Http.expectStringResponse;
+var _elm_lang$http$Http$expectJson = function (decoder) {
+	return _elm_lang$http$Http$expectStringResponse(
+		function (response) {
+			return A2(_elm_lang$core$Json_Decode$decodeString, decoder, response.body);
+		});
+};
+var _elm_lang$http$Http$expectString = _elm_lang$http$Http$expectStringResponse(
+	function (response) {
+		return _elm_lang$core$Result$Ok(response.body);
+	});
+var _elm_lang$http$Http$multipartBody = _elm_lang$http$Native_Http.multipart;
+var _elm_lang$http$Http$stringBody = _elm_lang$http$Http_Internal$StringBody;
+var _elm_lang$http$Http$jsonBody = function (value) {
+	return A2(
+		_elm_lang$http$Http_Internal$StringBody,
+		'application/json',
+		A2(_elm_lang$core$Json_Encode$encode, 0, value));
+};
+var _elm_lang$http$Http$emptyBody = _elm_lang$http$Http_Internal$EmptyBody;
+var _elm_lang$http$Http$header = _elm_lang$http$Http_Internal$Header;
+var _elm_lang$http$Http$request = _elm_lang$http$Http_Internal$Request;
+var _elm_lang$http$Http$post = F3(
+	function (url, body, decoder) {
+		return _elm_lang$http$Http$request(
+			{
+				method: 'POST',
+				headers: {ctor: '[]'},
+				url: url,
+				body: body,
+				expect: _elm_lang$http$Http$expectJson(decoder),
+				timeout: _elm_lang$core$Maybe$Nothing,
+				withCredentials: false
+			});
+	});
+var _elm_lang$http$Http$get = F2(
+	function (url, decoder) {
+		return _elm_lang$http$Http$request(
+			{
+				method: 'GET',
+				headers: {ctor: '[]'},
+				url: url,
+				body: _elm_lang$http$Http$emptyBody,
+				expect: _elm_lang$http$Http$expectJson(decoder),
+				timeout: _elm_lang$core$Maybe$Nothing,
+				withCredentials: false
+			});
+	});
+var _elm_lang$http$Http$getString = function (url) {
+	return _elm_lang$http$Http$request(
+		{
+			method: 'GET',
+			headers: {ctor: '[]'},
+			url: url,
+			body: _elm_lang$http$Http$emptyBody,
+			expect: _elm_lang$http$Http$expectString,
+			timeout: _elm_lang$core$Maybe$Nothing,
+			withCredentials: false
+		});
+};
+var _elm_lang$http$Http$toTask = function (_p0) {
+	var _p1 = _p0;
+	return A2(_elm_lang$http$Native_Http.toTask, _p1._0, _elm_lang$core$Maybe$Nothing);
+};
+var _elm_lang$http$Http$send = F2(
+	function (resultToMessage, request) {
+		return A2(
+			_elm_lang$core$Task$attempt,
+			resultToMessage,
+			_elm_lang$http$Http$toTask(request));
+	});
+var _elm_lang$http$Http$Response = F4(
+	function (a, b, c, d) {
+		return {url: a, status: b, headers: c, body: d};
+	});
+var _elm_lang$http$Http$BadPayload = F2(
+	function (a, b) {
+		return {ctor: 'BadPayload', _0: a, _1: b};
+	});
+var _elm_lang$http$Http$BadStatus = function (a) {
+	return {ctor: 'BadStatus', _0: a};
+};
+var _elm_lang$http$Http$NetworkError = {ctor: 'NetworkError'};
+var _elm_lang$http$Http$Timeout = {ctor: 'Timeout'};
+var _elm_lang$http$Http$BadUrl = function (a) {
+	return {ctor: 'BadUrl', _0: a};
+};
+var _elm_lang$http$Http$StringPart = F2(
+	function (a, b) {
+		return {ctor: 'StringPart', _0: a, _1: b};
+	});
+var _elm_lang$http$Http$stringPart = _elm_lang$http$Http$StringPart;
 var _elm_lang$navigation$Native_Navigation = function() {
 
 
@@ -14618,14 +14976,474 @@ var _rtfeldman$elm_css$Html_Styled$details = _rtfeldman$elm_css$Html_Styled$node
 var _rtfeldman$elm_css$Html_Styled$summary = _rtfeldman$elm_css$Html_Styled$node('summary');
 var _rtfeldman$elm_css$Html_Styled$menuitem = _rtfeldman$elm_css$Html_Styled$node('menuitem');
 var _rtfeldman$elm_css$Html_Styled$menu = _rtfeldman$elm_css$Html_Styled$node('menu');
-var _jackgene$live_deck$Moderator$view = function (model) {
-	return _rtfeldman$elm_css$Html_Styled$text(
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			'Number of rejected messages: ',
-			_elm_lang$core$Basics$toString(
-				_elm_lang$core$List$length(model.chatMessages))));
+var _rtfeldman$elm_css$Html_Styled_Attributes$css = _rtfeldman$elm_css$Html_Styled_Internal$css;
+var _rtfeldman$elm_css$Html_Styled_Attributes$map = _rtfeldman$elm_css$VirtualDom_Styled$mapProperty;
+var _rtfeldman$elm_css$Html_Styled_Attributes$attribute = _rtfeldman$elm_css$VirtualDom_Styled$attribute;
+var _rtfeldman$elm_css$Html_Styled_Attributes$contextmenu = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$attribute, 'contextmenu', value);
 };
+var _rtfeldman$elm_css$Html_Styled_Attributes$draggable = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$attribute, 'draggable', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$itemprop = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$attribute, 'itemprop', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$tabindex = function (n) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Attributes$attribute,
+		'tabIndex',
+		_elm_lang$core$Basics$toString(n));
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$charset = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$attribute, 'charset', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$height = function (value) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Attributes$attribute,
+		'height',
+		_elm_lang$core$Basics$toString(value));
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$width = function (value) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Attributes$attribute,
+		'width',
+		_elm_lang$core$Basics$toString(value));
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$formaction = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$attribute, 'formAction', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$list = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$attribute, 'list', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$minlength = function (n) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Attributes$attribute,
+		'minLength',
+		_elm_lang$core$Basics$toString(n));
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$maxlength = function (n) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Attributes$attribute,
+		'maxlength',
+		_elm_lang$core$Basics$toString(n));
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$size = function (n) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Attributes$attribute,
+		'size',
+		_elm_lang$core$Basics$toString(n));
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$form = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$attribute, 'form', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$cols = function (n) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Attributes$attribute,
+		'cols',
+		_elm_lang$core$Basics$toString(n));
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$rows = function (n) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Attributes$attribute,
+		'rows',
+		_elm_lang$core$Basics$toString(n));
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$challenge = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$attribute, 'challenge', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$media = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$attribute, 'media', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$rel = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$attribute, 'rel', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$datetime = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$attribute, 'datetime', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$pubdate = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$attribute, 'pubdate', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$colspan = function (n) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Attributes$attribute,
+		'colspan',
+		_elm_lang$core$Basics$toString(n));
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$rowspan = function (n) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Attributes$attribute,
+		'rowspan',
+		_elm_lang$core$Basics$toString(n));
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$manifest = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$attribute, 'manifest', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$property = _rtfeldman$elm_css$VirtualDom_Styled$property;
+var _rtfeldman$elm_css$Html_Styled_Attributes$stringProperty = F2(
+	function (name, string) {
+		return A2(
+			_rtfeldman$elm_css$Html_Styled_Attributes$property,
+			name,
+			_elm_lang$core$Json_Encode$string(string));
+	});
+var _rtfeldman$elm_css$Html_Styled_Attributes$class = function (name) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'className', name);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$id = function (name) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'id', name);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$title = function (name) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'title', name);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$accesskey = function ($char) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty,
+		'accessKey',
+		_elm_lang$core$String$fromChar($char));
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$dir = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'dir', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$dropzone = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'dropzone', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$lang = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'lang', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$content = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'content', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$httpEquiv = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'httpEquiv', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$language = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'language', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$src = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'src', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$alt = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'alt', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$preload = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'preload', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$poster = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'poster', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$kind = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'kind', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$srclang = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'srclang', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$sandbox = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'sandbox', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$srcdoc = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'srcdoc', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$type_ = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'type', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$value = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'value', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$defaultValue = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'defaultValue', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$placeholder = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'placeholder', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$accept = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'accept', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$acceptCharset = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'acceptCharset', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$action = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'action', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$autocomplete = function (bool) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty,
+		'autocomplete',
+		bool ? 'on' : 'off');
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$enctype = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'enctype', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$method = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'method', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$name = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'name', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$pattern = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'pattern', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$for = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'htmlFor', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$max = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'max', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$min = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'min', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$step = function (n) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'step', n);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$wrap = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'wrap', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$usemap = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'useMap', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$shape = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'shape', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$coords = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'coords', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$keytype = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'keytype', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$align = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'align', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$cite = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'cite', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$href = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'href', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$target = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'target', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$downloadAs = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'download', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$hreflang = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'hreflang', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$ping = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'ping', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$start = function (n) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty,
+		'start',
+		_elm_lang$core$Basics$toString(n));
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$headers = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'headers', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$scope = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$stringProperty, 'scope', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$boolProperty = F2(
+	function (name, bool) {
+		return A2(
+			_rtfeldman$elm_css$Html_Styled_Attributes$property,
+			name,
+			_elm_lang$core$Json_Encode$bool(bool));
+	});
+var _rtfeldman$elm_css$Html_Styled_Attributes$hidden = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'hidden', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$contenteditable = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'contentEditable', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$spellcheck = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'spellcheck', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$async = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'async', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$defer = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'defer', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$scoped = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'scoped', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$autoplay = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'autoplay', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$controls = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'controls', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$loop = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'loop', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$default = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'default', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$seamless = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'seamless', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$checked = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'checked', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$selected = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'selected', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$autofocus = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'autofocus', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$disabled = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'disabled', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$multiple = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'multiple', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$novalidate = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'noValidate', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$readonly = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'readOnly', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$required = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'required', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$ismap = function (value) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'isMap', value);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$download = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'download', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$reversed = function (bool) {
+	return A2(_rtfeldman$elm_css$Html_Styled_Attributes$boolProperty, 'reversed', bool);
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$classList = function (list) {
+	return _rtfeldman$elm_css$Html_Styled_Attributes$class(
+		A2(
+			_elm_lang$core$String$join,
+			' ',
+			A2(
+				_elm_lang$core$List$map,
+				_elm_lang$core$Tuple$first,
+				A2(_elm_lang$core$List$filter, _elm_lang$core$Tuple$second, list))));
+};
+var _rtfeldman$elm_css$Html_Styled_Attributes$fromUnstyled = _rtfeldman$elm_css$VirtualDom_Styled$unstyledProperty;
+var _rtfeldman$elm_css$Html_Styled_Attributes$style = function (_p0) {
+	return _rtfeldman$elm_css$Html_Styled_Attributes$fromUnstyled(
+		_elm_lang$virtual_dom$VirtualDom$style(_p0));
+};
+var _rtfeldman$elm_css$Html_Styled_Events$keyCode = A2(_elm_lang$core$Json_Decode$field, 'keyCode', _elm_lang$core$Json_Decode$int);
+var _rtfeldman$elm_css$Html_Styled_Events$targetChecked = A2(
+	_elm_lang$core$Json_Decode$at,
+	{
+		ctor: '::',
+		_0: 'target',
+		_1: {
+			ctor: '::',
+			_0: 'checked',
+			_1: {ctor: '[]'}
+		}
+	},
+	_elm_lang$core$Json_Decode$bool);
+var _rtfeldman$elm_css$Html_Styled_Events$targetValue = A2(
+	_elm_lang$core$Json_Decode$at,
+	{
+		ctor: '::',
+		_0: 'target',
+		_1: {
+			ctor: '::',
+			_0: 'value',
+			_1: {ctor: '[]'}
+		}
+	},
+	_elm_lang$core$Json_Decode$string);
+var _rtfeldman$elm_css$Html_Styled_Events$defaultOptions = _elm_lang$virtual_dom$VirtualDom$defaultOptions;
+var _rtfeldman$elm_css$Html_Styled_Events$onWithOptions = _rtfeldman$elm_css$VirtualDom_Styled$onWithOptions;
+var _rtfeldman$elm_css$Html_Styled_Events$on = _rtfeldman$elm_css$VirtualDom_Styled$on;
+var _rtfeldman$elm_css$Html_Styled_Events$onFocus = function (msg) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Events$on,
+		'focus',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _rtfeldman$elm_css$Html_Styled_Events$onBlur = function (msg) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Events$on,
+		'blur',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _rtfeldman$elm_css$Html_Styled_Events$onSubmitOptions = _elm_lang$core$Native_Utils.update(
+	_rtfeldman$elm_css$Html_Styled_Events$defaultOptions,
+	{preventDefault: true});
+var _rtfeldman$elm_css$Html_Styled_Events$onSubmit = function (msg) {
+	return A3(
+		_rtfeldman$elm_css$Html_Styled_Events$onWithOptions,
+		'submit',
+		_rtfeldman$elm_css$Html_Styled_Events$onSubmitOptions,
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _rtfeldman$elm_css$Html_Styled_Events$onCheck = function (tagger) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Events$on,
+		'change',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _rtfeldman$elm_css$Html_Styled_Events$targetChecked));
+};
+var _rtfeldman$elm_css$Html_Styled_Events$onInput = function (tagger) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Events$on,
+		'input',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _rtfeldman$elm_css$Html_Styled_Events$targetValue));
+};
+var _rtfeldman$elm_css$Html_Styled_Events$onMouseOut = function (msg) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Events$on,
+		'mouseout',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _rtfeldman$elm_css$Html_Styled_Events$onMouseOver = function (msg) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Events$on,
+		'mouseover',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _rtfeldman$elm_css$Html_Styled_Events$onMouseLeave = function (msg) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Events$on,
+		'mouseleave',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _rtfeldman$elm_css$Html_Styled_Events$onMouseEnter = function (msg) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Events$on,
+		'mouseenter',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _rtfeldman$elm_css$Html_Styled_Events$onMouseUp = function (msg) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Events$on,
+		'mouseup',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _rtfeldman$elm_css$Html_Styled_Events$onMouseDown = function (msg) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Events$on,
+		'mousedown',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _rtfeldman$elm_css$Html_Styled_Events$onDoubleClick = function (msg) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Events$on,
+		'dblclick',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _rtfeldman$elm_css$Html_Styled_Events$onClick = function (msg) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Events$on,
+		'click',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _rtfeldman$elm_css$Html_Styled_Events$Options = F2(
+	function (a, b) {
+		return {stopPropagation: a, preventDefault: b};
+	});
 var _jackgene$live_deck$Moderator$webSocketBaseUrl = function (location) {
 	return A2(
 		_elm_lang$core$Basics_ops['++'],
@@ -14643,11 +15461,85 @@ var _jackgene$live_deck$Moderator$init = function (location) {
 				_elm_lang$core$Basics_ops['++'],
 				_jackgene$live_deck$Moderator$webSocketBaseUrl(location),
 				'/moderator/event'),
+			messageText: '',
 			chatMessages: {ctor: '[]'},
 			errors: {ctor: '[]'}
 		},
 		_1: _elm_lang$core$Platform_Cmd$none
 	};
+};
+var _jackgene$live_deck$Moderator$languages = {
+	ctor: '::',
+	_0: 'C',
+	_1: {
+		ctor: '::',
+		_0: 'C++',
+		_1: {
+			ctor: '::',
+			_0: 'C#',
+			_1: {
+				ctor: '::',
+				_0: 'Elm',
+				_1: {
+					ctor: '::',
+					_0: 'Go',
+					_1: {
+						ctor: '::',
+						_0: 'Java',
+						_1: {
+							ctor: '::',
+							_0: 'JavaScript',
+							_1: {
+								ctor: '::',
+								_0: 'Kotlin',
+								_1: {
+									ctor: '::',
+									_0: 'Lisp',
+									_1: {
+										ctor: '::',
+										_0: 'ML',
+										_1: {
+											ctor: '::',
+											_0: 'Perl',
+											_1: {
+												ctor: '::',
+												_0: 'PHP',
+												_1: {
+													ctor: '::',
+													_0: 'Python',
+													_1: {
+														ctor: '::',
+														_0: 'Ruby',
+														_1: {
+															ctor: '::',
+															_0: 'Rust',
+															_1: {
+																ctor: '::',
+																_0: 'Scala',
+																_1: {
+																	ctor: '::',
+																	_0: 'Swift',
+																	_1: {
+																		ctor: '::',
+																		_0: 'TypeScript',
+																		_1: {ctor: '[]'}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 };
 var _jackgene$live_deck$Moderator$ChatMessage = F3(
 	function (a, b, c) {
@@ -14659,37 +15551,9 @@ var _jackgene$live_deck$Moderator$chatMessageDecoder = A4(
 	A2(_elm_lang$core$Json_Decode$field, 's', _elm_lang$core$Json_Decode$string),
 	A2(_elm_lang$core$Json_Decode$field, 'r', _elm_lang$core$Json_Decode$string),
 	A2(_elm_lang$core$Json_Decode$field, 't', _elm_lang$core$Json_Decode$string));
-var _jackgene$live_deck$Moderator$update = F2(
-	function (msg, model) {
-		return {
-			ctor: '_Tuple2',
-			_0: function () {
-				var _p0 = msg;
-				if (_p0.ctor === 'Event') {
-					var _p1 = A2(_elm_lang$core$Json_Decode$decodeString, _jackgene$live_deck$Moderator$chatMessageDecoder, _p0._0);
-					if (_p1.ctor === 'Ok') {
-						return _elm_lang$core$Native_Utils.update(
-							model,
-							{
-								chatMessages: {ctor: '::', _0: _p1._0, _1: model.chatMessages}
-							});
-					} else {
-						return _elm_lang$core$Native_Utils.update(
-							model,
-							{
-								errors: {ctor: '::', _0: _p1._0, _1: model.errors}
-							});
-					}
-				} else {
-					return model;
-				}
-			}(),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
-	});
-var _jackgene$live_deck$Moderator$Model = F3(
-	function (a, b, c) {
-		return {eventsWsUrl: a, chatMessages: b, errors: c};
+var _jackgene$live_deck$Moderator$Model = F4(
+	function (a, b, c, d) {
+		return {eventsWsUrl: a, messageText: b, chatMessages: c, errors: d};
 	});
 var _jackgene$live_deck$Moderator$NoOp = {ctor: 'NoOp'};
 var _jackgene$live_deck$Moderator$Event = function (a) {
@@ -14698,15 +15562,505 @@ var _jackgene$live_deck$Moderator$Event = function (a) {
 var _jackgene$live_deck$Moderator$subscriptions = function (model) {
 	return A2(_elm_lang$websocket$WebSocket$listen, model.eventsWsUrl, _jackgene$live_deck$Moderator$Event);
 };
+var _jackgene$live_deck$Moderator$RemoveMessage = F2(
+	function (a, b) {
+		return {ctor: 'RemoveMessage', _0: a, _1: b};
+	});
+var _jackgene$live_deck$Moderator$SendMessageResponse = function (a) {
+	return {ctor: 'SendMessageResponse', _0: a};
+};
+var _jackgene$live_deck$Moderator$postChat = function (chatMessage) {
+	return A2(
+		_elm_lang$http$Http$send,
+		_jackgene$live_deck$Moderator$SendMessageResponse,
+		A3(
+			_elm_lang$http$Http$post,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'/chat?route=',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$http$Http$encodeUri(
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							chatMessage.sender,
+							A2(_elm_lang$core$Basics_ops['++'], ' to ', chatMessage.recipient))),
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'&text=',
+						_elm_lang$http$Http$encodeUri(chatMessage.text)))),
+			_elm_lang$http$Http$emptyBody,
+			_elm_lang$core$Json_Decode$succeed(
+				{ctor: '_Tuple0'})));
+};
+var _jackgene$live_deck$Moderator$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'NewMessageText':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{messageText: _p0._0}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'NewOverrideMessageText':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							chatMessages: A2(
+								_elm_lang$core$List$indexedMap,
+								F2(
+									function (idx, chatMsg) {
+										return (!_elm_lang$core$Native_Utils.eq(idx, _p0._0)) ? chatMsg : _elm_lang$core$Native_Utils.update(
+											chatMsg,
+											{text: _p0._1});
+									}),
+								model.chatMessages)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SendMessageRequest':
+				return {
+					ctor: '_Tuple2',
+					_0: model,
+					_1: _jackgene$live_deck$Moderator$postChat(
+						A3(_jackgene$live_deck$Moderator$ChatMessage, 'Me', 'Everyone', model.messageText))
+				};
+			case 'SendMessageResponse':
+				if (_p0._0.ctor === 'Ok') {
+					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				} else {
+					return {
+						ctor: '_Tuple2',
+						_0: function () {
+							var error = function () {
+								var _p1 = _p0._0._0;
+								switch (_p1.ctor) {
+									case 'BadUrl':
+										return A2(
+											_elm_lang$core$Basics_ops['++'],
+											'The URL ',
+											A2(_elm_lang$core$Basics_ops['++'], _p1._0, ' was invalid'));
+									case 'Timeout':
+										return 'Timed out attempting to reach the server, try again';
+									case 'NetworkError':
+										return 'Unable to reach the server, check your network connection';
+									case 'BadStatus':
+										var _p2 = _p1._0;
+										return A2(
+											_elm_lang$core$Basics_ops['++'],
+											'Bad HTTP status ',
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												_elm_lang$core$Basics$toString(_p2.status.code),
+												A2(
+													_elm_lang$core$Basics_ops['++'],
+													' (',
+													A2(
+														_elm_lang$core$Basics_ops['++'],
+														_p2.status.message,
+														A2(_elm_lang$core$Basics_ops['++'], ') for: ', _p2.url)))));
+									default:
+										return _p1._0;
+								}
+							}();
+							return _elm_lang$core$Native_Utils.update(
+								model,
+								{
+									errors: {ctor: '::', _0: error, _1: model.errors}
+								});
+						}(),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				}
+			case 'RemoveMessage':
+				var _p4 = _p0._0;
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							chatMessages: A2(
+								_elm_lang$core$Basics_ops['++'],
+								A2(_elm_lang$core$List$take, _p4, model.chatMessages),
+								A2(_elm_lang$core$List$drop, _p4 + 1, model.chatMessages))
+						}),
+					_1: function () {
+						var _p3 = _p0._1;
+						if (_p3.ctor === 'Just') {
+							return _jackgene$live_deck$Moderator$postChat(_p3._0);
+						} else {
+							return _elm_lang$core$Platform_Cmd$none;
+						}
+					}()
+				};
+			case 'Event':
+				return {
+					ctor: '_Tuple2',
+					_0: function () {
+						var _p5 = A2(_elm_lang$core$Json_Decode$decodeString, _jackgene$live_deck$Moderator$chatMessageDecoder, _p0._0);
+						if (_p5.ctor === 'Ok') {
+							return _elm_lang$core$Native_Utils.update(
+								model,
+								{
+									chatMessages: {ctor: '::', _0: _p5._0, _1: model.chatMessages}
+								});
+						} else {
+							return _elm_lang$core$Native_Utils.update(
+								model,
+								{
+									errors: {ctor: '::', _0: _p5._0, _1: model.errors}
+								});
+						}
+					}(),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		}
+	});
+var _jackgene$live_deck$Moderator$SendMessageRequest = function (a) {
+	return {ctor: 'SendMessageRequest', _0: a};
+};
+var _jackgene$live_deck$Moderator$NewOverrideMessageText = F2(
+	function (a, b) {
+		return {ctor: 'NewOverrideMessageText', _0: a, _1: b};
+	});
+var _jackgene$live_deck$Moderator$NewMessageText = function (a) {
+	return {ctor: 'NewMessageText', _0: a};
+};
+var _jackgene$live_deck$Moderator$view = function (model) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: A2(
+				_rtfeldman$elm_css$Html_Styled$datalist,
+				{
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Html_Styled_Attributes$id('languages'),
+					_1: {ctor: '[]'}
+				},
+				A2(
+					_elm_lang$core$List$map,
+					function (lang) {
+						return A2(
+							_rtfeldman$elm_css$Html_Styled$option,
+							{
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Html_Styled_Attributes$value(lang),
+								_1: {ctor: '[]'}
+							},
+							{ctor: '[]'});
+					},
+					_jackgene$live_deck$Moderator$languages)),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_rtfeldman$elm_css$Html_Styled$div,
+					{
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+							{
+								ctor: '::',
+								_0: _elm_lang$core$Native_Utils.eq(
+									model.errors,
+									{ctor: '[]'}) ? _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$none) : _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$block),
+								_1: {
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$color(
+										A3(_rtfeldman$elm_css$Css$rgb, 255, 0, 0)),
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{ctor: '[]'}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$input,
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled_Attributes$type_('text'),
+									_1: {
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled_Attributes$list('languages'),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled_Attributes$size(80),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled_Events$onInput(_jackgene$live_deck$Moderator$NewMessageText),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								},
+								{ctor: '[]'}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$button,
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled_Events$onClick(
+											_jackgene$live_deck$Moderator$SendMessageRequest(_elm_lang$core$Maybe$Nothing)),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('Send'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_rtfeldman$elm_css$Html_Styled$table,
+							{
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$width(
+											_rtfeldman$elm_css$Css$em(60)),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$tr,
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$left),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$th,
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Css$width(
+															_rtfeldman$elm_css$Css$pct(15)),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text('From'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_rtfeldman$elm_css$Html_Styled$th,
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css$width(
+																_rtfeldman$elm_css$Css$pct(60)),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled$text('Text'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_rtfeldman$elm_css$Html_Styled$th,
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Css$width(
+																	_rtfeldman$elm_css$Css$pct(25)),
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													},
+													{ctor: '[]'}),
+												_1: {ctor: '[]'}
+											}
+										}
+									}),
+								_1: _elm_lang$core$List$reverse(
+									A2(
+										_elm_lang$core$List$indexedMap,
+										F2(
+											function (idx, chatMsg) {
+												return A2(
+													_rtfeldman$elm_css$Html_Styled$tr,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: A2(
+															_rtfeldman$elm_css$Html_Styled$td,
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																	{
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Css$verticalAlign(_rtfeldman$elm_css$Css$top),
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {ctor: '[]'}
+															},
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled$text(chatMsg.sender),
+																_1: {ctor: '[]'}
+															}),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_rtfeldman$elm_css$Html_Styled$td,
+																{ctor: '[]'},
+																{
+																	ctor: '::',
+																	_0: A2(
+																		_rtfeldman$elm_css$Html_Styled$input,
+																		{
+																			ctor: '::',
+																			_0: _rtfeldman$elm_css$Html_Styled_Attributes$type_('text'),
+																			_1: {
+																				ctor: '::',
+																				_0: _rtfeldman$elm_css$Html_Styled_Attributes$value(chatMsg.text),
+																				_1: {
+																					ctor: '::',
+																					_0: _rtfeldman$elm_css$Html_Styled_Attributes$list('languages'),
+																					_1: {
+																						ctor: '::',
+																						_0: _rtfeldman$elm_css$Html_Styled_Attributes$size(80),
+																						_1: {
+																							ctor: '::',
+																							_0: _rtfeldman$elm_css$Html_Styled_Events$onInput(
+																								_jackgene$live_deck$Moderator$NewOverrideMessageText(idx)),
+																							_1: {ctor: '[]'}
+																						}
+																					}
+																				}
+																			}
+																		},
+																		{ctor: '[]'}),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_rtfeldman$elm_css$Html_Styled$td,
+																	{ctor: '[]'},
+																	{
+																		ctor: '::',
+																		_0: A2(
+																			_rtfeldman$elm_css$Html_Styled$button,
+																			{
+																				ctor: '::',
+																				_0: _rtfeldman$elm_css$Html_Styled_Events$onClick(
+																					A2(
+																						_jackgene$live_deck$Moderator$RemoveMessage,
+																						idx,
+																						_elm_lang$core$Maybe$Just(chatMsg))),
+																				_1: {ctor: '[]'}
+																			},
+																			{
+																				ctor: '::',
+																				_0: _rtfeldman$elm_css$Html_Styled$text('Accept'),
+																				_1: {ctor: '[]'}
+																			}),
+																		_1: {
+																			ctor: '::',
+																			_0: A2(
+																				_rtfeldman$elm_css$Html_Styled$button,
+																				{
+																					ctor: '::',
+																					_0: _rtfeldman$elm_css$Html_Styled_Events$onClick(
+																						A2(
+																							_jackgene$live_deck$Moderator$RemoveMessage,
+																							idx,
+																							_elm_lang$core$Maybe$Just(
+																								_elm_lang$core$Native_Utils.update(
+																									chatMsg,
+																									{sender: 'Me'})))),
+																					_1: {ctor: '[]'}
+																				},
+																				{
+																					ctor: '::',
+																					_0: _rtfeldman$elm_css$Html_Styled$text('Accept (as Me)'),
+																					_1: {ctor: '[]'}
+																				}),
+																			_1: {
+																				ctor: '::',
+																				_0: A2(
+																					_rtfeldman$elm_css$Html_Styled$button,
+																					{
+																						ctor: '::',
+																						_0: _rtfeldman$elm_css$Html_Styled_Events$onClick(
+																							A2(_jackgene$live_deck$Moderator$RemoveMessage, idx, _elm_lang$core$Maybe$Nothing)),
+																						_1: {ctor: '[]'}
+																					},
+																					{
+																						ctor: '::',
+																						_0: _rtfeldman$elm_css$Html_Styled$text('Reject'),
+																						_1: {ctor: '[]'}
+																					}),
+																				_1: {ctor: '[]'}
+																			}
+																		}
+																	}),
+																_1: {ctor: '[]'}
+															}
+														}
+													});
+											}),
+										model.chatMessages))
+							}),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
 var _jackgene$live_deck$Moderator$main = A2(
 	_elm_lang$navigation$Navigation$program,
 	_elm_lang$core$Basics$always(_jackgene$live_deck$Moderator$NoOp),
 	{
 		init: _jackgene$live_deck$Moderator$init,
 		update: _jackgene$live_deck$Moderator$update,
-		view: function (_p2) {
+		view: function (_p6) {
 			return _rtfeldman$elm_css$Html_Styled$toUnstyled(
-				_jackgene$live_deck$Moderator$view(_p2));
+				_jackgene$live_deck$Moderator$view(_p6));
 		},
 		subscriptions: _jackgene$live_deck$Moderator$subscriptions
 	})();
