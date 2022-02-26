@@ -2,7 +2,7 @@ module Deck exposing (main)
 
 import Array exposing (Array)
 import Deck.Common exposing (Model, Msg(..), Slide(Slide))
-import Deck.Slide exposing (slides, slideView)
+import Deck.Slide exposing (activeSlides, slideIndex, slideView)
 import Dict exposing (Dict)
 import Html.Styled exposing (Html, text)
 import Json.Decode as Decode exposing (Decoder)
@@ -20,27 +20,35 @@ webSocketBaseUrl location =
 
 init : Location -> (Model, Cmd Msg)
 init location =
-  ( { eventsWsUrl =
-      ( Maybe.map
-        ( \baseUrl -> baseUrl ++ "/event" )
-        ( webSocketBaseUrl location )
-      )
-    , slides = slides
-    , slideIndex =
-      ( min ( ( Array.length slides ) - 1 )
-        ( max 0
-          ( Maybe.withDefault 0
-            ( Result.toMaybe
-              ( String.toInt ( String.dropLeft 7 location.hash ) )
-            )
+  ( let
+      slidelessModel : Model
+      slidelessModel =
+        { eventsWsUrl =
+          ( Maybe.map
+            ( \baseUrl -> baseUrl ++ "/event" )
+            ( webSocketBaseUrl location )
           )
+        , slides = Array.empty
+        , slideIndex = -1
+        , languagesAndCounts = []
+        , typeScriptVsJavaScript =
+          { typeScriptFraction = 0.0
+          , lastVoteTypeScript = False
+          }
+        }
+
+      slides : Array Slide
+      slides = activeSlides slidelessModel
+    in
+    { slidelessModel
+    | slides = slides
+    , slideIndex =
+      slideIndex slides
+      ( Maybe.withDefault 0
+        ( Result.toMaybe
+          ( String.toInt ( String.dropLeft 7 location.hash ) )
         )
       )
-    , languagesAndCounts = []
-    , typeScriptVsJavaScript =
-      { typeScriptFraction = 0.0
-      , lastVoteTypeScript = False
-      }
     }
   , Cmd.none
   )
@@ -118,13 +126,23 @@ update msg model =
 
             tsFrac : Float
             tsFrac = tsCount / (tsCount + jsCount)
-          in
-          ( { model
-            | languagesAndCounts = langsAndCounts
-            , typeScriptVsJavaScript =
-              { typeScriptFraction = tsFrac
-              , lastVoteTypeScript = tsFrac > model.typeScriptVsJavaScript.typeScriptFraction
+
+            statsUpdatedModel : Model
+            statsUpdatedModel =
+              { model
+              | languagesAndCounts = langsAndCounts
+              , typeScriptVsJavaScript =
+                { typeScriptFraction = tsFrac
+                , lastVoteTypeScript = tsFrac > model.typeScriptVsJavaScript.typeScriptFraction
+                }
               }
+
+            slides : Array Slide
+            slides = activeSlides statsUpdatedModel
+          in
+          ( { statsUpdatedModel
+            | slides = slides
+            , slideIndex = slideIndex slides model.slideIndex
             }
           , Cmd.none
           )
@@ -140,7 +158,7 @@ update msg model =
 view : Model -> Html Msg
 view model =
   case Array.get model.slideIndex model.slides of
-    Just (Slide slide) -> slideView model slide
+    Just (Slide slideModel) -> slideView model slideModel
     Nothing -> text "No Slides Defined"
 
 

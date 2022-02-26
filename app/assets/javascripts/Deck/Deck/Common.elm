@@ -14,7 +14,8 @@ type Msg
 
 -- Model
 type alias SlideModel =
-  { init : Model -> (Model, Cmd Msg)
+  { active : Model -> Bool
+  , init : Model -> (Model, Cmd Msg)
   , update : Msg -> Model -> (Model, Cmd Msg)
   , view : Model -> Html Msg
   , liveUpdate : Bool

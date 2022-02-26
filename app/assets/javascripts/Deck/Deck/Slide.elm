@@ -1,4 +1,4 @@
-module Deck.Slide exposing (slides, slideView)
+module Deck.Slide exposing (activeSlides, slideIndex, slideView)
 
 import Array exposing (Array)
 import Css exposing
@@ -14,7 +14,7 @@ import Css exposing
   -- Other values
   , hidden, rgb
   )
-import Deck.Common exposing (Model, Msg, Slide, SlideModel)
+import Deck.Common exposing (Model, Msg, Slide(Slide), SlideModel)
 import Deck.Slide.Conclusion as Conclusion
 import Deck.Slide.Cover as Cover
 import Deck.Slide.PollJSvsTS as PollJSvsTS
@@ -50,15 +50,30 @@ fontGoodRxBoltonBoldItalicBase64 =
 
 
 -- Model
-slides : Array Slide
+slides : List Slide
 slides =
-  Array.fromList
   [ Cover.slide
   , PollQuestion.slide, PollJSvsTS.slide
   -- TODO intro, definition
   -- TODO Null, Arrays, StackOverflow etc
   , Conclusion.slide
   ]
+
+
+activeSlides : Model -> Array Slide
+activeSlides model =
+  Array.fromList
+  ( List.filter
+    ( \(Slide slideModel) -> slideModel.active model )
+    slides
+  )
+
+
+slideIndex : Array Slide -> Int -> Int
+slideIndex slides desiredIndex =
+  ( min ( ( Array.length slides ) - 1 )
+    ( max 0 desiredIndex )
+  )
 
 
 -- View

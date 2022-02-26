@@ -47,7 +47,14 @@ slide : Slide
 slide =
   Slide
   { slideTemplate
-  | view =
+  | active =
+    ( \model ->
+      let
+        tsFrac : Float
+        tsFrac = model.typeScriptVsJavaScript.typeScriptFraction
+      in tsFrac > 0.0 && tsFrac < 1.0
+    )
+  , view =
     ( \model ->
       div []
       [ h1 [ css [ headerStyle ] ] [ text "Audience Poll" ]
