@@ -13,7 +13,9 @@ import Css exposing
   )
 import Http
 import Html.Styled as Html exposing
-  ( Html, button, datalist, div, input, option, table, td, text, th, tr )
+  ( Attribute, Html
+  , button, datalist, div, input, li, option, table, td, text, th, tr, ul
+  )
 import Html.Styled.Attributes exposing
   ( css, id, list, size, type_, value )
 import Html.Styled.Events exposing (..)
@@ -56,8 +58,8 @@ type alias ChatMessage =
 type Msg
   = NewMessageText String
   | NewOverrideMessageText Int String
-  | SendMessageRequest (Maybe Int)
-  | SendMessageResponse (Result Http.Error ())
+  | SendMessageRequest
+  | PostChatResponse (Result Http.Error ())
   | RemoveMessage Int (Maybe ChatMessage)
   | Event String
   | NoOp
@@ -100,14 +102,20 @@ chatMessageDecoder =
 postChat : ChatMessage -> Cmd Msg
 postChat chatMessage =
     Http.send
-    SendMessageResponse
-    ( Http.post
-      ( "/chat?route="
-      ++(Http.encodeUri (chatMessage.sender ++ " to " ++ chatMessage.recipient))
-      ++"&text=" ++ (Http.encodeUri chatMessage.text)
-      )
-      Http.emptyBody
-      ( Decode.succeed () )
+    PostChatResponse
+    ( Http.request
+      { method = "POST"
+      , headers = []
+      , url =
+        ( "/chat?route="
+        ++(Http.encodeUri (chatMessage.sender ++ " to " ++ chatMessage.recipient))
+        ++"&text=" ++ (Http.encodeUri chatMessage.text)
+        )
+      , body = Http.emptyBody
+      , expect = Http.expectStringResponse (always (Ok ()))
+      , timeout = Nothing
+      , withCredentials = False
+      }
     )
 
 
@@ -131,14 +139,27 @@ update msg model =
         }
       , Cmd.none
       )
-    SendMessageRequest _ ->
+    SendMessageRequest ->
       ( model
       , postChat (ChatMessage "Me" "Everyone" model.messageText)
       )
 
-    SendMessageResponse (Ok ()) -> ( model, Cmd.none )
+    RemoveMessage index maybeChatMsg ->
+      ( { model
+        | chatMessages =
+          (List.take index model.chatMessages) ++ (List.drop (index+1) model.chatMessages)
+        }
+      , case maybeChatMsg of
+          Just chatMsg -> postChat chatMsg
+          Nothing -> Cmd.none
+      )
 
-    SendMessageResponse (Err httpConnError) ->
+    PostChatResponse (Ok _) ->
+      ( { model | messageText = "" }
+      , Cmd.none
+      )
+
+    PostChatResponse (Err httpConnError) ->
       ( let
           error : String
           error =
@@ -160,16 +181,6 @@ update msg model =
       , Cmd.none
       )
 
-    RemoveMessage index maybeChatMsg ->
-      ( { model
-        | chatMessages =
-          (List.take index model.chatMessages) ++ (List.drop (index+1) model.chatMessages)
-        }
-      , case maybeChatMsg of
-          Just chatMsg -> postChat chatMsg
-          Nothing -> Cmd.none
-      )
-
     Event json ->
       ( case Decode.decodeString chatMessageDecoder json of
         Ok chatMessage ->
@@ -184,6 +195,11 @@ update msg model =
 
 
 -- View
+onKeyDown : (Int -> msg) -> Attribute msg
+onKeyDown tagger =
+  on "keydown" (Decode.map tagger keyCode)
+
+
 view : Model -> Html Msg
 view model =
   div []
@@ -195,10 +211,20 @@ view model =
       , color (rgb 255 0 0)
       ]
     ]
-    []
+    [ ul []
+      ( List.map
+        ( \error -> li [] [ text error ] )
+        model.errors
+      )
+    ]
   , div []
-    [ input [ type_ "text", list "languages", size 80, onInput NewMessageText ] []
-    , button [ onClick (SendMessageRequest Nothing) ] [ text "Send" ]
+    [ input
+      [ type_ "text", value model.messageText, list "languages", size 80
+      , onInput NewMessageText
+      , onKeyDown ( \key -> if key == 13 then SendMessageRequest else NoOp)
+      ]
+      []
+    , button [ onClick SendMessageRequest ] [ text "Send" ]
     ]
   , table [ css [ width (em 60) ] ]
     ( tr [ css [ textAlign left ] ]

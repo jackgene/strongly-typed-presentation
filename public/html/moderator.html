@@ -15444,6 +15444,12 @@ var _rtfeldman$elm_css$Html_Styled_Events$Options = F2(
 	function (a, b) {
 		return {stopPropagation: a, preventDefault: b};
 	});
+var _jackgene$live_deck$Moderator$onKeyDown = function (tagger) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled_Events$on,
+		'keydown',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _rtfeldman$elm_css$Html_Styled_Events$keyCode));
+};
 var _jackgene$live_deck$Moderator$webSocketBaseUrl = function (location) {
 	return A2(
 		_elm_lang$core$Basics_ops['++'],
@@ -15566,32 +15572,39 @@ var _jackgene$live_deck$Moderator$RemoveMessage = F2(
 	function (a, b) {
 		return {ctor: 'RemoveMessage', _0: a, _1: b};
 	});
-var _jackgene$live_deck$Moderator$SendMessageResponse = function (a) {
-	return {ctor: 'SendMessageResponse', _0: a};
+var _jackgene$live_deck$Moderator$PostChatResponse = function (a) {
+	return {ctor: 'PostChatResponse', _0: a};
 };
 var _jackgene$live_deck$Moderator$postChat = function (chatMessage) {
 	return A2(
 		_elm_lang$http$Http$send,
-		_jackgene$live_deck$Moderator$SendMessageResponse,
-		A3(
-			_elm_lang$http$Http$post,
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				'/chat?route=',
-				A2(
+		_jackgene$live_deck$Moderator$PostChatResponse,
+		_elm_lang$http$Http$request(
+			{
+				method: 'POST',
+				headers: {ctor: '[]'},
+				url: A2(
 					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$http$Http$encodeUri(
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							chatMessage.sender,
-							A2(_elm_lang$core$Basics_ops['++'], ' to ', chatMessage.recipient))),
+					'/chat?route=',
 					A2(
 						_elm_lang$core$Basics_ops['++'],
-						'&text=',
-						_elm_lang$http$Http$encodeUri(chatMessage.text)))),
-			_elm_lang$http$Http$emptyBody,
-			_elm_lang$core$Json_Decode$succeed(
-				{ctor: '_Tuple0'})));
+						_elm_lang$http$Http$encodeUri(
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								chatMessage.sender,
+								A2(_elm_lang$core$Basics_ops['++'], ' to ', chatMessage.recipient))),
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'&text=',
+							_elm_lang$http$Http$encodeUri(chatMessage.text)))),
+				body: _elm_lang$http$Http$emptyBody,
+				expect: _elm_lang$http$Http$expectStringResponse(
+					_elm_lang$core$Basics$always(
+						_elm_lang$core$Result$Ok(
+							{ctor: '_Tuple0'}))),
+				timeout: _elm_lang$core$Maybe$Nothing,
+				withCredentials: false
+			}));
 };
 var _jackgene$live_deck$Moderator$update = F2(
 	function (msg, model) {
@@ -15630,42 +15643,69 @@ var _jackgene$live_deck$Moderator$update = F2(
 					_1: _jackgene$live_deck$Moderator$postChat(
 						A3(_jackgene$live_deck$Moderator$ChatMessage, 'Me', 'Everyone', model.messageText))
 				};
-			case 'SendMessageResponse':
+			case 'RemoveMessage':
+				var _p2 = _p0._0;
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							chatMessages: A2(
+								_elm_lang$core$Basics_ops['++'],
+								A2(_elm_lang$core$List$take, _p2, model.chatMessages),
+								A2(_elm_lang$core$List$drop, _p2 + 1, model.chatMessages))
+						}),
+					_1: function () {
+						var _p1 = _p0._1;
+						if (_p1.ctor === 'Just') {
+							return _jackgene$live_deck$Moderator$postChat(_p1._0);
+						} else {
+							return _elm_lang$core$Platform_Cmd$none;
+						}
+					}()
+				};
+			case 'PostChatResponse':
 				if (_p0._0.ctor === 'Ok') {
-					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{messageText: ''}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
 				} else {
 					return {
 						ctor: '_Tuple2',
 						_0: function () {
 							var error = function () {
-								var _p1 = _p0._0._0;
-								switch (_p1.ctor) {
+								var _p3 = _p0._0._0;
+								switch (_p3.ctor) {
 									case 'BadUrl':
 										return A2(
 											_elm_lang$core$Basics_ops['++'],
 											'The URL ',
-											A2(_elm_lang$core$Basics_ops['++'], _p1._0, ' was invalid'));
+											A2(_elm_lang$core$Basics_ops['++'], _p3._0, ' was invalid'));
 									case 'Timeout':
 										return 'Timed out attempting to reach the server, try again';
 									case 'NetworkError':
 										return 'Unable to reach the server, check your network connection';
 									case 'BadStatus':
-										var _p2 = _p1._0;
+										var _p4 = _p3._0;
 										return A2(
 											_elm_lang$core$Basics_ops['++'],
 											'Bad HTTP status ',
 											A2(
 												_elm_lang$core$Basics_ops['++'],
-												_elm_lang$core$Basics$toString(_p2.status.code),
+												_elm_lang$core$Basics$toString(_p4.status.code),
 												A2(
 													_elm_lang$core$Basics_ops['++'],
 													' (',
 													A2(
 														_elm_lang$core$Basics_ops['++'],
-														_p2.status.message,
-														A2(_elm_lang$core$Basics_ops['++'], ') for: ', _p2.url)))));
+														_p4.status.message,
+														A2(_elm_lang$core$Basics_ops['++'], ') for: ', _p4.url)))));
 									default:
-										return _p1._0;
+										return _p3._0;
 								}
 							}();
 							return _elm_lang$core$Native_Utils.update(
@@ -15677,27 +15717,6 @@ var _jackgene$live_deck$Moderator$update = F2(
 						_1: _elm_lang$core$Platform_Cmd$none
 					};
 				}
-			case 'RemoveMessage':
-				var _p4 = _p0._0;
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							chatMessages: A2(
-								_elm_lang$core$Basics_ops['++'],
-								A2(_elm_lang$core$List$take, _p4, model.chatMessages),
-								A2(_elm_lang$core$List$drop, _p4 + 1, model.chatMessages))
-						}),
-					_1: function () {
-						var _p3 = _p0._1;
-						if (_p3.ctor === 'Just') {
-							return _jackgene$live_deck$Moderator$postChat(_p3._0);
-						} else {
-							return _elm_lang$core$Platform_Cmd$none;
-						}
-					}()
-				};
 			case 'Event':
 				return {
 					ctor: '_Tuple2',
@@ -15723,9 +15742,7 @@ var _jackgene$live_deck$Moderator$update = F2(
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		}
 	});
-var _jackgene$live_deck$Moderator$SendMessageRequest = function (a) {
-	return {ctor: 'SendMessageRequest', _0: a};
-};
+var _jackgene$live_deck$Moderator$SendMessageRequest = {ctor: 'SendMessageRequest'};
 var _jackgene$live_deck$Moderator$NewOverrideMessageText = F2(
 	function (a, b) {
 		return {ctor: 'NewOverrideMessageText', _0: a, _1: b};
@@ -15780,7 +15797,26 @@ var _jackgene$live_deck$Moderator$view = function (model) {
 							}),
 						_1: {ctor: '[]'}
 					},
-					{ctor: '[]'}),
+					{
+						ctor: '::',
+						_0: A2(
+							_rtfeldman$elm_css$Html_Styled$ul,
+							{ctor: '[]'},
+							A2(
+								_elm_lang$core$List$map,
+								function (error) {
+									return A2(
+										_rtfeldman$elm_css$Html_Styled$li,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled$text(error),
+											_1: {ctor: '[]'}
+										});
+								},
+								model.errors)),
+						_1: {ctor: '[]'}
+					}),
 				_1: {
 					ctor: '::',
 					_0: A2(
@@ -15795,14 +15831,25 @@ var _jackgene$live_deck$Moderator$view = function (model) {
 									_0: _rtfeldman$elm_css$Html_Styled_Attributes$type_('text'),
 									_1: {
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled_Attributes$list('languages'),
+										_0: _rtfeldman$elm_css$Html_Styled_Attributes$value(model.messageText),
 										_1: {
 											ctor: '::',
-											_0: _rtfeldman$elm_css$Html_Styled_Attributes$size(80),
+											_0: _rtfeldman$elm_css$Html_Styled_Attributes$list('languages'),
 											_1: {
 												ctor: '::',
-												_0: _rtfeldman$elm_css$Html_Styled_Events$onInput(_jackgene$live_deck$Moderator$NewMessageText),
-												_1: {ctor: '[]'}
+												_0: _rtfeldman$elm_css$Html_Styled_Attributes$size(80),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled_Events$onInput(_jackgene$live_deck$Moderator$NewMessageText),
+													_1: {
+														ctor: '::',
+														_0: _jackgene$live_deck$Moderator$onKeyDown(
+															function (key) {
+																return _elm_lang$core$Native_Utils.eq(key, 13) ? _jackgene$live_deck$Moderator$SendMessageRequest : _jackgene$live_deck$Moderator$NoOp;
+															}),
+														_1: {ctor: '[]'}
+													}
+												}
 											}
 										}
 									}
@@ -15814,8 +15861,7 @@ var _jackgene$live_deck$Moderator$view = function (model) {
 									_rtfeldman$elm_css$Html_Styled$button,
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled_Events$onClick(
-											_jackgene$live_deck$Moderator$SendMessageRequest(_elm_lang$core$Maybe$Nothing)),
+										_0: _rtfeldman$elm_css$Html_Styled_Events$onClick(_jackgene$live_deck$Moderator$SendMessageRequest),
 										_1: {ctor: '[]'}
 									},
 									{
