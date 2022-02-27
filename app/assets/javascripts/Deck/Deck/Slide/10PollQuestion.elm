@@ -72,7 +72,7 @@ slide =
           ]
           [ p
             [ css [ margin2 zero zero, paragraphFontFamily ] ]
-            [ text "Think of this as the language you:"
+            [ text "Think of the language you:"
             , ul []
               [ li [] [ text "Are most familiar with" ]
               , li [] [ text "Would use for personal projects" ]
