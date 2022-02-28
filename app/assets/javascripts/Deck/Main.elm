@@ -167,17 +167,15 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
   Sub.batch
   [ let
-      connectWebSocket : Bool
-      connectWebSocket =
-        Maybe.withDefault False
-        ( Maybe.map
-          ( \(Slide slide) -> slide.liveUpdate )
-          ( Array.get model.slideIndex model.slides )
-        )
+      eventsWsPath : Maybe String
+      eventsWsPath =
+        Maybe.andThen
+        ( \(Slide slide) -> slide.eventsWsPath )
+        ( Array.get model.slideIndex model.slides )
     in
-    case (model.eventsWsUrl, connectWebSocket) of
-      (Just url, True) ->
-        WebSocket.listen url Event
+    case (model.eventsWsUrl, eventsWsPath) of
+      (Just url, Just path) ->
+        WebSocket.listen (url ++ "/" ++ path) Event
       _ -> Sub.none
   , Keyboard.ups
     ( \keyCode ->

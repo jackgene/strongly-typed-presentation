@@ -22,17 +22,17 @@ class MainController @Inject() (cc: ControllerComponents)
     system.actorOf(ChatMessageActor.props, "chat")
   private val rejectedMsgActor: ActorRef =
     system.actorOf(ChatMessageActor.props, "rejected")
-  private val bySenderCounterActor: ActorRef =
+  private val languagePollActor: ActorRef =
     system.actorOf(
       ByTokenBySenderCounterActor.props(
         Token.languageFromFirstWord, chatMsgActor, rejectedMsgActor
       ),
-      "byLanguageBySenderCounter"
+      "languagePoll"
     )
 
-  def presentationEvent(): WebSocket = WebSocket.accept[JsValue,JsValue] { _: RequestHeader =>
+  def languagePollEvent(): WebSocket = WebSocket.accept[JsValue,JsValue] { _: RequestHeader =>
     ActorFlow.actorRef { webSocketClient: ActorRef =>
-      PresentationWebSocketActor.props(webSocketClient, bySenderCounterActor)
+      ByTokenBySenderCounterActor.WebSocketActor.props(webSocketClient, languagePollActor)
     }
   }
 
@@ -54,7 +54,7 @@ class MainController @Inject() (cc: ControllerComponents)
   }
 
   def reset(): Action[Unit] = Action(parse.empty) { implicit request: Request[Unit] =>
-    bySenderCounterActor ! ByTokenBySenderCounterActor.Reset
+    languagePollActor ! ByTokenBySenderCounterActor.Reset
     NoContent
   }
 }

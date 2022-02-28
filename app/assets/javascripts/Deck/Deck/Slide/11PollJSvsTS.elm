@@ -203,5 +203,5 @@ slide =
         ]
       ]
     )
-  , liveUpdate = True
+  , eventsWsPath = Just "language-poll"
   }

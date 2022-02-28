@@ -27,10 +27,9 @@ transitionDurationMs = 500
 slideTemplate : SlideModel
 slideTemplate =
   { active = always True
-  , init = ( \model -> (model, Cmd.none) )
   , update = ( \_ model -> (model, Cmd.none) )
   , view = ( \_ -> text "(Placeholder)" )
-  , liveUpdate = False
+  , eventsWsPath = Nothing
   }
 
 
