@@ -43,6 +43,7 @@ object Token {
     "elm" -> "ML",
     "f#" -> "ML",
     "ocaml" -> "ML",
+    "purescript" -> "ML",
     // Perl
     "perl" -> "Perl",
     // PHP

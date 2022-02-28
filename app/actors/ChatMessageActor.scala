@@ -5,7 +5,8 @@ import model.ChatMessage
 
 object ChatMessageActor {
   // Incoming messages
-  case class ListenerRegistration(listener: ActorRef)
+  case class Register(listener: ActorRef)
+  case class Unregister(listener: ActorRef)
 
   // Incoming and Outgoing messages
   case class New(chatMessage: ChatMessage)
@@ -22,10 +23,15 @@ private class ChatMessageActor extends Actor with ActorLogging {
         listener ! event
       }
 
-    case ListenerRegistration(listener: ActorRef) =>
+    case Register(listener: ActorRef) =>
       context.watch(listener)
       context.become(
         running(listeners + listener)
+      )
+
+    case Unregister(listener: ActorRef) =>
+      context.become(
+        running(listeners - listener)
       )
 
     case Terminated(listener: ActorRef) if listeners.contains(listener) =>

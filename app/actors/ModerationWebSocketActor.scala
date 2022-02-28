@@ -11,7 +11,7 @@ object ModerationWebSocketActor {
 class ModerationWebSocketActor(webSocketClient: ActorRef, chatMessageActor: ActorRef)
     extends Actor with ActorLogging {
   log.info("connection opened")
-  chatMessageActor ! ChatMessageActor.ListenerRegistration(self)
+  chatMessageActor ! ChatMessageActor.Register(listener = self)
 
   override def receive: Receive = {
     case ChatMessageActor.New(msg: ChatMessage) =>

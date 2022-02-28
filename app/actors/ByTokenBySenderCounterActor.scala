@@ -7,7 +7,7 @@ import play.api.libs.json.Json
 
 object ByTokenBySenderCounterActor {
   // Incoming messages
-  case class ListenerRegistration(listener: ActorRef)
+  case class Register(listener: ActorRef)
   case object Reset
 
   // Outgoing messages
@@ -31,7 +31,7 @@ object ByTokenBySenderCounterActor {
   class WebSocketActor(webSocketClient: ActorRef, counts: ActorRef)
     extends Actor with ActorLogging {
     log.info("connection opened")
-    counts ! ByTokenBySenderCounterActor.ListenerRegistration(self)
+    counts ! ByTokenBySenderCounterActor.Register(listener = self)
 
     override def receive: Receive = {
       case ByTokenBySenderCounterActor.Counts(sendersByCount: Map[Int,Seq[String]]) =>
@@ -49,11 +49,24 @@ private class ByTokenBySenderCounterActor(
     extends Actor with ActorLogging {
   import ByTokenBySenderCounterActor._
 
-  chatMessageActor ! ChatMessageActor.ListenerRegistration(self)
+  private def paused(
+      tokensByMessenger: Map[String,String], tokenCount: ItemCount, meCount: Int):
+      Receive = {
+    case Reset =>
+      context.become(paused(Map(), ItemCount(), 0))
+
+    case Register(listener: ActorRef) =>
+      chatMessageActor ! ChatMessageActor.Register(self)
+      listener ! Counts(tokenCount.itemsByCount)
+      context.watch(listener)
+      context.become(
+        running(tokensByMessenger, tokenCount, meCount, Set(listener))
+      )
+  }
 
   private def running(
-      tokensByMessenger: Map[String,String], tokenCount: ItemCount,
-      meCount: Int, listeners: Set[ActorRef]): Receive = {
+      tokensByMessenger: Map[String,String], tokenCount: ItemCount, meCount: Int,
+      listeners: Set[ActorRef]): Receive = {
     case event @ ChatMessageActor.New(msg: ChatMessage) =>
       val (messenger: String, newMeCount:Int) =
         if (msg.sender != "Me") (msg.sender, meCount)
@@ -93,7 +106,7 @@ private class ByTokenBySenderCounterActor(
         running(Map(), ItemCount(), 0, listeners)
       )
 
-    case ListenerRegistration(listener: ActorRef) =>
+    case Register(listener: ActorRef) =>
       listener ! Counts(tokenCount.itemsByCount)
       context.watch(listener)
       context.become(
@@ -101,10 +114,16 @@ private class ByTokenBySenderCounterActor(
       )
 
     case Terminated(listener: ActorRef) if listeners.contains(listener) =>
-      context.become(
-        running(tokensByMessenger, tokenCount, meCount, listeners - listener)
-      )
+      val remainingListeners: Set[ActorRef] = listeners - listener
+      if (remainingListeners.nonEmpty) {
+        context.become(
+          running(tokensByMessenger, tokenCount, meCount, remainingListeners)
+        )
+      } else {
+        chatMessageActor ! ChatMessageActor.Unregister(self)
+        context.become(paused(tokensByMessenger, tokenCount, meCount))
+      }
   }
 
-  override def receive: Receive = running(Map(), ItemCount(), 0, Set())
+  override def receive: Receive = paused(Map(), ItemCount(), 0)
 }
