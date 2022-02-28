@@ -15562,11 +15562,23 @@ var _jackgene$live_deck$Moderator$Model = F4(
 		return {eventsWsUrl: a, messageText: b, chatMessages: c, errors: d};
 	});
 var _jackgene$live_deck$Moderator$NoOp = {ctor: 'NoOp'};
+var _jackgene$live_deck$Moderator$KeepAlive = function (a) {
+	return {ctor: 'KeepAlive', _0: a};
+};
 var _jackgene$live_deck$Moderator$Event = function (a) {
 	return {ctor: 'Event', _0: a};
 };
 var _jackgene$live_deck$Moderator$subscriptions = function (model) {
-	return A2(_elm_lang$websocket$WebSocket$listen, model.eventsWsUrl, _jackgene$live_deck$Moderator$Event);
+	return _elm_lang$core$Platform_Sub$batch(
+		{
+			ctor: '::',
+			_0: A2(_elm_lang$websocket$WebSocket$listen, model.eventsWsUrl, _jackgene$live_deck$Moderator$Event),
+			_1: {
+				ctor: '::',
+				_0: A2(_elm_lang$core$Time$every, 3 * _elm_lang$core$Time$second, _jackgene$live_deck$Moderator$KeepAlive),
+				_1: {ctor: '[]'}
+			}
+		});
 };
 var _jackgene$live_deck$Moderator$RemoveMessage = F2(
 	function (a, b) {
@@ -15737,6 +15749,12 @@ var _jackgene$live_deck$Moderator$update = F2(
 						}
 					}(),
 					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'KeepAlive':
+				return {
+					ctor: '_Tuple2',
+					_0: model,
+					_1: A2(_elm_lang$websocket$WebSocket$send, model.eventsWsUrl, '40')
 				};
 			default:
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};

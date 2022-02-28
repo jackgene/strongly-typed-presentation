@@ -21,6 +21,7 @@ import Html.Styled.Attributes exposing
 import Html.Styled.Events exposing (..)
 import Json.Decode as Decode
 import Navigation exposing (Location)
+import Time exposing (Time, second)
 import WebSocket
 
 
@@ -62,6 +63,7 @@ type Msg
   | PostChatResponse (Result Http.Error ())
   | RemoveMessage Int (Maybe ChatMessage)
   | Event String
+  | KeepAlive Time
   | NoOp
 
 
@@ -191,6 +193,9 @@ update msg model =
       , Cmd.none
       )
 
+    KeepAlive _ ->
+      ( model, WebSocket.send model.eventsWsUrl "40" )
+
     NoOp -> ( model, Cmd.none )
 
 
@@ -264,7 +269,11 @@ view model =
 
 -- Subscriptions
 subscriptions : Model -> Sub Msg
-subscriptions model = WebSocket.listen model.eventsWsUrl Event
+subscriptions model =
+  Sub.batch
+  [ WebSocket.listen model.eventsWsUrl Event
+  , Time.every (3 * second) KeepAlive
+  ]
 
 
 main : Program Never Model Msg
