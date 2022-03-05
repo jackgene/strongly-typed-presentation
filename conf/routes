@@ -5,6 +5,7 @@
 
 GET         /                           controllers.Assets.at(path="/public", file="html/deck.html")
 GET         /event/language-poll        controllers.MainController.languagePollEvent()
+GET         /event/question             controllers.MainController.questionEvent()
 
 GET         /moderator                  controllers.Assets.at(path="/public", file="html/moderator.html")
 GET         /moderator/event            controllers.MainController.moderationEvent()
