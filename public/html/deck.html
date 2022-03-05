@@ -18754,99 +18754,6 @@ var _jackgene$live_deck$Deck_Common$Next = {ctor: 'Next'};
 var _jackgene$live_deck$Deck_Common$Slide = function (a) {
 	return {ctor: 'Slide', _0: a};
 };
-var _jackgene$live_deck$Deck_Slide_Common$paragraphFontFamily = _rtfeldman$elm_css$Css$batch(
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$fontFamilies(
-			{
-				ctor: '::',
-				_0: 'GoodRx Bolton',
-				_1: {ctor: '[]'}
-			}),
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$fontSize(
-				_rtfeldman$elm_css$Css$vw(2.2)),
-			_1: {ctor: '[]'}
-		}
-	});
-var _jackgene$live_deck$Deck_Slide_Common$headerFontFamily = _rtfeldman$elm_css$Css$fontFamilies(
-	{
-		ctor: '::',
-		_0: 'GoodRx Moon',
-		_1: {ctor: '[]'}
-	});
-var _jackgene$live_deck$Deck_Slide_Common$headerStyle = _rtfeldman$elm_css$Css$batch(
-	{
-		ctor: '::',
-		_0: _jackgene$live_deck$Deck_Slide_Common$headerFontFamily,
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$fontSize(
-				_rtfeldman$elm_css$Css$vw(4)),
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$before(
-					{
-						ctor: '::',
-						_0: A2(_rtfeldman$elm_css$Css$property, 'content', '\'\''),
-						_1: {
-							ctor: '::',
-							_0: _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$block),
-							_1: {
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Css$float(_rtfeldman$elm_css$Css$left),
-								_1: {
-									ctor: '::',
-									_0: _rtfeldman$elm_css$Css$width(
-										_rtfeldman$elm_css$Css$em(0.2)),
-									_1: {
-										ctor: '::',
-										_0: _rtfeldman$elm_css$Css$height(
-											_rtfeldman$elm_css$Css$em(1.2)),
-										_1: {
-											ctor: '::',
-											_0: _rtfeldman$elm_css$Css$marginRight(
-												_rtfeldman$elm_css$Css$em(1.4)),
-											_1: {
-												ctor: '::',
-												_0: _rtfeldman$elm_css$Css$backgroundColor(
-													A3(_rtfeldman$elm_css$Css$rgb, 245, 218, 121)),
-												_1: {ctor: '[]'}
-											}
-										}
-									}
-								}
-							}
-						}
-					}),
-				_1: {ctor: '[]'}
-			}
-		}
-	});
-var _jackgene$live_deck$Deck_Slide_Common$subHeaderStyle = _rtfeldman$elm_css$Css$batch(
-	{
-		ctor: '::',
-		_0: _jackgene$live_deck$Deck_Slide_Common$headerFontFamily,
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$fontSize(
-				_rtfeldman$elm_css$Css$vw(2.7)),
-			_1: {ctor: '[]'}
-		}
-	});
-var _jackgene$live_deck$Deck_Slide_Common$slideTemplate = {
-	active: _elm_lang$core$Basics$always(true),
-	update: F2(
-		function (_p0, model) {
-			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-		}),
-	view: function (_p1) {
-		return _rtfeldman$elm_css$Html_Styled$text('(Placeholder)');
-	},
-	eventsWsPath: _elm_lang$core$Maybe$Nothing
-};
-var _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs = 500;
 var _rtfeldman$elm_css$Html_Styled_Attributes$css = _rtfeldman$elm_css$Html_Styled_Internal$css;
 var _rtfeldman$elm_css$Html_Styled_Attributes$map = _rtfeldman$elm_css$VirtualDom_Styled$mapProperty;
 var _rtfeldman$elm_css$Html_Styled_Attributes$attribute = _rtfeldman$elm_css$VirtualDom_Styled$attribute;
@@ -19201,55 +19108,180 @@ var _rtfeldman$elm_css$Html_Styled_Attributes$style = function (_p0) {
 	return _rtfeldman$elm_css$Html_Styled_Attributes$fromUnstyled(
 		_elm_lang$virtual_dom$VirtualDom$style(_p0));
 };
-var _jackgene$live_deck$Deck_Slide_Conclusion$slide = _jackgene$live_deck$Deck_Common$Slide(
-	_elm_lang$core$Native_Utils.update(
-		_jackgene$live_deck$Deck_Slide_Common$slideTemplate,
-		{
-			view: function (_p0) {
-				return A2(
-					_rtfeldman$elm_css$Html_Styled$div,
-					{ctor: '[]'},
+var _jackgene$live_deck$Deck_Slide_Common$contentContainerStyle = A2(
+	_rtfeldman$elm_css$Css$margin2,
+	_rtfeldman$elm_css$Css$zero,
+	_rtfeldman$elm_css$Css$vw(7));
+var _jackgene$live_deck$Deck_Slide_Common$paragraphFontFamily = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$fontFamilies(
+			{
+				ctor: '::',
+				_0: 'GoodRx Bolton',
+				_1: {ctor: '[]'}
+			}),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$fontSize(
+				_rtfeldman$elm_css$Css$vw(2.2)),
+			_1: {ctor: '[]'}
+		}
+	});
+var _jackgene$live_deck$Deck_Slide_Common$headerFontFamily = _rtfeldman$elm_css$Css$fontFamilies(
+	{
+		ctor: '::',
+		_0: 'GoodRx Moon',
+		_1: {ctor: '[]'}
+	});
+var _jackgene$live_deck$Deck_Slide_Common$headerStyle = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _jackgene$live_deck$Deck_Slide_Common$headerFontFamily,
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$fontSize(
+				_rtfeldman$elm_css$Css$vw(4)),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$before(
 					{
 						ctor: '::',
-						_0: A2(
-							_rtfeldman$elm_css$Html_Styled$h1,
-							{
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-									{
-										ctor: '::',
-										_0: _jackgene$live_deck$Deck_Slide_Common$headerStyle,
-										_1: {ctor: '[]'}
-									}),
-								_1: {ctor: '[]'}
-							},
-							{
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Html_Styled$text('Audience Questions'),
-								_1: {ctor: '[]'}
-							}),
+						_0: A2(_rtfeldman$elm_css$Css$property, 'content', '\'\''),
 						_1: {
 							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$block),
+							_1: {
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Css$float(_rtfeldman$elm_css$Css$left),
+								_1: {
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$width(
+										_rtfeldman$elm_css$Css$em(0.2)),
+									_1: {
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$height(
+											_rtfeldman$elm_css$Css$em(1.2)),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Css$marginRight(
+												_rtfeldman$elm_css$Css$em(1.4)),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$backgroundColor(
+													A3(_rtfeldman$elm_css$Css$rgb, 245, 218, 121)),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}),
+				_1: {ctor: '[]'}
+			}
+		}
+	});
+var _jackgene$live_deck$Deck_Slide_Common$subHeaderStyle = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _jackgene$live_deck$Deck_Slide_Common$headerFontFamily,
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$fontSize(
+				_rtfeldman$elm_css$Css$vw(2.7)),
+			_1: {ctor: '[]'}
+		}
+	});
+var _jackgene$live_deck$Deck_Slide_Common$standardSlideView = F3(
+	function (heading, subheading, content) {
+		return A2(
+			_rtfeldman$elm_css$Html_Styled$div,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A2(
+					_rtfeldman$elm_css$Html_Styled$h1,
+					{
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+							{
+								ctor: '::',
+								_0: _jackgene$live_deck$Deck_Slide_Common$headerStyle,
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Html_Styled$text(heading),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+								{
+									ctor: '::',
+									_0: _jackgene$live_deck$Deck_Slide_Common$contentContainerStyle,
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
 							_0: A2(
-								_rtfeldman$elm_css$Html_Styled$p,
+								_rtfeldman$elm_css$Html_Styled$h2,
 								{
 									ctor: '::',
 									_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 										{
 											ctor: '::',
-											_0: _jackgene$live_deck$Deck_Slide_Common$paragraphFontFamily,
+											_0: _jackgene$live_deck$Deck_Slide_Common$subHeaderStyle,
 											_1: {ctor: '[]'}
 										}),
 									_1: {ctor: '[]'}
 								},
 								{
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Html_Styled$text('Questions and (Maybe) Answers...'),
+									_0: _rtfeldman$elm_css$Html_Styled$text(subheading),
 									_1: {ctor: '[]'}
 								}),
-							_1: {ctor: '[]'}
-						}
-					});
+							_1: {
+								ctor: '::',
+								_0: content,
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _jackgene$live_deck$Deck_Slide_Common$baseSlideModel = {
+	active: _elm_lang$core$Basics$always(true),
+	update: F2(
+		function (_p0, model) {
+			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		}),
+	view: function (_p1) {
+		return _rtfeldman$elm_css$Html_Styled$text('(Placeholder)');
+	},
+	eventsWsPath: _elm_lang$core$Maybe$Nothing
+};
+var _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs = 500;
+var _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide = _jackgene$live_deck$Deck_Common$Slide(
+	_elm_lang$core$Native_Utils.update(
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+		{
+			view: function (_p0) {
+				return A3(
+					_jackgene$live_deck$Deck_Slide_Common$standardSlideView,
+					'Audience Questions',
+					'Questions and (Possibly) Answers',
+					_rtfeldman$elm_css$Html_Styled$text(''));
 			}
 		}));
 var _rtfeldman$elm_css$Svg_Styled_Internal$svgNamespace = A2(
@@ -26420,7 +26452,7 @@ var _jackgene$live_deck$Deck_Slide_Graphics$backgroundHalfCircles = A2(
 	});
 var _jackgene$live_deck$Deck_Slide_Cover$slide = _jackgene$live_deck$Deck_Common$Slide(
 	_elm_lang$core$Native_Utils.update(
-		_jackgene$live_deck$Deck_Slide_Common$slideTemplate,
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
 			view: function (_p0) {
 				return A2(
@@ -27269,36 +27301,21 @@ var _jackgene$live_deck$Deck_Slide_PollJSvsTS$horizontalBarView = F2(
 	});
 var _jackgene$live_deck$Deck_Slide_PollJSvsTS$slide = _jackgene$live_deck$Deck_Common$Slide(
 	_elm_lang$core$Native_Utils.update(
-		_jackgene$live_deck$Deck_Slide_Common$slideTemplate,
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
 			active: function (model) {
 				var tsFrac = model.typeScriptVsJavaScript.typeScriptFraction;
 				return (_elm_lang$core$Native_Utils.cmp(tsFrac, 0.0) > 0) && (_elm_lang$core$Native_Utils.cmp(tsFrac, 1.0) < 0);
 			},
 			view: function (model) {
-				return A2(
-					_rtfeldman$elm_css$Html_Styled$div,
-					{ctor: '[]'},
-					{
-						ctor: '::',
-						_0: A2(
-							_rtfeldman$elm_css$Html_Styled$h1,
-							{
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-									{
-										ctor: '::',
-										_0: _jackgene$live_deck$Deck_Slide_Common$headerStyle,
-										_1: {ctor: '[]'}
-									}),
-								_1: {ctor: '[]'}
-							},
-							{
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Html_Styled$text('Audience Poll'),
-								_1: {ctor: '[]'}
-							}),
-						_1: {
+				return A3(
+					_jackgene$live_deck$Deck_Slide_Common$standardSlideView,
+					'Audience Poll',
+					'What is your preferred programming language?',
+					A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
 							ctor: '::',
 							_0: A2(
 								_rtfeldman$elm_css$Html_Styled$div,
@@ -27307,450 +27324,203 @@ var _jackgene$live_deck$Deck_Slide_PollJSvsTS$slide = _jackgene$live_deck$Deck_C
 									_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 										{
 											ctor: '::',
-											_0: A2(
-												_rtfeldman$elm_css$Css$margin2,
-												_rtfeldman$elm_css$Css$zero,
-												_rtfeldman$elm_css$Css$vw(7)),
+											_0: _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$none),
 											_1: {ctor: '[]'}
 										}),
 									_1: {ctor: '[]'}
 								},
-								{
-									ctor: '::',
-									_0: A2(
-										_rtfeldman$elm_css$Html_Styled$h2,
-										{
-											ctor: '::',
-											_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-												{
-													ctor: '::',
-													_0: _jackgene$live_deck$Deck_Slide_Common$subHeaderStyle,
-													_1: {ctor: '[]'}
-												}),
-											_1: {ctor: '[]'}
-										},
-										{
-											ctor: '::',
-											_0: _rtfeldman$elm_css$Html_Styled$text('What is your preferred programming language?'),
-											_1: {ctor: '[]'}
-										}),
-									_1: {
+								{ctor: '[]'}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$div,
+									{ctor: '[]'},
+									{
 										ctor: '::',
 										_0: A2(
-											_rtfeldman$elm_css$Html_Styled$div,
+											_rtfeldman$elm_css$Html_Styled$p,
 											{
 												ctor: '::',
 												_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 													{
 														ctor: '::',
-														_0: _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$none),
+														_0: _rtfeldman$elm_css$Css$margin(_rtfeldman$elm_css$Css$zero),
 														_1: {ctor: '[]'}
 													}),
 												_1: {ctor: '[]'}
 											},
-											{ctor: '[]'}),
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text('Comparing JavaScript and TypeScript:'),
+												_1: {ctor: '[]'}
+											}),
 										_1: {
 											ctor: '::',
-											_0: A2(
-												_rtfeldman$elm_css$Html_Styled$div,
-												{ctor: '[]'},
+											_0: A3(
+												_rtfeldman$elm_css$Html_Styled_Keyed$node,
+												'div',
 												{
 													ctor: '::',
-													_0: A2(
-														_rtfeldman$elm_css$Html_Styled$p,
+													_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 														{
 															ctor: '::',
-															_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-																{
-																	ctor: '::',
-																	_0: _rtfeldman$elm_css$Css$margin(_rtfeldman$elm_css$Css$zero),
-																	_1: {
-																		ctor: '::',
-																		_0: _jackgene$live_deck$Deck_Slide_Common$paragraphFontFamily,
-																		_1: {ctor: '[]'}
-																	}
-																}),
-															_1: {ctor: '[]'}
-														},
-														{
-															ctor: '::',
-															_0: _rtfeldman$elm_css$Html_Styled$text('Comparing JavaScript and TypeScript:'),
+															_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
 															_1: {ctor: '[]'}
 														}),
-													_1: {
-														ctor: '::',
-														_0: A3(
-															_rtfeldman$elm_css$Html_Styled_Keyed$node,
-															'div',
-															{
-																ctor: '::',
-																_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-																	{
-																		ctor: '::',
-																		_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
-																		_1: {ctor: '[]'}
-																	}),
-																_1: {ctor: '[]'}
-															},
-															function () {
-																var maxCount = A2(
-																	_elm_lang$core$Maybe$withDefault,
-																	0,
-																	A2(
-																		_elm_lang$core$Maybe$map,
-																		_elm_lang$core$Tuple$second,
-																		_elm_lang$core$List$head(model.languagesAndCounts)));
-																return A2(
-																	_elm_lang$core$List$sortBy,
-																	_elm_lang$core$Tuple$first,
-																	A2(
-																		_elm_lang$core$List$indexedMap,
-																		F2(
-																			function (idx, _p0) {
-																				var _p1 = _p0;
-																				var _p2 = _p1._0;
-																				return {
-																					ctor: '_Tuple2',
-																					_0: _p2,
-																					_1: function () {
-																						var tsFrac = model.typeScriptVsJavaScript.typeScriptFraction;
-																						var isTs = _elm_lang$core$Native_Utils.eq(_p2, 'TypeScript');
-																						var isJs = _elm_lang$core$Native_Utils.eq(_p2, 'JavaScript');
-																						return (isJs || isTs) ? A2(
-																							_rtfeldman$elm_css$Html_Styled$div,
-																							{
+													_1: {ctor: '[]'}
+												},
+												function () {
+													var maxCount = A2(
+														_elm_lang$core$Maybe$withDefault,
+														0,
+														A2(
+															_elm_lang$core$Maybe$map,
+															_elm_lang$core$Tuple$second,
+															_elm_lang$core$List$head(model.languagesAndCounts)));
+													return A2(
+														_elm_lang$core$List$sortBy,
+														_elm_lang$core$Tuple$first,
+														A2(
+															_elm_lang$core$List$indexedMap,
+															F2(
+																function (idx, _p0) {
+																	var _p1 = _p0;
+																	var _p2 = _p1._0;
+																	return {
+																		ctor: '_Tuple2',
+																		_0: _p2,
+																		_1: function () {
+																			var tsFrac = model.typeScriptVsJavaScript.typeScriptFraction;
+																			var isTs = _elm_lang$core$Native_Utils.eq(_p2, 'TypeScript');
+																			var isJs = _elm_lang$core$Native_Utils.eq(_p2, 'JavaScript');
+																			return (isJs || isTs) ? A2(
+																				_rtfeldman$elm_css$Html_Styled$div,
+																				{
+																					ctor: '::',
+																					_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																						{
+																							ctor: '::',
+																							_0: _rtfeldman$elm_css$Css$opacity(
+																								_rtfeldman$elm_css$Css$num(1.0)),
+																							_1: {
 																								ctor: '::',
-																								_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-																									{
-																										ctor: '::',
-																										_0: _rtfeldman$elm_css$Css$opacity(
-																											_rtfeldman$elm_css$Css$num(1.0)),
-																										_1: {
-																											ctor: '::',
-																											_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
-																											_1: {
-																												ctor: '::',
-																												_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$zero),
-																												_1: {
-																													ctor: '::',
-																													_0: _rtfeldman$elm_css$Css$height(
-																														_rtfeldman$elm_css$Css$vw(30)),
-																													_1: {
-																														ctor: '::',
-																														_0: _rtfeldman$elm_css$Css$width(
-																															_rtfeldman$elm_css$Css$vw(30)),
-																														_1: {
-																															ctor: '::',
-																															_0: _rtfeldman$elm_css$Css$borderRadius(
-																																_rtfeldman$elm_css$Css$pct(50)),
-																															_1: {
-																																ctor: '::',
-																																_0: A2(
-																																	_rtfeldman$elm_css$Css$margin2,
-																																	_rtfeldman$elm_css$Css$vw(1),
-																																	_rtfeldman$elm_css$Css$vw(28)),
-																																_1: {
-																																	ctor: '::',
-																																	_0: _rtfeldman$elm_css$Css$overflow(_rtfeldman$elm_css$Css$hidden),
-																																	_1: {
-																																		ctor: '::',
-																																		_0: _rtfeldman$elm_css$Css_Transitions$transition(
-																																			{
-																																				ctor: '::',
-																																				_0: A3(_rtfeldman$elm_css$Css_Transitions$opacity3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																				_1: {
-																																					ctor: '::',
-																																					_0: A3(_rtfeldman$elm_css$Css_Transitions$top3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																					_1: {
-																																						ctor: '::',
-																																						_0: A3(_rtfeldman$elm_css$Css_Transitions$width3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																						_1: {
-																																							ctor: '::',
-																																							_0: A3(_rtfeldman$elm_css$Css_Transitions$borderRadius3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																							_1: {
-																																								ctor: '::',
-																																								_0: A3(_rtfeldman$elm_css$Css_Transitions$marginLeft3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																								_1: {ctor: '[]'}
-																																							}
-																																						}
-																																					}
-																																				}
-																																			}),
-																																		_1: {ctor: '[]'}
-																																	}
-																																}
-																															}
-																														}
-																													}
-																												}
-																											}
-																										}
-																									}),
-																								_1: {ctor: '[]'}
-																							},
-																							{
-																								ctor: '::',
-																								_0: A2(
-																									_rtfeldman$elm_css$Html_Styled$div,
-																									{
-																										ctor: '::',
-																										_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-																											{
-																												ctor: '::',
-																												_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
-																												_1: {
-																													ctor: '::',
-																													_0: _rtfeldman$elm_css$Css$top(
-																														_rtfeldman$elm_css$Css$pct(46)),
-																													_1: {
-																														ctor: '::',
-																														_0: _rtfeldman$elm_css$Css$left(
-																															_rtfeldman$elm_css$Css$pct(
-																																isTs ? 8 : 85)),
-																														_1: {
-																															ctor: '::',
-																															_0: _rtfeldman$elm_css$Css$zIndex(
-																																_rtfeldman$elm_css$Css$int(20)),
-																															_1: {
-																																ctor: '::',
-																																_0: _rtfeldman$elm_css$Css_Transitions$transition(
-																																	{
-																																		ctor: '::',
-																																		_0: A3(_rtfeldman$elm_css$Css_Transitions$left3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs * 1.2, 0, _rtfeldman$elm_css$Css_Transitions$easeIn),
-																																		_1: {
-																																			ctor: '::',
-																																			_0: A3(_rtfeldman$elm_css$Css_Transitions$top3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs * 1.2, 0, _rtfeldman$elm_css$Css_Transitions$easeOut),
-																																			_1: {ctor: '[]'}
-																																		}
-																																	}),
-																																_1: {ctor: '[]'}
-																															}
-																														}
-																													}
-																												}
-																											}),
-																										_1: {ctor: '[]'}
-																									},
-																									{
-																										ctor: '::',
-																										_0: A2(
-																											_elm_lang$core$Maybe$withDefault,
-																											_rtfeldman$elm_css$Html_Styled$text(_p2),
-																											A2(_elm_lang$core$Dict$get, _p2, _jackgene$live_deck$Deck_Slide_Graphics$logosByLanguage)),
-																										_1: {ctor: '[]'}
-																									}),
+																								_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
 																								_1: {
 																									ctor: '::',
-																									_0: A2(
-																										_rtfeldman$elm_css$Html_Styled$div,
-																										{ctor: '[]'},
-																										{
+																									_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$zero),
+																									_1: {
+																										ctor: '::',
+																										_0: _rtfeldman$elm_css$Css$height(
+																											_rtfeldman$elm_css$Css$vw(30)),
+																										_1: {
 																											ctor: '::',
-																											_0: A2(
-																												_rtfeldman$elm_css$Html_Styled$div,
-																												{
-																													ctor: '::',
-																													_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-																														{
-																															ctor: '::',
-																															_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
-																															_1: {
-																																ctor: '::',
-																																_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$zero),
-																																_1: {
-																																	ctor: '::',
-																																	_0: _rtfeldman$elm_css$Css$left(
-																																		_rtfeldman$elm_css$Css$pct(50)),
-																																	_1: {
-																																		ctor: '::',
-																																		_0: _rtfeldman$elm_css$Css$width(
-																																			_rtfeldman$elm_css$Css$pct(50)),
-																																		_1: {
-																																			ctor: '::',
-																																			_0: _rtfeldman$elm_css$Css$height(
-																																				_rtfeldman$elm_css$Css$pct(100)),
-																																			_1: {
-																																				ctor: '::',
-																																				_0: (((_elm_lang$core$Native_Utils.cmp(tsFrac, 0.5) > 0) && isTs) || (((_elm_lang$core$Native_Utils.cmp(tsFrac, 0.5) < 0) && isJs) || (_elm_lang$core$Native_Utils.eq(tsFrac, 0.5) && (isJs && model.typeScriptVsJavaScript.lastVoteTypeScript)))) ? _rtfeldman$elm_css$Css$zIndex(
-																																					_rtfeldman$elm_css$Css$int(10)) : _rtfeldman$elm_css$Css$zIndex(_rtfeldman$elm_css$Css$auto),
-																																				_1: {
-																																					ctor: '::',
-																																					_0: _rtfeldman$elm_css$Css$color(
-																																						isTs ? A3(_rtfeldman$elm_css$Css$rgb, 50, 75, 160) : A3(_rtfeldman$elm_css$Css$rgb, 215, 194, 93)),
-																																					_1: {
-																																						ctor: '::',
-																																						_0: _rtfeldman$elm_css$Css$backgroundColor(
-																																							isTs ? A3(_rtfeldman$elm_css$Css$rgb, 118, 149, 196) : A3(_rtfeldman$elm_css$Css$rgb, 247, 231, 146)),
-																																						_1: {
-																																							ctor: '::',
-																																							_0: _jackgene$live_deck$Deck_Slide_Common$paragraphFontFamily,
-																																							_1: {
-																																								ctor: '::',
-																																								_0: _rtfeldman$elm_css$Css$fontSize(
-																																									_rtfeldman$elm_css$Css$vw(1.6)),
-																																								_1: {
-																																									ctor: '::',
-																																									_0: _rtfeldman$elm_css$Css$transform(
-																																										_rtfeldman$elm_css$Css$rotate(
-																																											_rtfeldman$elm_css$Css$deg(
-																																												180 * (isTs ? (tsFrac + 0.5) : (tsFrac - 0.5))))),
-																																									_1: {
-																																										ctor: '::',
-																																										_0: A2(_rtfeldman$elm_css$Css$property, 'transform-origin', 'left'),
-																																										_1: {
-																																											ctor: '::',
-																																											_0: _rtfeldman$elm_css$Css_Transitions$transition(
-																																												{
-																																													ctor: '::',
-																																													_0: A3(_rtfeldman$elm_css$Css_Transitions$left3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																													_1: {
-																																														ctor: '::',
-																																														_0: A3(_rtfeldman$elm_css$Css_Transitions$width3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																														_1: {
-																																															ctor: '::',
-																																															_0: A3(_rtfeldman$elm_css$Css_Transitions$height3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																															_1: {
-																																																ctor: '::',
-																																																_0: A3(_rtfeldman$elm_css$Css_Transitions$backgroundColor3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																																_1: {
-																																																	ctor: '::',
-																																																	_0: A3(_rtfeldman$elm_css$Css_Transitions$transform3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																																	_1: {ctor: '[]'}
-																																																}
-																																															}
-																																														}
-																																													}
-																																												}),
-																																											_1: {ctor: '[]'}
-																																										}
-																																									}
-																																								}
-																																							}
-																																						}
-																																					}
-																																				}
-																																			}
-																																		}
-																																	}
-																																}
-																															}
-																														}),
-																													_1: {ctor: '[]'}
-																												},
-																												((isTs && (_elm_lang$core$Native_Utils.cmp(tsFrac, 0.5) < 0)) || (isJs && (_elm_lang$core$Native_Utils.cmp(tsFrac, 0.5) > 0))) ? {ctor: '[]'} : {
+																											_0: _rtfeldman$elm_css$Css$width(
+																												_rtfeldman$elm_css$Css$vw(30)),
+																											_1: {
+																												ctor: '::',
+																												_0: _rtfeldman$elm_css$Css$borderRadius(
+																													_rtfeldman$elm_css$Css$pct(50)),
+																												_1: {
 																													ctor: '::',
 																													_0: A2(
-																														_rtfeldman$elm_css$Html_Styled$div,
-																														{
+																														_rtfeldman$elm_css$Css$margin2,
+																														_rtfeldman$elm_css$Css$vw(1),
+																														_rtfeldman$elm_css$Css$vw(28)),
+																													_1: {
+																														ctor: '::',
+																														_0: _rtfeldman$elm_css$Css$overflow(_rtfeldman$elm_css$Css$hidden),
+																														_1: {
 																															ctor: '::',
-																															_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																															_0: _rtfeldman$elm_css$Css_Transitions$transition(
 																																{
 																																	ctor: '::',
-																																	_0: _rtfeldman$elm_css$Css$width(
-																																		_rtfeldman$elm_css$Css$pct(100)),
+																																	_0: A3(_rtfeldman$elm_css$Css_Transitions$opacity3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
 																																	_1: {
 																																		ctor: '::',
-																																		_0: _rtfeldman$elm_css$Css$height(
-																																			_rtfeldman$elm_css$Css$pct(100)),
+																																		_0: A3(_rtfeldman$elm_css$Css_Transitions$top3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
 																																		_1: {
 																																			ctor: '::',
-																																			_0: _rtfeldman$elm_css$Css$backgroundColor(_rtfeldman$elm_css$Css$inherit),
+																																			_0: A3(_rtfeldman$elm_css$Css_Transitions$width3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
 																																			_1: {
 																																				ctor: '::',
-																																				_0: _rtfeldman$elm_css$Css$transform(
-																																					_rtfeldman$elm_css$Css$rotate(
-																																						_rtfeldman$elm_css$Css$deg(
-																																							360 * (isTs ? (0.5 - tsFrac) : (0.5 - tsFrac))))),
+																																				_0: A3(_rtfeldman$elm_css$Css_Transitions$borderRadius3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
 																																				_1: {
 																																					ctor: '::',
-																																					_0: A2(_rtfeldman$elm_css$Css$property, 'transform-origin', 'left'),
-																																					_1: {
-																																						ctor: '::',
-																																						_0: _rtfeldman$elm_css$Css_Transitions$transition(
-																																							{
-																																								ctor: '::',
-																																								_0: A3(_rtfeldman$elm_css$Css_Transitions$width3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																								_1: {
-																																									ctor: '::',
-																																									_0: A3(_rtfeldman$elm_css$Css_Transitions$height3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																									_1: {
-																																										ctor: '::',
-																																										_0: A3(_rtfeldman$elm_css$Css_Transitions$transform3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																										_1: {ctor: '[]'}
-																																									}
-																																								}
-																																							}),
-																																						_1: {ctor: '[]'}
-																																					}
+																																					_0: A3(_rtfeldman$elm_css$Css_Transitions$marginLeft3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
+																																					_1: {ctor: '[]'}
 																																				}
 																																			}
 																																		}
 																																	}
 																																}),
 																															_1: {ctor: '[]'}
-																														},
-																														{ctor: '[]'}),
-																													_1: {ctor: '[]'}
-																												}),
-																											_1: {ctor: '[]'}
-																										}),
-																									_1: {ctor: '[]'}
-																								}
-																							}) : A2(
-																							_rtfeldman$elm_css$Html_Styled$div,
-																							{
-																								ctor: '::',
-																								_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-																									{
-																										ctor: '::',
-																										_0: _rtfeldman$elm_css$Css$opacity(
-																											_rtfeldman$elm_css$Css$num(0.0)),
-																										_1: {
-																											ctor: '::',
-																											_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
-																											_1: {
-																												ctor: '::',
-																												_0: _rtfeldman$elm_css$Css$top(
-																													_rtfeldman$elm_css$Css$em(
-																														_elm_lang$core$Basics$toFloat(1 + (idx * 2)))),
-																												_1: {
-																													ctor: '::',
-																													_0: _rtfeldman$elm_css$Css$width(
-																														_rtfeldman$elm_css$Css$pct(90)),
-																													_1: {
-																														ctor: '::',
-																														_0: _jackgene$live_deck$Deck_Slide_Common$paragraphFontFamily,
-																														_1: {
-																															ctor: '::',
-																															_0: _rtfeldman$elm_css$Css$fontSize(
-																																_rtfeldman$elm_css$Css$vw(1.6)),
-																															_1: {
-																																ctor: '::',
-																																_0: _rtfeldman$elm_css$Css$lineHeight(
-																																	_rtfeldman$elm_css$Css$em(1.6)),
-																																_1: {
-																																	ctor: '::',
-																																	_0: _rtfeldman$elm_css$Css_Transitions$transition(
-																																		{
-																																			ctor: '::',
-																																			_0: A3(_rtfeldman$elm_css$Css_Transitions$opacity3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																			_1: {
-																																				ctor: '::',
-																																				_0: A3(_rtfeldman$elm_css$Css_Transitions$top3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																				_1: {ctor: '[]'}
-																																			}
-																																		}),
-																																	_1: {ctor: '[]'}
-																																}
-																															}
 																														}
 																													}
 																												}
 																											}
 																										}
-																									}),
-																								_1: {ctor: '[]'}
-																							},
+																									}
+																								}
+																							}
+																						}),
+																					_1: {ctor: '[]'}
+																				},
+																				{
+																					ctor: '::',
+																					_0: A2(
+																						_rtfeldman$elm_css$Html_Styled$div,
+																						{
+																							ctor: '::',
+																							_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																								{
+																									ctor: '::',
+																									_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
+																									_1: {
+																										ctor: '::',
+																										_0: _rtfeldman$elm_css$Css$top(
+																											_rtfeldman$elm_css$Css$pct(46)),
+																										_1: {
+																											ctor: '::',
+																											_0: _rtfeldman$elm_css$Css$left(
+																												_rtfeldman$elm_css$Css$pct(
+																													isTs ? 8 : 85)),
+																											_1: {
+																												ctor: '::',
+																												_0: _rtfeldman$elm_css$Css$zIndex(
+																													_rtfeldman$elm_css$Css$int(20)),
+																												_1: {
+																													ctor: '::',
+																													_0: _rtfeldman$elm_css$Css_Transitions$transition(
+																														{
+																															ctor: '::',
+																															_0: A3(_rtfeldman$elm_css$Css_Transitions$left3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs * 1.2, 0, _rtfeldman$elm_css$Css_Transitions$easeIn),
+																															_1: {
+																																ctor: '::',
+																																_0: A3(_rtfeldman$elm_css$Css_Transitions$top3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs * 1.2, 0, _rtfeldman$elm_css$Css_Transitions$easeOut),
+																																_1: {ctor: '[]'}
+																															}
+																														}),
+																													_1: {ctor: '[]'}
+																												}
+																											}
+																										}
+																									}
+																								}),
+																							_1: {ctor: '[]'}
+																						},
+																						{
+																							ctor: '::',
+																							_0: A2(
+																								_elm_lang$core$Maybe$withDefault,
+																								_rtfeldman$elm_css$Html_Styled$text(_p2),
+																								A2(_elm_lang$core$Dict$get, _p2, _jackgene$live_deck$Deck_Slide_Graphics$logosByLanguage)),
+																							_1: {ctor: '[]'}
+																						}),
+																					_1: {
+																						ctor: '::',
+																						_0: A2(
+																							_rtfeldman$elm_css$Html_Styled$div,
+																							{ctor: '[]'},
 																							{
 																								ctor: '::',
 																								_0: A2(
@@ -27766,76 +27536,279 @@ var _jackgene$live_deck$Deck_Slide_PollJSvsTS$slide = _jackgene$live_deck$Deck_C
 																													_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$zero),
 																													_1: {
 																														ctor: '::',
-																														_0: _rtfeldman$elm_css$Css$width(
-																															_rtfeldman$elm_css$Css$pct(16)),
+																														_0: _rtfeldman$elm_css$Css$left(
+																															_rtfeldman$elm_css$Css$pct(50)),
 																														_1: {
 																															ctor: '::',
-																															_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$right),
-																															_1: {ctor: '[]'}
+																															_0: _rtfeldman$elm_css$Css$width(
+																																_rtfeldman$elm_css$Css$pct(50)),
+																															_1: {
+																																ctor: '::',
+																																_0: _rtfeldman$elm_css$Css$height(
+																																	_rtfeldman$elm_css$Css$pct(100)),
+																																_1: {
+																																	ctor: '::',
+																																	_0: (((_elm_lang$core$Native_Utils.cmp(tsFrac, 0.5) > 0) && isTs) || (((_elm_lang$core$Native_Utils.cmp(tsFrac, 0.5) < 0) && isJs) || (_elm_lang$core$Native_Utils.eq(tsFrac, 0.5) && (isJs && model.typeScriptVsJavaScript.lastVoteTypeScript)))) ? _rtfeldman$elm_css$Css$zIndex(
+																																		_rtfeldman$elm_css$Css$int(10)) : _rtfeldman$elm_css$Css$zIndex(_rtfeldman$elm_css$Css$auto),
+																																	_1: {
+																																		ctor: '::',
+																																		_0: _rtfeldman$elm_css$Css$color(
+																																			isTs ? A3(_rtfeldman$elm_css$Css$rgb, 50, 75, 160) : A3(_rtfeldman$elm_css$Css$rgb, 215, 194, 93)),
+																																		_1: {
+																																			ctor: '::',
+																																			_0: _rtfeldman$elm_css$Css$backgroundColor(
+																																				isTs ? A3(_rtfeldman$elm_css$Css$rgb, 118, 149, 196) : A3(_rtfeldman$elm_css$Css$rgb, 247, 231, 146)),
+																																			_1: {
+																																				ctor: '::',
+																																				_0: _jackgene$live_deck$Deck_Slide_Common$paragraphFontFamily,
+																																				_1: {
+																																					ctor: '::',
+																																					_0: _rtfeldman$elm_css$Css$fontSize(
+																																						_rtfeldman$elm_css$Css$vw(1.6)),
+																																					_1: {
+																																						ctor: '::',
+																																						_0: _rtfeldman$elm_css$Css$transform(
+																																							_rtfeldman$elm_css$Css$rotate(
+																																								_rtfeldman$elm_css$Css$deg(
+																																									180 * (isTs ? (tsFrac + 0.5) : (tsFrac - 0.5))))),
+																																						_1: {
+																																							ctor: '::',
+																																							_0: A2(_rtfeldman$elm_css$Css$property, 'transform-origin', 'left'),
+																																							_1: {
+																																								ctor: '::',
+																																								_0: _rtfeldman$elm_css$Css_Transitions$transition(
+																																									{
+																																										ctor: '::',
+																																										_0: A3(_rtfeldman$elm_css$Css_Transitions$left3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
+																																										_1: {
+																																											ctor: '::',
+																																											_0: A3(_rtfeldman$elm_css$Css_Transitions$width3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
+																																											_1: {
+																																												ctor: '::',
+																																												_0: A3(_rtfeldman$elm_css$Css_Transitions$height3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
+																																												_1: {
+																																													ctor: '::',
+																																													_0: A3(_rtfeldman$elm_css$Css_Transitions$backgroundColor3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
+																																													_1: {
+																																														ctor: '::',
+																																														_0: A3(_rtfeldman$elm_css$Css_Transitions$transform3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
+																																														_1: {ctor: '[]'}
+																																													}
+																																												}
+																																											}
+																																										}
+																																									}),
+																																								_1: {ctor: '[]'}
+																																							}
+																																						}
+																																					}
+																																				}
+																																			}
+																																		}
+																																	}
+																																}
+																															}
 																														}
 																													}
 																												}
 																											}),
 																										_1: {ctor: '[]'}
 																									},
-																									{
+																									((isTs && (_elm_lang$core$Native_Utils.cmp(tsFrac, 0.5) < 0)) || (isJs && (_elm_lang$core$Native_Utils.cmp(tsFrac, 0.5) > 0))) ? {ctor: '[]'} : {
 																										ctor: '::',
 																										_0: A2(
-																											_elm_lang$core$Maybe$withDefault,
-																											_rtfeldman$elm_css$Html_Styled$text(_p2),
-																											A2(_elm_lang$core$Dict$get, _p2, _jackgene$live_deck$Deck_Slide_Graphics$logosByLanguage)),
-																										_1: {ctor: '[]'}
-																									}),
-																								_1: {
-																									ctor: '::',
-																									_0: A2(
-																										_rtfeldman$elm_css$Html_Styled$div,
-																										{
-																											ctor: '::',
-																											_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-																												{
-																													ctor: '::',
-																													_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
-																													_1: {
+																											_rtfeldman$elm_css$Html_Styled$div,
+																											{
+																												ctor: '::',
+																												_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																													{
 																														ctor: '::',
-																														_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$zero),
+																														_0: _rtfeldman$elm_css$Css$width(
+																															_rtfeldman$elm_css$Css$pct(100)),
 																														_1: {
 																															ctor: '::',
-																															_0: _rtfeldman$elm_css$Css$left(
-																																_rtfeldman$elm_css$Css$pct(17)),
+																															_0: _rtfeldman$elm_css$Css$height(
+																																_rtfeldman$elm_css$Css$pct(100)),
 																															_1: {
 																																ctor: '::',
-																																_0: _rtfeldman$elm_css$Css$right(_rtfeldman$elm_css$Css$zero),
-																																_1: {ctor: '[]'}
+																																_0: _rtfeldman$elm_css$Css$backgroundColor(_rtfeldman$elm_css$Css$inherit),
+																																_1: {
+																																	ctor: '::',
+																																	_0: _rtfeldman$elm_css$Css$transform(
+																																		_rtfeldman$elm_css$Css$rotate(
+																																			_rtfeldman$elm_css$Css$deg(
+																																				360 * (isTs ? (0.5 - tsFrac) : (0.5 - tsFrac))))),
+																																	_1: {
+																																		ctor: '::',
+																																		_0: A2(_rtfeldman$elm_css$Css$property, 'transform-origin', 'left'),
+																																		_1: {
+																																			ctor: '::',
+																																			_0: _rtfeldman$elm_css$Css_Transitions$transition(
+																																				{
+																																					ctor: '::',
+																																					_0: A3(_rtfeldman$elm_css$Css_Transitions$width3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
+																																					_1: {
+																																						ctor: '::',
+																																						_0: A3(_rtfeldman$elm_css$Css_Transitions$height3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
+																																						_1: {
+																																							ctor: '::',
+																																							_0: A3(_rtfeldman$elm_css$Css_Transitions$transform3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
+																																							_1: {ctor: '[]'}
+																																						}
+																																					}
+																																				}),
+																																			_1: {ctor: '[]'}
+																																		}
+																																	}
+																																}
 																															}
 																														}
-																													}
-																												}),
-																											_1: {ctor: '[]'}
-																										},
-																										{
+																													}),
+																												_1: {ctor: '[]'}
+																											},
+																											{ctor: '[]'}),
+																										_1: {ctor: '[]'}
+																									}),
+																								_1: {ctor: '[]'}
+																							}),
+																						_1: {ctor: '[]'}
+																					}
+																				}) : A2(
+																				_rtfeldman$elm_css$Html_Styled$div,
+																				{
+																					ctor: '::',
+																					_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																						{
+																							ctor: '::',
+																							_0: _rtfeldman$elm_css$Css$opacity(
+																								_rtfeldman$elm_css$Css$num(0.0)),
+																							_1: {
+																								ctor: '::',
+																								_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
+																								_1: {
+																									ctor: '::',
+																									_0: _rtfeldman$elm_css$Css$top(
+																										_rtfeldman$elm_css$Css$em(
+																											_elm_lang$core$Basics$toFloat(1 + (idx * 2)))),
+																									_1: {
+																										ctor: '::',
+																										_0: _rtfeldman$elm_css$Css$width(
+																											_rtfeldman$elm_css$Css$pct(90)),
+																										_1: {
 																											ctor: '::',
-																											_0: A2(_jackgene$live_deck$Deck_Slide_PollJSvsTS$horizontalBarView, _p1._1, maxCount),
-																											_1: {ctor: '[]'}
-																										}),
-																									_1: {ctor: '[]'}
+																											_0: _jackgene$live_deck$Deck_Slide_Common$paragraphFontFamily,
+																											_1: {
+																												ctor: '::',
+																												_0: _rtfeldman$elm_css$Css$fontSize(
+																													_rtfeldman$elm_css$Css$vw(1.6)),
+																												_1: {
+																													ctor: '::',
+																													_0: _rtfeldman$elm_css$Css$lineHeight(
+																														_rtfeldman$elm_css$Css$em(1.6)),
+																													_1: {
+																														ctor: '::',
+																														_0: _rtfeldman$elm_css$Css_Transitions$transition(
+																															{
+																																ctor: '::',
+																																_0: A3(_rtfeldman$elm_css$Css_Transitions$opacity3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
+																																_1: {
+																																	ctor: '::',
+																																	_0: A3(_rtfeldman$elm_css$Css_Transitions$top3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
+																																	_1: {ctor: '[]'}
+																																}
+																															}),
+																														_1: {ctor: '[]'}
+																													}
+																												}
+																											}
+																										}
+																									}
 																								}
-																							});
-																					}()
-																				};
-																			}),
-																		model.languagesAndCounts));
-															}()),
-														_1: {ctor: '[]'}
-													}
-												}),
+																							}
+																						}),
+																					_1: {ctor: '[]'}
+																				},
+																				{
+																					ctor: '::',
+																					_0: A2(
+																						_rtfeldman$elm_css$Html_Styled$div,
+																						{
+																							ctor: '::',
+																							_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																								{
+																									ctor: '::',
+																									_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
+																									_1: {
+																										ctor: '::',
+																										_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$zero),
+																										_1: {
+																											ctor: '::',
+																											_0: _rtfeldman$elm_css$Css$width(
+																												_rtfeldman$elm_css$Css$pct(16)),
+																											_1: {
+																												ctor: '::',
+																												_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$right),
+																												_1: {ctor: '[]'}
+																											}
+																										}
+																									}
+																								}),
+																							_1: {ctor: '[]'}
+																						},
+																						{
+																							ctor: '::',
+																							_0: A2(
+																								_elm_lang$core$Maybe$withDefault,
+																								_rtfeldman$elm_css$Html_Styled$text(_p2),
+																								A2(_elm_lang$core$Dict$get, _p2, _jackgene$live_deck$Deck_Slide_Graphics$logosByLanguage)),
+																							_1: {ctor: '[]'}
+																						}),
+																					_1: {
+																						ctor: '::',
+																						_0: A2(
+																							_rtfeldman$elm_css$Html_Styled$div,
+																							{
+																								ctor: '::',
+																								_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																									{
+																										ctor: '::',
+																										_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
+																										_1: {
+																											ctor: '::',
+																											_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$zero),
+																											_1: {
+																												ctor: '::',
+																												_0: _rtfeldman$elm_css$Css$left(
+																													_rtfeldman$elm_css$Css$pct(17)),
+																												_1: {
+																													ctor: '::',
+																													_0: _rtfeldman$elm_css$Css$right(_rtfeldman$elm_css$Css$zero),
+																													_1: {ctor: '[]'}
+																												}
+																											}
+																										}
+																									}),
+																								_1: {ctor: '[]'}
+																							},
+																							{
+																								ctor: '::',
+																								_0: A2(_jackgene$live_deck$Deck_Slide_PollJSvsTS$horizontalBarView, _p1._1, maxCount),
+																								_1: {ctor: '[]'}
+																							}),
+																						_1: {ctor: '[]'}
+																					}
+																				});
+																		}()
+																	};
+																}),
+															model.languagesAndCounts));
+												}()),
 											_1: {ctor: '[]'}
 										}
-									}
-								}),
-							_1: {ctor: '[]'}
-						}
-					});
+									}),
+								_1: {ctor: '[]'}
+							}
+						}));
 			},
 			eventsWsPath: _elm_lang$core$Maybe$Just('language-poll')
 		}));
@@ -27902,32 +27875,17 @@ var _jackgene$live_deck$Deck_Slide_PollQuestion$horizontalBarView = F2(
 var _jackgene$live_deck$Deck_Slide_PollQuestion$maxDisplayCount = 10;
 var _jackgene$live_deck$Deck_Slide_PollQuestion$slide = _jackgene$live_deck$Deck_Common$Slide(
 	_elm_lang$core$Native_Utils.update(
-		_jackgene$live_deck$Deck_Slide_Common$slideTemplate,
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
 			view: function (model) {
-				return A2(
-					_rtfeldman$elm_css$Html_Styled$div,
-					{ctor: '[]'},
-					{
-						ctor: '::',
-						_0: A2(
-							_rtfeldman$elm_css$Html_Styled$h1,
-							{
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-									{
-										ctor: '::',
-										_0: _jackgene$live_deck$Deck_Slide_Common$headerStyle,
-										_1: {ctor: '[]'}
-									}),
-								_1: {ctor: '[]'}
-							},
-							{
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Html_Styled$text('Audience Poll'),
-								_1: {ctor: '[]'}
-							}),
-						_1: {
+				return A3(
+					_jackgene$live_deck$Deck_Slide_Common$standardSlideView,
+					'Audience Poll',
+					'What is your preferred programming language?',
+					A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
 							ctor: '::',
 							_0: A2(
 								_rtfeldman$elm_css$Html_Styled$div,
@@ -27936,274 +27894,303 @@ var _jackgene$live_deck$Deck_Slide_PollQuestion$slide = _jackgene$live_deck$Deck
 									_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 										{
 											ctor: '::',
-											_0: A2(
-												_rtfeldman$elm_css$Css$margin2,
-												_rtfeldman$elm_css$Css$zero,
-												_rtfeldman$elm_css$Css$vw(7)),
-											_1: {ctor: '[]'}
+											_0: _rtfeldman$elm_css$Css$opacity(
+												_rtfeldman$elm_css$Css$num(
+													_elm_lang$core$List$isEmpty(model.languagesAndCounts) ? 1.0 : 0)),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$height(
+													_rtfeldman$elm_css$Css$vw(
+														_elm_lang$core$List$isEmpty(model.languagesAndCounts) ? 20 : 0)),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Css$overflow(_rtfeldman$elm_css$Css$hidden),
+													_1: {
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Css_Transitions$transition(
+															{
+																ctor: '::',
+																_0: A3(_rtfeldman$elm_css$Css_Transitions$opacity3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
+																_1: {
+																	ctor: '::',
+																	_0: A3(_rtfeldman$elm_css$Css_Transitions$height3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
+																	_1: {ctor: '[]'}
+																}
+															}),
+														_1: {ctor: '[]'}
+													}
+												}
+											}
 										}),
 									_1: {ctor: '[]'}
 								},
 								{
 									ctor: '::',
 									_0: A2(
-										_rtfeldman$elm_css$Html_Styled$h2,
+										_rtfeldman$elm_css$Html_Styled$p,
 										{
 											ctor: '::',
 											_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 												{
 													ctor: '::',
-													_0: _jackgene$live_deck$Deck_Slide_Common$subHeaderStyle,
+													_0: _rtfeldman$elm_css$Css$margin(_rtfeldman$elm_css$Css$zero),
 													_1: {ctor: '[]'}
 												}),
 											_1: {ctor: '[]'}
 										},
 										{
 											ctor: '::',
-											_0: _rtfeldman$elm_css$Html_Styled$text('What is your preferred programming language?'),
-											_1: {ctor: '[]'}
+											_0: _rtfeldman$elm_css$Html_Styled$text('Think of the language you:'),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_rtfeldman$elm_css$Html_Styled$ul,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: A2(
+															_rtfeldman$elm_css$Html_Styled$li,
+															{ctor: '[]'},
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled$text('Are most familiar with'),
+																_1: {ctor: '[]'}
+															}),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_rtfeldman$elm_css$Html_Styled$li,
+																{ctor: '[]'},
+																{
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Html_Styled$text('Would use for personal projects'),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_rtfeldman$elm_css$Html_Styled$li,
+																	{ctor: '[]'},
+																	{
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Html_Styled$text('Would want to be quizzed on in a technical interview'),
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {ctor: '[]'}
+															}
+														}
+													}),
+												_1: {ctor: '[]'}
+											}
 										}),
-									_1: {
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$div,
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+											{
+												ctor: '::',
+												_0: _elm_lang$core$List$isEmpty(model.languagesAndCounts) ? _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$none) : _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$block),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									},
+									{
 										ctor: '::',
 										_0: A2(
-											_rtfeldman$elm_css$Html_Styled$div,
+											_rtfeldman$elm_css$Html_Styled$p,
 											{
 												ctor: '::',
 												_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 													{
 														ctor: '::',
-														_0: _rtfeldman$elm_css$Css$opacity(
-															_rtfeldman$elm_css$Css$num(
-																_elm_lang$core$List$isEmpty(model.languagesAndCounts) ? 1.0 : 0)),
-														_1: {
-															ctor: '::',
-															_0: _rtfeldman$elm_css$Css$height(
-																_rtfeldman$elm_css$Css$vw(
-																	_elm_lang$core$List$isEmpty(model.languagesAndCounts) ? 20 : 0)),
-															_1: {
-																ctor: '::',
-																_0: _rtfeldman$elm_css$Css$overflow(_rtfeldman$elm_css$Css$hidden),
-																_1: {
-																	ctor: '::',
-																	_0: _rtfeldman$elm_css$Css_Transitions$transition(
-																		{
-																			ctor: '::',
-																			_0: A3(_rtfeldman$elm_css$Css_Transitions$opacity3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																			_1: {
-																				ctor: '::',
-																				_0: A3(_rtfeldman$elm_css$Css_Transitions$height3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																				_1: {ctor: '[]'}
-																			}
-																		}),
-																	_1: {ctor: '[]'}
-																}
-															}
-														}
+														_0: A2(_rtfeldman$elm_css$Css$margin2, _rtfeldman$elm_css$Css$zero, _rtfeldman$elm_css$Css$zero),
+														_1: {ctor: '[]'}
 													}),
 												_1: {ctor: '[]'}
 											},
 											{
 												ctor: '::',
-												_0: A2(
-													_rtfeldman$elm_css$Html_Styled$p,
-													{
-														ctor: '::',
-														_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-															{
-																ctor: '::',
-																_0: A2(_rtfeldman$elm_css$Css$margin2, _rtfeldman$elm_css$Css$zero, _rtfeldman$elm_css$Css$zero),
-																_1: {
-																	ctor: '::',
-																	_0: _jackgene$live_deck$Deck_Slide_Common$paragraphFontFamily,
-																	_1: {ctor: '[]'}
-																}
-															}),
-														_1: {ctor: '[]'}
-													},
-													{
-														ctor: '::',
-														_0: _rtfeldman$elm_css$Html_Styled$text('Think of the language you:'),
-														_1: {
-															ctor: '::',
-															_0: A2(
-																_rtfeldman$elm_css$Html_Styled$ul,
-																{ctor: '[]'},
-																{
-																	ctor: '::',
-																	_0: A2(
-																		_rtfeldman$elm_css$Html_Styled$li,
-																		{ctor: '[]'},
-																		{
-																			ctor: '::',
-																			_0: _rtfeldman$elm_css$Html_Styled$text('Are most familiar with'),
-																			_1: {ctor: '[]'}
-																		}),
-																	_1: {
-																		ctor: '::',
-																		_0: A2(
-																			_rtfeldman$elm_css$Html_Styled$li,
-																			{ctor: '[]'},
-																			{
-																				ctor: '::',
-																				_0: _rtfeldman$elm_css$Html_Styled$text('Would use for personal projects'),
-																				_1: {ctor: '[]'}
-																			}),
-																		_1: {
-																			ctor: '::',
-																			_0: A2(
-																				_rtfeldman$elm_css$Html_Styled$li,
-																				{ctor: '[]'},
-																				{
-																					ctor: '::',
-																					_0: _rtfeldman$elm_css$Html_Styled$text('Would want to be quizzed on in a technical interview'),
-																					_1: {ctor: '[]'}
-																				}),
-																			_1: {ctor: '[]'}
-																		}
-																	}
-																}),
-															_1: {ctor: '[]'}
-														}
-													}),
+												_0: _rtfeldman$elm_css$Html_Styled$text(
+													function () {
+														var topLanguages = A2(
+															_elm_lang$core$Basics$min,
+															_jackgene$live_deck$Deck_Slide_PollQuestion$maxDisplayCount,
+															_elm_lang$core$List$length(model.languagesAndCounts));
+														return A2(
+															_elm_lang$core$Basics_ops['++'],
+															'The Top ',
+															A2(
+																_elm_lang$core$Basics_ops['++'],
+																(_elm_lang$core$Native_Utils.cmp(topLanguages, 1) > 0) ? A2(
+																	_elm_lang$core$Basics_ops['++'],
+																	_elm_lang$core$Basics$toString(topLanguages),
+																	' ') : '',
+																A2(
+																	_elm_lang$core$Basics_ops['++'],
+																	'Programming Language',
+																	A2(
+																		_elm_lang$core$Basics_ops['++'],
+																		(_elm_lang$core$Native_Utils.cmp(topLanguages, 1) > 0) ? 's' : '',
+																		' at GoodRx:'))));
+													}()),
 												_1: {ctor: '[]'}
 											}),
 										_1: {
 											ctor: '::',
-											_0: A2(
-												_rtfeldman$elm_css$Html_Styled$div,
+											_0: A3(
+												_rtfeldman$elm_css$Html_Styled_Keyed$node,
+												'div',
 												{
 													ctor: '::',
 													_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 														{
 															ctor: '::',
-															_0: _elm_lang$core$List$isEmpty(model.languagesAndCounts) ? _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$none) : _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$block),
+															_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
 															_1: {ctor: '[]'}
 														}),
 													_1: {ctor: '[]'}
 												},
-												{
-													ctor: '::',
-													_0: A2(
-														_rtfeldman$elm_css$Html_Styled$p,
-														{
-															ctor: '::',
-															_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-																{
-																	ctor: '::',
-																	_0: A2(_rtfeldman$elm_css$Css$margin2, _rtfeldman$elm_css$Css$zero, _rtfeldman$elm_css$Css$zero),
-																	_1: {
-																		ctor: '::',
-																		_0: _jackgene$live_deck$Deck_Slide_Common$paragraphFontFamily,
-																		_1: {ctor: '[]'}
-																	}
-																}),
-															_1: {ctor: '[]'}
-														},
-														{
-															ctor: '::',
-															_0: _rtfeldman$elm_css$Html_Styled$text(
-																A2(
-																	_elm_lang$core$Basics_ops['++'],
-																	'The Top ',
-																	A2(
-																		_elm_lang$core$Basics_ops['++'],
-																		_elm_lang$core$Basics$toString(
-																			A2(
-																				_elm_lang$core$Basics$min,
-																				_jackgene$live_deck$Deck_Slide_PollQuestion$maxDisplayCount,
-																				_elm_lang$core$List$length(model.languagesAndCounts))),
-																		' Programming Languages at GoodRx:'))),
-															_1: {ctor: '[]'}
-														}),
-													_1: {
-														ctor: '::',
-														_0: A3(
-															_rtfeldman$elm_css$Html_Styled_Keyed$node,
-															'div',
-															{
-																ctor: '::',
-																_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-																	{
-																		ctor: '::',
-																		_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
-																		_1: {ctor: '[]'}
-																	}),
-																_1: {ctor: '[]'}
-															},
-															function () {
-																var maxCount = A2(
-																	_elm_lang$core$Maybe$withDefault,
-																	0,
-																	A2(
-																		_elm_lang$core$Maybe$map,
-																		_elm_lang$core$Tuple$second,
-																		_elm_lang$core$List$head(model.languagesAndCounts)));
-																return A2(
-																	_elm_lang$core$List$sortBy,
-																	_elm_lang$core$Tuple$first,
-																	A2(
-																		_elm_lang$core$List$indexedMap,
-																		F2(
-																			function (idx, _p0) {
-																				var _p1 = _p0;
-																				var _p2 = _p1._0;
-																				return {
-																					ctor: '_Tuple2',
-																					_0: _p2,
-																					_1: A2(
+												function () {
+													var maxCount = A2(
+														_elm_lang$core$Maybe$withDefault,
+														0,
+														A2(
+															_elm_lang$core$Maybe$map,
+															_elm_lang$core$Tuple$second,
+															_elm_lang$core$List$head(model.languagesAndCounts)));
+													return A2(
+														_elm_lang$core$List$sortBy,
+														_elm_lang$core$Tuple$first,
+														A2(
+															_elm_lang$core$List$indexedMap,
+															F2(
+																function (idx, _p0) {
+																	var _p1 = _p0;
+																	var _p2 = _p1._0;
+																	return {
+																		ctor: '_Tuple2',
+																		_0: _p2,
+																		_1: A2(
+																			_rtfeldman$elm_css$Html_Styled$div,
+																			{
+																				ctor: '::',
+																				_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																					{
+																						ctor: '::',
+																						_0: _rtfeldman$elm_css$Css$opacity(
+																							_rtfeldman$elm_css$Css$num(
+																								(_elm_lang$core$Native_Utils.cmp(idx, _jackgene$live_deck$Deck_Slide_PollQuestion$maxDisplayCount) < 0) ? 1.0 : 0.0)),
+																						_1: {
+																							ctor: '::',
+																							_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
+																							_1: {
+																								ctor: '::',
+																								_0: _rtfeldman$elm_css$Css$top(
+																									_rtfeldman$elm_css$Css$em(
+																										_elm_lang$core$Basics$toFloat(1 + (idx * 2)))),
+																								_1: {
+																									ctor: '::',
+																									_0: _rtfeldman$elm_css$Css$width(
+																										_rtfeldman$elm_css$Css$pct(90)),
+																									_1: {
+																										ctor: '::',
+																										_0: _rtfeldman$elm_css$Css$fontSize(
+																											_rtfeldman$elm_css$Css$vw(1.6)),
+																										_1: {
+																											ctor: '::',
+																											_0: _rtfeldman$elm_css$Css$lineHeight(
+																												_rtfeldman$elm_css$Css$em(1.6)),
+																											_1: {
+																												ctor: '::',
+																												_0: _rtfeldman$elm_css$Css_Transitions$transition(
+																													{
+																														ctor: '::',
+																														_0: A3(_rtfeldman$elm_css$Css_Transitions$opacity3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
+																														_1: {
+																															ctor: '::',
+																															_0: A3(_rtfeldman$elm_css$Css_Transitions$top3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
+																															_1: {
+																																ctor: '::',
+																																_0: A3(_rtfeldman$elm_css$Css_Transitions$marginLeft3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
+																																_1: {ctor: '[]'}
+																															}
+																														}
+																													}),
+																												_1: {ctor: '[]'}
+																											}
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}),
+																				_1: {ctor: '[]'}
+																			},
+																			{
+																				ctor: '::',
+																				_0: A2(
+																					_rtfeldman$elm_css$Html_Styled$div,
+																					{
+																						ctor: '::',
+																						_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																							{
+																								ctor: '::',
+																								_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
+																								_1: {
+																									ctor: '::',
+																									_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$zero),
+																									_1: {
+																										ctor: '::',
+																										_0: _rtfeldman$elm_css$Css$left(_rtfeldman$elm_css$Css$zero),
+																										_1: {
+																											ctor: '::',
+																											_0: _rtfeldman$elm_css$Css$width(
+																												_rtfeldman$elm_css$Css$pct(16)),
+																											_1: {
+																												ctor: '::',
+																												_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$right),
+																												_1: {ctor: '[]'}
+																											}
+																										}
+																									}
+																								}
+																							}),
+																						_1: {ctor: '[]'}
+																					},
+																					{
+																						ctor: '::',
+																						_0: A2(
+																							_elm_lang$core$Maybe$withDefault,
+																							_rtfeldman$elm_css$Html_Styled$text(_p2),
+																							A2(_elm_lang$core$Dict$get, _p2, _jackgene$live_deck$Deck_Slide_Graphics$logosByLanguage)),
+																						_1: {ctor: '[]'}
+																					}),
+																				_1: {
+																					ctor: '::',
+																					_0: A2(
 																						_rtfeldman$elm_css$Html_Styled$div,
 																						{
 																							ctor: '::',
 																							_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																								{
 																									ctor: '::',
-																									_0: _rtfeldman$elm_css$Css$opacity(
-																										_rtfeldman$elm_css$Css$num(
-																											(_elm_lang$core$Native_Utils.cmp(idx, _jackgene$live_deck$Deck_Slide_PollQuestion$maxDisplayCount) < 0) ? 1.0 : 0.0)),
+																									_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
 																									_1: {
 																										ctor: '::',
-																										_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
+																										_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$zero),
 																										_1: {
 																											ctor: '::',
-																											_0: _rtfeldman$elm_css$Css$top(
-																												_rtfeldman$elm_css$Css$em(
-																													_elm_lang$core$Basics$toFloat(1 + (idx * 2)))),
+																											_0: _rtfeldman$elm_css$Css$left(
+																												_rtfeldman$elm_css$Css$pct(17)),
 																											_1: {
 																												ctor: '::',
-																												_0: _rtfeldman$elm_css$Css$width(
-																													_rtfeldman$elm_css$Css$pct(90)),
-																												_1: {
-																													ctor: '::',
-																													_0: _jackgene$live_deck$Deck_Slide_Common$paragraphFontFamily,
-																													_1: {
-																														ctor: '::',
-																														_0: _rtfeldman$elm_css$Css$fontSize(
-																															_rtfeldman$elm_css$Css$vw(1.6)),
-																														_1: {
-																															ctor: '::',
-																															_0: _rtfeldman$elm_css$Css$lineHeight(
-																																_rtfeldman$elm_css$Css$em(1.6)),
-																															_1: {
-																																ctor: '::',
-																																_0: _rtfeldman$elm_css$Css_Transitions$transition(
-																																	{
-																																		ctor: '::',
-																																		_0: A3(_rtfeldman$elm_css$Css_Transitions$opacity3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																		_1: {
-																																			ctor: '::',
-																																			_0: A3(_rtfeldman$elm_css$Css_Transitions$top3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																			_1: {
-																																				ctor: '::',
-																																				_0: A3(_rtfeldman$elm_css$Css_Transitions$marginLeft3, _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs, 0, _rtfeldman$elm_css$Css_Transitions$easeInOut),
-																																				_1: {ctor: '[]'}
-																																			}
-																																		}
-																																	}),
-																																_1: {ctor: '[]'}
-																															}
-																														}
-																													}
-																												}
+																												_0: _rtfeldman$elm_css$Css$right(_rtfeldman$elm_css$Css$zero),
+																												_1: {ctor: '[]'}
 																											}
 																										}
 																									}
@@ -28212,94 +28199,124 @@ var _jackgene$live_deck$Deck_Slide_PollQuestion$slide = _jackgene$live_deck$Deck
 																						},
 																						{
 																							ctor: '::',
-																							_0: A2(
-																								_rtfeldman$elm_css$Html_Styled$div,
-																								{
-																									ctor: '::',
-																									_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-																										{
-																											ctor: '::',
-																											_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
-																											_1: {
-																												ctor: '::',
-																												_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$zero),
-																												_1: {
-																													ctor: '::',
-																													_0: _rtfeldman$elm_css$Css$left(_rtfeldman$elm_css$Css$zero),
-																													_1: {
-																														ctor: '::',
-																														_0: _rtfeldman$elm_css$Css$width(
-																															_rtfeldman$elm_css$Css$pct(16)),
-																														_1: {
-																															ctor: '::',
-																															_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$right),
-																															_1: {ctor: '[]'}
-																														}
-																													}
-																												}
-																											}
-																										}),
-																									_1: {ctor: '[]'}
-																								},
-																								{
-																									ctor: '::',
-																									_0: A2(
-																										_elm_lang$core$Maybe$withDefault,
-																										_rtfeldman$elm_css$Html_Styled$text(_p2),
-																										A2(_elm_lang$core$Dict$get, _p2, _jackgene$live_deck$Deck_Slide_Graphics$logosByLanguage)),
-																									_1: {ctor: '[]'}
-																								}),
-																							_1: {
-																								ctor: '::',
-																								_0: A2(
-																									_rtfeldman$elm_css$Html_Styled$div,
-																									{
-																										ctor: '::',
-																										_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-																											{
-																												ctor: '::',
-																												_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
-																												_1: {
-																													ctor: '::',
-																													_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$zero),
-																													_1: {
-																														ctor: '::',
-																														_0: _rtfeldman$elm_css$Css$left(
-																															_rtfeldman$elm_css$Css$pct(17)),
-																														_1: {
-																															ctor: '::',
-																															_0: _rtfeldman$elm_css$Css$right(_rtfeldman$elm_css$Css$zero),
-																															_1: {ctor: '[]'}
-																														}
-																													}
-																												}
-																											}),
-																										_1: {ctor: '[]'}
-																									},
-																									{
-																										ctor: '::',
-																										_0: A2(_jackgene$live_deck$Deck_Slide_PollQuestion$horizontalBarView, _p1._1, maxCount),
-																										_1: {ctor: '[]'}
-																									}),
-																								_1: {ctor: '[]'}
-																							}
-																						})
-																				};
-																			}),
-																		model.languagesAndCounts));
-															}()),
-														_1: {ctor: '[]'}
-													}
-												}),
+																							_0: A2(_jackgene$live_deck$Deck_Slide_PollQuestion$horizontalBarView, _p1._1, maxCount),
+																							_1: {ctor: '[]'}
+																						}),
+																					_1: {ctor: '[]'}
+																				}
+																			})
+																	};
+																}),
+															model.languagesAndCounts));
+												}()),
 											_1: {ctor: '[]'}
 										}
-									}
-								}),
-							_1: {ctor: '[]'}
-						}
-					});
+									}),
+								_1: {ctor: '[]'}
+							}
+						}));
 			},
 			eventsWsPath: _elm_lang$core$Maybe$Just('language-poll')
+		}));
+var _jackgene$live_deck$Deck_Slide_CommonDefinitions$slide = _jackgene$live_deck$Deck_Common$Slide(
+	_elm_lang$core$Native_Utils.update(
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+		{
+			view: function (_p0) {
+				return A3(
+					_jackgene$live_deck$Deck_Slide_Common$standardSlideView,
+					'“Strongly Typed” Definition',
+					'There Are No Formal Definitions of the Term',
+					A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$p,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled$text('Most early examples on Wikipedia are from the 70s, and uses “Strongly Typed” interchangeably with “Statically Typed.”'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('An example of a modern usage is from Luca Cardelli\'s 1989 paper “Typeful Programming”:'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$blockquote,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled$text('… Hence, typeful programming advocates static typing, as much as possible, and dynamic typing when necessary; the strict observance of either or both of these techniques leads to '),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_rtfeldman$elm_css$Html_Styled$b,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled$text('strong typing, intended as the absence of unchecked run-time type errors'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled$text('. …'),
+													_1: {ctor: '[]'}
+												}
+											}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}
+						}));
+			}
+		}));
+var _jackgene$live_deck$Deck_Slide_OurDefinition$slide = _jackgene$live_deck$Deck_Common$Slide(
+	_elm_lang$core$Native_Utils.update(
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+		{
+			view: function (_p0) {
+				return A3(
+					_jackgene$live_deck$Deck_Slide_Common$standardSlideView,
+					'“Strongly Typed” Definition',
+					'Definition for the Purpose of this Talk',
+					A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$p,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled$text('The strength of a type system describes its ability to prevent runtime errors.'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('The stronger the type system, the more kinds of errors are detected during type checking, the fewer kinds of unchecked errors are possible during runtime.'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}
+						}));
+			}
 		}));
 var _jackgene$live_deck$Deck_Slide$slideIndex = F2(
 	function (slides, desiredIndex) {
@@ -28319,8 +28336,16 @@ var _jackgene$live_deck$Deck_Slide$slides = {
 			_0: _jackgene$live_deck$Deck_Slide_PollJSvsTS$slide,
 			_1: {
 				ctor: '::',
-				_0: _jackgene$live_deck$Deck_Slide_Conclusion$slide,
-				_1: {ctor: '[]'}
+				_0: _jackgene$live_deck$Deck_Slide_CommonDefinitions$slide,
+				_1: {
+					ctor: '::',
+					_0: _jackgene$live_deck$Deck_Slide_OurDefinition$slide,
+					_1: {
+						ctor: '::',
+						_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide,
+						_1: {ctor: '[]'}
+					}
+				}
 			}
 		}
 	}
@@ -28439,15 +28464,19 @@ var _jackgene$live_deck$Deck_Slide$slideView = F2(
 											_0: _rtfeldman$elm_css$Css$margin(_rtfeldman$elm_css$Css$auto),
 											_1: {
 												ctor: '::',
-												_0: _rtfeldman$elm_css$Css$backgroundColor(
-													A3(_rtfeldman$elm_css$Css$rgb, 255, 255, 255)),
+												_0: _rtfeldman$elm_css$Css$overflow(_rtfeldman$elm_css$Css$hidden),
 												_1: {
 													ctor: '::',
-													_0: _rtfeldman$elm_css$Css$overflow(_rtfeldman$elm_css$Css$hidden),
+													_0: A2(_rtfeldman$elm_css$Css$property, 'aspect-ratio', '16 / 9'),
 													_1: {
 														ctor: '::',
-														_0: A2(_rtfeldman$elm_css$Css$property, 'aspect-ratio', '16 / 9'),
-														_1: {ctor: '[]'}
+														_0: _rtfeldman$elm_css$Css$backgroundColor(
+															A3(_rtfeldman$elm_css$Css$rgb, 255, 255, 255)),
+														_1: {
+															ctor: '::',
+															_0: _jackgene$live_deck$Deck_Slide_Common$paragraphFontFamily,
+															_1: {ctor: '[]'}
+														}
 													}
 												}
 											}
@@ -28744,9 +28773,9 @@ if (typeof _jackgene$live_deck$Deck_Slide_Common$main !== 'undefined') {
 }
 Elm['Deck'] = Elm['Deck'] || {};
 Elm['Deck']['Slide'] = Elm['Deck']['Slide'] || {};
-Elm['Deck']['Slide']['Conclusion'] = Elm['Deck']['Slide']['Conclusion'] || {};
-if (typeof _jackgene$live_deck$Deck_Slide_Conclusion$main !== 'undefined') {
-    _jackgene$live_deck$Deck_Slide_Conclusion$main(Elm['Deck']['Slide']['Conclusion'], 'Deck.Slide.Conclusion', {"types":null,"versions":{"elm":"0.18.0"}});
+Elm['Deck']['Slide']['CommonDefinitions'] = Elm['Deck']['Slide']['CommonDefinitions'] || {};
+if (typeof _jackgene$live_deck$Deck_Slide_CommonDefinitions$main !== 'undefined') {
+    _jackgene$live_deck$Deck_Slide_CommonDefinitions$main(Elm['Deck']['Slide']['CommonDefinitions'], 'Deck.Slide.CommonDefinitions', {"types":null,"versions":{"elm":"0.18.0"}});
 }
 Elm['Deck'] = Elm['Deck'] || {};
 Elm['Deck']['Slide'] = Elm['Deck']['Slide'] || {};
@@ -28762,6 +28791,12 @@ if (typeof _jackgene$live_deck$Deck_Slide_Graphics$main !== 'undefined') {
 }
 Elm['Deck'] = Elm['Deck'] || {};
 Elm['Deck']['Slide'] = Elm['Deck']['Slide'] || {};
+Elm['Deck']['Slide']['OurDefinition'] = Elm['Deck']['Slide']['OurDefinition'] || {};
+if (typeof _jackgene$live_deck$Deck_Slide_OurDefinition$main !== 'undefined') {
+    _jackgene$live_deck$Deck_Slide_OurDefinition$main(Elm['Deck']['Slide']['OurDefinition'], 'Deck.Slide.OurDefinition', {"types":null,"versions":{"elm":"0.18.0"}});
+}
+Elm['Deck'] = Elm['Deck'] || {};
+Elm['Deck']['Slide'] = Elm['Deck']['Slide'] || {};
 Elm['Deck']['Slide']['PollJSvsTS'] = Elm['Deck']['Slide']['PollJSvsTS'] || {};
 if (typeof _jackgene$live_deck$Deck_Slide_PollJSvsTS$main !== 'undefined') {
     _jackgene$live_deck$Deck_Slide_PollJSvsTS$main(Elm['Deck']['Slide']['PollJSvsTS'], 'Deck.Slide.PollJSvsTS', {"types":null,"versions":{"elm":"0.18.0"}});
@@ -28771,6 +28806,12 @@ Elm['Deck']['Slide'] = Elm['Deck']['Slide'] || {};
 Elm['Deck']['Slide']['PollQuestion'] = Elm['Deck']['Slide']['PollQuestion'] || {};
 if (typeof _jackgene$live_deck$Deck_Slide_PollQuestion$main !== 'undefined') {
     _jackgene$live_deck$Deck_Slide_PollQuestion$main(Elm['Deck']['Slide']['PollQuestion'], 'Deck.Slide.PollQuestion', {"types":null,"versions":{"elm":"0.18.0"}});
+}
+Elm['Deck'] = Elm['Deck'] || {};
+Elm['Deck']['Slide'] = Elm['Deck']['Slide'] || {};
+Elm['Deck']['Slide']['QuestionAnswer'] = Elm['Deck']['Slide']['QuestionAnswer'] || {};
+if (typeof _jackgene$live_deck$Deck_Slide_QuestionAnswer$main !== 'undefined') {
+    _jackgene$live_deck$Deck_Slide_QuestionAnswer$main(Elm['Deck']['Slide']['QuestionAnswer'], 'Deck.Slide.QuestionAnswer', {"types":null,"versions":{"elm":"0.18.0"}});
 }
 
 if (typeof define === "function" && define['amd'])

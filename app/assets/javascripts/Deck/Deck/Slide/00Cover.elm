@@ -2,7 +2,7 @@ module Deck.Slide.Cover exposing (slide)
 
 import Css exposing (absolute, fontSize, left, position, top, vw, width)
 import Deck.Common exposing (Slide(Slide), Msg)
-import Deck.Slide.Common exposing (headerFontFamily, slideTemplate)
+import Deck.Slide.Common exposing (headerFontFamily, baseSlideModel)
 import Deck.Slide.Graphics exposing (backgroundHalfCircles)
 import Html.Styled exposing (Html, br, div, h1, text)
 import Html.Styled.Attributes exposing (css)
@@ -11,7 +11,7 @@ import Html.Styled.Attributes exposing (css)
 slide : Slide
 slide =
   Slide
-  { slideTemplate
+  { baseSlideModel
   | view =
     ( \_ ->
       div []

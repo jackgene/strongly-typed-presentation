@@ -3,20 +3,19 @@ module Deck.Slide.Common exposing (..)
 import Css exposing
   ( Style, property
   -- Container
-  , display, float, height, left, margin, margin2, marginRight
-  , width, overflow, paddingTop, position, right, top
+  , display, float, height, left, margin2, marginRight
+  , width
   -- Content
-  , backgroundColor, before, color, fontFamilies, fontSize, fontWeight
-  , lineHeight, opacity, textAlign, visibility
+  , backgroundColor, before, fontFamilies, fontSize
   -- Sizes
-  , auto, em, int, num, pct, vw, zero
+  , em, vw, zero
   -- Positions
-  , absolute, relative, static
   -- Other values
-  , block, center, hidden, none, rgb, visible
+  , block, rgb
   )
-import Deck.Common exposing (SlideModel)
-import Html.Styled exposing (text)
+import Deck.Common exposing (Model, Msg, SlideModel)
+import Html.Styled exposing (Html, div, h1, h2, text)
+import Html.Styled.Attributes exposing (css)
 
 
 -- Constants
@@ -24,8 +23,8 @@ transitionDurationMs : Float
 transitionDurationMs = 500
 
 
-slideTemplate : SlideModel
-slideTemplate =
+baseSlideModel : SlideModel
+baseSlideModel =
   { active = always True
   , update = ( \_ model -> (model, Cmd.none) )
   , view = ( \_ -> text "(Placeholder)" )
@@ -34,6 +33,7 @@ slideTemplate =
 
 
 -- Styles
+-- TODO restructure - introduce header/subheader functions to make h1/h2?
 headerFontFamily : Style
 headerFontFamily = fontFamilies [ "GoodRx Moon" ]
 
@@ -63,3 +63,20 @@ headerStyle =
 subHeaderStyle : Style
 subHeaderStyle =
   Css.batch [ headerFontFamily, fontSize (vw 2.7) ]
+
+
+contentContainerStyle : Style
+contentContainerStyle =
+  margin2 zero (vw 7)
+
+
+-- View
+standardSlideView : String -> String -> Html Msg -> Html Msg
+standardSlideView heading subheading content =
+  div []
+  [ h1 [ css [ headerStyle ] ] [ text heading ]
+  , div [ css [ contentContainerStyle ] ]
+    [ h2 [ css [ subHeaderStyle ] ] [ text subheading ]
+    , content
+    ]
+  ]

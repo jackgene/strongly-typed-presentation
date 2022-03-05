@@ -22,7 +22,7 @@ import Deck.Common exposing (Msg, Slide(Slide))
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Graphics exposing (logosByLanguage)
 import Dict exposing (Dict)
-import Html.Styled exposing (Html, div, h1, h2, p, text)
+import Html.Styled exposing (Html, div, p, text)
 import Html.Styled.Attributes exposing (css)
 import Html.Styled.Keyed as Keyed
 
@@ -46,7 +46,7 @@ horizontalBarView value maxValue =
 slide : Slide
 slide =
   Slide
-  { slideTemplate
+  { baseSlideModel
   | active =
     ( \model ->
       let
@@ -55,16 +55,12 @@ slide =
       in tsFrac > 0.0 && tsFrac < 1.0
     )
   , view =
-    ( \model ->
-      div []
-      [ h1 [ css [ headerStyle ] ] [ text "Audience Poll" ]
-      , div [ css [ margin2 zero (vw 7) ] ]
-        [ h2 [ css [ subHeaderStyle ] ]
-          [ text "What is your preferred programming language?" ]
-        , div [ css [ display none ] ] []
+    ( \model -> standardSlideView "Audience Poll" "What is your preferred programming language?"
+      ( div []
+        [ div [ css [ display none ] ] []
         , div []
           [ p
-            [ css [ margin zero, paragraphFontFamily ] ]
+            [ css [ margin zero ] ]
             [ text "Comparing JavaScript and TypeScript:"
             ]
           , ( Keyed.node "div" [ css [ position relative ] ]
@@ -201,7 +197,7 @@ slide =
             )
           ]
         ]
-      ]
+      )
     )
   , eventsWsPath = Just "language-poll"
   }

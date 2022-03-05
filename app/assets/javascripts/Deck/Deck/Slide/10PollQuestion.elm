@@ -2,7 +2,7 @@ module Deck.Slide.PollQuestion exposing (slide)
 
 import Css exposing
   -- Container
-  ( display, height, left, margin2
+  ( display, height, left, margin, margin2
   , width, overflow, position, right, top
   -- Content
   , backgroundColor, color, fontSize, fontWeight
@@ -19,7 +19,7 @@ import Deck.Common exposing (Msg, Slide(Slide))
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Graphics exposing (logosByLanguage)
 import Dict exposing (Dict)
-import Html.Styled exposing (Html, div, h1, h2, li, p, text, ul)
+import Html.Styled exposing (Html, div, li, p, text, ul)
 import Html.Styled.Attributes exposing (css)
 import Html.Styled.Keyed as Keyed
 
@@ -50,16 +50,11 @@ horizontalBarView value maxValue =
 slide : Slide
 slide =
   Slide
-  { slideTemplate
+  { baseSlideModel
   | view =
-    ( \model ->
-      div []
-      [ h1 [ css [ headerStyle ] ] [ text "Audience Poll" ]
-      , div [ css [ margin2 zero (vw 7) ] ]
-        [ h2
-          [ css [ subHeaderStyle ] ]
-          [ text "What is your preferred programming language?" ]
-        , div
+    ( \model -> standardSlideView "Audience Poll" "What is your preferred programming language?"
+      ( div []
+        [ div
           [ css
             [ opacity (num (if List.isEmpty model.languagesAndCounts then 1.0 else 0))
             , height (vw (if List.isEmpty model.languagesAndCounts then 20 else 0))
@@ -71,7 +66,7 @@ slide =
             ]
           ]
           [ p
-            [ css [ margin2 zero zero, paragraphFontFamily ] ]
+            [ css [ margin zero ] ]
             [ text "Think of the language you:"
             , ul []
               [ li [] [ text "Are most familiar with" ]
@@ -82,11 +77,17 @@ slide =
           ]
         , div [ css [ if List.isEmpty model.languagesAndCounts then display none else display block ] ]
           [ p
-            [ css [ margin2 zero zero, paragraphFontFamily ] ]
+            [ css [ margin2 zero zero ] ]
             [ text
-              ("The Top "
-              ++(toString (min maxDisplayCount (List.length model.languagesAndCounts)))
-              ++" Programming Languages at GoodRx:"
+              ( let
+                  topLanguages : Int
+                  topLanguages = min maxDisplayCount (List.length model.languagesAndCounts)
+                in
+                "The Top "
+                ++(if topLanguages > 1 then toString topLanguages ++ " " else "")
+                ++"Programming Language"
+                ++(if topLanguages > 1 then "s" else "")
+                ++" at GoodRx:"
               )
             ]
           , ( Keyed.node "div" [ css [ position relative ] ]
@@ -106,7 +107,7 @@ slide =
                         , position absolute
                         , top (em (toFloat (1 + (idx * 2))))
                         , width (pct 90)
-                        , paragraphFontFamily, fontSize (vw 1.6)
+                        , fontSize (vw 1.6)
                         , lineHeight (em 1.6)
                         , transition
                           [ Css.Transitions.opacity3 transitionDurationMs 0 easeInOut
@@ -137,7 +138,7 @@ slide =
             )
           ]
         ]
-      ]
+      )
     )
   , eventsWsPath = Just "language-poll"
   }

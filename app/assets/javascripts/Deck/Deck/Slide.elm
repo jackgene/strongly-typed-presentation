@@ -15,10 +15,13 @@ import Css exposing
   , hidden, rgb
   )
 import Deck.Common exposing (Model, Msg, Slide(Slide), SlideModel)
-import Deck.Slide.Conclusion as Conclusion
+import Deck.Slide.Common exposing (paragraphFontFamily)
+import Deck.Slide.QuestionAnswer as QuestionAnswer
 import Deck.Slide.Cover as Cover
 import Deck.Slide.PollJSvsTS as PollJSvsTS
 import Deck.Slide.PollQuestion as PollQuestion
+import Deck.Slide.CommonDefinitions as CommonDefinitions
+import Deck.Slide.OurDefinition as OurDefinition
 import Html.Styled exposing (Html, div, node, text)
 import Html.Styled.Attributes exposing (css, type_)
 
@@ -54,9 +57,10 @@ slides : List Slide
 slides =
   [ Cover.slide
   , PollQuestion.slide, PollJSvsTS.slide
-  -- TODO intro, definition
+  -- TODO intro
+  , CommonDefinitions.slide, OurDefinition.slide
   -- TODO Null, Arrays, StackOverflow etc
-  , Conclusion.slide
+  , QuestionAnswer.slide
   ]
 
 
@@ -122,12 +126,10 @@ slideView model slide =
     ]
   , div
     [ css
-      [ position static
-      , width (pct 100)
-      , margin auto
+      [ position static, width (pct 100), margin auto
+      , overflow hidden, property "aspect-ratio" "16 / 9"
       , backgroundColor (rgb 255 255 255)
-      , overflow hidden
-      , property "aspect-ratio" "16 / 9"
+      , paragraphFontFamily
       ]
     ]
     [ slide.view model ]
