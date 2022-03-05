@@ -29,7 +29,7 @@ object ByTokenBySenderCounterActor {
       Props(new WebSocketActor(webSocketClient, counts))
   }
   class WebSocketActor(webSocketClient: ActorRef, counts: ActorRef)
-    extends Actor with ActorLogging {
+      extends Actor with ActorLogging {
     log.info("connection opened")
     counts ! ByTokenBySenderCounterActor.Register(listener = self)
 
