@@ -33,7 +33,6 @@ baseSlideModel =
 
 
 -- Styles
--- TODO restructure - introduce header/subheader functions to make h1/h2?
 headerFontFamily : Style
 headerFontFamily = fontFamilies [ "GoodRx Moon" ]
 
@@ -55,7 +54,7 @@ headerStyle =
     , display block, float left
     , width (em 0.2), height (em 1.2)
     , marginRight (em 1.4)
-    , backgroundColor (rgb 245 218 121)
+    , backgroundColor (rgb 253 219 0)
     ]
   ]
 
