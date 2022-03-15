@@ -1,12 +1,14 @@
 module Deck.Slide.Graphics exposing (..)
 
+import Css
 import Deck.Common exposing (Msg)
+import Deck.Slide.Common exposing (goodRxYellow, goodRxLightYellow3, goodRxLightYellow5)
 import Dict exposing (Dict)
 import Html.Styled exposing (span)
 import Html.Styled.Attributes exposing (attribute)
 import Svg.Styled as Svg exposing (..)
 import Svg.Styled.Attributes as Attributes exposing
-  ( class, d, id, transform
+  ( class, css, d, id, transform
   -- Units
   , clipPathUnits, gradientUnits
   -- Container
@@ -25,9 +27,9 @@ import Svg.Styled.Attributes as Attributes exposing
 backgroundHalfCircles : Svg Msg
 backgroundHalfCircles =
   svg [ attribute "width" "35%", viewBox "0 0 55 90" ]
-  [ circle [ cx "-20", cy "45", r "72", fill "rgb(255, 250, 218)" ] []
-  , circle [ cx "-20", cy "45", r "64", fill "rgb(253, 241, 144)" ] []
-  , circle [ cx "-20", cy "45", r "56", fill "rgb(253, 219, 0)" ] []
+  [ circle [ cx "-20", cy "45", r "72", css [ Css.fill goodRxLightYellow5 ] ] []
+  , circle [ cx "-20", cy "45", r "64", css [ Css.fill goodRxLightYellow3 ] ] []
+  , circle [ cx "-20", cy "45", r "56", css [ Css.fill goodRxYellow ] ] []
   ]
 
 

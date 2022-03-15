@@ -19158,20 +19158,8 @@ var _jackgene$live_deck$Deck_Slide_Common$subHeaderStyle = _rtfeldman$elm_css$Cs
 			_1: {ctor: '[]'}
 		}
 	});
-var _jackgene$live_deck$Deck_Slide_Common$goodRxYellowLight = A3(_rtfeldman$elm_css$Css$rgb, 253, 241, 144);
-var _jackgene$live_deck$Deck_Slide_Common$mark = function (attributes) {
-	return _rtfeldman$elm_css$Html_Styled$mark(
-		{
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-				{
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$backgroundColor(_jackgene$live_deck$Deck_Slide_Common$goodRxYellowLight),
-					_1: {ctor: '[]'}
-				}),
-			_1: attributes
-		});
-};
+var _jackgene$live_deck$Deck_Slide_Common$goodRxLightYellow5 = A3(_rtfeldman$elm_css$Css$rgb, 255, 250, 220);
+var _jackgene$live_deck$Deck_Slide_Common$goodRxLightYellow3 = A3(_rtfeldman$elm_css$Css$rgb, 253, 241, 144);
 var _jackgene$live_deck$Deck_Slide_Common$goodRxYellow = A3(_rtfeldman$elm_css$Css$rgb, 253, 219, 0);
 var _jackgene$live_deck$Deck_Slide_Common$headerStyle = _rtfeldman$elm_css$Css$batch(
 	{
@@ -19287,6 +19275,31 @@ var _jackgene$live_deck$Deck_Slide_Common$standardSlideView = F3(
 				}
 			});
 	});
+var _jackgene$live_deck$Deck_Slide_Common$mark = function (attributes) {
+	return _rtfeldman$elm_css$Html_Styled$mark(
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+				{
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$backgroundColor(_rtfeldman$elm_css$Css$transparent),
+					_1: {
+						ctor: '::',
+						_0: A4(
+							_rtfeldman$elm_css$Css$boxShadow4,
+							_rtfeldman$elm_css$Css$inset,
+							_rtfeldman$elm_css$Css$zero,
+							_rtfeldman$elm_css$Css$em(-0.6),
+							_jackgene$live_deck$Deck_Slide_Common$goodRxYellow),
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: attributes
+		});
+};
+var _jackgene$live_deck$Deck_Slide_Common$goodRxBlackTranslucent = A4(_rtfeldman$elm_css$Css$rgba, 32, 31, 27, 0.15);
+var _jackgene$live_deck$Deck_Slide_Common$goodRxBlack = A3(_rtfeldman$elm_css$Css$rgb, 32, 31, 27);
+var _jackgene$live_deck$Deck_Slide_Common$goodRxOffWhite = A3(_rtfeldman$elm_css$Css$rgb, 255, 255, 251);
 var _jackgene$live_deck$Deck_Slide_Common$baseSlideModel = {
 	active: _elm_lang$core$Basics$always(true),
 	update: F2(
@@ -26422,7 +26435,12 @@ var _jackgene$live_deck$Deck_Slide_Graphics$backgroundHalfCircles = A2(
 						_0: _rtfeldman$elm_css$Svg_Styled_Attributes$r('72'),
 						_1: {
 							ctor: '::',
-							_0: _rtfeldman$elm_css$Svg_Styled_Attributes$fill('rgb(255, 250, 218)'),
+							_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$fill(_jackgene$live_deck$Deck_Slide_Common$goodRxLightYellow5),
+									_1: {ctor: '[]'}
+								}),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -26444,7 +26462,12 @@ var _jackgene$live_deck$Deck_Slide_Graphics$backgroundHalfCircles = A2(
 							_0: _rtfeldman$elm_css$Svg_Styled_Attributes$r('64'),
 							_1: {
 								ctor: '::',
-								_0: _rtfeldman$elm_css$Svg_Styled_Attributes$fill('rgb(253, 241, 144)'),
+								_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$fill(_jackgene$live_deck$Deck_Slide_Common$goodRxLightYellow3),
+										_1: {ctor: '[]'}
+									}),
 								_1: {ctor: '[]'}
 							}
 						}
@@ -26466,7 +26489,12 @@ var _jackgene$live_deck$Deck_Slide_Graphics$backgroundHalfCircles = A2(
 								_0: _rtfeldman$elm_css$Svg_Styled_Attributes$r('56'),
 								_1: {
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Svg_Styled_Attributes$fill('rgb(253, 219, 0)'),
+									_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+										{
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Css$fill(_jackgene$live_deck$Deck_Slide_Common$goodRxYellow),
+											_1: {ctor: '[]'}
+										}),
 									_1: {ctor: '[]'}
 								}
 							}
@@ -27860,12 +27888,10 @@ var _jackgene$live_deck$Deck_Slide_PollQuestion$horizontalBarView = F2(
 									_rtfeldman$elm_css$Css$vw(2.5)),
 								_1: {
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Css$color(
-										A3(_rtfeldman$elm_css$Css$rgb, 215, 194, 93)),
+									_0: _rtfeldman$elm_css$Css$color(_jackgene$live_deck$Deck_Slide_Common$goodRxBlackTranslucent),
 									_1: {
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Css$backgroundColor(
-											A3(_rtfeldman$elm_css$Css$rgb, 251, 230, 133)),
+										_0: _rtfeldman$elm_css$Css$backgroundColor(_jackgene$live_deck$Deck_Slide_Common$goodRxLightYellow3),
 										_1: {
 											ctor: '::',
 											_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$center),
@@ -28497,12 +28523,15 @@ var _jackgene$live_deck$Deck_Slide$slideView = F2(
 													_0: A2(_rtfeldman$elm_css$Css$property, 'aspect-ratio', '16 / 9'),
 													_1: {
 														ctor: '::',
-														_0: _rtfeldman$elm_css$Css$backgroundColor(
-															A3(_rtfeldman$elm_css$Css$rgb, 255, 255, 255)),
+														_0: _rtfeldman$elm_css$Css$color(_jackgene$live_deck$Deck_Slide_Common$goodRxBlack),
 														_1: {
 															ctor: '::',
-															_0: _jackgene$live_deck$Deck_Slide_Common$paragraphFontFamily,
-															_1: {ctor: '[]'}
+															_0: _rtfeldman$elm_css$Css$backgroundColor(_jackgene$live_deck$Deck_Slide_Common$goodRxOffWhite),
+															_1: {
+																ctor: '::',
+																_0: _jackgene$live_deck$Deck_Slide_Common$paragraphFontFamily,
+																_1: {ctor: '[]'}
+															}
 														}
 													}
 												}

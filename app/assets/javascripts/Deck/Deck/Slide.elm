@@ -6,7 +6,7 @@ import Css exposing
   -- Container
   , height, margin, width, overflow, position
   -- Content
-  , backgroundColor
+  , backgroundColor, color
   -- Sizes
   , auto, pct
   -- Positions
@@ -15,7 +15,7 @@ import Css exposing
   , hidden, rgb
   )
 import Deck.Common exposing (Model, Msg, Slide(Slide), SlideModel)
-import Deck.Slide.Common exposing (paragraphFontFamily)
+import Deck.Slide.Common exposing (goodRxBlack, goodRxOffWhite, paragraphFontFamily)
 import Deck.Slide.QuestionAnswer as QuestionAnswer
 import Deck.Slide.Cover as Cover
 import Deck.Slide.PollJSvsTS as PollJSvsTS
@@ -128,7 +128,7 @@ slideView model slide =
     [ css
       [ position static, width (pct 100), margin auto
       , overflow hidden, property "aspect-ratio" "16 / 9"
-      , backgroundColor (rgb 255 255 255)
+      , color goodRxBlack, backgroundColor goodRxOffWhite
       , paragraphFontFamily
       ]
     ]

@@ -12,7 +12,7 @@ import Css exposing
   -- Positions
   , absolute, relative
   -- Other values
-  , block, center, hidden, none, rgb
+  , block, center, hidden, none
   )
 import Css.Transitions exposing (easeInOut, transition)
 import Deck.Common exposing (Msg, Slide(Slide))
@@ -37,8 +37,8 @@ horizontalBarView value maxValue =
     [ left zero
     , width (pct (100 * (toFloat value / toFloat maxValue)))
     , height (vw 2.5)
-    , color (rgb 215 194 93)
-    , backgroundColor (rgb 251 230 133)
+    , color goodRxBlackTranslucent
+    , backgroundColor goodRxLightYellow3
     , textAlign center
     , fontWeight (int 900)
     , transition [ Css.Transitions.width3 transitionDurationMs 0 easeInOut ]
