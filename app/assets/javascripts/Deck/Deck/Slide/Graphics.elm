@@ -25,9 +25,9 @@ import Svg.Styled.Attributes as Attributes exposing
 backgroundHalfCircles : Svg Msg
 backgroundHalfCircles =
   svg [ attribute "width" "35%", viewBox "0 0 55 90" ]
-  [ circle [ cx "-20", cy "45", r "72", fill "rgb(255, 250, 218)" ] [] -- Desired rgb(254, 250, 221)
-  , circle [ cx "-20", cy "45", r "64", fill "rgb(253, 241, 144)" ] [] -- Desired rgb(251, 241, 156)
-  , circle [ cx "-20", cy "45", r "56", fill "rgb(251, 219, 0)" ] []   -- Desired rgb(246, 220, 72)
+  [ circle [ cx "-20", cy "45", r "72", fill "rgb(255, 250, 218)" ] []
+  , circle [ cx "-20", cy "45", r "64", fill "rgb(253, 241, 144)" ] []
+  , circle [ cx "-20", cy "45", r "56", fill "rgb(253, 219, 0)" ] []
   ]
 
 
