@@ -1,20 +1,20 @@
 module Deck.Slide.Common exposing (..)
 
 import Css exposing
-  ( Style, property
+  ( Color, Style, property
   -- Container
   , display, float, height, left, margin2, marginRight
   , width
   -- Content
-  , backgroundColor, before, fontFamilies, fontSize
+  , backgroundColor, before, fontFamilies, fontSize, fontStyle
   -- Sizes
   , em, vw, zero
   -- Positions
   -- Other values
-  , block, rgb
+  , block, italic, rgb
   )
 import Deck.Common exposing (Model, Msg, SlideModel)
-import Html.Styled exposing (Html, div, h1, h2, text)
+import Html.Styled as Html exposing (Attribute, Html, div, h1, h2, text)
 import Html.Styled.Attributes exposing (css)
 
 
@@ -33,6 +33,14 @@ baseSlideModel =
 
 
 -- Styles
+goodRxYellow : Color
+goodRxYellow = rgb 253 219 0
+
+
+goodRxYellowLight : Color
+goodRxYellowLight = rgb 253 241 144
+
+
 headerFontFamily : Style
 headerFontFamily = fontFamilies [ "GoodRx Moon" ]
 
@@ -54,7 +62,7 @@ headerStyle =
     , display block, float left
     , width (em 0.2), height (em 1.2)
     , marginRight (em 1.4)
-    , backgroundColor (rgb 253 219 0)
+    , backgroundColor goodRxYellow
     ]
   ]
 
@@ -70,6 +78,14 @@ contentContainerStyle =
 
 
 -- View
+blockquote : List (Attribute msg) -> List (Html msg) -> Html msg
+blockquote attributes = Html.blockquote (css [ fontStyle italic ] :: attributes)
+
+
+mark : List (Attribute msg) -> List (Html msg) -> Html msg
+mark attributes = Html.mark (css [ backgroundColor goodRxYellowLight ] :: attributes)
+
+
 standardSlideView : String -> String -> Html Msg -> Html Msg
 standardSlideView heading subheading content =
   div []

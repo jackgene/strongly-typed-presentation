@@ -10,7 +10,7 @@ slide =
   Slide
   { baseSlideModel
   | view =
-    ( \_ -> standardSlideView "“Strongly Typed” Definition" "Definition for the Purpose of this Talk"
+    ( \_ -> standardSlideView "What is “Strongly Typed”?" "Definition for the Purpose of this Talk"
       ( div []
         [ p []
           [ text "The strength of a type system describes its ability to prevent runtime errors." ]

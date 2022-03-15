@@ -18741,9 +18741,9 @@ var _jackgene$live_deck$Deck_Common$SlideModel = F4(
 	function (a, b, c, d) {
 		return {active: a, update: b, view: c, eventsWsPath: d};
 	});
-var _jackgene$live_deck$Deck_Common$Model = F5(
-	function (a, b, c, d, e) {
-		return {eventsWsUrl: a, slides: b, slideIndex: c, languagesAndCounts: d, typeScriptVsJavaScript: e};
+var _jackgene$live_deck$Deck_Common$Model = F6(
+	function (a, b, c, d, e, f) {
+		return {eventsWsUrl: a, slides: b, slideIndex: c, languagesAndCounts: d, typeScriptVsJavaScript: e, questions: f};
 	});
 var _jackgene$live_deck$Deck_Common$NoOp = {ctor: 'NoOp'};
 var _jackgene$live_deck$Deck_Common$Event = function (a) {
@@ -19108,6 +19108,19 @@ var _rtfeldman$elm_css$Html_Styled_Attributes$style = function (_p0) {
 	return _rtfeldman$elm_css$Html_Styled_Attributes$fromUnstyled(
 		_elm_lang$virtual_dom$VirtualDom$style(_p0));
 };
+var _jackgene$live_deck$Deck_Slide_Common$blockquote = function (attributes) {
+	return _rtfeldman$elm_css$Html_Styled$blockquote(
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+				{
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$fontStyle(_rtfeldman$elm_css$Css$italic),
+					_1: {ctor: '[]'}
+				}),
+			_1: attributes
+		});
+};
 var _jackgene$live_deck$Deck_Slide_Common$contentContainerStyle = A2(
 	_rtfeldman$elm_css$Css$margin2,
 	_rtfeldman$elm_css$Css$zero,
@@ -19134,6 +19147,32 @@ var _jackgene$live_deck$Deck_Slide_Common$headerFontFamily = _rtfeldman$elm_css$
 		_0: 'GoodRx Moon',
 		_1: {ctor: '[]'}
 	});
+var _jackgene$live_deck$Deck_Slide_Common$subHeaderStyle = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _jackgene$live_deck$Deck_Slide_Common$headerFontFamily,
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$fontSize(
+				_rtfeldman$elm_css$Css$vw(2.7)),
+			_1: {ctor: '[]'}
+		}
+	});
+var _jackgene$live_deck$Deck_Slide_Common$goodRxYellowLight = A3(_rtfeldman$elm_css$Css$rgb, 253, 241, 144);
+var _jackgene$live_deck$Deck_Slide_Common$mark = function (attributes) {
+	return _rtfeldman$elm_css$Html_Styled$mark(
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+				{
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$backgroundColor(_jackgene$live_deck$Deck_Slide_Common$goodRxYellowLight),
+					_1: {ctor: '[]'}
+				}),
+			_1: attributes
+		});
+};
+var _jackgene$live_deck$Deck_Slide_Common$goodRxYellow = A3(_rtfeldman$elm_css$Css$rgb, 253, 219, 0);
 var _jackgene$live_deck$Deck_Slide_Common$headerStyle = _rtfeldman$elm_css$Css$batch(
 	{
 		ctor: '::',
@@ -19168,8 +19207,7 @@ var _jackgene$live_deck$Deck_Slide_Common$headerStyle = _rtfeldman$elm_css$Css$b
 												_rtfeldman$elm_css$Css$em(1.4)),
 											_1: {
 												ctor: '::',
-												_0: _rtfeldman$elm_css$Css$backgroundColor(
-													A3(_rtfeldman$elm_css$Css$rgb, 245, 218, 121)),
+												_0: _rtfeldman$elm_css$Css$backgroundColor(_jackgene$live_deck$Deck_Slide_Common$goodRxYellow),
 												_1: {ctor: '[]'}
 											}
 										}
@@ -19180,17 +19218,6 @@ var _jackgene$live_deck$Deck_Slide_Common$headerStyle = _rtfeldman$elm_css$Css$b
 					}),
 				_1: {ctor: '[]'}
 			}
-		}
-	});
-var _jackgene$live_deck$Deck_Slide_Common$subHeaderStyle = _rtfeldman$elm_css$Css$batch(
-	{
-		ctor: '::',
-		_0: _jackgene$live_deck$Deck_Slide_Common$headerFontFamily,
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$fontSize(
-				_rtfeldman$elm_css$Css$vw(2.7)),
-			_1: {ctor: '[]'}
 		}
 	});
 var _jackgene$live_deck$Deck_Slide_Common$standardSlideView = F3(
@@ -26439,7 +26466,7 @@ var _jackgene$live_deck$Deck_Slide_Graphics$backgroundHalfCircles = A2(
 								_0: _rtfeldman$elm_css$Svg_Styled_Attributes$r('56'),
 								_1: {
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Svg_Styled_Attributes$fill('rgb(251, 219, 0)'),
+									_0: _rtfeldman$elm_css$Svg_Styled_Attributes$fill('rgb(253, 219, 0)'),
 									_1: {ctor: '[]'}
 								}
 							}
@@ -28225,7 +28252,7 @@ var _jackgene$live_deck$Deck_Slide_CommonDefinitions$slide = _jackgene$live_deck
 			view: function (_p0) {
 				return A3(
 					_jackgene$live_deck$Deck_Slide_Common$standardSlideView,
-					'“Strongly Typed” Definition',
+					'What is “Strongly Typed”?',
 					'There Are No Formal Definitions of the Term',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -28253,7 +28280,7 @@ var _jackgene$live_deck$Deck_Slide_CommonDefinitions$slide = _jackgene$live_deck
 								_1: {
 									ctor: '::',
 									_0: A2(
-										_rtfeldman$elm_css$Html_Styled$blockquote,
+										_jackgene$live_deck$Deck_Slide_Common$blockquote,
 										{ctor: '[]'},
 										{
 											ctor: '::',
@@ -28261,7 +28288,7 @@ var _jackgene$live_deck$Deck_Slide_CommonDefinitions$slide = _jackgene$live_deck
 											_1: {
 												ctor: '::',
 												_0: A2(
-													_rtfeldman$elm_css$Html_Styled$b,
+													_jackgene$live_deck$Deck_Slide_Common$mark,
 													{ctor: '[]'},
 													{
 														ctor: '::',
@@ -28288,7 +28315,7 @@ var _jackgene$live_deck$Deck_Slide_OurDefinition$slide = _jackgene$live_deck$Dec
 			view: function (_p0) {
 				return A3(
 					_jackgene$live_deck$Deck_Slide_Common$standardSlideView,
-					'“Strongly Typed” Definition',
+					'What is “Strongly Typed”?',
 					'Definition for the Purpose of this Talk',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -28717,7 +28744,8 @@ var _jackgene$live_deck$Deck$init = function (location) {
 				slides: _elm_lang$core$Array$empty,
 				slideIndex: -1,
 				languagesAndCounts: {ctor: '[]'},
-				typeScriptVsJavaScript: {typeScriptFraction: 0.0, lastVoteTypeScript: false}
+				typeScriptVsJavaScript: {typeScriptFraction: 0.0, lastVoteTypeScript: false},
+				questions: {ctor: '[]'}
 			};
 			var slides = _jackgene$live_deck$Deck_Slide$activeSlides(slidelessModel);
 			return _elm_lang$core$Native_Utils.update(
