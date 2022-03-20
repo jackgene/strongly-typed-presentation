@@ -102,7 +102,9 @@ blockquote attributes = Html.blockquote (css [ fontStyle italic ] :: attributes)
 mark : List (Attribute msg) -> List (Html msg) -> Html msg
 mark attributes =
   Html.mark
-  ( css [ backgroundColor transparent, boxShadow4 inset zero (em -0.6) goodRxYellow ] :: attributes )
+  ( css [ backgroundColor transparent, boxShadow4 inset zero (em -0.6) goodRxYellow ]
+  ::attributes
+  )
 
 
 standardSlideView : String -> String -> Html Msg -> Html Msg
