@@ -27,7 +27,7 @@ sectionCoverSlideView number title =
   , h1
     [ css
       [ position absolute, margin zero
-      , top (vw 12), left (vw 6)
+      , top (vw 5), left (vw 6)
       , numberFontFamily, fontWeight normal, fontSize (vw 35)
       ]
     ]
@@ -35,7 +35,7 @@ sectionCoverSlideView number title =
   , h1
     [ css
       [ position absolute
-      , top (vw 24), left (vw 35), width (vw 55)
+      , top (vw 18), left (vw 35), width (vw 55)
       , headerFontFamily, fontSize (vw 6)
       ]
     ]
