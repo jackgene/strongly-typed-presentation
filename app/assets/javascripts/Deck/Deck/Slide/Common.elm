@@ -14,7 +14,7 @@ import Css exposing
   , block, italic, rgb, rgba, transparent
   )
 import Deck.Common exposing (Model, Msg, SlideModel)
-import Html.Styled as Html exposing (Attribute, Html, div, h1, h2, text)
+import Html.Styled as Html exposing (Attribute, Html, text)
 import Html.Styled.Attributes exposing (css)
 
 
@@ -34,12 +34,36 @@ baseSlideModel =
 
 -- Styles
 -- GoodRx colors https://www.dropbox.com/s/j6uf6di5m97j0b1/GoodRx_Digital%20Palette.pdf?dl=0
+goodRxWhite : Color
+goodRxWhite = rgb 255 255 255
+
+
 goodRxOffWhite : Color
 goodRxOffWhite = rgb 255 255 251
 
 
 goodRxBlack : Color
 goodRxBlack = rgb 32 31 27
+
+
+goodRxLightGray1 : Color
+goodRxLightGray1 = rgb 87 87 87
+
+
+goodRxLightGray2 : Color
+goodRxLightGray2 = rgb 117 117 117
+
+
+goodRxLightGray3 : Color
+goodRxLightGray3 = rgb 171 171 171
+
+
+goodRxLightGray4 : Color
+goodRxLightGray4 = rgb 217 217 215
+
+
+goodRxLightGray5 : Color
+goodRxLightGray5 = rgb 235 235 235
 
 
 goodRxBlackTranslucent : Color
@@ -50,8 +74,20 @@ goodRxYellow : Color
 goodRxYellow = rgb 253 219 0
 
 
+goodRxLightYellow1 : Color
+goodRxLightYellow1 = rgb 255 228 51
+
+
+goodRxLightYellow2 : Color
+goodRxLightYellow2 = rgb 254 233 96
+
+
 goodRxLightYellow3 : Color
 goodRxLightYellow3 = rgb 253 241 144
+
+
+goodRxLightYellow4 : Color
+goodRxLightYellow4 = rgb 255 246 191
 
 
 goodRxLightYellow5 : Color
@@ -60,6 +96,10 @@ goodRxLightYellow5 = rgb 255 250 220
 
 headerFontFamily : Style
 headerFontFamily = fontFamilies [ "GoodRx Moon" ]
+
+
+numberFontFamily : Style
+numberFontFamily = fontFamilies [ "GoodRx Goodall" ]
 
 
 paragraphFontFamily : Style
@@ -105,14 +145,3 @@ mark attributes =
   ( css [ backgroundColor transparent, boxShadow4 inset zero (em -0.6) goodRxYellow ]
   ::attributes
   )
-
-
-standardSlideView : String -> String -> Html Msg -> Html Msg
-standardSlideView heading subheading content =
-  div []
-  [ h1 [ css [ headerStyle ] ] [ text heading ]
-  , div [ css [ contentContainerStyle ] ]
-    [ h2 [ css [ subHeaderStyle ] ] [ text subheading ]
-    , content
-    ]
-  ]

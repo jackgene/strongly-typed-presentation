@@ -2,6 +2,7 @@ module Deck.Slide.CommonDefinitions exposing (slide)
 
 import Deck.Common exposing (Slide(Slide))
 import Deck.Slide.Common exposing (..)
+import Deck.Slide.Template exposing (standardSlideView)
 import Html.Styled exposing (Html, div, p, text)
 
 

@@ -1,6 +1,6 @@
-module Deck.Slide.Graphics exposing (..)
+module Deck.Slide.Graphics exposing (logosByLanguage, goodRxPoint, goodRxRipple)
 
-import Css
+import Css exposing (vw)
 import Deck.Common exposing (Msg)
 import Deck.Slide.Common exposing (goodRxYellow, goodRxLightYellow3, goodRxLightYellow5)
 import Dict exposing (Dict)
@@ -24,13 +24,33 @@ import Svg.Styled.Attributes as Attributes exposing
   )
 
 
-backgroundHalfCircles : Svg Msg
-backgroundHalfCircles =
-  svg [ attribute "width" "35%", viewBox "0 0 55 90" ]
+goodRxRippleViewBoxWidth : Float
+goodRxRippleViewBoxWidth = 52
+
+
+goodRxRipple : Svg Msg
+goodRxRipple =
+  svg
+  [ css [ Css.width (vw (goodRxRippleViewBoxWidth * 100 / 160)) ]
+  , viewBox ("0 0 " ++ (toString goodRxRippleViewBoxWidth) ++ " 90")
+  ]
   [ circle [ cx "-20", cy "45", r "72", css [ Css.fill goodRxLightYellow5 ] ] []
   , circle [ cx "-20", cy "45", r "64", css [ Css.fill goodRxLightYellow3 ] ] []
   , circle [ cx "-20", cy "45", r "56", css [ Css.fill goodRxYellow ] ] []
   ]
+
+
+goodRxPointViewBoxWidth : Float
+goodRxPointViewBoxWidth = 50
+
+
+goodRxPoint : Svg Msg
+goodRxPoint =
+  svg
+  [ css [ Css.width (vw (goodRxRippleViewBoxWidth * 100 / 160)) ]
+  , viewBox ("0 0 " ++ (toString goodRxRippleViewBoxWidth) ++ " 90")
+  ]
+  [ circle [ cx "-6", cy "45", r "56", css [ Css.fill goodRxYellow ] ] [] ]
 
 
 logosByLanguage : Dict String (Svg Msg)
