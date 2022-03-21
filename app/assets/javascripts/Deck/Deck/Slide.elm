@@ -10,7 +10,7 @@ import Css exposing
   -- Sizes
   , auto, pct
   -- Positions
-  , absolute, static
+  , absolute, relative
   -- Other values
   , hidden, rgb
   )
@@ -144,7 +144,7 @@ slideView model slide =
     ]
   , div
     [ css
-      [ position static, width (pct 100), margin auto
+      [ position relative, width (pct 100), margin auto
       , overflow hidden, property "aspect-ratio" "16 / 9"
       , color goodRxBlack, backgroundColor goodRxOffWhite
       , paragraphFontFamily
