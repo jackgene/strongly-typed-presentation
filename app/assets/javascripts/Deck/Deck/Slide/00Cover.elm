@@ -30,7 +30,7 @@ slide =
       , div
         [ css
           [ position absolute
-          , top (vw 16), left (vw 36), width (vw 55)
+          , top (vw 16), left (vw 35), width (vw 58)
           ]
         ]
         [ h1 [ css [ margin zero, headerFontFamily, fontSize (vw 4.5) ] ]
@@ -39,11 +39,7 @@ slide =
           , text "a Programming Language to Be Strongly Typed?"
           ]
         , h2
-          [ css
-            [ margin2 (em 0.25) zero
-            , color goodRxLightGray2, headerFontFamily, fontSize (vw 3.2)
-            ]
-          ]
+          [ css [ margin2 (em 0.5) zero, headerFontFamily, fontSize (vw 2.4) ] ]
           [ text "And How Does it Help Me Produce Quality Software?" ]
         , p
           [ css [ margin2 (em 3) zero, color goodRxLightGray3, fontSize (em 0.8) ] ]
