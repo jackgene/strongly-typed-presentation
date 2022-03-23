@@ -1,8 +1,9 @@
-module Deck.Slide.Graphics exposing (logosByLanguage, goodRxPoint, goodRxRipple)
+module Deck.Slide.Graphics exposing
+  ( logosByLanguage, goodRxPoint, goodRxRipple, numberedGoodRxPoint )
 
-import Css exposing (vw)
+import Css exposing (px, vw)
 import Deck.Common exposing (Msg)
-import Deck.Slide.Common exposing (goodRxYellow, goodRxLightYellow3, goodRxLightYellow5)
+import Deck.Slide.Common exposing (goodRxYellow, goodRxLightYellow3, goodRxLightYellow5, numberFontFamily)
 import Dict exposing (Dict)
 import Html.Styled exposing (span)
 import Html.Styled.Attributes exposing (attribute)
@@ -21,6 +22,8 @@ import Svg.Styled.Attributes as Attributes exposing
   , clipRule, fill, fillRule, gradientTransform
   -- Color
   , stopColor
+  -- Alignment
+  , textAnchor
   )
 
 
@@ -51,6 +54,15 @@ goodRxPoint =
   , viewBox ("0 0 " ++ (toString goodRxRippleViewBoxWidth) ++ " 90")
   ]
   [ circle [ cx "-6", cy "45", r "56", css [ Css.fill goodRxYellow ] ] [] ]
+
+
+numberedGoodRxPoint : Int -> List (Attribute Msg) -> Svg Msg
+numberedGoodRxPoint num attributes =
+  svg
+  ( viewBox "-50 -50 100 100" :: attributes )
+  [ circle [ r "50", css [ Css.fill goodRxYellow ] ] []
+  , text_ [ textAnchor "middle", y "24", css [ numberFontFamily, Css.fontSize (px 72) ] ] [ text (toString num) ]
+  ]
 
 
 logosByLanguage : Dict String (Svg Msg)
