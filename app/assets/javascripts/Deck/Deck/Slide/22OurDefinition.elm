@@ -1,17 +1,18 @@
 module Deck.Slide.OurDefinition exposing (slide)
 
-import Deck.Common exposing (Slide(Slide))
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Template exposing (standardSlideView)
 import Html.Styled exposing (Html, div, p, text)
 
 
-slide : Slide
+slide : UnindexedSlideModel
 slide =
-  Slide
   { baseSlideModel
   | view =
-    ( \_ -> standardSlideView "What is “Strongly Typed”?" "Definition for the Purpose of this Talk"
+    ( \page _ ->
+      standardSlideView page
+      "What is “Strongly Typed”?"
+      "Definition for the Purpose of this Talk"
       ( div []
         [ p []
           [ text "The strength of a type system describes its ability to prevent runtime errors." ]

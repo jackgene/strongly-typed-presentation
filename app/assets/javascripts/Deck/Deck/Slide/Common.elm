@@ -18,17 +18,24 @@ import Html.Styled as Html exposing (Attribute, Html, text)
 import Html.Styled.Attributes exposing (css)
 
 
+type alias UnindexedSlideModel =
+  { active : Model -> Bool
+  , update : Msg -> Model -> (Model, Cmd Msg)
+  , view : Int -> Model -> Html Msg
+  , eventsWsPath : Maybe String
+  }
+
+
 -- Constants
 transitionDurationMs : Float
 transitionDurationMs = 500
 
 
-baseSlideModel : SlideModel
+baseSlideModel : UnindexedSlideModel
 baseSlideModel =
   { active = always True
   , update = ( \_ model -> (model, Cmd.none) )
-  , view = ( \_ -> text "(Placeholder)" )
-  , index = 0
+  , view = ( \_ _ -> text "(Placeholder)" )
   , eventsWsPath = Nothing
   }
 
@@ -104,11 +111,7 @@ numberFontFamily = fontFamilies [ "GoodRx Goodall" ]
 
 
 paragraphFontFamily : Style
-paragraphFontFamily =
-  Css.batch
-  [ fontFamilies [ "GoodRx Bolton" ]
-  , fontSize (vw 2.2)
-  ]
+paragraphFontFamily = fontFamilies [ "GoodRx Bolton" ]
 
 
 headerStyle : Style

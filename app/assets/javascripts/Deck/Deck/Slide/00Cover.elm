@@ -12,19 +12,17 @@ import Css exposing
   , absolute
   -- Other values
   )
-import Deck.Common exposing (Slide(Slide), Msg)
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Graphics exposing (goodRxRipple)
 import Html.Styled exposing (Html, br, div, h1, h2, p, text)
 import Html.Styled.Attributes exposing (css)
 
 
-slide : Slide
+slide : UnindexedSlideModel
 slide =
-  Slide
   { baseSlideModel
   | view =
-    ( \_ ->
+    ( \_ _ ->
       div []
       [ goodRxRipple
       , div

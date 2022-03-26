@@ -1,17 +1,18 @@
 module Deck.Slide.CommonDefinitions exposing (slide)
 
-import Deck.Common exposing (Slide(Slide))
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Template exposing (standardSlideView)
 import Html.Styled exposing (Html, div, p, text)
 
 
-slide : Slide
+slide : UnindexedSlideModel
 slide =
-  Slide
   { baseSlideModel
   | view =
-    ( \_ -> standardSlideView "What is “Strongly Typed”?" "There Are No Formal Definitions of the Term"
+    ( \page _ ->
+      standardSlideView page
+      "What is “Strongly Typed”?"
+      "There Are No Formal Definitions of the Term"
       ( div []
         [ p []
           [ text "Most early examples on Wikipedia are from the 70s, and uses “Strongly Typed” interchangeably with “Statically Typed.”" ]

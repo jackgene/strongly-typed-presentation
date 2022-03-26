@@ -5,17 +5,16 @@ import Css exposing
   -- Container
     display, margin2, transform, width
   -- Content
-  , fontSize, opacity, verticalAlign
+  , opacity, verticalAlign
   -- Size
   , em, vw, zero
   -- Positions
-  , inlineBlock, middle
+  , middle
   -- Transforms
   , translateY
   -- Other values
-  , num
+  , inlineBlock, num
   )
-import Deck.Common exposing (Slide(Slide))
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Graphics exposing (numberedGoodRxPoint)
 import Deck.Slide.Template exposing (standardSlideView)
@@ -38,12 +37,14 @@ errorKinds =
   ]
 
 
-slide : Maybe Int -> Slide
+slide : Maybe Int -> UnindexedSlideModel
 slide maybeHighlightedIndex =
-  Slide
   { baseSlideModel
   | view =
-    ( \_ -> standardSlideView "Type-Checker Preventable Errors" "Kinds of Errors That Can Be Detected Before Runtime"
+    ( \page _ ->
+      standardSlideView page
+      "Type-Checker Preventable Errors"
+      "Kinds of Errors That Can Be Detected Before Runtime"
       ( div [ css [ margin2 zero (em 1) ] ]
         ( List.indexedMap
           ( \idx errorKind ->
@@ -60,7 +61,7 @@ slide maybeHighlightedIndex =
                 )
               ]
             ]
-            [ numberedGoodRxPoint (idx + 1)
+            [ numberedGoodRxPoint (idx + 1) 64
               [ css [ width (vw 5.4), margin2 (em 0.2) (em 0.5), verticalAlign middle ] ]
             , text errorKind
             ]

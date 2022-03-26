@@ -1,15 +1,17 @@
 module Deck.Slide.QuestionAnswer exposing (slide)
 
-import Deck.Common exposing (Slide(Slide))
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Template exposing (standardSlideView)
 import Html.Styled exposing (Html, text)
 
 
-slide : Slide
+slide : UnindexedSlideModel
 slide =
-  Slide
   { baseSlideModel
   | view =
-    ( \_ -> standardSlideView "Audience Questions" "Questions and (Possibly) Answers" (text "") )
+    ( \page _ -> standardSlideView page
+      "Audience Questions"
+      "Questions and Maybe Answers"
+      (text "")
+    )
   }

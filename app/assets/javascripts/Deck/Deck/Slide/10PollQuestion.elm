@@ -48,12 +48,14 @@ horizontalBarView value maxValue =
   [ text (toString value) ]
 
 
-slide : Slide
+slide : UnindexedSlideModel
 slide =
-  Slide
   { baseSlideModel
   | view =
-    ( \model -> standardSlideView "Audience Poll" "What is your preferred programming language?"
+    ( \page model ->
+      standardSlideView page
+      "Audience Poll"
+      "What is your preferred programming language?"
       ( div []
         [ div
           [ css
