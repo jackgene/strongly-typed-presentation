@@ -1,10 +1,10 @@
 module Deck exposing (main)
 
 import Array exposing (Array)
-import Deck.Common exposing (Model, Msg(..), Slide(Slide))
-import Deck.Slide exposing (activeSlides, slideIndex, slideView)
+import Deck.Common exposing (Model, Msg(..), Navigation, Slide(Slide))
+import Deck.Slide exposing (activeNavigationOf, slideFromLocationHash, slideView)
 import Dict exposing (Dict)
-import Html.Styled exposing (Html, text)
+import Html.Styled exposing (Html)
 import Json.Decode as Decode exposing (Decoder)
 import Keyboard
 import Navigation exposing (Location)
@@ -21,15 +21,15 @@ webSocketBaseUrl location =
 init : Location -> (Model, Cmd Msg)
 init location =
   ( let
-      slidelessModel : Model
-      slidelessModel =
+      incompleteModel : Model
+      incompleteModel =
         { eventsWsUrl =
           ( Maybe.map
             ( \baseUrl -> baseUrl ++ "/event" )
             ( webSocketBaseUrl location )
           )
-        , slides = Array.empty
-        , slideIndex = -1
+        , activeNavigation = Array.empty
+        , currentSlide = slideFromLocationHash location.hash
         , languagesAndCounts = []
         , typeScriptVsJavaScript =
           { typeScriptFraction = 0.0
@@ -37,18 +37,11 @@ init location =
           }
         }
 
-      slides : Array Slide
-      slides = activeSlides slidelessModel
+      activeNavigation : Array Navigation
+      activeNavigation = activeNavigationOf incompleteModel
     in
-    { slidelessModel
-    | slides = slides
-    , slideIndex =
-      slideIndex slides
-      ( Maybe.withDefault 0
-        ( Result.toMaybe
-          ( String.toInt ( String.dropLeft 7 location.hash ) )
-        )
-      )
+    { incompleteModel
+    | activeNavigation = activeNavigation
     }
   , Cmd.none
   )
@@ -59,24 +52,56 @@ update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
     Next ->
-      let
-        slideIndex : Int
-        slideIndex = min ((Array.length model.slides) - 1) (model.slideIndex + 1)
-      in
-      ( { model | slideIndex = slideIndex }
-      , Navigation.newUrl ("#slide-" ++ toString slideIndex)
+      ( model
+      , let
+          curSlideIdx : Int
+          curSlideIdx =
+            case model.currentSlide of
+              Slide slideModel -> slideModel.index
+
+          newSlideIdx : Int
+          newSlideIdx =
+            Maybe.withDefault curSlideIdx
+            ( Maybe.map
+              .nextSlideIndex
+              ( Array.get curSlideIdx model.activeNavigation )
+            )
+        in
+          if newSlideIdx == curSlideIdx then Cmd.none
+          else Navigation.newUrl ("#slide-" ++ toString newSlideIdx)
       )
 
     Last ->
-      let
-        slideIndex : Int
-        slideIndex = max 0 (model.slideIndex - 1)
-      in
-      ( { model | slideIndex = slideIndex }
-      , Navigation.newUrl
-        ( if slideIndex == 0 then "."
-          else "#slide-" ++ toString slideIndex
-        )
+      ( model
+      , let
+          curSlideIdx : Int
+          curSlideIdx =
+            case model.currentSlide of
+              Slide slideModel -> slideModel.index
+
+          newSlideIdx : Int
+          newSlideIdx =
+            Maybe.withDefault curSlideIdx
+            ( Maybe.map
+              .lastSlideIndex
+              ( Array.get curSlideIdx model.activeNavigation )
+            )
+        in
+          if newSlideIdx == curSlideIdx then Cmd.none
+          else
+            Navigation.newUrl
+            ( if newSlideIdx == 0 then "."
+              else "#slide-" ++ toString newSlideIdx
+            )
+      )
+
+    NewLocation location ->
+      ( let
+          newSlide : Slide
+          newSlide = slideFromLocationHash location.hash
+        in
+        { model | currentSlide = newSlide }
+      , Cmd.none
       )
 
     Event body ->
@@ -133,17 +158,15 @@ update msg model =
               | languagesAndCounts = langsAndCounts
               , typeScriptVsJavaScript =
                 { typeScriptFraction = tsFrac
-                , lastVoteTypeScript = tsFrac > model.typeScriptVsJavaScript.typeScriptFraction
+                , lastVoteTypeScript =
+                  tsFrac > model.typeScriptVsJavaScript.typeScriptFraction
                 }
               }
 
-            slides : Array Slide
-            slides = activeSlides statsUpdatedModel
+            activeNavigation : Array Navigation
+            activeNavigation = activeNavigationOf statsUpdatedModel
           in
-          ( { statsUpdatedModel
-            | slides = slides
-            , slideIndex = slideIndex slides model.slideIndex
-            }
+          ( { statsUpdatedModel | activeNavigation = activeNavigation }
           , Cmd.none
           )
         Err jsonErr ->
@@ -157,9 +180,8 @@ update msg model =
 -- View
 view : Model -> Html Msg
 view model =
-  case Array.get model.slideIndex model.slides of
-    Just (Slide slideModel) -> slideView model slideModel
-    Nothing -> text "No Slides Defined"
+  case model.currentSlide of
+    Slide slideModel -> slideView model slideModel
 
 
 -- Subscriptions
@@ -169,9 +191,8 @@ subscriptions model =
   [ let
       eventsWsPath : Maybe String
       eventsWsPath =
-        Maybe.andThen
-        ( \(Slide slide) -> slide.eventsWsPath )
-        ( Array.get model.slideIndex model.slides )
+        case model.currentSlide of
+          Slide slideModel -> slideModel.eventsWsPath
     in
     case (model.eventsWsUrl, eventsWsPath) of
       (Just url, Just path) ->
@@ -193,8 +214,7 @@ subscriptions model =
 
 main : Program Never Model Msg
 main =
-  Navigation.program
-  ( always NoOp )
+  Navigation.program NewLocation
   { init = init
   , update = update
   , view = Html.Styled.toUnstyled << view

@@ -1,4 +1,4 @@
-module Deck.Slide exposing (activeSlides, slideIndex, slideView)
+module Deck.Slide exposing (activeNavigationOf, slideFromLocationHash, slideView)
 
 import Array exposing (Array)
 import Css exposing
@@ -14,7 +14,7 @@ import Css exposing
   -- Other values
   , hidden, rgb
   )
-import Deck.Common exposing (Model, Msg, Slide(Slide), SlideModel)
+import Deck.Common exposing (Model, Msg, Navigation, Slide(Slide), SlideModel)
 import Deck.Slide.Common exposing (goodRxBlack, goodRxOffWhite, paragraphFontFamily)
 import Deck.Slide.QuestionAnswer as QuestionAnswer
 import Deck.Slide.Cover as Cover
@@ -61,8 +61,12 @@ fontGoodRxBoltonBoldItalicBase64 =
 
 
 -- Model
-slides : List Slide
-slides =
+slidesList : List Slide
+slidesList =
+  List.indexedMap
+  ( \index (Slide slideModel) ->
+    Slide { slideModel | index = index }
+  )
   [ Cover.slide
   , PollQuestion.slide, PollJSvsTS.slide
   , Introduction.slide, CommonDefinitions.slide, OurDefinition.slide
@@ -77,20 +81,66 @@ slides =
   ]
 
 
-activeSlides : Model -> Array Slide
-activeSlides model =
-  Array.fromList
-  ( List.filter
-    ( \(Slide slideModel) -> slideModel.active model )
-    slides
-  )
+slides : Array Slide
+slides = Array.fromList slidesList
 
 
-slideIndex : Array Slide -> Int -> Int
-slideIndex slides desiredIndex =
+activeNavigationOf : Model -> Array Navigation
+activeNavigationOf model =
+  let
+    (onlyPrevsReversed, _) =
+      List.foldl
+      ( \(Slide slideModel) (accum, maybePrevIdx) ->
+        ( ( { lastSlideIndex =
+              case maybePrevIdx of
+                Just prevIdx -> prevIdx
+                Nothing -> slideModel.index
+            , nextSlideIndex = -1
+            }
+          , slideModel
+          ) :: accum
+        , if not (slideModel.active model) then maybePrevIdx
+          else Just slideModel.index
+        )
+      )
+      ( [], Nothing )
+      slidesList
+
+    (withNexts, _) =
+      List.foldl
+      ( \(nav, slideModel) (accum, maybeNextIdx) ->
+        ( { nav
+          | nextSlideIndex =
+            case maybeNextIdx of
+              Just nextIdx -> nextIdx
+              Nothing -> slideModel.index
+          } :: accum
+        , if not (slideModel.active model) then maybeNextIdx
+          else Just slideModel.index
+        )
+      )
+      ( [], Nothing )
+      onlyPrevsReversed
+  in
+  Array.fromList withNexts
+
+
+withinIndexRange : Array Slide -> Int -> Int
+withinIndexRange slides desiredIndex =
   min
   ( ( Array.length slides ) - 1 )
   ( max 0 desiredIndex )
+
+
+slideFromLocationHash : String -> Slide
+slideFromLocationHash hash =
+  Maybe.withDefault Cover.slide
+  ( Maybe.andThen
+    ( \parsedIndex -> Array.get (withinIndexRange slides parsedIndex) slides )
+    ( Result.toMaybe
+      ( String.toInt ( String.dropLeft 7 hash ) )
+    )
+  )
 
 
 -- View

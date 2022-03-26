@@ -28,6 +28,7 @@ baseSlideModel =
   { active = always True
   , update = ( \_ model -> (model, Cmd.none) )
   , view = ( \_ -> text "(Placeholder)" )
+  , index = 0
   , eventsWsPath = Nothing
   }
 

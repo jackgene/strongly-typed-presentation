@@ -2,12 +2,14 @@ module Deck.Common exposing (..)
 
 import Array exposing (Array)
 import Html.Styled exposing (Html)
+import Navigation exposing (Location)
 
 
 -- Messages
 type Msg
   = Next
   | Last
+  | NewLocation Location
   | Event String
   | NoOp
 
@@ -17,6 +19,7 @@ type alias SlideModel =
   { active : Model -> Bool
   , update : Msg -> Model -> (Model, Cmd Msg)
   , view : Model -> Html Msg
+  , index : Int
   , eventsWsPath : Maybe String
   }
 
@@ -24,10 +27,16 @@ type alias SlideModel =
 type Slide = Slide SlideModel
 
 
+type alias Navigation =
+  { nextSlideIndex : Int
+  , lastSlideIndex : Int
+  }
+
+
 type alias Model =
   { eventsWsUrl : Maybe String
-  , slides : Array Slide
-  , slideIndex: Int
+  , activeNavigation : Array Navigation
+  , currentSlide: Slide
   , languagesAndCounts : List (String, Int)
   , typeScriptVsJavaScript :
     { typeScriptFraction : Float
