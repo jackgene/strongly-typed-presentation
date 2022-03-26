@@ -68,7 +68,7 @@ slides =
   , Introduction.slide, CommonDefinitions.slide, OurDefinition.slide
   -- TODO problems that cannot be caught by the type system
   , PreventableErrors.slide
-  , ListOfPreventableErrors.slide
+  , ListOfPreventableErrors.slide Nothing
   -- TODO Null, Arrays, StackOverflow etc
   , QualitySoftware.slide
   -- TODO strong typing + unit testing
@@ -88,9 +88,9 @@ activeSlides model =
 
 slideIndex : Array Slide -> Int -> Int
 slideIndex slides desiredIndex =
-  ( min ( ( Array.length slides ) - 1 )
-    ( max 0 desiredIndex )
-  )
+  min
+  ( ( Array.length slides ) - 1 )
+  ( max 0 desiredIndex )
 
 
 -- View

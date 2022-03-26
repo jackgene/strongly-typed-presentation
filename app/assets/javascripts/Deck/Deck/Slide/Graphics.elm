@@ -1,7 +1,7 @@
 module Deck.Slide.Graphics exposing
   ( logosByLanguage, goodRxPoint, goodRxRipple, numberedGoodRxPoint )
 
-import Css exposing (px, vw)
+import Css exposing (fontSize, px, vw)
 import Deck.Common exposing (Msg)
 import Deck.Slide.Common exposing (goodRxYellow, goodRxLightYellow3, goodRxLightYellow5, numberFontFamily)
 import Dict exposing (Dict)
@@ -23,7 +23,7 @@ import Svg.Styled.Attributes as Attributes exposing
   -- Color
   , stopColor
   -- Alignment
-  , textAnchor
+  , alignmentBaseline, textAnchor
   )
 
 
@@ -61,7 +61,11 @@ numberedGoodRxPoint num attributes =
   svg
   ( viewBox "-50 -50 100 100" :: attributes )
   [ circle [ r "50", css [ Css.fill goodRxYellow ] ] []
-  , text_ [ textAnchor "middle", y "24", css [ numberFontFamily, Css.fontSize (px 72) ] ] [ text (toString num) ]
+  , text_
+    [ alignmentBaseline "middle", textAnchor "middle", y "5"
+    , css [ numberFontFamily, fontSize (px 64) ]
+    ]
+    [ text (toString num) ]
   ]
 
 

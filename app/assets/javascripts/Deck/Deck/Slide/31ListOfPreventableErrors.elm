@@ -2,41 +2,71 @@ module Deck.Slide.ListOfPreventableErrors exposing (slide)
 
 import Css exposing
   (
+  -- Container
+    display, margin2, transform, width
   -- Content
-    backgroundImage, backgroundPosition2, backgroundRepeat
-  , listStylePosition, paddingLeft
+  , fontSize, opacity, verticalAlign
   -- Size
-  , em, px, zero
-  -- Other value
-  , inside, noRepeat, url
+  , em, vw, zero
+  -- Positions
+  , inlineBlock, middle
+  -- Transforms
+  , translateY
+  -- Other values
+  , num
   )
 import Deck.Common exposing (Slide(Slide))
 import Deck.Slide.Common exposing (..)
+import Deck.Slide.Graphics exposing (numberedGoodRxPoint)
 import Deck.Slide.Template exposing (standardSlideView)
-import Html.Styled exposing (Html, div, li, ol, text)
-import Html.Styled.Attributes exposing (css)
+import Html.Styled exposing (Html, div, text)
+import Svg.Styled.Attributes exposing (css)
 
 
-slide : Slide
-slide =
+errorKinds : List String
+errorKinds =
+  [ "Memory Leak"
+  , "Buffer Overflow"
+  , "Type Mismatch"
+  , "Null Pointer Dereference"
+  , "Type Conversion Error"
+  , "Out Of Bounds Array Access"
+  , "Inexhaustive Match"
+  , "User Defined Error"
+  , "Arithmetic Error"
+  , "Data Race"
+  ]
+
+
+slide : Maybe Int -> Slide
+slide maybeHighlightedIndex =
   Slide
   { baseSlideModel
   | view =
-    ( \_ -> standardSlideView "Type-Checker Preventable Errors" "These Are Errors That Can Be Detected Before Runtime"
-      ( div []
-        [ ol []
-          [ li [] [ text "Memory Leak" ]
-          , li [] [ text "Buffer Overflow" ]
-          , li [] [ text "Type Mismatch" ]
-          , li [] [ text "Null Pointer Dereference" ]
-          , li [] [ text "Type Converstion Error" ]
-          , li [] [ text "Out Of Bounds Array Access" ]
-          , li [] [ text "User Defined Error" ]
-          , li [] [ text "Arithmetic Error" ]
-          , li [] [ text "Data Race" ]
-          , li [] [ text "Other Sources of Errors" ]
-          ]
-        ]
+    ( \_ -> standardSlideView "Type-Checker Preventable Errors" "Kinds of Errors That Can Be Detected Before Runtime"
+      ( div [ css [ margin2 zero (em 1) ] ]
+        ( List.indexedMap
+          ( \idx errorKind ->
+            div
+            [ css
+              [ display inlineBlock, width (vw 40)
+              , transform (translateY (vw (if idx % 2 == 0 then 0 else 0.5)))
+              , opacity
+                ( num
+                  ( case maybeHighlightedIndex of
+                    Just hlIdx -> if idx == hlIdx then 1.0 else 0.2
+                    Nothing -> 1.0
+                  )
+                )
+              ]
+            ]
+            [ numberedGoodRxPoint (idx + 1)
+              [ css [ width (vw 5.4), margin2 (em 0.2) (em 0.5), verticalAlign middle ] ]
+            , text errorKind
+            ]
+          )
+          errorKinds
+        )
       )
     )
   }
