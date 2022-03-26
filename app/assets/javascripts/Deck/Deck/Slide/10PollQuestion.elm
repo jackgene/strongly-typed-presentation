@@ -27,7 +27,7 @@ import Html.Styled.Keyed as Keyed
 
 -- Constants
 maxDisplayCount : Int
-maxDisplayCount = 10
+maxDisplayCount = 8
 
 
 -- View

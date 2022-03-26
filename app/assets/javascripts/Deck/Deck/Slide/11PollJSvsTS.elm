@@ -1,7 +1,7 @@
 module Deck.Slide.PollJSvsTS exposing (slide)
 
 import Css exposing
-  ( property
+  ( Vw, property
   -- Container
   , borderRadius, display, height, left, margin, margin2
   , width, overflow, position, right, top, zIndex
@@ -29,6 +29,10 @@ import Html.Styled.Keyed as Keyed
 
 
 -- View
+pieChartDiameter : Vw
+pieChartDiameter = vw 27
+
+
 horizontalBarView : Int -> Int -> Html Msg
 horizontalBarView value maxValue =
   div
@@ -91,7 +95,8 @@ slide =
                         div
                         [ css
                           [ opacity (num 1.0)
-                          , position absolute, top zero, height (vw 30), width (vw 30)
+                          , position absolute, top zero
+                          , height pieChartDiameter, width pieChartDiameter
                           , borderRadius (pct 50), margin2 (vw 1) (vw 28)
                           , overflow hidden
                           , transition
