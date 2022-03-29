@@ -101,6 +101,8 @@ elmMakeDeck := {
     "bash", "-c",
     "elm-make " +
     (file("app/assets/javascripts/Deck") ** "*.elm").get.mkString(" ") +
+    " " +
+    (file("app/assets/javascripts/SyntaxHighlight") ** "*.elm").get.mkString(" ") +
     s" --output ${outputPath} " +
     s"--yes ${debugFlag} --warn"
   ).!(
