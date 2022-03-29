@@ -14,8 +14,12 @@ import Css exposing
   , block, italic, rgb, rgba, transparent
   )
 import Deck.Common exposing (Model, Msg, SlideModel)
+import Dict
 import Html.Styled as Html exposing (Attribute, Html, text)
 import Html.Styled.Attributes exposing (css)
+import SyntaxHighlight.Model exposing (Theme)
+import SyntaxHighlight.Theme.Common exposing
+  ( noEmphasis, noStyle, squigglyUnderline, strikeThrough, textColor )
 
 
 type alias UnindexedSlideModel =
@@ -74,6 +78,10 @@ goodRxLightGray5 : Color
 goodRxLightGray5 = rgb 235 235 235
 
 
+goodRxLightGray6 : Color
+goodRxLightGray6 = rgb 247 247 244
+
+
 goodRxBlackTranslucent : Color
 goodRxBlackTranslucent = rgba 32 31 27 0.15
 
@@ -100,6 +108,50 @@ goodRxLightYellow4 = rgb 255 246 191
 
 goodRxLightYellow5 : Color
 goodRxLightYellow5 = rgb 255 250 220
+
+
+goodRxLightYellow6 : Color
+goodRxLightYellow6 = rgb 255 253 239
+
+
+goodRxBlue : Color
+goodRxBlue = rgb 0 55 110
+
+
+goodRxDigitalBlue : Color
+goodRxDigitalBlue = rgb 29 116 222
+
+
+goodRxGreen : Color
+goodRxGreen = rgb 21 96 66
+
+
+goodRxDigitalGreen : Color
+goodRxDigitalGreen = rgb 0 142 87
+
+
+goodRxLightGreen1 : Color
+goodRxLightGreen1 = rgb 221 247 225
+
+
+goodRxOrange : Color
+goodRxOrange = rgb 171 77 0
+
+
+goodRxDigitalOrange : Color
+goodRxDigitalOrange = rgb 245 145 15
+
+
+goodRxRed : Color
+goodRxRed = rgb 143 37 4
+
+
+goodRxDigitalRed : Color
+goodRxDigitalRed = rgb 209 71 21
+
+
+goodRxLightRed1 : Color
+goodRxLightRed1 = rgb 255 213 200
 
 
 headerFontFamily : Style
@@ -136,6 +188,40 @@ subHeaderStyle =
 contentContainerStyle : Style
 contentContainerStyle =
   margin2 zero (vw 7)
+
+
+goodRxSyntaxTheme : Theme
+goodRxSyntaxTheme =
+  let
+    keyword : Style
+    keyword = textColor goodRxBlue
+  in
+  { default = noEmphasis goodRxBlack goodRxLightGray6
+  , selection = backgroundColor goodRxLightGray3
+  , addition = backgroundColor goodRxLightGreen1
+  , deletion = strikeThrough goodRxDigitalRed (backgroundColor goodRxLightRed1)
+  , error = squigglyUnderline (rgba 240 0 0 0.75) noStyle
+  , warning = squigglyUnderline (rgba 216 192 0 0.75) noStyle
+  , comment = textColor goodRxLightGray3
+  , namespace = textColor (rgb 175 191 126)
+  , keyword = keyword
+  , declarationKeyword = keyword
+  , builtIn = keyword
+  , operator = noStyle
+  , number = textColor goodRxDigitalRed
+  , string = textColor goodRxDigitalOrange
+  , literal = keyword
+  , typeDeclaration = noStyle
+  , typeReference = textColor (rgb 111 175 189)
+  , functionDeclaration = textColor goodRxGreen
+  , functionArgument = noStyle
+  , functionReference = textColor goodRxGreen
+  , fieldDeclaration = textColor (rgb 152 118 170)
+  , fieldReference = textColor (rgb 152 118 170)
+  , annotation = textColor (rgb 187 181 41)
+  , other = Dict.empty
+  , gutter = noEmphasis goodRxLightGray3 goodRxLightGray5
+  }
 
 
 -- View
