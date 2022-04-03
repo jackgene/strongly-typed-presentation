@@ -5,12 +5,13 @@ import Css exposing
   -- Container
     left, position, top, width, margin, margin2
   -- Content
-  , color, fontSize
+  , color, fontSize, fontWeight
   -- Sizes
   , em, vw, zero
   -- Positions
   , absolute
   -- Other values
+  , normal
   )
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Graphics exposing (goodRxRipple)
@@ -37,7 +38,7 @@ slide =
           , text "a Programming Language to Be Strongly Typed?"
           ]
         , h2
-          [ css [ margin2 (em 0.5) zero, headerFontFamily, fontSize (vw 2.4) ] ]
+          [ css [ margin2 (em 0.5) zero, paragraphFontFamily, color goodRxLightGray2, fontWeight (normal), fontSize (vw 2.4) ] ]
           [ text "And How Does it Help Me Produce Quality Software?" ]
         , p
           [ css [ margin2 (em 3) zero, color goodRxLightGray3, fontSize (em 0.8) ] ]
