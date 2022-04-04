@@ -26480,6 +26480,22 @@ var _jackgene$live_deck$SyntaxHighlight_Theme_Common$noEmphasis = F2(
 	});
 var _jackgene$live_deck$SyntaxHighlight_Theme_Common$noStyle = _rtfeldman$elm_css$Css$batch(
 	{ctor: '[]'});
+var _jackgene$live_deck$Deck_Slide_Common$li = function (attributes) {
+	return _rtfeldman$elm_css$Html_Styled$li(
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+				{
+					ctor: '::',
+					_0: A2(
+						_rtfeldman$elm_css$Css$margin2,
+						_rtfeldman$elm_css$Css$em(0.5),
+						_rtfeldman$elm_css$Css$zero),
+					_1: {ctor: '[]'}
+				}),
+			_1: attributes
+		});
+};
 var _jackgene$live_deck$Deck_Slide_Common$blockquote = function (attributes) {
 	return _rtfeldman$elm_css$Html_Styled$blockquote(
 		{
@@ -26664,16 +26680,56 @@ var _jackgene$live_deck$Deck_Slide_Common$goodRxSyntaxTheme = function () {
 		gutter: A2(_jackgene$live_deck$SyntaxHighlight_Theme_Common$noEmphasis, _jackgene$live_deck$Deck_Slide_Common$goodRxLightGray3, _jackgene$live_deck$Deck_Slide_Common$goodRxLightGray5)
 	};
 }();
+var _jackgene$live_deck$Deck_Slide_Common$syntaxHighlightedCodeSnippet = F2(
+	function (language, source) {
+		return A2(
+			_elm_lang$core$Result$withDefault,
+			_rtfeldman$elm_css$Html_Styled$text('Error Parsing Source'),
+			function () {
+				var parser = function () {
+					var _p0 = language;
+					switch (_p0.ctor) {
+						case 'Go':
+							return _jackgene$live_deck$SyntaxHighlight_Language$go;
+						case 'Kotlin':
+							return _jackgene$live_deck$SyntaxHighlight_Language$kotlin;
+						case 'Python':
+							return _jackgene$live_deck$SyntaxHighlight_Language$python;
+						case 'Swift':
+							return _jackgene$live_deck$SyntaxHighlight_Language$swift;
+						default:
+							return _jackgene$live_deck$SyntaxHighlight_Language$typeScript;
+					}
+				}();
+				return A2(
+					_elm_lang$core$Result$map,
+					function (block) {
+						return A2(
+							_jackgene$live_deck$SyntaxHighlight$toInlineHtml,
+							_jackgene$live_deck$Deck_Slide_Common$goodRxSyntaxTheme,
+							A2(
+								_elm_lang$core$Maybe$withDefault,
+								A3(
+									_jackgene$live_deck$SyntaxHighlight_Model$Line,
+									{ctor: '[]'},
+									_elm_lang$core$Maybe$Nothing,
+									{ctor: '[]'}),
+								_elm_lang$core$List$head(block)));
+					},
+					parser(
+						_elm_lang$core$String$trim(source)));
+			}());
+	});
 var _jackgene$live_deck$Deck_Slide_Common$goodRxOffWhite = A3(_rtfeldman$elm_css$Css$rgb, 255, 255, 251);
 var _jackgene$live_deck$Deck_Slide_Common$goodRxWhite = A3(_rtfeldman$elm_css$Css$rgb, 255, 255, 255);
 var _jackgene$live_deck$Deck_Slide_Common$baseSlideModel = {
 	active: _elm_lang$core$Basics$always(true),
 	update: F2(
-		function (_p0, model) {
+		function (_p1, model) {
 			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		}),
 	view: F2(
-		function (_p2, _p1) {
+		function (_p3, _p2) {
 			return _rtfeldman$elm_css$Html_Styled$text('(Placeholder)');
 		}),
 	eventsWsPath: _elm_lang$core$Maybe$Nothing
@@ -26695,8 +26751,8 @@ var _jackgene$live_deck$Deck_Slide_Common$syntaxHighlightedCodeBlock = F4(
 			_rtfeldman$elm_css$Html_Styled$text('Error Parsing Source'),
 			function () {
 				var parser = function () {
-					var _p3 = language;
-					switch (_p3.ctor) {
+					var _p4 = language;
+					switch (_p4.ctor) {
 						case 'Go':
 							return _jackgene$live_deck$SyntaxHighlight_Language$go;
 						case 'Kotlin':
@@ -34818,7 +34874,7 @@ var _jackgene$live_deck$Deck_Slide_AudiencePoll$poll = _elm_lang$core$Native_Uti
 													{
 														ctor: '::',
 														_0: A2(
-															_rtfeldman$elm_css$Html_Styled$li,
+															_jackgene$live_deck$Deck_Slide_Common$li,
 															{ctor: '[]'},
 															{
 																ctor: '::',
@@ -34828,7 +34884,7 @@ var _jackgene$live_deck$Deck_Slide_AudiencePoll$poll = _elm_lang$core$Native_Uti
 														_1: {
 															ctor: '::',
 															_0: A2(
-																_rtfeldman$elm_css$Html_Styled$li,
+																_jackgene$live_deck$Deck_Slide_Common$li,
 																{ctor: '[]'},
 																{
 																	ctor: '::',
@@ -34838,7 +34894,7 @@ var _jackgene$live_deck$Deck_Slide_AudiencePoll$poll = _elm_lang$core$Native_Uti
 															_1: {
 																ctor: '::',
 																_0: A2(
-																	_rtfeldman$elm_css$Html_Styled$li,
+																	_jackgene$live_deck$Deck_Slide_Common$li,
 																	{ctor: '[]'},
 																	{
 																		ctor: '::',
@@ -35755,59 +35811,15 @@ var _jackgene$live_deck$Deck_Slide_Introduction$outOfScope = _elm_lang$core$Nati
 								{
 									ctor: '::',
 									_0: _rtfeldman$elm_css$Html_Styled$text('Let’s start by talking about the kinds of errors no type system could detect:'),
-									_1: {ctor: '[]'}
-								}),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									_rtfeldman$elm_css$Html_Styled$ul,
-									{ctor: '[]'},
-									{
+									_1: {
 										ctor: '::',
 										_0: A2(
-											_rtfeldman$elm_css$Html_Styled$li,
+											_rtfeldman$elm_css$Html_Styled$ul,
 											{ctor: '[]'},
 											{
 												ctor: '::',
 												_0: A2(
-													_rtfeldman$elm_css$Html_Styled$b,
-													{ctor: '[]'},
-													{
-														ctor: '::',
-														_0: _rtfeldman$elm_css$Html_Styled$text('Infinite Loops'),
-														_1: {ctor: '[]'}
-													}),
-												_1: {
-													ctor: '::',
-													_0: _rtfeldman$elm_css$Html_Styled$text(' - or in general, if a program will terminate - no type system has solved the halting problem'),
-													_1: {ctor: '[]'}
-												}
-											}),
-										_1: {
-											ctor: '::',
-											_0: A2(
-												_rtfeldman$elm_css$Html_Styled$li,
-												{ctor: '[]'},
-												{
-													ctor: '::',
-													_0: A2(
-														_rtfeldman$elm_css$Html_Styled$b,
-														{ctor: '[]'},
-														{
-															ctor: '::',
-															_0: _rtfeldman$elm_css$Html_Styled$text('Stack Overflow'),
-															_1: {ctor: '[]'}
-														}),
-													_1: {
-														ctor: '::',
-														_0: _rtfeldman$elm_css$Html_Styled$text(' - though, as we\'ll see later, Kotlin has features that go a long way to preventing them'),
-														_1: {ctor: '[]'}
-													}
-												}),
-											_1: {
-												ctor: '::',
-												_0: A2(
-													_rtfeldman$elm_css$Html_Styled$li,
+													_jackgene$live_deck$Deck_Slide_Common$li,
 													{ctor: '[]'},
 													{
 														ctor: '::',
@@ -35816,19 +35828,19 @@ var _jackgene$live_deck$Deck_Slide_Introduction$outOfScope = _elm_lang$core$Nati
 															{ctor: '[]'},
 															{
 																ctor: '::',
-																_0: _rtfeldman$elm_css$Html_Styled$text('Out of Memory Error'),
+																_0: _rtfeldman$elm_css$Html_Styled$text('Infinite Loops'),
 																_1: {ctor: '[]'}
 															}),
 														_1: {
 															ctor: '::',
-															_0: _rtfeldman$elm_css$Html_Styled$text(' - error allocating new memory'),
+															_0: _rtfeldman$elm_css$Html_Styled$text(' - or in general, if a program will terminate'),
 															_1: {ctor: '[]'}
 														}
 													}),
 												_1: {
 													ctor: '::',
 													_0: A2(
-														_rtfeldman$elm_css$Html_Styled$li,
+														_jackgene$live_deck$Deck_Slide_Common$li,
 														{ctor: '[]'},
 														{
 															ctor: '::',
@@ -35837,19 +35849,19 @@ var _jackgene$live_deck$Deck_Slide_Introduction$outOfScope = _elm_lang$core$Nati
 																{ctor: '[]'},
 																{
 																	ctor: '::',
-																	_0: _rtfeldman$elm_css$Html_Styled$text('Arithmetic Errors'),
+																	_0: _rtfeldman$elm_css$Html_Styled$text('Stack Overflow'),
 																	_1: {ctor: '[]'}
 																}),
 															_1: {
 																ctor: '::',
-																_0: _rtfeldman$elm_css$Html_Styled$text(' - division by zero, overflows, underflows'),
+																_0: _rtfeldman$elm_css$Html_Styled$text(' - exceeding the call stack, typically due to recursive functions'),
 																_1: {ctor: '[]'}
 															}
 														}),
 													_1: {
 														ctor: '::',
 														_0: A2(
-															_rtfeldman$elm_css$Html_Styled$li,
+															_jackgene$live_deck$Deck_Slide_Common$li,
 															{ctor: '[]'},
 															{
 																ctor: '::',
@@ -35858,23 +35870,67 @@ var _jackgene$live_deck$Deck_Slide_Introduction$outOfScope = _elm_lang$core$Nati
 																	{ctor: '[]'},
 																	{
 																		ctor: '::',
-																		_0: _rtfeldman$elm_css$Html_Styled$text('Functional Error'),
+																		_0: _rtfeldman$elm_css$Html_Styled$text('Out of Memory Error'),
 																		_1: {ctor: '[]'}
 																	}),
 																_1: {
 																	ctor: '::',
-																	_0: _rtfeldman$elm_css$Html_Styled$text(' - e.g., detecting the user of the wrong color background, or incomplete form validation'),
+																	_0: _rtfeldman$elm_css$Html_Styled$text(' - error allocating new memory'),
 																	_1: {ctor: '[]'}
 																}
 															}),
-														_1: {ctor: '[]'}
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_jackgene$live_deck$Deck_Slide_Common$li,
+																{ctor: '[]'},
+																{
+																	ctor: '::',
+																	_0: A2(
+																		_rtfeldman$elm_css$Html_Styled$b,
+																		{ctor: '[]'},
+																		{
+																			ctor: '::',
+																			_0: _rtfeldman$elm_css$Html_Styled$text('Arithmetic Errors'),
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Html_Styled$text(' - division by zero, overflows, underflows'),
+																		_1: {ctor: '[]'}
+																	}
+																}),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_jackgene$live_deck$Deck_Slide_Common$li,
+																	{ctor: '[]'},
+																	{
+																		ctor: '::',
+																		_0: A2(
+																			_rtfeldman$elm_css$Html_Styled$b,
+																			{ctor: '[]'},
+																			{
+																				ctor: '::',
+																				_0: _rtfeldman$elm_css$Html_Styled$text('Functional Error / Correctness'),
+																				_1: {ctor: '[]'}
+																			}),
+																		_1: {
+																			ctor: '::',
+																			_0: _rtfeldman$elm_css$Html_Styled$text(' - e.g., application background is the wrong color, incorrect form validation'),
+																			_1: {ctor: '[]'}
+																		}
+																	}),
+																_1: {ctor: '[]'}
+															}
+														}
 													}
 												}
-											}
-										}
-									}),
-								_1: {ctor: '[]'}
-							}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {ctor: '[]'}
 						}));
 			})
 	});
@@ -36067,7 +36123,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$safeTypeScript = function () {
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Function parameters and return values have declared types, and must be called with those types:'),
+										_0: _rtfeldman$elm_css$Html_Styled$text('Function parameters and return values can have declared types, and if so, must be called with those types:'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -36226,7 +36282,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$safePython = function () {
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Some code:'),
+										_0: _rtfeldman$elm_css$Html_Styled$text('Function parameters and return values can have declared types, and if so, must be called with those types:'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -36317,7 +36373,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafePython = function () {
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Some code:'),
+										_0: _rtfeldman$elm_css$Html_Styled$text('Type-checking fails if a function is called with non-matching parameter types:'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -36337,7 +36393,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafePython = function () {
 														_1: {
 															ctor: '::',
 															_0: _rtfeldman$elm_css$Css$height(
-																_rtfeldman$elm_css$Css$vw(20)),
+																_rtfeldman$elm_css$Css$vw(15)),
 															_1: {
 																ctor: '::',
 																_0: _rtfeldman$elm_css$Css$overflow(_rtfeldman$elm_css$Css$hidden),
@@ -36353,7 +36409,50 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafePython = function () {
 											_0: codeBlock,
 											_1: {ctor: '[]'}
 										}),
-									_1: {ctor: '[]'}
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$p,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text('Note: '),
+												_1: {
+													ctor: '::',
+													_0: A2(_jackgene$live_deck$Deck_Slide_Common$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_Common$Python, 'True'),
+													_1: {
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled$text(' is a valid parameter value here. This is because a Python '),
+														_1: {
+															ctor: '::',
+															_0: A2(_jackgene$live_deck$Deck_Slide_Common$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_Common$Python, 'bool'),
+															_1: {
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled$text(' is a sub-type of '),
+																_1: {
+																	ctor: '::',
+																	_0: A2(_jackgene$live_deck$Deck_Slide_Common$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_Common$Python, 'int'),
+																	_1: {
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Html_Styled$text(', which is compatible with '),
+																		_1: {
+																			ctor: '::',
+																			_0: A2(_jackgene$live_deck$Deck_Slide_Common$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_Common$Python, 'float'),
+																			_1: {
+																				ctor: '::',
+																				_0: _rtfeldman$elm_css$Html_Styled$text('.'),
+																				_1: {ctor: '[]'}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}),
+										_1: {ctor: '[]'}
+									}
 								}
 							}));
 				})
@@ -36381,8 +36480,23 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$safeGo = function () {
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Some code:'),
-										_1: {ctor: '[]'}
+										_0: _rtfeldman$elm_css$Html_Styled$text('Function parameters and return values '),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_rtfeldman$elm_css$Html_Styled$em,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled$text('must '),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text('have declared types, and must be called with those types:'),
+												_1: {ctor: '[]'}
+											}
+										}
 									}),
 								_1: {
 									ctor: '::',
@@ -36476,7 +36590,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeGo = function () {
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Some code:'),
+										_0: _rtfeldman$elm_css$Html_Styled$text('Compilation fails if a function is called with non-matching parameter types:'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {

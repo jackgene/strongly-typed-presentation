@@ -23,7 +23,7 @@ import Deck.Slide.Common exposing (..)
 import Deck.Slide.Graphics exposing (logosByLanguage)
 import Deck.Slide.Template exposing (standardSlideView)
 import Dict exposing (Dict)
-import Html.Styled exposing (Html, div, li, p, text, ul)
+import Html.Styled exposing (Html, div, p, text, ul)
 import Html.Styled.Attributes exposing (css)
 import Html.Styled.Keyed as Keyed
 

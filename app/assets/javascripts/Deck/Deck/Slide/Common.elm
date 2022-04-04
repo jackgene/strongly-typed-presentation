@@ -15,14 +15,17 @@ import Css exposing
   )
 import Deck.Common exposing (Model, Msg, SlideModel)
 import Dict exposing (Dict)
-import Html.Styled as Html exposing (Attribute, Html, div, text)
+import Html.Styled as Html exposing (Attribute, Html, div, span, text)
 import Html.Styled.Attributes exposing (css)
 import Parser
 import SyntaxHighlight
 import SyntaxHighlight.Language as Language
 import SyntaxHighlight.Line as Line
 import SyntaxHighlight.Model exposing
-  ( Block, ColumnEmphasis, ColumnEmphasisType(..), LineEmphasis(..), Theme )
+  ( Block, Line
+  , ColumnEmphasis, ColumnEmphasisType(..), LineEmphasis(..)
+  , Theme
+  )
 import SyntaxHighlight.Theme.Common exposing
   ( bold, noEmphasis, noStyle, squigglyUnderline, strikeThrough, textColor )
 
@@ -245,6 +248,14 @@ mark attributes =
   )
 
 
+li : List (Attribute msg) -> List (Html msg) -> Html msg
+li attributes =
+  Html.li
+  ( css [ margin2 (em 0.5) zero ]
+  ::attributes
+  )
+
+
 syntaxHighlightedCodeBlock : Language -> Dict Int LineEmphasis -> Dict Int (List ColumnEmphasis) -> String -> Html msg
 syntaxHighlightedCodeBlock language lineEmphases columnEmphases source =
   Result.withDefault (text "Error Parsing Source")
@@ -292,6 +303,31 @@ syntaxHighlightedCodeBlock language lineEmphases columnEmphases source =
       , if language == Swift then codeBlock else emptyPlaceholder
       , if language == TypeScript then codeBlock else emptyPlaceholder
       ]
+    )
+    ( parser (String.trim source) )
+  )
+
+
+syntaxHighlightedCodeSnippet : Language -> String -> Html msg
+syntaxHighlightedCodeSnippet language source =
+  Result.withDefault (text "Error Parsing Source")
+  ( let
+      parser : String -> Result Parser.Error Block
+      parser =
+        case language of
+          Go -> Language.go
+          Kotlin -> Language.kotlin
+          Python -> Language.python
+          Swift -> Language.swift
+          TypeScript -> Language.typeScript
+    in
+    Result.map
+    ( \block ->
+      SyntaxHighlight.toInlineHtml goodRxSyntaxTheme
+      ( Maybe.withDefault
+        ( Line [] Nothing [] ) -- TODO make constant in syntax highlight library
+        ( List.head block )
+      )
     )
     ( parser (String.trim source) )
   )

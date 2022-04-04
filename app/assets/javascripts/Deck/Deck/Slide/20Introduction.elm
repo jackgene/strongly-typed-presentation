@@ -2,7 +2,7 @@ module Deck.Slide.Introduction exposing (commonDefinitions, ourDefinition, outOf
 
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Template exposing (standardSlideView)
-import Html.Styled exposing (Html, b, br, div, li, p, text, ul)
+import Html.Styled exposing (Html, b, div, p, text, ul)
 
 
 -- Constants
@@ -61,26 +61,27 @@ outOfScope =
       "Not All Errors Can Be Detected Before Runtime"
       ( div []
         [ p []
-          [ text "Let’s start by talking about the kinds of errors no type system could detect:" ]
-        , ul []
-          [ li []
-            [ b [] [ text "Infinite Loops" ]
-            , text " - or in general, if a program will terminate - no type system has solved the halting problem"
-            ]
-          , li []
-            [ b [] [ text "Stack Overflow" ]
-            , text " - though, as we'll see later, Kotlin has features that go a long way to preventing them" ]
-          , li []
-            [ b [] [ text "Out of Memory Error" ]
-            , text " - error allocating new memory"
-            ]
-          , li []
-            [ b [] [ text "Arithmetic Errors" ]
-            , text " - division by zero, overflows, underflows"
-            ]
-          , li []
-            [ b [] [ text "Functional Error" ]
-            , text " - e.g., detecting the user of the wrong color background, or incomplete form validation"
+          [ text "Let’s start by talking about the kinds of errors no type system could detect:"
+          , ul []
+            [ li []
+              [ b [] [ text "Infinite Loops" ]
+              , text " - or in general, if a program will terminate"
+              ]
+            , li []
+              [ b [] [ text "Stack Overflow" ]
+              , text " - exceeding the call stack, typically due to recursive functions" ]
+            , li []
+              [ b [] [ text "Out of Memory Error" ]
+              , text " - error allocating new memory"
+              ]
+            , li []
+              [ b [] [ text "Arithmetic Errors" ]
+              , text " - division by zero, overflows, underflows"
+              ]
+            , li []
+              [ b [] [ text "Functional Error / Correctness" ]
+              , text " - e.g., application background is the wrong color, incorrect form validation"
+              ]
             ]
           ]
         ]
