@@ -3,23 +3,28 @@ module Deck.Slide.Common exposing (..)
 import Css exposing
   ( Color, Style, property
   -- Container
-  , boxShadow4, display, float, height, inset, left, margin2, marginRight
-  , width
+  , boxShadow4, display, float, height, inset, left, margin2
+  , marginRight, width
   -- Content
   , backgroundColor, before, fontFamilies, fontSize, fontStyle
-  -- Sizes
+  -- Units
   , em, vw, zero
-  -- Positions
+  -- Alignments & Positions
   -- Other values
-  , block, italic, rgb, rgba, transparent
+  , block, italic, none, rgb, rgba, transparent
   )
 import Deck.Common exposing (Model, Msg, SlideModel)
-import Dict
-import Html.Styled as Html exposing (Attribute, Html, text)
+import Dict exposing (Dict)
+import Html.Styled as Html exposing (Attribute, Html, div, text)
 import Html.Styled.Attributes exposing (css)
-import SyntaxHighlight.Model exposing (Theme)
+import Parser
+import SyntaxHighlight
+import SyntaxHighlight.Language as Language
+import SyntaxHighlight.Line as Line
+import SyntaxHighlight.Model exposing
+  ( Block, ColumnEmphasis, ColumnEmphasisType(..), LineEmphasis(..), Theme )
 import SyntaxHighlight.Theme.Common exposing
-  ( noEmphasis, noStyle, squigglyUnderline, strikeThrough, textColor )
+  ( bold, noEmphasis, noStyle, squigglyUnderline, strikeThrough, textColor )
 
 
 type alias UnindexedSlideModel =
@@ -28,6 +33,9 @@ type alias UnindexedSlideModel =
   , view : Int -> Model -> Html Msg
   , eventsWsPath : Maybe String
   }
+
+
+type Language = Go | Kotlin | Python | Swift | TypeScript
 
 
 -- Constants
@@ -194,28 +202,28 @@ goodRxSyntaxTheme : Theme
 goodRxSyntaxTheme =
   let
     keyword : Style
-    keyword = textColor goodRxBlue
+    keyword = bold (textColor goodRxBlue)
   in
   { default = noEmphasis goodRxBlack goodRxLightGray6
   , selection = backgroundColor goodRxLightGray3
   , addition = backgroundColor goodRxLightGreen1
-  , deletion = strikeThrough goodRxDigitalRed (backgroundColor goodRxLightRed1)
+  , deletion = strikeThrough (rgba 240 0 0 0.5) (backgroundColor goodRxLightRed1)
   , error = squigglyUnderline (rgba 240 0 0 0.75) noStyle
   , warning = squigglyUnderline (rgba 216 192 0 0.75) noStyle
   , comment = textColor goodRxLightGray3
   , namespace = textColor (rgb 175 191 126)
   , keyword = keyword
   , declarationKeyword = keyword
-  , builtIn = keyword
-  , operator = noStyle
-  , number = textColor goodRxDigitalRed
-  , string = textColor goodRxDigitalOrange
+  , builtIn = textColor goodRxDigitalGreen --keyword
+  , operator = textColor goodRxLightGray2
+  , number = textColor goodRxRed
+  , string = textColor goodRxGreen
   , literal = keyword
   , typeDeclaration = noStyle
-  , typeReference = textColor (rgb 111 175 189)
-  , functionDeclaration = textColor goodRxGreen
+  , typeReference = textColor goodRxDigitalOrange
+  , functionDeclaration = textColor goodRxDigitalRed
   , functionArgument = noStyle
-  , functionReference = textColor goodRxGreen
+  , functionReference = textColor goodRxDigitalRed
   , fieldDeclaration = textColor (rgb 152 118 170)
   , fieldReference = textColor (rgb 152 118 170)
   , annotation = textColor (rgb 187 181 41)
@@ -234,4 +242,56 @@ mark attributes =
   Html.mark
   ( css [ backgroundColor transparent, boxShadow4 inset zero (em -0.6) goodRxYellow ]
   ::attributes
+  )
+
+
+syntaxHighlightedCodeBlock : Language -> Dict Int LineEmphasis -> Dict Int (List ColumnEmphasis) -> String -> Html msg
+syntaxHighlightedCodeBlock language lineEmphases columnEmphases source =
+  Result.withDefault (text "Error Parsing Source")
+  ( let
+      parser : String -> Result Parser.Error Block
+      parser =
+        case language of
+          Go -> Language.go
+          Kotlin -> Language.kotlin
+          Python -> Language.python
+          Swift -> Language.swift
+          TypeScript -> Language.typeScript
+    in
+    Result.map
+    ( \block ->
+      let
+        lineEmhasizedBlock : Block
+        lineEmhasizedBlock =
+          Dict.foldl
+          ( \line lineEm accumBlock ->
+            Line.emphasizeLines lineEm line (line+1) accumBlock
+          )
+          block
+          lineEmphases
+
+        fullyEmphasizedBlock : Block
+        fullyEmphasizedBlock =
+          Dict.foldl
+          ( \line colEms accumBlock ->
+            Line.emphasizeColumns colEms line accumBlock
+          )
+          lineEmhasizedBlock
+          columnEmphases
+
+        codeBlock : Html msg
+        codeBlock = SyntaxHighlight.toBlockHtml goodRxSyntaxTheme (Just 1) fullyEmphasizedBlock
+
+        emptyPlaceholder : Html msg
+        emptyPlaceholder = div [ css [ display none ] ] []
+      in
+      div []
+      [ if language == Go then codeBlock else emptyPlaceholder
+      , if language == Kotlin then codeBlock else emptyPlaceholder
+      , if language == Python then codeBlock else emptyPlaceholder
+      , if language == Swift then codeBlock else emptyPlaceholder
+      , if language == TypeScript then codeBlock else emptyPlaceholder
+      ]
+    )
+    ( parser (String.trim source) )
   )

@@ -3,21 +3,23 @@ module Deck.Slide.Template exposing (..)
 import Css exposing
   ( Color, Style
   -- Container
-  , borderTop3, bottom, display, height, left, margin, margin4, padding2
-  , position, right, top, width
+  , borderTop3, bottom, display, height, left, margin, margin4
+  , padding2, position, right, top, width
   -- Content
   , backgroundColor, color, fontSize, fontWeight, verticalAlign
-  -- Sizes
-  , em, px, vw, zero
-  -- Positions
+  -- Units
+  , em, vw, zero
+  -- Alignments & Positions
   , absolute
   -- Other values
   , inlineBlock, middle, normal, solid
   )
 import Deck.Common exposing (Model, Msg, SlideModel)
 import Deck.Slide.Common exposing (..)
-import Deck.Slide.Graphics exposing (goodRxLogo, goodRxPoint, numberedGoodRxPoint)
-import Html.Styled exposing (Attribute, Html, div, footer, h1, h2, text)
+import Deck.Slide.Graphics exposing
+  ( goodRxLogo, goodRxPoint, numberedGoodRxPoint )
+import Html.Styled exposing
+  ( Attribute, Html, div, footer, h1, h2, text )
 import Svg.Styled.Attributes exposing (css)
 
 

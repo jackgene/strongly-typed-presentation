@@ -7,9 +7,9 @@ import Css exposing
   , height, margin, width, overflow, position
   -- Content
   , backgroundColor, color, fontSize
-  -- Sizes
+  -- Units
   , auto, pct, vw
-  -- Positions
+  -- Alignments & Positions
   , absolute, relative
   -- Other values
   , hidden, rgb
@@ -18,14 +18,13 @@ import Deck.Common exposing (Model, Msg, Navigation, Slide(Slide), SlideModel)
 import Deck.Slide.Common exposing (UnindexedSlideModel, goodRxBlack, goodRxOffWhite, paragraphFontFamily)
 import Deck.Slide.QuestionAnswer as QuestionAnswer
 import Deck.Slide.Cover as Cover
-import Deck.Slide.PollJSvsTS as PollJSvsTS
-import Deck.Slide.PollQuestion as PollQuestion
+import Deck.Slide.AudiencePoll as AudiencePoll
+import Deck.Slide.SectionCover as SectionCover
 import Deck.Slide.Introduction as Introduction
-import Deck.Slide.CommonDefinitions as CommonDefinitions
-import Deck.Slide.OurDefinition as OurDefinition
-import Deck.Slide.PreventableErrors as PreventableErrors
-import Deck.Slide.ListOfPreventableErrors as ListOfPreventableErrors
-import Deck.Slide.QualitySoftware as QualitySoftware
+import Deck.Slide.TypeSystemProperties as TypeSystemProperties
+import Deck.Slide.TypeSafety as TypeSafety
+import Deck.Slide.NullSafety as NullSafety
+import Deck.Slide.CheckedErrorHandling as CheckedErrorHandling
 import Html.Styled exposing (Html, div, node, text)
 import Html.Styled.Attributes exposing (css, type_)
 
@@ -75,16 +74,40 @@ indexSlide index unindexedSlide =
 slidesList : List Slide
 slidesList =
   List.indexedMap indexSlide
-  [ Cover.slide
-  , PollQuestion.slide, PollJSvsTS.slide
-  , Introduction.slide, CommonDefinitions.slide, OurDefinition.slide
+  [ Cover.cover
+  , AudiencePoll.poll, AudiencePoll.jsVsTs
+
+  -- Introduction
+  , SectionCover.introduction
+  , Introduction.commonDefinitions
+  , Introduction.ourDefinition
+  , Introduction.outOfScope
   -- TODO problems that cannot be caught by the type system
-  , PreventableErrors.slide
-  , ListOfPreventableErrors.slide Nothing
-  -- TODO Null, Arrays, StackOverflow etc
-  , QualitySoftware.slide
+
+  -- Type System Properties
+  , SectionCover.typeSystemProperties
+  , TypeSystemProperties.tableOfContent Nothing
+  , TypeSystemProperties.methodology
+  , TypeSystemProperties.tableOfContent (Just 0)
+  , TypeSystemProperties.tableOfContent (Just 1)
+  , TypeSafety.safeTypeScript
+  , TypeSafety.invalidSafeTypeScript
+  , TypeSafety.safePython
+  , TypeSafety.invalidSafePython
+  , TypeSafety.safeGo
+  , TypeSafety.invalidSafeGo
+  , TypeSystemProperties.tableOfContent (Just 2)
+  , TypeSystemProperties.tableOfContent (Just 3)
+  , TypeSystemProperties.tableOfContent (Just 4)
+  , TypeSystemProperties.tableOfContent (Just 5)
+  , TypeSystemProperties.tableOfContent (Just 6)
+  , TypeSystemProperties.tableOfContent (Just 7)
+  , TypeSystemProperties.tableOfContent (Just 8)
+  , SectionCover.conclusion
   -- TODO strong typing + unit testing
   -- TODO pie charts of languages, and errors prevented
+  -- Q & A
+  , SectionCover.questions
   , QuestionAnswer.slide
   ]
 
@@ -142,7 +165,7 @@ withinIndexRange slides desiredIndex =
 
 slideFromLocationHash : String -> Slide
 slideFromLocationHash hash =
-  Maybe.withDefault (indexSlide 0 Cover.slide)
+  Maybe.withDefault (indexSlide 0 Cover.cover)
   ( Maybe.andThen
     ( \parsedIndex -> Array.get (withinIndexRange slides parsedIndex) slides )
     ( Result.toMaybe

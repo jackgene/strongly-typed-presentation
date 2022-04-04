@@ -1,14 +1,13 @@
-module Deck.Slide.Cover exposing (slide)
+module Deck.Slide.Cover exposing (cover)
 
 import Css exposing
-  (
   -- Container
-    left, position, top, width, margin, margin2
+  ( left, position, top, width, margin, margin2
   -- Content
   , color, fontSize, fontWeight
-  -- Sizes
+  -- Units
   , em, vw, zero
-  -- Positions
+  -- Alignments & Positions
   , absolute
   -- Other values
   , normal
@@ -19,8 +18,8 @@ import Html.Styled exposing (Html, br, div, h1, h2, p, text)
 import Html.Styled.Attributes exposing (css)
 
 
-slide : UnindexedSlideModel
-slide =
+cover : UnindexedSlideModel
+cover =
   { baseSlideModel
   | view =
     ( \_ _ ->
