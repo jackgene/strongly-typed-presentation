@@ -1,8 +1,19 @@
-module Deck.Slide.Introduction exposing (commonDefinitions, ourDefinition, outOfScope)
+module Deck.Slide.Introduction exposing
+  ( commonDefinitions, ourDefinition, outOfScope, inScope )
 
+import Css exposing
+  ( Style
+  -- Container
+  , float, width
+  -- Units
+  , pct
+  -- Other values
+  , left
+  )
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Template exposing (standardSlideView)
 import Html.Styled exposing (Html, b, div, p, text, ul)
+import Html.Styled.Attributes exposing (css)
 
 
 -- Constants
@@ -83,6 +94,36 @@ outOfScope =
               , text " - e.g., application background is the wrong color, incorrect form validation"
               ]
             ]
+          ]
+        ]
+      )
+    )
+  }
+
+
+inScope : UnindexedSlideModel
+inScope =
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "Errors That A Strong Type System Can Prevent"
+      ( let
+          listStyle : Style
+          listStyle = Css.batch [ width (pct 50), float left ]
+        in
+        div []
+        [ p []
+          [ text "The following are some classes of errors a type system can prevent:"
+          , ul [] [ li [ css [ listStyle ] ] [ text "Memory Leaks & Buffer Overflows" ] ]
+          , ul [] [ li [ css [ listStyle ] ] [ text "Type Mismatches" ] ]
+          , ul [] [ li [ css [ listStyle ] ] [ text "Null Pointer Dereference" ] ]
+          , ul [] [ li [ css [ listStyle ] ] [ text "Unhandled General Errors" ] ]
+          , ul [] [ li [ css [ listStyle ] ] [ text "Type Conversion Failure" ] ]
+          , ul [] [ li [ css [ listStyle ] ] [ text "Out Of Bounds Array Access" ] ]
+          , ul [] [ li [ css [ listStyle ] ] [ text "Inexhaustive Matches" ] ]
+          , ul [] [ li [ css [ listStyle ] ] [ text "Unintended State Mutation" ] ]
+          , ul [] [ li [ css [ listStyle ] ] [ text "Race Conditions" ] ]
           ]
         ]
       )
