@@ -1,0 +1,193 @@
+module Deck.Slide.SyntaxHighlight exposing (..)
+
+import Css exposing
+  ( Style
+  -- Container
+  , border3, display, left, marginTop, padding2, position, right, top
+  -- Content
+  , backgroundColor, color, fontSize, fontWeight, opacity
+  -- Units
+  , em, int, num, vw
+  -- Alignments & Positions
+  , absolute
+  -- Other values
+  , inlineBlock, none, relative, rgb, rgba, solid
+  )
+import Css.Transitions exposing (easeInOut, transition)
+import Deck.Slide.Common exposing (..)
+import Deck.Slide.Graphics exposing
+  ( languageGoLogo, languageKotlinLogo, languagePythonLogo, languageSwiftLogo
+  , languageTypeScriptLogo
+  )
+import Dict exposing (Dict)
+import Html.Styled exposing (Attribute, Html, div, text)
+import Parser
+import Svg.Styled exposing (Svg)
+import Svg.Styled.Attributes exposing (css)
+import SyntaxHighlight
+import SyntaxHighlight.Language as Language
+import SyntaxHighlight.Line as Line
+import SyntaxHighlight.Model exposing
+  ( Block, Line, Theme
+  , ColumnEmphasis, ColumnEmphasisType(..), LineEmphasis(..)
+  )
+import SyntaxHighlight.Theme.Common exposing
+  ( bold, noEmphasis, noStyle, squigglyUnderline, strikeThrough, textColor )
+
+
+-- Constants
+goodRxSyntaxTheme : Theme
+goodRxSyntaxTheme =
+  let
+    keyword : Style
+    keyword = textColor goodRxBlue
+  in
+  { default = Css.batch [ noEmphasis goodRxBlack goodRxLightGray6, codeFontFamily ]
+  , selection = backgroundColor goodRxLightGray3
+  , addition = backgroundColor goodRxLightGreen1
+  , deletion = strikeThrough (rgba 240 0 0 0.5) (backgroundColor goodRxLightRed1)
+  , error = squigglyUnderline (rgba 240 0 0 0.75) noStyle
+  , warning = squigglyUnderline (rgba 216 192 0 0.75) noStyle
+  , comment = Css.batch [ textColor goodRxLightGray3, fontWeight (int 400) ]
+  , namespace = textColor (rgb 175 191 126)
+  , keyword = keyword
+  , declarationKeyword = keyword
+  , builtIn = bold (textColor goodRxDigitalGreen) --keyword
+  , operator = textColor goodRxLightGray2
+  , number = textColor goodRxRed
+  , string = textColor goodRxGreen
+  , literal = keyword
+  , typeDeclaration = noStyle
+  , typeReference = bold (textColor goodRxDigitalOrange)
+  , functionDeclaration = textColor goodRxDigitalRed
+  , functionArgument = noStyle
+  , functionReference = textColor goodRxDigitalRed
+  , fieldDeclaration = textColor (rgb 152 118 170)
+  , fieldReference = textColor (rgb 152 118 170)
+  , annotation = textColor (rgb 187 181 41)
+  , other = Dict.empty
+  , gutter = Css.batch [ noEmphasis goodRxLightGray3 goodRxLightGray5, fontWeight (int 400) ]
+  }
+
+
+-- Model
+type alias CodeBlockError msg =
+  { line : Int
+  , column : Int
+  , content : List (Html msg)
+  }
+
+
+type Language = Go | Kotlin | Python | Swift | TypeScript
+
+
+-- Functions
+syntaxHighlightedCodeBlock : Language -> Dict Int LineEmphasis -> Dict Int (List ColumnEmphasis) -> Maybe (CodeBlockError msg) -> String -> Html msg
+syntaxHighlightedCodeBlock language lineEmphases columnEmphases maybeError source =
+  Result.withDefault (text "Error Parsing Source")
+  ( let
+      parser : String -> Result Parser.Error Block
+      parser =
+        case language of
+          Go -> Language.go
+          Kotlin -> Language.kotlin
+          Python -> Language.python
+          Swift -> Language.swift
+          TypeScript -> Language.typeScript
+    in
+    Result.map
+    ( \block ->
+      let
+        lineEmhasizedBlock : Block
+        lineEmhasizedBlock =
+          Dict.foldl
+          ( \line lineEm accumBlock ->
+            Line.emphasizeLines lineEm line (line+1) accumBlock
+          )
+          block
+          lineEmphases
+
+        fullyEmphasizedBlock : Block
+        fullyEmphasizedBlock =
+          Dict.foldl
+          ( \line colEms accumBlock ->
+            Line.emphasizeColumns colEms line accumBlock
+          )
+          lineEmhasizedBlock
+          columnEmphases
+
+        codeBlock : Html msg
+        codeBlock = SyntaxHighlight.toBlockHtml goodRxSyntaxTheme (Just 1) fullyEmphasizedBlock
+
+        emptyPlaceholder : Html msg
+        emptyPlaceholder = div [ css [ display none ] ] []
+
+        codeFontSizeVw : Float
+        codeFontSizeVw = 1.935
+
+        languageLogo : Svg msg
+        languageLogo =
+          case language of
+            Go -> languageGoLogo
+            Kotlin -> languageKotlinLogo
+            Python -> languagePythonLogo
+            Swift -> languageSwiftLogo
+            TypeScript -> languageTypeScriptLogo
+      in
+      div
+      [ css [ position relative, marginTop (em -0.75), fontSize (vw codeFontSizeVw) ] ]
+      [ if language == Go then codeBlock else emptyPlaceholder
+      , if language == Kotlin then codeBlock else emptyPlaceholder
+      , if language == Python then codeBlock else emptyPlaceholder
+      , if language == Swift then codeBlock else emptyPlaceholder
+      , if language == TypeScript then codeBlock else emptyPlaceholder
+      , div
+        [ css
+          [ position absolute, top (em 0.25), right (em 0.5), opacity (num 0.75) ]
+        ]
+        [ languageLogo ]
+      , ( case maybeError of
+            Nothing -> div [ css [ opacity (num 0) ] ] []
+            Just {line, column, content} ->
+              div
+              [ css
+                [ display inlineBlock, position absolute
+                , top (vw (codeFontSizeVw * 1.25 * (toFloat line + 1) + 0.5))
+                , left (vw (codeFontSizeVw * 0.6125 * (toFloat column) + 5))
+                , padding2 (em 0.0625) (em 0.125), border3 (em 0.1) solid goodRxDigitalRed
+                , fontSize (em 0.8), color goodRxDigitalRed, backgroundColor goodRxLightRed2
+                , transition
+                  [ Css.Transitions.opacity3 transitionDurationMs (transitionDurationMs / 2) easeInOut ]
+                ]
+              ]
+              content
+        )
+      ]
+    )
+    ( parser (String.trim source) )
+  )
+
+
+syntaxHighlightedCodeSnippet : Language -> String -> Html msg
+syntaxHighlightedCodeSnippet language source =
+  Result.withDefault (text "Error Parsing Source")
+  ( let
+      parser : String -> Result Parser.Error Block -- TODO line parser in syntax highlight library? This or the next TODO
+      parser =
+        case language of
+          Go -> Language.go
+          Kotlin -> Language.kotlin
+          Python -> Language.python
+          Swift -> Language.swift
+          TypeScript -> Language.typeScript
+    in
+    Result.map
+    ( \block ->
+      SyntaxHighlight.toInlineHtml goodRxSyntaxTheme
+      ( Maybe.withDefault
+        ( Line [] Nothing [] ) -- TODO make empty line a constant in the syntax highlight library
+        ( List.head block )
+      )
+    )
+    ( parser (String.trim source) )
+  )
