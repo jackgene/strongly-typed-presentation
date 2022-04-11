@@ -1,4 +1,4 @@
-module Deck.Slide.NullSafety exposing (introduction)
+module Deck.Slide.MemorySafety exposing (slide)
 
 import Css exposing
   (
@@ -25,16 +25,16 @@ title = TypeSystemProperties.title ++ ": Null Safety"
 
 
 -- Slides
-introduction : UnindexedSlideModel
-introduction =
+slide : UnindexedSlideModel
+slide =
   { baseSlideModel
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Prevents Null Pointer Dereferences"
+      "Prevents Memory Leaks And Buffer Overflows"
       ( div []
         [ p []
-          [ text "TODO" ]
+          [ text "TODO all language have GC, bounds-checked arrays. Go + Swift has unsafe package" ]
         ]
       )
     )

@@ -23,6 +23,7 @@ import Deck.Slide.AudiencePoll as AudiencePoll
 import Deck.Slide.SectionCover as SectionCover
 import Deck.Slide.Introduction as Introduction
 import Deck.Slide.TypeSystemProperties as TypeSystemProperties
+import Deck.Slide.MemorySafety as MemorySafety
 import Deck.Slide.TypeSafety as TypeSafety
 import Deck.Slide.NullSafety as NullSafety
 import Deck.Slide.CheckedErrorHandling as CheckedErrorHandling
@@ -53,27 +54,36 @@ slidesList =
   , Introduction.commonDefinitions
   , Introduction.ourDefinition
   , Introduction.outOfScope
-  -- TODO problems that cannot be caught by the type system
+  , Introduction.inScope
 
   -- Type System Properties
   , SectionCover.typeSystemProperties
   , TypeSystemProperties.tableOfContent Nothing
   , TypeSystemProperties.methodology
   , TypeSystemProperties.tableOfContent (Just 0)
+  , MemorySafety.slide
   , TypeSystemProperties.tableOfContent (Just 1)
-  , TypeSafety.safeTypeScript
-  , TypeSafety.invalidSafeTypeScript
-  , TypeSafety.safePython
-  , TypeSafety.invalidSafePython
+  , TypeSafety.introduction
   , TypeSafety.safeGo
   , TypeSafety.invalidSafeGo
+  , TypeSafety.unsafeGo
+  , TypeSafety.safePython
+  , TypeSafety.invalidSafePython
+  , TypeSafety.unsafePython
+  , TypeSafety.safeTypeScript
+  , TypeSafety.invalidSafeTypeScript
+  , TypeSafety.safeKotlin
+  , TypeSafety.safeSwift
   , TypeSystemProperties.tableOfContent (Just 2)
+  , NullSafety.introduction
   , TypeSystemProperties.tableOfContent (Just 3)
+  , CheckedErrorHandling.introduction
   , TypeSystemProperties.tableOfContent (Just 4)
   , TypeSystemProperties.tableOfContent (Just 5)
   , TypeSystemProperties.tableOfContent (Just 6)
   , TypeSystemProperties.tableOfContent (Just 7)
   , TypeSystemProperties.tableOfContent (Just 8)
+  , TypeSystemProperties.tableOfContent (Just 9)
   , SectionCover.conclusion
   -- TODO strong typing + unit testing
   -- TODO pie charts of languages, and errors prevented

@@ -19,5 +19,23 @@ import SyntaxHighlight.Model exposing
   ( ColumnEmphasis, ColumnEmphasisType(..), LineEmphasis(..) )
 
 
+-- Constants
 title : String
 title = TypeSystemProperties.title ++ ": Checked Error Handling"
+
+
+-- Slides
+introduction : UnindexedSlideModel
+introduction =
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "Prevents Unhandled General Errors"
+      ( div []
+        [ p []
+          [ text "TODO" ]
+        ]
+      )
+    )
+  }
