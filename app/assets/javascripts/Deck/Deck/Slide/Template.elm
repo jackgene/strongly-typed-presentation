@@ -1,9 +1,8 @@
 module Deck.Slide.Template exposing (..)
 
 import Css exposing
-  ( Color, Style
   -- Container
-  , borderTop3, bottom, display, height, left, margin, margin4
+  ( borderTop3, bottom, display, height, left, margin, margin4
   , padding2, position, right, top, width
   -- Content
   , backgroundColor, color, fontSize, fontWeight, verticalAlign
@@ -14,16 +13,14 @@ import Css exposing
   -- Other values
   , inlineBlock, middle, normal, solid
   )
-import Deck.Common exposing (Model, Msg, SlideModel)
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Graphics exposing
   ( goodRxLogo, goodRxPoint, numberedGoodRxPoint )
-import Html.Styled exposing
-  ( Attribute, Html, div, footer, h1, h2, text )
+import Html.Styled exposing (Html, div, footer, h1, h2, text)
 import Svg.Styled.Attributes exposing (css)
 
 
-sectionCoverSlideView : Int -> String -> Html Msg
+sectionCoverSlideView : Int -> String -> Html msg
 sectionCoverSlideView number title =
   div [ css [ backgroundColor goodRxLightYellow2 ] ]
   [ goodRxPoint
@@ -46,7 +43,7 @@ sectionCoverSlideView number title =
   ]
 
 
-standardSlideView : Int -> String -> String -> Html Msg -> Html Msg
+standardSlideView : Int -> String -> String -> Html msg -> Html msg
 standardSlideView page heading subheading content =
   div []
   [ h1 [ css [ headerStyle ] ] [ text heading ]
