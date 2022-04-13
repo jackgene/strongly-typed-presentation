@@ -14,7 +14,7 @@ introduction =
 typeSystemProperties : UnindexedSlideModel
 typeSystemProperties =
   { baseSlideModel
-  | view = ( \_ _ -> sectionCoverSlideView 2 "Type-Checker Preventable Errors" )
+  | view = ( \_ _ -> sectionCoverSlideView 2 "Type System Properties" )
   }
 
 
