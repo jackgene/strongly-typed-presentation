@@ -62,7 +62,7 @@ standardSlideView page heading subheading content =
       [ goodRxLogo
       , div [ css [ display inlineBlock, position absolute, right zero ] ]
         [ text "What Does It Mean for a Programming Language to Be Strongly Typed?"
-        , numberedGoodRxPoint page 50
+        , numberedGoodRxPoint (toString page) 50
           [ css [ width (vw 2.5), margin4 zero zero (em 0.1) (em 0.4), verticalAlign middle ] ]
         ]
       ]

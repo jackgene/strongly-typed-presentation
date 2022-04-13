@@ -2,22 +2,22 @@ module Deck.Slide.TypeSystemProperties exposing (title, tableOfContent, methodol
 
 import Css exposing
   -- Container
-  ( display, margin2, transform, width
+  ( borderBottom3, borderCollapse, display, margin2, transform, width
   -- Content
-  , opacity, verticalAlign
+  , opacity, textAlign, verticalAlign
   -- Units
-  , em, vw, zero
+  , em, pct, vw, zero
   -- Alignments & Positions
   , middle
   -- Transforms
   , translateY
   -- Other values
-  , inlineBlock, num
+  , auto, collapse, inlineBlock, left, num, solid
   )
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Graphics exposing (numberedGoodRxPoint)
 import Deck.Slide.Template exposing (standardSlideView)
-import Html.Styled exposing (Html, br, div, text)
+import Html.Styled exposing (Html, text, div, p, table, td, th, tr)
 import Svg.Styled.Attributes exposing (css)
 
 
@@ -26,9 +26,8 @@ title : String
 title = "Type System Properties"
 
 
--- TODO Encapsulation
-errorKinds : List String
-errorKinds =
+typeSystemProperties : List String
+typeSystemProperties =
   [ "Memory Safety" -- "Memory Leaks, Buffer Overlow"
   , "Type Safety" -- "Errors Related to Type Mismatches"
   , "Null Safety"-- "Null Pointer Dereference"
@@ -77,16 +76,21 @@ tableOfContent maybeHighlightedIndex =
                 )
               ]
             ]
-            [ numberedGoodRxPoint (idx + 1) 64
+            [ numberedGoodRxPoint (toString (idx + 1)) 64
               [ css [ width (vw 5), margin2 (em 0.2) (em 0.5), verticalAlign middle ] ]
             , text errorKind
             ]
           )
-          errorKinds
+          typeSystemProperties
         )
       )
     )
   }
+
+
+scoreView : String -> Html msg
+scoreView score =
+  numberedGoodRxPoint score 48 [ css [ width (vw 4), margin2 (em 0.2) (em 0.5), verticalAlign middle ] ]
 
 
 methodology : UnindexedSlideModel
@@ -96,6 +100,39 @@ methodology =
     ( \page _ ->
       standardSlideView page title
       "Analysis of Languages Used at GoodRx"
-      ( div [] [] )
+      ( div []
+        [ p []
+          [ text "This talk goes through each of the type system properties "
+          , text "and evaluates if they apply to the languages used at GoodRx. "
+          , text "For each language & property, a lower and upper-bound score is assigned as follows:"
+          ]
+        , table [ css [ width (pct 96), margin2 zero auto, borderCollapse collapse ] ]
+          [ tr [ css [ subHeaderStyle ] ]
+            [ th [ css [ width (pct 12), borderBottom3 (vw 0.1) solid goodRxBlack ] ] [ text "Score" ]
+            , th
+              [ css [ width (pct 44), borderBottom3 (vw 0.1) solid goodRxBlack, textAlign left ] ]
+              [ text "Upper" ]
+            , th
+              [ css [ width (pct 44), borderBottom3 (vw 0.1) solid goodRxBlack, textAlign left ] ]
+              [ text "Lower" ]
+            ]
+          , tr []
+            [ th [] [ scoreView "1.0" ]
+            , td [] [ text "Built-in" ]
+            , td [] [ text "Impossible to Defeat" ]
+            ]
+          , tr []
+            [ th [] [ scoreView "0.5" ]
+            , td [] [ text "Missing but Can Be Implemented" ]
+            , td [] [ text "Difficult to Defeat" ]
+            ]
+          , tr []
+            [ th [] [ scoreView "0.0" ]
+            , td [] [ text "Impossible to Implement" ]
+            , td [] [ text "Easy to Defeat" ]
+            ]
+          ]
+        ]
+      )
     )
   }

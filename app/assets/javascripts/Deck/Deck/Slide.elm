@@ -51,7 +51,8 @@ slidesList =
 
   -- Introduction
   , SectionCover.introduction
-  , Introduction.commonDefinitions
+  , Introduction.wikipediaDefinitions
+  , Introduction.typefulDefinitions
   , Introduction.ourDefinition
   , Introduction.outOfScope
   , Introduction.inScope
@@ -73,7 +74,9 @@ slidesList =
   , TypeSafety.safeTypeScript
   , TypeSafety.invalidSafeTypeScript
   , TypeSafety.safeKotlin
+  , TypeSafety.invalidSafeKotlin
   , TypeSafety.safeSwift
+  , TypeSafety.invalidSafeSwift
   , TypeSystemProperties.tableOfContent (Just 2)
   , NullSafety.introduction
   , TypeSystemProperties.tableOfContent (Just 3)

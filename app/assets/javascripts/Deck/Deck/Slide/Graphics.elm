@@ -73,7 +73,7 @@ goodRxPoint =
   [ circle [ cx "-6", cy "45", r "56", css [ Css.fill goodRxYellow ] ] [] ]
 
 
-numberedGoodRxPoint : Int -> Float -> List (Attribute msg) -> Svg msg
+numberedGoodRxPoint : String -> Float -> List (Attribute msg) -> Svg msg
 numberedGoodRxPoint num fontSizePct attributes =
   svg
   ( viewBox "-50 -50 100 100" :: attributes )
@@ -82,7 +82,7 @@ numberedGoodRxPoint num fontSizePct attributes =
     [ alignmentBaseline "middle", textAnchor "middle", y "5"
     , css [ numberFontFamily, fontSize (px fontSizePct) ]
     ]
-    [ text (toString num) ]
+    [ text num ]
   ]
 
 

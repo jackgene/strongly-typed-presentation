@@ -3,8 +3,8 @@ module Deck.Slide.TypeSafety exposing
   , safeGo, invalidSafeGo, unsafeGo
   , safePython, invalidSafePython, unsafePython
   , safeTypeScript, invalidSafeTypeScript
-  , safeKotlin
-  , safeSwift
+  , safeKotlin, invalidSafeKotlin
+  , safeSwift, invalidSafeSwift
   )
 
 import Css exposing
@@ -207,7 +207,7 @@ invalidSafePython =
       ( Dict.fromList [ (3, Deletion), (4, Addition) ] )
       ( Dict.fromList [ (4, [ ColumnEmphasis Error 26 4 ] ) ] )
       ( Just
-        ( CodeBlockError 4 6
+        ( CodeBlockError 4 4
           [ div []
             [ text """Argument of type "Literal['42']" cannot be assigned to parameter "num1" of type "float" in function "multiply" """ ]
           ]
@@ -275,7 +275,7 @@ product = multiply([1,2,3], {"key":"value"})
       "Python Can Be Type Safe"
       ( div []
         [ p []
-          [ text "Python typing is optional, and is incredibly easy to defeat. Python type-checkers will happilly allow this:" ]
+          [ text "Python typing is optional, and is incredibly easy to defeat. Python type-checkers will happily allow this:" ]
         , div [ css [ height (vw 15) ] ] [ codeBlock ]
         , p []
           [ text "Which results in a runtime exception. It is up to the programmer to be disciplined about type-checking." ]
@@ -386,6 +386,45 @@ val product: Double = multiply(42.0, 2.718)
   }
 
 
+invalidSafeKotlin : UnindexedSlideModel
+invalidSafeKotlin =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Kotlin
+      ( Dict.fromList [ (2, Deletion), (3, Addition) ] )
+      ( Dict.fromList [ (3, [ ColumnEmphasis Error 31 4,  ColumnEmphasis Error 37 4 ] ) ] )
+      ( Just
+        ( CodeBlockError 3 29
+          [ div []
+            [ text "type mismatch: inferred type is String but Double was expected" ]
+          , div []
+            [ text "the boolean literal does not conform to the expected type Double" ]
+          ]
+        )
+      )
+      """
+fun multiply(num1: Double, num2: Double): Double = num1 * num2
+
+val product: Double = multiply(42.0, 2.718)
+val product: Double = multiply("42", true)
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "Kotlin is Type Safe"
+      ( div []
+        [ p []
+          [ text "Compilation fails if a function is called with non-matching parameter types:" ]
+        , div [] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
 safeSwift : UnindexedSlideModel
 safeSwift =
   let
@@ -410,6 +449,47 @@ let product: Double = multiply(42, 2.718)
           [ text "Function parameters and return values "
           , em [] [ text "must " ]
           , text "have declared types, and must be called with those types:" ]
+        , div [] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
+invalidSafeSwift : UnindexedSlideModel
+invalidSafeSwift =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Swift
+      ( Dict.fromList [ (4, Deletion), (5, Addition) ] )
+      ( Dict.fromList [ (5, [ ColumnEmphasis Error 31 4,  ColumnEmphasis Error 37 4 ] ) ] )
+      ( Just
+        ( CodeBlockError 5 25
+          [ div []
+            [ text "cannot convert value of type 'String' to expected argument type 'Double'" ]
+          , div []
+            [ text "cannot convert value of type 'Bool' to expected argument type 'Double'" ]
+          ]
+        )
+      )
+      """
+func multiply(_ num1: Double, _ num2: Double) -> Double {
+    num1 * num2
+}
+
+let product: Double = multiply(42, 2.718)
+let product: Double = multiply("42", true)
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "Swift is Type Safe"
+      ( div []
+        [ p []
+          [ text "Compilation fails if a function is called with non-matching parameter types:" ]
         , div [] [ codeBlock ]
         ]
       )
