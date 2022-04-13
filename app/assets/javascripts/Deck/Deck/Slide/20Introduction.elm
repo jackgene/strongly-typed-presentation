@@ -1,5 +1,7 @@
 module Deck.Slide.Introduction exposing
-  ( commonDefinitions, ourDefinition, outOfScope, inScope )
+  ( wikipediaDefinitions, typefulDefinitions, ourDefinition
+  , outOfScope, inScope
+  )
 
 import Css exposing
   ( Style
@@ -22,8 +24,8 @@ title = "What is “Strongly Typed”?"
 
 
 -- Slides
-commonDefinitions : UnindexedSlideModel
-commonDefinitions =
+wikipediaDefinitions : UnindexedSlideModel
+wikipediaDefinitions =
   { baseSlideModel
   | view =
     ( \page _ ->
@@ -31,9 +33,37 @@ commonDefinitions =
       "There Are No Formal Definitions of the Term"
       ( div []
         [ p []
-          [ text "Most early examples on Wikipedia are from the 70s, and uses “Strongly Typed” interchangeably with “Statically Typed.”" ]
-        , p []
-          [ text "An example of a modern usage is from Luca Cardelli's 1989 paper “Typeful Programming”:" ]
+          [ text "Looking up “Strongly Typed” in Wikipedia:"
+          , blockquote []
+            [ p []
+              [ text "In computer programming, one of the many ways that programming languages are "
+              , mark [] [ text "colloquially" ]
+              , text " classified is whether the language's type system makes it strongly typed or weakly typed (loosely typed). ..."
+              ]
+            , p [] [ text "..." ]
+            , p []
+              [ text "Generally, a strongly typed language has stricter typing rules at compile time, "
+              , mark [] [ text "which implies that errors and exceptions are more likely to happen during compilation" ]
+              , text ". ..."
+              ]
+            ]
+          ]
+        ]
+      )
+    )
+  }
+
+
+typefulDefinitions : UnindexedSlideModel
+typefulDefinitions =
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "There Are No Formal Definitions of the Term"
+      ( div []
+        [ p []
+          [ text "An example of a definition comes from Luca Cardelli's 1989 paper “Typeful Programming”:" ]
         , blockquote []
           [ text "… Hence, typeful programming advocates static typing, as much as possible, and dynamic typing when necessary; the strict observance of either or both of these techniques leads to "
           , mark [] [ text "strong typing, intended as the absence of unchecked run-time type errors" ]
@@ -54,9 +84,19 @@ ourDefinition =
       "Definition for the Purpose of this Talk"
       ( div []
         [ p []
-          [ text "The strength of a type system describes its ability to prevent runtime errors." ]
+          [ text "The strength of a type system describes its "
+          , mark [] [ text "ability to prevent runtime errors" ]
+          , text "."
+          ]
         , p []
-          [ text "The stronger the type system, the more kinds of errors are detected during type checking, the fewer kinds of unchecked errors are possible during runtime." ]
+          [ text "The stronger the type system, the more kinds of errors are detected during type checking, "
+          , text "the fewer kinds of unchecked errors are possible during runtime."
+          ]
+        , p []
+          [ text "Of note, "
+          , mark [] [ text "“Strongly Typed” does not mean “Statically Typed.”" ]
+          , text " Dynamically Typed languages can be Strongly Typed as well."
+          ]
         ]
       )
     )
@@ -119,7 +159,7 @@ inScope =
           , ul [] [ li [ css [ listStyle ] ] [ text "Type Mismatches" ] ]
           , ul [] [ li [ css [ listStyle ] ] [ text "Null Pointer Dereference" ] ]
           , ul [] [ li [ css [ listStyle ] ] [ text "Unhandled General Errors" ] ]
-          , ul [] [ li [ css [ listStyle ] ] [ text "Type Conversion Failure" ] ]
+          , ul [] [ li [ css [ listStyle ] ] [ text "Type Casting Failure" ] ]
           , ul [] [ li [ css [ listStyle ] ] [ text "Out Of Bounds Array Access" ] ]
           , ul [] [ li [ css [ listStyle ] ] [ text "Inexhaustive Matches" ] ]
           , ul [] [ li [ css [ listStyle ] ] [ text "Unintended State Mutation" ] ]
