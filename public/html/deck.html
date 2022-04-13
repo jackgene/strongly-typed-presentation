@@ -27472,8 +27472,7 @@ var _jackgene$live_deck$Deck_Slide_Graphics$numberedGoodRxPoint = F3(
 						},
 						{
 							ctor: '::',
-							_0: _rtfeldman$elm_css$Svg_Styled$text(
-								_elm_lang$core$Basics$toString(num)),
+							_0: _rtfeldman$elm_css$Svg_Styled$text(num),
 							_1: {ctor: '[]'}
 						}),
 					_1: {ctor: '[]'}
@@ -27894,7 +27893,7 @@ var _jackgene$live_deck$Deck_Slide_Template$standardSlideView = F4(
 															ctor: '::',
 															_0: A3(
 																_jackgene$live_deck$Deck_Slide_Graphics$numberedGoodRxPoint,
-																page,
+																_elm_lang$core$Basics$toString(page),
 																50,
 																{
 																	ctor: '::',
@@ -29900,7 +29899,7 @@ var _jackgene$live_deck$Deck_Slide_SectionCover$typeSystemProperties = _elm_lang
 	{
 		view: F2(
 			function (_p5, _p4) {
-				return A2(_jackgene$live_deck$Deck_Slide_Template$sectionCoverSlideView, 2, 'Type-Checker Preventable Errors');
+				return A2(_jackgene$live_deck$Deck_Slide_Template$sectionCoverSlideView, 2, 'Type System Properties');
 			})
 	});
 var _jackgene$live_deck$Deck_Slide_SectionCover$introduction = _elm_lang$core$Native_Utils.update(
@@ -29912,7 +29911,7 @@ var _jackgene$live_deck$Deck_Slide_SectionCover$introduction = _elm_lang$core$Na
 			})
 	});
 var _jackgene$live_deck$Deck_Slide_Introduction$title = 'What is “Strongly Typed”?';
-var _jackgene$live_deck$Deck_Slide_Introduction$commonDefinitions = _elm_lang$core$Native_Utils.update(
+var _jackgene$live_deck$Deck_Slide_Introduction$wikipediaDefinitions = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
 		view: F2(
@@ -29932,46 +29931,132 @@ var _jackgene$live_deck$Deck_Slide_Introduction$commonDefinitions = _elm_lang$co
 								{ctor: '[]'},
 								{
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Html_Styled$text('Most early examples on Wikipedia are from the 70s, and uses “Strongly Typed” interchangeably with “Statically Typed.”'),
+									_0: _rtfeldman$elm_css$Html_Styled$text('Looking up “Strongly Typed” in Wikipedia:'),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_jackgene$live_deck$Deck_Slide_Common$blockquote,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: A2(
+													_rtfeldman$elm_css$Html_Styled$p,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled$text('In computer programming, one of the many ways that programming languages are '),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_jackgene$live_deck$Deck_Slide_Common$mark,
+																{ctor: '[]'},
+																{
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Html_Styled$text('colloquially'),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled$text(' classified is whether the language\'s type system makes it strongly typed or weakly typed (loosely typed). ...'),
+																_1: {ctor: '[]'}
+															}
+														}
+													}),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_rtfeldman$elm_css$Html_Styled$p,
+														{ctor: '[]'},
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled$text('...'),
+															_1: {ctor: '[]'}
+														}),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_rtfeldman$elm_css$Html_Styled$p,
+															{ctor: '[]'},
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled$text('Generally, a strongly typed language has stricter typing rules at compile time, '),
+																_1: {
+																	ctor: '::',
+																	_0: A2(
+																		_jackgene$live_deck$Deck_Slide_Common$mark,
+																		{ctor: '[]'},
+																		{
+																			ctor: '::',
+																			_0: _rtfeldman$elm_css$Html_Styled$text('which implies that errors and exceptions are more likely to happen during compilation'),
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Html_Styled$text('. ...'),
+																		_1: {ctor: '[]'}
+																	}
+																}
+															}),
+														_1: {ctor: '[]'}
+													}
+												}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {ctor: '[]'}
+						}));
+			})
+	});
+var _jackgene$live_deck$Deck_Slide_Introduction$typefulDefinitions = _elm_lang$core$Native_Utils.update(
+	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+	{
+		view: F2(
+			function (page, _p1) {
+				return A4(
+					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+					page,
+					_jackgene$live_deck$Deck_Slide_Introduction$title,
+					'There Are No Formal Definitions of the Term',
+					A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$p,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled$text('An example of a definition comes from Luca Cardelli\'s 1989 paper “Typeful Programming”:'),
 									_1: {ctor: '[]'}
 								}),
 							_1: {
 								ctor: '::',
 								_0: A2(
-									_rtfeldman$elm_css$Html_Styled$p,
+									_jackgene$live_deck$Deck_Slide_Common$blockquote,
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('An example of a modern usage is from Luca Cardelli\'s 1989 paper “Typeful Programming”:'),
-										_1: {ctor: '[]'}
-									}),
-								_1: {
-									ctor: '::',
-									_0: A2(
-										_jackgene$live_deck$Deck_Slide_Common$blockquote,
-										{ctor: '[]'},
-										{
+										_0: _rtfeldman$elm_css$Html_Styled$text('… Hence, typeful programming advocates static typing, as much as possible, and dynamic typing when necessary; the strict observance of either or both of these techniques leads to '),
+										_1: {
 											ctor: '::',
-											_0: _rtfeldman$elm_css$Html_Styled$text('… Hence, typeful programming advocates static typing, as much as possible, and dynamic typing when necessary; the strict observance of either or both of these techniques leads to '),
+											_0: A2(
+												_jackgene$live_deck$Deck_Slide_Common$mark,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled$text('strong typing, intended as the absence of unchecked run-time type errors'),
+													_1: {ctor: '[]'}
+												}),
 											_1: {
 												ctor: '::',
-												_0: A2(
-													_jackgene$live_deck$Deck_Slide_Common$mark,
-													{ctor: '[]'},
-													{
-														ctor: '::',
-														_0: _rtfeldman$elm_css$Html_Styled$text('strong typing, intended as the absence of unchecked run-time type errors'),
-														_1: {ctor: '[]'}
-													}),
-												_1: {
-													ctor: '::',
-													_0: _rtfeldman$elm_css$Html_Styled$text('. …'),
-													_1: {ctor: '[]'}
-												}
+												_0: _rtfeldman$elm_css$Html_Styled$text('. …'),
+												_1: {ctor: '[]'}
 											}
-										}),
-									_1: {ctor: '[]'}
-								}
+										}
+									}),
+								_1: {ctor: '[]'}
 							}
 						}));
 			})
@@ -29980,7 +30065,7 @@ var _jackgene$live_deck$Deck_Slide_Introduction$ourDefinition = _elm_lang$core$N
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
 		view: F2(
-			function (page, _p1) {
+			function (page, _p2) {
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
@@ -29996,8 +30081,23 @@ var _jackgene$live_deck$Deck_Slide_Introduction$ourDefinition = _elm_lang$core$N
 								{ctor: '[]'},
 								{
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Html_Styled$text('The strength of a type system describes its ability to prevent runtime errors.'),
-									_1: {ctor: '[]'}
+									_0: _rtfeldman$elm_css$Html_Styled$text('The strength of a type system describes its '),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_jackgene$live_deck$Deck_Slide_Common$mark,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text('ability to prevent runtime errors'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled$text('.'),
+											_1: {ctor: '[]'}
+										}
+									}
 								}),
 							_1: {
 								ctor: '::',
@@ -30006,10 +30106,40 @@ var _jackgene$live_deck$Deck_Slide_Introduction$ourDefinition = _elm_lang$core$N
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('The stronger the type system, the more kinds of errors are detected during type checking, the fewer kinds of unchecked errors are possible during runtime.'),
-										_1: {ctor: '[]'}
+										_0: _rtfeldman$elm_css$Html_Styled$text('The stronger the type system, the more kinds of errors are detected during type checking, '),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled$text('the fewer kinds of unchecked errors are possible during runtime.'),
+											_1: {ctor: '[]'}
+										}
 									}),
-								_1: {ctor: '[]'}
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$p,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled$text('Of note, '),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_jackgene$live_deck$Deck_Slide_Common$mark,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled$text('“Strongly Typed” does not mean “Statically Typed.”'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled$text(' Dynamically Typed languages can be Strongly Typed as well.'),
+													_1: {ctor: '[]'}
+												}
+											}
+										}),
+									_1: {ctor: '[]'}
+								}
 							}
 						}));
 			})
@@ -30018,7 +30148,7 @@ var _jackgene$live_deck$Deck_Slide_Introduction$outOfScope = _elm_lang$core$Nati
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
 		view: F2(
-			function (page, _p2) {
+			function (page, _p3) {
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
@@ -30162,7 +30292,7 @@ var _jackgene$live_deck$Deck_Slide_Introduction$inScope = _elm_lang$core$Native_
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
 		view: F2(
-			function (page, _p3) {
+			function (page, _p4) {
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
@@ -30316,7 +30446,7 @@ var _jackgene$live_deck$Deck_Slide_Introduction$inScope = _elm_lang$core$Native_
 																		},
 																		{
 																			ctor: '::',
-																			_0: _rtfeldman$elm_css$Html_Styled$text('Type Conversion Failure'),
+																			_0: _rtfeldman$elm_css$Html_Styled$text('Type Casting Failure'),
 																			_1: {ctor: '[]'}
 																		}),
 																	_1: {ctor: '[]'}
@@ -30441,7 +30571,35 @@ var _jackgene$live_deck$Deck_Slide_Introduction$inScope = _elm_lang$core$Native_
 					}());
 			})
 	});
-var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorKinds = {
+var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreView = function (score) {
+	return A3(
+		_jackgene$live_deck$Deck_Slide_Graphics$numberedGoodRxPoint,
+		score,
+		48,
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+				{
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$width(
+						_rtfeldman$elm_css$Css$vw(4)),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_rtfeldman$elm_css$Css$margin2,
+							_rtfeldman$elm_css$Css$em(0.2),
+							_rtfeldman$elm_css$Css$em(0.5)),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$verticalAlign(_rtfeldman$elm_css$Css$middle),
+							_1: {ctor: '[]'}
+						}
+					}
+				}),
+			_1: {ctor: '[]'}
+		});
+};
+var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = {
 	ctor: '::',
 	_0: 'Memory Safety',
 	_1: {
@@ -30556,7 +30714,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent = functio
 												ctor: '::',
 												_0: A3(
 													_jackgene$live_deck$Deck_Slide_Graphics$numberedGoodRxPoint,
-													idx + 1,
+													_elm_lang$core$Basics$toString(idx + 1),
 													64,
 													{
 														ctor: '::',
@@ -30587,7 +30745,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent = functio
 												}
 											});
 									}),
-								_jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorKinds)));
+								_jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties)));
 				})
 		});
 };
@@ -30604,7 +30762,282 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$methodology = _elm_lang$
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
 						{ctor: '[]'},
-						{ctor: '[]'}));
+						{
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$p,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled$text('This talk goes through each of the type system properties '),
+									_1: {
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('and evaluates if they apply to the languages used at GoodRx. '),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled$text('For each language & property, a lower and upper-bound score is assigned as follows:'),
+											_1: {ctor: '[]'}
+										}
+									}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$table,
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$width(
+													_rtfeldman$elm_css$Css$pct(96)),
+												_1: {
+													ctor: '::',
+													_0: A2(_rtfeldman$elm_css$Css$margin2, _rtfeldman$elm_css$Css$zero, _rtfeldman$elm_css$Css$auto),
+													_1: {
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Css$borderCollapse(_rtfeldman$elm_css$Css$collapse),
+														_1: {ctor: '[]'}
+													}
+												}
+											}),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$tr,
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+													{
+														ctor: '::',
+														_0: _jackgene$live_deck$Deck_Slide_Common$subHeaderStyle,
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: A2(
+													_rtfeldman$elm_css$Html_Styled$th,
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Css$width(
+																	_rtfeldman$elm_css$Css$pct(12)),
+																_1: {
+																	ctor: '::',
+																	_0: A3(
+																		_rtfeldman$elm_css$Css$borderBottom3,
+																		_rtfeldman$elm_css$Css$vw(0.1),
+																		_rtfeldman$elm_css$Css$solid,
+																		_jackgene$live_deck$Deck_Slide_Common$goodRxBlack),
+																	_1: {ctor: '[]'}
+																}
+															}),
+														_1: {ctor: '[]'}
+													},
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled$text('Score'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_rtfeldman$elm_css$Html_Styled$th,
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+																{
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Css$width(
+																		_rtfeldman$elm_css$Css$pct(44)),
+																	_1: {
+																		ctor: '::',
+																		_0: A3(
+																			_rtfeldman$elm_css$Css$borderBottom3,
+																			_rtfeldman$elm_css$Css$vw(0.1),
+																			_rtfeldman$elm_css$Css$solid,
+																			_jackgene$live_deck$Deck_Slide_Common$goodRxBlack),
+																		_1: {
+																			ctor: '::',
+																			_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$left),
+																			_1: {ctor: '[]'}
+																		}
+																	}
+																}),
+															_1: {ctor: '[]'}
+														},
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled$text('Upper'),
+															_1: {ctor: '[]'}
+														}),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_rtfeldman$elm_css$Html_Styled$th,
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+																	{
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Css$width(
+																			_rtfeldman$elm_css$Css$pct(44)),
+																		_1: {
+																			ctor: '::',
+																			_0: A3(
+																				_rtfeldman$elm_css$Css$borderBottom3,
+																				_rtfeldman$elm_css$Css$vw(0.1),
+																				_rtfeldman$elm_css$Css$solid,
+																				_jackgene$live_deck$Deck_Slide_Common$goodRxBlack),
+																			_1: {
+																				ctor: '::',
+																				_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$left),
+																				_1: {ctor: '[]'}
+																			}
+																		}
+																	}),
+																_1: {ctor: '[]'}
+															},
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled$text('Lower'),
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													}
+												}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_rtfeldman$elm_css$Html_Styled$tr,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: A2(
+														_rtfeldman$elm_css$Html_Styled$th,
+														{ctor: '[]'},
+														{
+															ctor: '::',
+															_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreView('1.0'),
+															_1: {ctor: '[]'}
+														}),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_rtfeldman$elm_css$Html_Styled$td,
+															{ctor: '[]'},
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled$text('Built-in'),
+																_1: {ctor: '[]'}
+															}),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_rtfeldman$elm_css$Html_Styled$td,
+																{ctor: '[]'},
+																{
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Html_Styled$text('Impossible to Defeat'),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {ctor: '[]'}
+														}
+													}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_rtfeldman$elm_css$Html_Styled$tr,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: A2(
+															_rtfeldman$elm_css$Html_Styled$th,
+															{ctor: '[]'},
+															{
+																ctor: '::',
+																_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreView('0.5'),
+																_1: {ctor: '[]'}
+															}),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_rtfeldman$elm_css$Html_Styled$td,
+																{ctor: '[]'},
+																{
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Html_Styled$text('Missing but Can Be Implemented'),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_rtfeldman$elm_css$Html_Styled$td,
+																	{ctor: '[]'},
+																	{
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Html_Styled$text('Difficult to Defeat'),
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {ctor: '[]'}
+															}
+														}
+													}),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_rtfeldman$elm_css$Html_Styled$tr,
+														{ctor: '[]'},
+														{
+															ctor: '::',
+															_0: A2(
+																_rtfeldman$elm_css$Html_Styled$th,
+																{ctor: '[]'},
+																{
+																	ctor: '::',
+																	_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreView('0.0'),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_rtfeldman$elm_css$Html_Styled$td,
+																	{ctor: '[]'},
+																	{
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Html_Styled$text('Impossible to Implement'),
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {
+																	ctor: '::',
+																	_0: A2(
+																		_rtfeldman$elm_css$Html_Styled$td,
+																		{ctor: '[]'},
+																		{
+																			ctor: '::',
+																			_0: _rtfeldman$elm_css$Html_Styled$text('Easy to Defeat'),
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}),
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}),
+								_1: {ctor: '[]'}
+							}
+						}));
 			})
 	});
 var _jackgene$live_deck$SyntaxHighlight_Model$Line = F3(
@@ -37005,7 +37438,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafePython = function () {
 			A3(
 				_jackgene$live_deck$Deck_Slide_SyntaxHighlight$CodeBlockError,
 				4,
-				6,
+				4,
 				{
 					ctor: '::',
 					_0: A2(
@@ -37156,7 +37589,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePython = function () {
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Python typing is optional, and is incredibly easy to defeat. Python type-checkers will happilly allow this:'),
+										_0: _rtfeldman$elm_css$Html_Styled$text('Python typing is optional, and is incredibly easy to defeat. Python type-checkers will happily allow this:'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -37404,13 +37837,113 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$safeKotlin = function () {
 				})
 		});
 }();
+var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeKotlin = function () {
+	var codeBlock = A5(
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Kotlin,
+		_elm_lang$core$Dict$fromList(
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 2, _1: _jackgene$live_deck$SyntaxHighlight_Model$Deletion},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 3, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
+					_1: {ctor: '[]'}
+				}
+			}),
+		_elm_lang$core$Dict$fromList(
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: A3(_jackgene$live_deck$SyntaxHighlight_Model$ColumnEmphasis, _jackgene$live_deck$SyntaxHighlight_Model$Error, 31, 4),
+						_1: {
+							ctor: '::',
+							_0: A3(_jackgene$live_deck$SyntaxHighlight_Model$ColumnEmphasis, _jackgene$live_deck$SyntaxHighlight_Model$Error, 37, 4),
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				_1: {ctor: '[]'}
+			}),
+		_elm_lang$core$Maybe$Just(
+			A3(
+				_jackgene$live_deck$Deck_Slide_SyntaxHighlight$CodeBlockError,
+				3,
+				29,
+				{
+					ctor: '::',
+					_0: A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Html_Styled$text('type mismatch: inferred type is String but Double was expected'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Html_Styled$text('the boolean literal does not conform to the expected type Double'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				})),
+		'\nfun multiply(num1: Double, num2: Double): Double = num1 * num2\n\nval product: Double = multiply(42.0, 2.718)\nval product: Double = multiply(\"42\", true)\n');
+	return _elm_lang$core$Native_Utils.update(
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+		{
+			view: F2(
+				function (page, _p10) {
+					return A4(
+						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+						page,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						'Kotlin is Type Safe',
+						A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('Compilation fails if a function is called with non-matching parameter types:'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$div,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: codeBlock,
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}));
+				})
+		});
+}();
 var _jackgene$live_deck$Deck_Slide_TypeSafety$safeSwift = function () {
 	var codeBlock = A5(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$Swift, _elm_lang$core$Dict$empty, _elm_lang$core$Dict$empty, _elm_lang$core$Maybe$Nothing, '\nfunc multiply(_ num1: Double, _ num2: Double) -> Double {\n    num1 * num2\n}\n\nlet product: Double = multiply(42, 2.718)\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
 			view: F2(
-				function (page, _p10) {
+				function (page, _p11) {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
@@ -37443,6 +37976,106 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$safeSwift = function () {
 												_1: {ctor: '[]'}
 											}
 										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$div,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: codeBlock,
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}));
+				})
+		});
+}();
+var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeSwift = function () {
+	var codeBlock = A5(
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Swift,
+		_elm_lang$core$Dict$fromList(
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 4, _1: _jackgene$live_deck$SyntaxHighlight_Model$Deletion},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 5, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
+					_1: {ctor: '[]'}
+				}
+			}),
+		_elm_lang$core$Dict$fromList(
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 5,
+					_1: {
+						ctor: '::',
+						_0: A3(_jackgene$live_deck$SyntaxHighlight_Model$ColumnEmphasis, _jackgene$live_deck$SyntaxHighlight_Model$Error, 31, 4),
+						_1: {
+							ctor: '::',
+							_0: A3(_jackgene$live_deck$SyntaxHighlight_Model$ColumnEmphasis, _jackgene$live_deck$SyntaxHighlight_Model$Error, 37, 4),
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				_1: {ctor: '[]'}
+			}),
+		_elm_lang$core$Maybe$Just(
+			A3(
+				_jackgene$live_deck$Deck_Slide_SyntaxHighlight$CodeBlockError,
+				5,
+				25,
+				{
+					ctor: '::',
+					_0: A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Html_Styled$text('cannot convert value of type \'String\' to expected argument type \'Double\''),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Html_Styled$text('cannot convert value of type \'Bool\' to expected argument type \'Double\''),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				})),
+		'\nfunc multiply(_ num1: Double, _ num2: Double) -> Double {\n    num1 * num2\n}\n\nlet product: Double = multiply(42, 2.718)\nlet product: Double = multiply(\"42\", true)\n');
+	return _elm_lang$core$Native_Utils.update(
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+		{
+			view: F2(
+				function (page, _p12) {
+					return A4(
+						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+						page,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						'Swift is Type Safe',
+						A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('Compilation fails if a function is called with non-matching parameter types:'),
+										_1: {ctor: '[]'}
 									}),
 								_1: {
 									ctor: '::',
@@ -37718,117 +38351,129 @@ var _jackgene$live_deck$Deck_Slide$slidesList = A2(
 					_0: _jackgene$live_deck$Deck_Slide_SectionCover$introduction,
 					_1: {
 						ctor: '::',
-						_0: _jackgene$live_deck$Deck_Slide_Introduction$commonDefinitions,
+						_0: _jackgene$live_deck$Deck_Slide_Introduction$wikipediaDefinitions,
 						_1: {
 							ctor: '::',
-							_0: _jackgene$live_deck$Deck_Slide_Introduction$ourDefinition,
+							_0: _jackgene$live_deck$Deck_Slide_Introduction$typefulDefinitions,
 							_1: {
 								ctor: '::',
-								_0: _jackgene$live_deck$Deck_Slide_Introduction$outOfScope,
+								_0: _jackgene$live_deck$Deck_Slide_Introduction$ourDefinition,
 								_1: {
 									ctor: '::',
-									_0: _jackgene$live_deck$Deck_Slide_Introduction$inScope,
+									_0: _jackgene$live_deck$Deck_Slide_Introduction$outOfScope,
 									_1: {
 										ctor: '::',
-										_0: _jackgene$live_deck$Deck_Slide_SectionCover$typeSystemProperties,
+										_0: _jackgene$live_deck$Deck_Slide_Introduction$inScope,
 										_1: {
 											ctor: '::',
-											_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(_elm_lang$core$Maybe$Nothing),
+											_0: _jackgene$live_deck$Deck_Slide_SectionCover$typeSystemProperties,
 											_1: {
 												ctor: '::',
-												_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$methodology,
+												_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(_elm_lang$core$Maybe$Nothing),
 												_1: {
 													ctor: '::',
-													_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-														_elm_lang$core$Maybe$Just(0)),
+													_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$methodology,
 													_1: {
 														ctor: '::',
-														_0: _jackgene$live_deck$Deck_Slide_MemorySafety$slide,
+														_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+															_elm_lang$core$Maybe$Just(0)),
 														_1: {
 															ctor: '::',
-															_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																_elm_lang$core$Maybe$Just(1)),
+															_0: _jackgene$live_deck$Deck_Slide_MemorySafety$slide,
 															_1: {
 																ctor: '::',
-																_0: _jackgene$live_deck$Deck_Slide_TypeSafety$introduction,
+																_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																	_elm_lang$core$Maybe$Just(1)),
 																_1: {
 																	ctor: '::',
-																	_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeGo,
+																	_0: _jackgene$live_deck$Deck_Slide_TypeSafety$introduction,
 																	_1: {
 																		ctor: '::',
-																		_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeGo,
+																		_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeGo,
 																		_1: {
 																			ctor: '::',
-																			_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeGo,
+																			_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeGo,
 																			_1: {
 																				ctor: '::',
-																				_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safePython,
+																				_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeGo,
 																				_1: {
 																					ctor: '::',
-																					_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafePython,
+																					_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safePython,
 																					_1: {
 																						ctor: '::',
-																						_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePython,
+																						_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafePython,
 																						_1: {
 																							ctor: '::',
-																							_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeTypeScript,
+																							_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePython,
 																							_1: {
 																								ctor: '::',
-																								_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeTypeScript,
+																								_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeTypeScript,
 																								_1: {
 																									ctor: '::',
-																									_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeKotlin,
+																									_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeTypeScript,
 																									_1: {
 																										ctor: '::',
-																										_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeSwift,
+																										_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeKotlin,
 																										_1: {
 																											ctor: '::',
-																											_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																												_elm_lang$core$Maybe$Just(2)),
+																											_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeKotlin,
 																											_1: {
 																												ctor: '::',
-																												_0: _jackgene$live_deck$Deck_Slide_NullSafety$introduction,
+																												_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeSwift,
 																												_1: {
 																													ctor: '::',
-																													_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																														_elm_lang$core$Maybe$Just(3)),
+																													_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeSwift,
 																													_1: {
 																														ctor: '::',
-																														_0: _jackgene$live_deck$Deck_Slide_CheckedErrorHandling$introduction,
+																														_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																															_elm_lang$core$Maybe$Just(2)),
 																														_1: {
 																															ctor: '::',
-																															_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																_elm_lang$core$Maybe$Just(4)),
+																															_0: _jackgene$live_deck$Deck_Slide_NullSafety$introduction,
 																															_1: {
 																																ctor: '::',
 																																_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																	_elm_lang$core$Maybe$Just(5)),
+																																	_elm_lang$core$Maybe$Just(3)),
 																																_1: {
 																																	ctor: '::',
-																																	_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																		_elm_lang$core$Maybe$Just(6)),
+																																	_0: _jackgene$live_deck$Deck_Slide_CheckedErrorHandling$introduction,
 																																	_1: {
 																																		ctor: '::',
 																																		_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																			_elm_lang$core$Maybe$Just(7)),
+																																			_elm_lang$core$Maybe$Just(4)),
 																																		_1: {
 																																			ctor: '::',
 																																			_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																				_elm_lang$core$Maybe$Just(8)),
+																																				_elm_lang$core$Maybe$Just(5)),
 																																			_1: {
 																																				ctor: '::',
 																																				_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																					_elm_lang$core$Maybe$Just(9)),
+																																					_elm_lang$core$Maybe$Just(6)),
 																																				_1: {
 																																					ctor: '::',
-																																					_0: _jackgene$live_deck$Deck_Slide_SectionCover$conclusion,
+																																					_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																						_elm_lang$core$Maybe$Just(7)),
 																																					_1: {
 																																						ctor: '::',
-																																						_0: _jackgene$live_deck$Deck_Slide_SectionCover$questions,
+																																						_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																							_elm_lang$core$Maybe$Just(8)),
 																																						_1: {
 																																							ctor: '::',
-																																							_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide,
-																																							_1: {ctor: '[]'}
+																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																								_elm_lang$core$Maybe$Just(9)),
+																																							_1: {
+																																								ctor: '::',
+																																								_0: _jackgene$live_deck$Deck_Slide_SectionCover$conclusion,
+																																								_1: {
+																																									ctor: '::',
+																																									_0: _jackgene$live_deck$Deck_Slide_SectionCover$questions,
+																																									_1: {
+																																										ctor: '::',
+																																										_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide,
+																																										_1: {ctor: '[]'}
+																																									}
+																																								}
+																																							}
 																																						}
 																																					}
 																																				}
