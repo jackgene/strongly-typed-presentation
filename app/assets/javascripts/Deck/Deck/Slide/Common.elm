@@ -4,9 +4,9 @@ import Css exposing
   ( Color, Style, property
   -- Container
   , boxShadow4, display, float, height, inset, left, margin2
-  , marginRight, width
+  , marginRight, padding, width
   -- Content
-  , backgroundColor, before
+  , backgroundColor, before, color
   , fontFamilies, fontSize, fontStyle, fontWeight
   -- Units
   , em, int, rgb, rgba, vw, zero
@@ -215,3 +215,15 @@ li attributes =
   ( css [ margin2 (em 0.5) zero ]
   ::attributes
   )
+
+
+console : String -> Html msg
+console output =
+  Html.pre
+  [ css
+    [ padding (em 0.25)
+    , color goodRxLightYellow3, backgroundColor goodRxBlack
+    , fontFamilies [ "Glass TTY VT220" ]
+    ]
+  ]
+  [ text (String.trimLeft output) ]
