@@ -130,8 +130,9 @@ outOfScope =
               , text " - division by zero, overflows, underflows"
               ]
             , li []
-              [ b [] [ text "Functional Error / Correctness" ]
-              , text " - e.g., application background is the wrong color, incorrect form validation"
+              [ b [] [ text "Functional Errors / Incorrectness" ]
+              , text " - program not meeting functional requirements"
+              , text " e.g., font is the wrong color, using floating point numbers for monetary values"
               ]
             ]
           ]
