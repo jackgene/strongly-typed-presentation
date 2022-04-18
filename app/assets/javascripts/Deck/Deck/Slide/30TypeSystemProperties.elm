@@ -123,7 +123,7 @@ methodology =
             ]
           , tr []
             [ th [] [ scoreView "0.5" ]
-            , td [] [ text "Missing but Can Be Implemented" ]
+            , td [] [ text "Can Be Implemented" ]
             , td [] [ text "Difficult to Defeat" ]
             ]
           , tr []
