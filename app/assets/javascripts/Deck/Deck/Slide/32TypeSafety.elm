@@ -1,7 +1,7 @@
 module Deck.Slide.TypeSafety exposing
   ( introduction
   , safeGo, invalidSafeGo, unsafeGo
-  , safePython, invalidSafePython, unsafePython
+  , safePython, invalidSafePython, unsafePython, unsafePythonOutput
   , safeTypeScript, invalidSafeTypeScript
   , safeKotlin, invalidSafeKotlin
   , safeSwift, invalidSafeSwift
@@ -207,7 +207,7 @@ invalidSafePython =
       ( Dict.fromList [ (3, Deletion), (4, Addition) ] )
       ( Dict.fromList [ (4, [ ColumnEmphasis Error 26 4 ] ) ] )
       ( Just
-        ( CodeBlockError 4 4
+        ( CodeBlockError 4 5
           [ div []
             [ text """Argument of type "Literal['42']" cannot be assigned to parameter "num1" of type "float" in function "multiply" """ ]
           ]
@@ -278,11 +278,39 @@ product = multiply([1,2,3], {"key":"value"})
           [ text "Python typing is optional, and is incredibly easy to defeat. Python type-checkers will happily allow this:" ]
         , div [ css [ height (vw 15) ] ] [ codeBlock ]
         , p []
-          [ text "Which results in a runtime exception. It is up to the programmer to be disciplined about type-checking." ]
+          [ text "However, when you run the program..." ]
         ]
       )
     )
   }
+
+
+unsafePythonOutput : UnindexedSlideModel
+unsafePythonOutput =
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "Python Can Be Type Safe"
+      ( div []
+        [ p [] [ text "...the program fails with the following:" ]
+        , console
+          """
+% python typesafety_unsafe.py
+Traceback (most recent call last):
+  File "/strongly-typed/typesafety_unsafe.py", line 5, in <module>
+    product = multiply([1,2,3], {"key":"value"})
+  File "/strongly-typed/typesafety_unsafe.py", line 2, in multiply
+    return num1 * num2
+TypeError: can't multiply sequence by non-int of type 'dict'
+"""
+        ]
+      )
+    )
+  }
+
+
+-- It is up to the programmer to be disciplined about type-checking.
 
 
 safeTypeScript : UnindexedSlideModel

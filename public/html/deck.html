@@ -20322,6 +20322,44 @@ var _jackgene$live_deck$Deck_Slide_Common$goodRxLightGray3 = A3(_rtfeldman$elm_c
 var _jackgene$live_deck$Deck_Slide_Common$goodRxLightGray2 = A3(_rtfeldman$elm_css$Css$rgb, 117, 117, 117);
 var _jackgene$live_deck$Deck_Slide_Common$goodRxLightGray1 = A3(_rtfeldman$elm_css$Css$rgb, 87, 87, 87);
 var _jackgene$live_deck$Deck_Slide_Common$goodRxBlack = A3(_rtfeldman$elm_css$Css$rgb, 32, 31, 27);
+var _jackgene$live_deck$Deck_Slide_Common$console = function (output) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled$pre,
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+				{
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$padding(
+						_rtfeldman$elm_css$Css$em(0.25)),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$color(_jackgene$live_deck$Deck_Slide_Common$goodRxLightYellow3),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$backgroundColor(_jackgene$live_deck$Deck_Slide_Common$goodRxBlack),
+							_1: {
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Css$fontFamilies(
+									{
+										ctor: '::',
+										_0: 'Glass TTY VT220',
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Html_Styled$text(
+				_elm_lang$core$String$trimLeft(output)),
+			_1: {ctor: '[]'}
+		});
+};
 var _jackgene$live_deck$Deck_Slide_Common$goodRxOffWhite = A3(_rtfeldman$elm_css$Css$rgb, 255, 255, 251);
 var _jackgene$live_deck$Deck_Slide_Common$goodRxWhite = A3(_rtfeldman$elm_css$Css$rgb, 255, 255, 255);
 var _jackgene$live_deck$Deck_Slide_Common$baseSlideModel = {
@@ -30266,13 +30304,17 @@ var _jackgene$live_deck$Deck_Slide_Introduction$outOfScope = _elm_lang$core$Nati
 																			{ctor: '[]'},
 																			{
 																				ctor: '::',
-																				_0: _rtfeldman$elm_css$Html_Styled$text('Functional Error / Correctness'),
+																				_0: _rtfeldman$elm_css$Html_Styled$text('Functional Errors / Incorrectness'),
 																				_1: {ctor: '[]'}
 																			}),
 																		_1: {
 																			ctor: '::',
-																			_0: _rtfeldman$elm_css$Html_Styled$text(' - e.g., application background is the wrong color, incorrect form validation'),
-																			_1: {ctor: '[]'}
+																			_0: _rtfeldman$elm_css$Html_Styled$text(' - program not meeting functional requirements'),
+																			_1: {
+																				ctor: '::',
+																				_0: _rtfeldman$elm_css$Html_Styled$text(' e.g., font is the wrong color, using floating point numbers for monetary values'),
+																				_1: {ctor: '[]'}
+																			}
 																		}
 																	}),
 																_1: {ctor: '[]'}
@@ -30974,7 +31016,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$methodology = _elm_lang$
 																{ctor: '[]'},
 																{
 																	ctor: '::',
-																	_0: _rtfeldman$elm_css$Html_Styled$text('Missing but Can Be Implemented'),
+																	_0: _rtfeldman$elm_css$Html_Styled$text('Can Be Implemented'),
 																	_1: {ctor: '[]'}
 																}),
 															_1: {
@@ -31126,7 +31168,7 @@ var _jackgene$live_deck$SyntaxHighlight_Model$Addition = {ctor: 'Addition'};
 var _jackgene$live_deck$SyntaxHighlight_Model$Selection = {ctor: 'Selection'};
 var _jackgene$live_deck$SyntaxHighlight_Model$Warning = {ctor: 'Warning'};
 var _jackgene$live_deck$SyntaxHighlight_Model$Error = {ctor: 'Error'};
-var _jackgene$live_deck$Deck_Slide_MemorySafety$title = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title, ': Null Safety');
+var _jackgene$live_deck$Deck_Slide_MemorySafety$title = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title, ': Memory Safety');
 var _jackgene$live_deck$Deck_Slide_MemorySafety$slide = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
@@ -36927,7 +36969,7 @@ var _jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock = 
 																	_1: {
 																		ctor: '::',
 																		_0: _rtfeldman$elm_css$Css$top(
-																			_rtfeldman$elm_css$Css$em(0.25)),
+																			_rtfeldman$elm_css$Css$em(0.625)),
 																		_1: {
 																			ctor: '::',
 																			_0: _rtfeldman$elm_css$Css$right(
@@ -36935,7 +36977,7 @@ var _jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock = 
 																			_1: {
 																				ctor: '::',
 																				_0: _rtfeldman$elm_css$Css$opacity(
-																					_rtfeldman$elm_css$Css$num(0.75)),
+																					_rtfeldman$elm_css$Css$num(0.875)),
 																				_1: {ctor: '[]'}
 																			}
 																		}
@@ -37438,7 +37480,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafePython = function () {
 			A3(
 				_jackgene$live_deck$Deck_Slide_SyntaxHighlight$CodeBlockError,
 				4,
-				4,
+				5,
 				{
 					ctor: '::',
 					_0: A2(
@@ -37619,7 +37661,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePython = function () {
 											{ctor: '[]'},
 											{
 												ctor: '::',
-												_0: _rtfeldman$elm_css$Html_Styled$text('Which results in a runtime exception. It is up to the programmer to be disciplined about type-checking.'),
+												_0: _rtfeldman$elm_css$Html_Styled$text('However, when you run the program...'),
 												_1: {ctor: '[]'}
 											}),
 										_1: {ctor: '[]'}
@@ -37629,13 +37671,44 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePython = function () {
 				})
 		});
 }();
+var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePythonOutput = _elm_lang$core$Native_Utils.update(
+	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+	{
+		view: F2(
+			function (page, _p7) {
+				return A4(
+					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+					page,
+					_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+					'Python Can Be Type Safe',
+					A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$p,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled$text('...the program fails with the following:'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: _jackgene$live_deck$Deck_Slide_Common$console('\n% python typesafety_unsafe.py\nTraceback (most recent call last):\n  File \"/strongly-typed/typesafety_unsafe.py\", line 5, in <module>\n    product = multiply([1,2,3], {\"key\":\"value\"})\n  File \"/strongly-typed/typesafety_unsafe.py\", line 2, in multiply\n    return num1 * num2\nTypeError: can\'t multiply sequence by non-int of type \'dict\'\n'),
+								_1: {ctor: '[]'}
+							}
+						}));
+			})
+	});
 var _jackgene$live_deck$Deck_Slide_TypeSafety$safeTypeScript = function () {
 	var codeBlock = A5(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$TypeScript, _elm_lang$core$Dict$empty, _elm_lang$core$Dict$empty, _elm_lang$core$Maybe$Nothing, '\nfunction multiply(num1: number, num2: number): number {\n  return num1 * num2;\n}\n\nconst product: number = multiply(42, 2.718);\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
 			view: F2(
-				function (page, _p7) {
+				function (page, _p8) {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
@@ -37746,7 +37819,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeTypeScript = function (
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
 			view: F2(
-				function (page, _p8) {
+				function (page, _p9) {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
@@ -37787,7 +37860,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$safeKotlin = function () {
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
 			view: F2(
-				function (page, _p9) {
+				function (page, _p10) {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
@@ -37902,7 +37975,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeKotlin = function () {
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
 			view: F2(
-				function (page, _p10) {
+				function (page, _p11) {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
@@ -37943,7 +38016,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$safeSwift = function () {
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
 			view: F2(
-				function (page, _p11) {
+				function (page, _p12) {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
@@ -38058,7 +38131,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeSwift = function () {
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
 			view: F2(
-				function (page, _p12) {
+				function (page, _p13) {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
@@ -38407,70 +38480,74 @@ var _jackgene$live_deck$Deck_Slide$slidesList = A2(
 																							_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePython,
 																							_1: {
 																								ctor: '::',
-																								_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeTypeScript,
+																								_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePythonOutput,
 																								_1: {
 																									ctor: '::',
-																									_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeTypeScript,
+																									_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeTypeScript,
 																									_1: {
 																										ctor: '::',
-																										_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeKotlin,
+																										_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeTypeScript,
 																										_1: {
 																											ctor: '::',
-																											_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeKotlin,
+																											_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeKotlin,
 																											_1: {
 																												ctor: '::',
-																												_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeSwift,
+																												_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeKotlin,
 																												_1: {
 																													ctor: '::',
-																													_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeSwift,
+																													_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeSwift,
 																													_1: {
 																														ctor: '::',
-																														_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																															_elm_lang$core$Maybe$Just(2)),
+																														_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeSwift,
 																														_1: {
 																															ctor: '::',
-																															_0: _jackgene$live_deck$Deck_Slide_NullSafety$introduction,
+																															_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																_elm_lang$core$Maybe$Just(2)),
 																															_1: {
 																																ctor: '::',
-																																_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																	_elm_lang$core$Maybe$Just(3)),
+																																_0: _jackgene$live_deck$Deck_Slide_NullSafety$introduction,
 																																_1: {
 																																	ctor: '::',
-																																	_0: _jackgene$live_deck$Deck_Slide_CheckedErrorHandling$introduction,
+																																	_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																		_elm_lang$core$Maybe$Just(3)),
 																																	_1: {
 																																		ctor: '::',
-																																		_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																			_elm_lang$core$Maybe$Just(4)),
+																																		_0: _jackgene$live_deck$Deck_Slide_CheckedErrorHandling$introduction,
 																																		_1: {
 																																			ctor: '::',
 																																			_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																				_elm_lang$core$Maybe$Just(5)),
+																																				_elm_lang$core$Maybe$Just(4)),
 																																			_1: {
 																																				ctor: '::',
 																																				_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																					_elm_lang$core$Maybe$Just(6)),
+																																					_elm_lang$core$Maybe$Just(5)),
 																																				_1: {
 																																					ctor: '::',
 																																					_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																						_elm_lang$core$Maybe$Just(7)),
+																																						_elm_lang$core$Maybe$Just(6)),
 																																					_1: {
 																																						ctor: '::',
 																																						_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																							_elm_lang$core$Maybe$Just(8)),
+																																							_elm_lang$core$Maybe$Just(7)),
 																																						_1: {
 																																							ctor: '::',
 																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																								_elm_lang$core$Maybe$Just(9)),
+																																								_elm_lang$core$Maybe$Just(8)),
 																																							_1: {
 																																								ctor: '::',
-																																								_0: _jackgene$live_deck$Deck_Slide_SectionCover$conclusion,
+																																								_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																									_elm_lang$core$Maybe$Just(9)),
 																																								_1: {
 																																									ctor: '::',
-																																									_0: _jackgene$live_deck$Deck_Slide_SectionCover$questions,
+																																									_0: _jackgene$live_deck$Deck_Slide_SectionCover$conclusion,
 																																									_1: {
 																																										ctor: '::',
-																																										_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide,
-																																										_1: {ctor: '[]'}
+																																										_0: _jackgene$live_deck$Deck_Slide_SectionCover$questions,
+																																										_1: {
+																																											ctor: '::',
+																																											_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide,
+																																											_1: {ctor: '[]'}
+																																										}
 																																									}
 																																								}
 																																							}

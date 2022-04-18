@@ -71,6 +71,7 @@ slidesList =
   , TypeSafety.safePython
   , TypeSafety.invalidSafePython
   , TypeSafety.unsafePython
+  , TypeSafety.unsafePythonOutput
   , TypeSafety.safeTypeScript
   , TypeSafety.invalidSafeTypeScript
   , TypeSafety.safeKotlin
