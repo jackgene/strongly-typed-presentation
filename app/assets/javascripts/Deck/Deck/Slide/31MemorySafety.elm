@@ -21,7 +21,7 @@ import SyntaxHighlight.Model exposing
 
 -- Constants
 title : String
-title = TypeSystemProperties.title ++ ": Null Safety"
+title = TypeSystemProperties.title ++ ": Memory Safety"
 
 
 -- Slides
