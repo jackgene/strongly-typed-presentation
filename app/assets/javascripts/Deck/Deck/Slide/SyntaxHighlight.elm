@@ -143,7 +143,7 @@ syntaxHighlightedCodeBlock language lineEmphases columnEmphases maybeError sourc
       , if language == TypeScript then codeBlock else emptyPlaceholder
       , div
         [ css
-          [ position absolute, top (em 0.25), right (em 0.5), opacity (num 0.75) ]
+          [ position absolute, top (em 0.625), right (em 0.5), opacity (num 0.875) ]
         ]
         [ languageLogo ]
       , ( case maybeError of
