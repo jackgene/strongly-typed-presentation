@@ -88,8 +88,8 @@ tableOfContent maybeHighlightedIndex =
   }
 
 
-scoreView : String -> Html msg
-scoreView score =
+scoreNumberView : String -> Html msg
+scoreNumberView score =
   numberedGoodRxPoint score 48 [ css [ width (vw 4), margin2 (em 0.2) (em 0.5), verticalAlign middle ] ]
 
 
@@ -117,17 +117,17 @@ methodology =
               [ text "Lower" ]
             ]
           , tr []
-            [ th [] [ scoreView "1.0" ]
+            [ th [] [ scoreNumberView "1.0" ]
             , td [] [ text "Built-in" ]
             , td [] [ text "Impossible to Defeat" ]
             ]
           , tr []
-            [ th [] [ scoreView "0.5" ]
+            [ th [] [ scoreNumberView "0.5" ]
             , td [] [ text "Can Be Implemented" ]
             , td [] [ text "Difficult to Defeat" ]
             ]
           , tr []
-            [ th [] [ scoreView "0.0" ]
+            [ th [] [ scoreNumberView "0.0" ]
             , td [] [ text "Impossible to Implement" ]
             , td [] [ text "Easy to Defeat" ]
             ]
