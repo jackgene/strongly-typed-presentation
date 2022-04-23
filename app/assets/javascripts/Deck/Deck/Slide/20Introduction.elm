@@ -36,8 +36,7 @@ wikipediaDefinitions =
           [ text "Looking up “Strongly Typed” in Wikipedia:"
           , blockquote []
             [ p []
-              [ text "In computer programming, one of the many ways that programming languages are "
-              , mark [] [ text "colloquially" ]
+              [ text "In computer programming, one of the many ways that programming languages are colloquially "
               , text " classified is whether the language's type system makes it strongly typed or weakly typed (loosely typed). ..."
               ]
             , p [] [ text "..." ]
