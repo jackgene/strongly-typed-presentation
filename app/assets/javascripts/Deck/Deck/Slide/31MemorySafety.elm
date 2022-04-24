@@ -31,10 +31,21 @@ slide =
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Prevents Memory Leaks And Buffer Overflows"
+      "Prevents Buffer Overflows"
       ( div []
         [ p []
-          [ text "TODO all language have GC, bounds-checked arrays. Go + Swift has unsafe package" ]
+          [ text "Virtually all modern languages have bound-checked arrays, "
+          , text "which prevents arbitrary memory writes, and hence buffer overflows. "
+          , text "This applies to the languages we are evaluating, and they all get a 1.0 upper-bound score."
+          ]
+        , p []
+          [ text "Go and Swift, however, provide facilities for unsafe memory access, circumventing these checks. "
+          , text "Given these facilities are hard to reach, we give Go and Swift a 0.5 lower-bound score."
+          ]
+        , p []
+          [ text "In Python, TypeScript, and Kotlin, memory-safety cannot be circumvented. "
+          , text "They each get a lower-bound score of 1.0."
+          ]
         ]
       )
     )
