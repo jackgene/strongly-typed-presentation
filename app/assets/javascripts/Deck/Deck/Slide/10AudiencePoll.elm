@@ -10,7 +10,7 @@ import Css exposing
   , lineHeight, opacity, textAlign
   -- Units
   , deg, em, int, num, pct, vw, zero
-  -- Positions
+  -- Alignment & Positions
   , absolute, relative
   -- Transform
   , rotate, transform
