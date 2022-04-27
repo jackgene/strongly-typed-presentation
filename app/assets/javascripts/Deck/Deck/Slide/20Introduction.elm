@@ -155,7 +155,7 @@ inScope =
         div []
         [ p []
           [ text "The following are some classes of errors a type system can prevent:"
-          , ul [] [ li [ css [ listStyle ] ] [ text "Buffer Overflows" ] ]
+          --, ul [] [ li [ css [ listStyle ] ] [ text "Buffer Overflows" ] ]
           , ul [] [ li [ css [ listStyle ] ] [ text "Type Mismatches" ] ]
           , ul [] [ li [ css [ listStyle ] ] [ text "Null Pointer Dereference" ] ]
           , ul [] [ li [ css [ listStyle ] ] [ text "Unhandled General Errors" ] ]
@@ -163,7 +163,7 @@ inScope =
           , ul [] [ li [ css [ listStyle ] ] [ text "Out Of Bounds Array Access" ] ]
           , ul [] [ li [ css [ listStyle ] ] [ text "Inexhaustive Matches" ] ]
           , ul [] [ li [ css [ listStyle ] ] [ text "Unintended State Mutation" ] ]
-          , ul [] [ li [ css [ listStyle ] ] [ text "Race Conditions" ] ]
+          --, ul [] [ li [ css [ listStyle ] ] [ text "Race Conditions" ] ]
           ]
         ]
       )

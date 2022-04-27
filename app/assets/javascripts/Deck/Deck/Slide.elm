@@ -23,7 +23,6 @@ import Deck.Slide.AudiencePoll as AudiencePoll
 import Deck.Slide.SectionCover as SectionCover
 import Deck.Slide.Introduction as Introduction
 import Deck.Slide.TypeSystemProperties as TypeSystemProperties
-import Deck.Slide.MemorySafety as MemorySafety
 import Deck.Slide.TypeSafety as TypeSafety
 import Deck.Slide.NullSafety as NullSafety
 import Deck.Slide.CheckedErrorHandling as CheckedErrorHandling
@@ -62,8 +61,6 @@ slidesList =
   , TypeSystemProperties.tableOfContent Nothing
   , TypeSystemProperties.methodology
   , TypeSystemProperties.tableOfContent (Just 0)
-  , MemorySafety.slide
-  , TypeSystemProperties.tableOfContent (Just 1)
   , TypeSafety.introduction
   , TypeSafety.safeGo
   , TypeSafety.invalidSafeGo
@@ -78,16 +75,23 @@ slidesList =
   , TypeSafety.invalidSafeKotlin
   , TypeSafety.safeSwift
   , TypeSafety.invalidSafeSwift
-  , TypeSystemProperties.tableOfContent (Just 2)
+  , TypeSystemProperties.languageReport 0
+  , TypeSystemProperties.tableOfContent (Just 1)
   , NullSafety.introduction
-  , TypeSystemProperties.tableOfContent (Just 3)
+  , TypeSystemProperties.languageReport 1
+  , TypeSystemProperties.tableOfContent (Just 2)
   , CheckedErrorHandling.introduction
+  , TypeSystemProperties.languageReport 2
+  , TypeSystemProperties.tableOfContent (Just 3)
+  , TypeSystemProperties.languageReport 3
   , TypeSystemProperties.tableOfContent (Just 4)
+  , TypeSystemProperties.languageReport 4
   , TypeSystemProperties.tableOfContent (Just 5)
+  , TypeSystemProperties.languageReport 5
   , TypeSystemProperties.tableOfContent (Just 6)
+  , TypeSystemProperties.languageReport 6
   , TypeSystemProperties.tableOfContent (Just 7)
-  , TypeSystemProperties.tableOfContent (Just 8)
-  , TypeSystemProperties.tableOfContent (Just 9)
+  , TypeSystemProperties.languageReport 7
   , SectionCover.conclusion
   -- TODO strong typing + unit testing
   -- TODO pie charts of languages, and errors prevented

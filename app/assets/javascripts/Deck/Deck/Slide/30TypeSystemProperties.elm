@@ -79,16 +79,16 @@ typeSystemProperties =
   let
     nameAndScores : List (String, Dict String Score)
     nameAndScores =
-      [ ( "Memory Safety" -- "Memory Leaks, Buffer Overlow"
-        , Dict.fromList
-          [ ( "Go", scoreDefeatable )
-          , ( "Python", scoreRequired )
-          , ( "TypeScript", scoreRequired )
-          , ( "Kotlin", scoreRequired )
-          , ( "Swift", scoreDefeatable )
-          ]
-        )
-      , ( "Type Safety" -- "Errors Related to Type Mismatches"
+      --[ ( "Memory Safety" -- "Memory Leaks, Buffer Overlow"
+      --  , Dict.fromList
+      --    [ ( "Go", scoreDefeatable )
+      --    , ( "Python", scoreRequired )
+      --    , ( "TypeScript", scoreRequired )
+      --    , ( "Kotlin", scoreRequired )
+      --    , ( "Swift", scoreDefeatable )
+      --    ]
+      --  )
+      [ ( "Type Safety" -- "Errors Related to Type Mismatches"
         , Dict.fromList
           [ ( "Go", scoreRequired )
           , ( "Python", scoreOptional )
@@ -160,15 +160,15 @@ typeSystemProperties =
           , ( "Swift", scoreOptional )
           ]
         )
-      , ( "Data Race Free" -- "Race Condition"
-        , Dict.fromList
-          [ ( "Go", scoreUnsupported )
-          , ( "Python", scoreUnsupported )
-          , ( "TypeScript", scoreRequired )
-          , ( "Kotlin", scoreUnsupported )
-          , ( "Swift", scoreUnsupported )
-          ]
-        )
+      --, ( "Data Race Free" -- "Race Condition"
+      --  , Dict.fromList
+      --    [ ( "Go", scoreUnsupported )
+      --    , ( "Python", scoreUnsupported )
+      --    , ( "TypeScript", scoreRequired )
+      --    , ( "Kotlin", scoreUnsupported )
+      --    , ( "Swift", scoreUnsupported )
+      --    ]
+      --  )
       ]
       --[ "Memory Leak & Buffer Overflow"
       --, "Type Mismatch"
