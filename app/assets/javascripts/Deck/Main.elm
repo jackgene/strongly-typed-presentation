@@ -1,7 +1,8 @@
 module Deck exposing (main)
 
+import AnimationFrame
 import Array exposing (Array)
-import Deck.Common exposing (Model, Msg(..), Navigation, Slide(Slide))
+import Deck.Common exposing (Model, Msg(..), Navigation, Slide(Slide), SlideModel)
 import Deck.Slide exposing (activeNavigationOf, slideFromLocationHash, slideView)
 import Dict exposing (Dict)
 import Html.Styled exposing (Html)
@@ -174,6 +175,16 @@ update msg model =
             _ = Debug.log ("Error parsing JSON: " ++ jsonErr ++ " for input") body
           in (model, Cmd.none)
 
+    AnimationTick ->
+      ( case model.currentSlide of
+          Slide slideModel ->
+            { model
+            | currentSlide =
+              Slide { slideModel | animationFrames = slideModel.animationFrames - 1 }
+            }
+      , Cmd.none
+      )
+
     NoOp -> (model, Cmd.none)
 
 
@@ -198,6 +209,10 @@ subscriptions model =
       (Just url, Just path) ->
         WebSocket.listen (url ++ "/" ++ path) Event
       _ -> Sub.none
+  , case model.currentSlide of
+      Slide slideModel ->
+        if slideModel.animationFrames <= 0 then Sub.none
+        else AnimationFrame.times (always AnimationTick)
   , Keyboard.ups
     ( \keyCode ->
       case keyCode of

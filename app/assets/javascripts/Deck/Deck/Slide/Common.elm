@@ -25,6 +25,7 @@ type alias UnindexedSlideModel =
   , update : Msg -> Model -> (Model, Cmd Msg)
   , view : Int -> Model -> Html Msg
   , eventsWsPath : Maybe String
+  , animationFrames : Int
   }
 
 
@@ -39,6 +40,7 @@ baseSlideModel =
   , update = ( \_ model -> (model, Cmd.none) )
   , view = ( \_ _ -> text "(Placeholder)" )
   , eventsWsPath = Nothing
+  , animationFrames = 0
   }
 
 

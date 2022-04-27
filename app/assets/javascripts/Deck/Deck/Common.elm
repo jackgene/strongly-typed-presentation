@@ -11,6 +11,7 @@ type Msg
   | Last
   | NewLocation Location
   | Event String
+  | AnimationTick
   | NoOp
 
 
@@ -21,6 +22,7 @@ type alias SlideModel =
   , view : Model -> Html Msg
   , index : Int
   , eventsWsPath : Maybe String
+  , animationFrames : Int
   }
 
 

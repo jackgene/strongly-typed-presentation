@@ -39,6 +39,7 @@ indexSlide index unindexedSlide =
   , view = unindexedSlide.view index
   , index = index
   , eventsWsPath = unindexedSlide.eventsWsPath
+  , animationFrames = unindexedSlide.animationFrames
   }
 
 

@@ -10,13 +10,14 @@ import Css exposing
   -- Units
   , em, pct, vw, zero
   -- Alignments & Positions
-  , absolute, middle, relative
+  , absolute, center, middle, relative
   -- Transforms
   , translateY
   -- Other values
   , auto, collapse, inlineBlock, left, num, solid
   )
 import Css.Transitions exposing (easeInOut, transition)
+import Deck.Common exposing (Slide(Slide), SlideModel)
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Graphics exposing (logosByLanguage, numberedGoodRxPoint)
 import Deck.Slide.Template exposing (standardSlideView)
@@ -385,7 +386,8 @@ labelWidthPct = 7.5
 languageReport : Int -> UnindexedSlideModel
 languageReport propertyIndex =
   { baseSlideModel
-  | view =
+  | animationFrames = 1
+  , view =
     let
       property : TypeSystemProperty
       property =
@@ -405,19 +407,20 @@ languageReport propertyIndex =
         if propertyIndex < 0 || propertyIndex >= List.length typeSystemProperties then title
         else title ++ ": " ++ property.name
     in
-    ( \page _ ->
+    ( \page model ->
       standardSlideView page slideTitle
       "Strong Typing Score Card"
       ( div []
         [ p [] [ text "Type system strengths of the languages we are evaluating:" ]
         , div [ css [ width (pct 90), margin2 zero auto ] ]
           [ div [ css [ position relative, height (em 10) ] ]
-            ( List.map
+            ( -- Vertical lines
+              List.map
               ( \score ->
                 div
                 [ css
                   [ position absolute
-                  , left (pct (labelWidthPct + toFloat score * (100 - labelWidthPct) / toFloat numTypeSystemProperties))
+                  , left (pct (labelWidthPct - 0.05 + toFloat score * (100 - labelWidthPct) / toFloat numTypeSystemProperties))
                   , height (pct 96)
                   , borderLeft3 (vw 0.1) solid goodRxLightGray5
                   ]
@@ -425,18 +428,24 @@ languageReport propertyIndex =
                 []
               )
               ( List.range 0 numTypeSystemProperties )
-            ++List.map
+            ++ -- Score bars
+              List.map
               ( \(language, cumScore) ->
                 let
                   score : Score
-                  score = cumScore.current
+                  score =
+                    case model.currentSlide of
+                      Slide slideModel ->
+                        if slideModel.animationFrames == 0 then
+                          cumScore.current
+                        else cumScore.previous
                 in
                 div
                 [ css
                   [ position absolute
                   , top (em (0.25 + toFloat (score.rank * 2)))
                   , width (pct 100)
-                  , transition [ Css.Transitions.top3 transitionDurationMs 0 easeInOut ]
+                  , transition [ Css.Transitions.top3 (transitionDurationMs * 2) 0 easeInOut ]
                   ]
                 ]
                 [ div
@@ -454,13 +463,13 @@ languageReport propertyIndex =
                   [ div
                     [ css
                       [ position absolute
-                      , right (pct (-0.25 + 100 * (toFloat numTypeSystemProperties - score.upper) / toFloat numTypeSystemProperties))
-                      , width (pct (0.5 + 100 * (score.range / toFloat numTypeSystemProperties)))
+                      , right (pct (-0.375 + 100 * (toFloat numTypeSystemProperties - score.upper) / toFloat numTypeSystemProperties))
+                      , width (pct (0.75 + 100 * (score.range / toFloat numTypeSystemProperties)))
                       , height (vw 2.5)
                       , backgroundColor goodRxLightYellow3
                       , transition
-                        [ Css.Transitions.right3 transitionDurationMs 0 easeInOut
-                        , Css.Transitions.width3 transitionDurationMs 0 easeInOut
+                        [ Css.Transitions.right3 (transitionDurationMs * 2) 0 easeInOut
+                        , Css.Transitions.width3 (transitionDurationMs * 2) 0 easeInOut
                         ]
                       ]
                     ]
@@ -470,14 +479,17 @@ languageReport propertyIndex =
               )
               ( Dict.toList property.cumulativeScores )
             )
-          , div [ css [ position relative ] ]
+          , -- Score labels
+            div [ css [ position relative ] ]
             ( List.map
               ( \score ->
                 div
                 [ css
                   [ position absolute
-                  , left (pct (labelWidthPct - 0.5 + toFloat score * (100 - labelWidthPct) / toFloat numTypeSystemProperties))
+                  , left (pct (labelWidthPct - 0.625 + toFloat score * (100 - labelWidthPct) / toFloat numTypeSystemProperties))
+                  , width (vw 1)
                   , color goodRxLightGray3, fontSize (em 0.625)
+                  , textAlign center
                   ]
                 ]
                 [ text (toString score) ]
