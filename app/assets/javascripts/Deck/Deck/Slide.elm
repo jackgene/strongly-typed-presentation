@@ -26,6 +26,11 @@ import Deck.Slide.TypeSystemProperties as TypeSystemProperties
 import Deck.Slide.TypeSafety as TypeSafety
 import Deck.Slide.NullSafety as NullSafety
 import Deck.Slide.CheckedErrorHandling as CheckedErrorHandling
+import Deck.Slide.SafeTypeCast as SafeTypeCast
+import Deck.Slide.SafeArrayAccess as SafeArrayAccess
+import Deck.Slide.ExhaustivenessChecking as ExhaustivenessChecking
+import Deck.Slide.Immutability as Immutability
+import Deck.Slide.Encapsulation as Encapsulation
 import Html.Styled exposing (Html, div, node, text)
 import Html.Styled.Attributes exposing (css, type_)
 
@@ -84,14 +89,19 @@ slidesList =
   , CheckedErrorHandling.introduction
   , TypeSystemProperties.languageReport 2
   , TypeSystemProperties.tableOfContent (Just 3)
+  , SafeTypeCast.introduction
   , TypeSystemProperties.languageReport 3
   , TypeSystemProperties.tableOfContent (Just 4)
+  , SafeArrayAccess.introduction
   , TypeSystemProperties.languageReport 4
   , TypeSystemProperties.tableOfContent (Just 5)
+  , ExhaustivenessChecking.introduction
   , TypeSystemProperties.languageReport 5
   , TypeSystemProperties.tableOfContent (Just 6)
+  , Immutability.introduction
   , TypeSystemProperties.languageReport 6
   , TypeSystemProperties.tableOfContent (Just 7)
+  , Encapsulation.introduction
   , TypeSystemProperties.languageReport 7
   , SectionCover.conclusion
   -- TODO strong typing + unit testing

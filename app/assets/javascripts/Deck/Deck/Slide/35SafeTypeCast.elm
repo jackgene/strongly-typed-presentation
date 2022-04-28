@@ -1,4 +1,4 @@
-module Deck.Slide.CheckedErrorHandling exposing (..)
+module Deck.Slide.SafeTypeCast exposing (..)
 
 import Css exposing
   (
@@ -21,7 +21,7 @@ import SyntaxHighlight.Model exposing
 
 -- Constants
 title : String
-title = TypeSystemProperties.title ++ ": Checked Error Handling"
+title = TypeSystemProperties.title ++ ": Safe Type Cast"
 
 
 -- Slides
@@ -31,7 +31,7 @@ introduction =
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Prevents Unhandled High-Level Exceptions"
+      "Prevents Type Cast Failures"
       ( div []
         [ p []
           [ text "TODO" ]

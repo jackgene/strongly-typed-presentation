@@ -1,4 +1,4 @@
-module Deck.Slide.CheckedErrorHandling exposing (..)
+module Deck.Slide.Immutability exposing (..)
 
 import Css exposing
   (
@@ -21,7 +21,7 @@ import SyntaxHighlight.Model exposing
 
 -- Constants
 title : String
-title = TypeSystemProperties.title ++ ": Checked Error Handling"
+title = TypeSystemProperties.title ++ ": Immutability"
 
 
 -- Slides
@@ -31,7 +31,7 @@ introduction =
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Prevents Unhandled High-Level Exceptions"
+      "Prevents Accidental Changes to Invariant Data, Race Conditions"
       ( div []
         [ p []
           [ text "TODO" ]

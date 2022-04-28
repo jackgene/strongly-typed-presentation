@@ -1,4 +1,4 @@
-module Deck.Slide.CheckedErrorHandling exposing (..)
+module Deck.Slide.ExhaustivenessChecking exposing (..)
 
 import Css exposing
   (
@@ -21,7 +21,7 @@ import SyntaxHighlight.Model exposing
 
 -- Constants
 title : String
-title = TypeSystemProperties.title ++ ": Checked Error Handling"
+title = TypeSystemProperties.title ++ ": Exhaustiveness Checking"
 
 
 -- Slides
@@ -31,7 +31,7 @@ introduction =
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Prevents Unhandled High-Level Exceptions"
+      "Ensure All Code Flows Are Accounted For"
       ( div []
         [ p []
           [ text "TODO" ]

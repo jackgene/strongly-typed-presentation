@@ -116,7 +116,7 @@ typeSystemProperties =
           , ( "Swift", scoreDefeatable )
           ]
         )
-      , ( "Safe Type Casts" -- "Type Conversion Errors"
+      , ( "Safe Type Cast" -- "Type Conversion Errors"
         , Dict.fromList
           [ ( "Go", scoreUnsupported )
           , ( "Python", scoreUnsupported )
@@ -134,7 +134,7 @@ typeSystemProperties =
           , ( "Swift", scoreImplementable )
           ]
         )
-      , ( "Exhaustive Matches" -- "Bugs related to default behavior occurring when they shouldn't" -- TODO
+      , ( "Exhaustiveness Checking" -- "Bugs related to default behavior occurring when they shouldn't" -- TODO
         , Dict.fromList
           [ ( "Go", scoreUnsupported )
           , ( "Python", scoreOptional )
