@@ -49,7 +49,7 @@ introduction =
         , p []
           [ text "To most people this ", em [] [ text "is" ], text " strong typing." ]
         , p []
-          [ text "Indeed, the other properties of strong typing all builds upon this." ]
+          [ text "Indeed, the other properties of strong typing build upon this." ]
         ]
       )
     )
