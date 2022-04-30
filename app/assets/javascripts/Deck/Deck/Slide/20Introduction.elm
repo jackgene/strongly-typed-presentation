@@ -93,8 +93,9 @@ ourDefinition =
           ]
         , p []
           [ text "Of note, "
-          , mark [] [ text "“Strongly Typed” does not mean “Statically Typed.”" ]
-          , text " Dynamically Typed languages can be Strongly Typed as well."
+          , mark [] [ text "“Strongly Typed” does not mean “Statically Typed.” " ]
+          , text "Dynamically Typed languages can be Strongly Typed, "
+          , text "conversely Statically Typed languages aren't necessarily Strongly Typed."
           ]
         ]
       )
