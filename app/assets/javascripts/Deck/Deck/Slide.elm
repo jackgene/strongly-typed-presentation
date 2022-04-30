@@ -98,10 +98,10 @@ slidesList =
   , ExhaustivenessChecking.introduction
   , TypeSystemProperties.languageReport 5
   , TypeSystemProperties.tableOfContent (Just 6)
-  , Immutability.introduction
+  , Encapsulation.introduction
   , TypeSystemProperties.languageReport 6
   , TypeSystemProperties.tableOfContent (Just 7)
-  , Encapsulation.introduction
+  , Immutability.introduction
   , TypeSystemProperties.languageReport 7
   , SectionCover.conclusion
   -- TODO strong typing + unit testing

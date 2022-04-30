@@ -143,18 +143,18 @@ typeSystemProperties =
           , ( "Swift", scoreOptional )
           ]
         )
-      , ( "Immutability" -- "Unintended State Mutation"
+      , ( "Encapsulation" -- "Private/Unexported Data"
         , Dict.fromList
-          [ ( "Go", scoreImplementable )
+          [ ( "Go", scoreOptional )
           , ( "Python", scoreUnsupported )
           , ( "TypeScript", scoreOptional )
           , ( "Kotlin", scoreOptional )
           , ( "Swift", scoreOptional )
           ]
         )
-      , ( "Encapsulation" -- "Private/Unexported Data"
+      , ( "Immutability" -- "Unintended State Mutation"
         , Dict.fromList
-          [ ( "Go", scoreOptional )
+          [ ( "Go", scoreImplementable )
           , ( "Python", scoreUnsupported )
           , ( "TypeScript", scoreOptional )
           , ( "Kotlin", scoreOptional )

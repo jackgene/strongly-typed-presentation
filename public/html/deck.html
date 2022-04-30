@@ -30320,13 +30320,17 @@ var _jackgene$live_deck$Deck_Slide_Introduction$ourDefinition = _elm_lang$core$N
 													{ctor: '[]'},
 													{
 														ctor: '::',
-														_0: _rtfeldman$elm_css$Html_Styled$text('“Strongly Typed” does not mean “Statically Typed.”'),
+														_0: _rtfeldman$elm_css$Html_Styled$text('“Strongly Typed” does not mean “Statically Typed.” '),
 														_1: {ctor: '[]'}
 													}),
 												_1: {
 													ctor: '::',
-													_0: _rtfeldman$elm_css$Html_Styled$text(' Dynamically Typed languages can be Strongly Typed as well.'),
-													_1: {ctor: '[]'}
+													_0: _rtfeldman$elm_css$Html_Styled$text('Dynamically Typed languages can be Strongly Typed, '),
+													_1: {
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled$text('conversely Statically Typed languages aren\'t necessarily Strongly Typed.'),
+														_1: {ctor: '[]'}
+													}
 												}
 											}
 										}),
@@ -30956,11 +30960,11 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 								ctor: '::',
 								_0: {
 									ctor: '_Tuple2',
-									_0: 'Immutability',
+									_0: 'Encapsulation',
 									_1: _elm_lang$core$Dict$fromList(
 										{
 											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: 'Go', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreImplementable},
+											_0: {ctor: '_Tuple2', _0: 'Go', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreOptional},
 											_1: {
 												ctor: '::',
 												_0: {ctor: '_Tuple2', _0: 'Python', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
@@ -30984,11 +30988,11 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 									ctor: '::',
 									_0: {
 										ctor: '_Tuple2',
-										_0: 'Encapsulation',
+										_0: 'Immutability',
 										_1: _elm_lang$core$Dict$fromList(
 											{
 												ctor: '::',
-												_0: {ctor: '_Tuple2', _0: 'Go', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreOptional},
+												_0: {ctor: '_Tuple2', _0: 'Go', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreImplementable},
 												_1: {
 													ctor: '::',
 													_0: {ctor: '_Tuple2', _0: 'Python', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
@@ -38207,17 +38211,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$safePython = function () {
 									ctor: '::',
 									_0: A2(
 										_rtfeldman$elm_css$Html_Styled$div,
-										{
-											ctor: '::',
-											_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-												{
-													ctor: '::',
-													_0: _rtfeldman$elm_css$Css$height(
-														_rtfeldman$elm_css$Css$vw(15)),
-													_1: {ctor: '[]'}
-												}),
-											_1: {ctor: '[]'}
-										},
+										{ctor: '[]'},
 										{
 											ctor: '::',
 											_0: codeBlock,
@@ -38318,8 +38312,8 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafePython = function () {
 											_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 												{
 													ctor: '::',
-													_0: _rtfeldman$elm_css$Css$height(
-														_rtfeldman$elm_css$Css$vw(15)),
+													_0: _rtfeldman$elm_css$Css$marginBottom(
+														_rtfeldman$elm_css$Css$vw(4)),
 													_1: {ctor: '[]'}
 												}),
 											_1: {ctor: '[]'}
@@ -38433,12 +38427,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePython = function () {
 										{
 											ctor: '::',
 											_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-												{
-													ctor: '::',
-													_0: _rtfeldman$elm_css$Css$height(
-														_rtfeldman$elm_css$Css$vw(15)),
-													_1: {ctor: '[]'}
-												}),
+												{ctor: '[]'}),
 											_1: {ctor: '[]'}
 										},
 										{
@@ -39484,7 +39473,7 @@ var _jackgene$live_deck$Deck_Slide$slidesList = A2(
 																																														_elm_lang$core$Maybe$Just(6)),
 																																													_1: {
 																																														ctor: '::',
-																																														_0: _jackgene$live_deck$Deck_Slide_Immutability$introduction,
+																																														_0: _jackgene$live_deck$Deck_Slide_Encapsulation$introduction,
 																																														_1: {
 																																															ctor: '::',
 																																															_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(6),
@@ -39494,7 +39483,7 @@ var _jackgene$live_deck$Deck_Slide$slidesList = A2(
 																																																	_elm_lang$core$Maybe$Just(7)),
 																																																_1: {
 																																																	ctor: '::',
-																																																	_0: _jackgene$live_deck$Deck_Slide_Encapsulation$introduction,
+																																																	_0: _jackgene$live_deck$Deck_Slide_Immutability$introduction,
 																																																	_1: {
 																																																		ctor: '::',
 																																																		_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(7),
