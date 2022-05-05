@@ -15,7 +15,7 @@ import Css exposing
   )
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Graphics exposing
-  ( goodRxLogo, goodRxPoint, numberedGoodRxPoint )
+  ( goodRxPoint, goodRxSymbol, goodRxWordmark, numberedGoodRxPoint )
 import Html.Styled exposing (Html, div, footer, h1, h2, text)
 import Svg.Styled.Attributes exposing (css)
 
@@ -59,7 +59,8 @@ standardSlideView page heading subheading content =
         , paragraphFontFamily, fontSize (vw 1.3), color goodRxLightGray3
         ]
       ]
-      [ goodRxLogo
+      [ goodRxSymbol
+      , goodRxWordmark
       , div [ css [ display inlineBlock, position absolute, right zero ] ]
         [ text "What Does It Mean for a Programming Language to Be Strongly Typed?"
         , numberedGoodRxPoint (toString page) 50

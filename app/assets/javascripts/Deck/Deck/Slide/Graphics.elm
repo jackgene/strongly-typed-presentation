@@ -1,5 +1,7 @@
 module Deck.Slide.Graphics exposing
-  ( goodRxLogo, goodRxPoint, goodRxRipple, numberedGoodRxPoint, logosByLanguage
+  ( goodRxSymbol, goodRxWordmark
+  , goodRxPoint, goodRxRipple, numberedGoodRxPoint
+  , logosByLanguage
   , languageGoLogo, languageKotlinLogo, languagePythonLogo
   , languageSwiftLogo, languageTypeScriptLogo
   )
@@ -29,10 +31,25 @@ import Svg.Styled.Attributes as Attributes exposing
   )
 
 
-goodRxLogo : Svg msg
-goodRxLogo =
+goodRxSymbol : Svg msg
+goodRxSymbol =
   svg
-  [ width "86", height "23", x "0px", y "0px", viewBox "0 0 195.62 40" ]
+  [ width "24", height "24", x "0px", y "0px", viewBox "0 0 80 80" ]
+  [ g []
+    [ g []
+      [ g []
+        [ path [ fill "#ffdb00", d "M66.4,24.57H55.43V13.6c0-7.51-6.09-13.6-13.6-13.6c-7.51,0-13.6,6.09-13.6,13.6v38.16H66.4 c7.51,0,13.6-6.09,13.6-13.6S73.91,24.57,66.4,24.57" ] []
+        , path [ fill "#ffdb00", d "M28.24,55.26V66.4c0,7.51,6.09,13.6,13.6,13.6s13.6-6.09,13.6-13.6V55.26H28.24z" ] []
+        , path [ fill "#ffdb00", d "M24.56,24.57H13.6C6.09,24.57,0,30.65,0,38.16s6.09,13.6,13.6,13.6h10.96V24.57z" ] []
+        ]
+      ]
+    ]
+  ]
+  
+goodRxWordmark : Svg msg
+goodRxWordmark =
+  svg
+  [ width "86", height "23", x "0px", y "0px", viewBox "-20 0 216 40" ]
   [ g []
     [ path [ d "M20.63,33.36c2.93,0,5.86-0.72,8.55-2.69v-6.7h-8.19V18h15.13v15.78c-3.53,3.41-8.49,6.16-15.49,6.16 C8.01,39.94,0,31.03,0,19.97C0,8.91,8.01,0,20.03,0c5.86,0,11,2.21,14.53,6.22l-5.08,5.02c-2.27-2.81-5.56-4.48-9.45-4.48 c-7.35,0-12.86,6.1-12.86,13.21C7.17,27.26,12.67,33.36,20.63,33.36" ] []
     , path [ d "M55,40C46.63,40,40,33.36,40,25.17c0-8.19,6.64-14.83,15.01-14.83c8.37,0,15.01,6.64,15.01,14.83 C70.01,33.36,63.37,40,55,40 M55,33.54c4.78,0,8.31-3.95,8.31-8.37S59.79,16.8,55,16.8c-4.78,0-8.31,3.95-8.31,8.37 S50.22,33.54,55,33.54" ] []
