@@ -45,7 +45,7 @@ goodRxSyntaxTheme =
   { default = Css.batch [ noEmphasis goodRxBlack goodRxLightGray6, codeFontFamily ]
   , selection = backgroundColor goodRxLightGray3
   , addition = backgroundColor goodRxLightGreen1
-  , deletion = strikeThrough (rgba 240 0 0 0.5) (backgroundColor goodRxLightRed1)
+  , deletion = Css.batch [ strikeThrough (rgba 240 0 0 0.5) (backgroundColor goodRxLightRed1), opacity (num 0.25) ]
   , error = squigglyUnderline (rgba 240 0 0 0.75) noStyle
   , warning = squigglyUnderline (rgba 216 192 0 0.75) noStyle
   , comment = Css.batch [ textColor goodRxLightGray3, fontWeight (int 400) ]
@@ -152,7 +152,7 @@ syntaxHighlightedCodeBlock language lineEmphases columnEmphases maybeError sourc
               div
               [ css
                 [ display inlineBlock, position absolute
-                , top (vw (codeFontSizeVw * 1.25 * (toFloat line + 1) + 0.5))
+                , top (vw (codeFontSizeVw * 1.325 * (toFloat line + 1) + 0.5))
                 , left (vw (codeFontSizeVw * 0.6125 * (toFloat column) + 5))
                 , padding2 (em 0.0625) (em 0.125), border3 (em 0.1) solid goodRxDigitalRed
                 , fontSize (em 0.8), color goodRxDigitalRed, backgroundColor goodRxLightRed2
