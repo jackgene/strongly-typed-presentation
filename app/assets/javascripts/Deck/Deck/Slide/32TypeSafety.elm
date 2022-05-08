@@ -77,7 +77,7 @@ var product float64 = Multiply(42, 2.718)
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Go is Type Safe"
+      "Go Is Type Safe"
       ( div []
         [ p []
           [ text "Function parameters and return values "
@@ -120,7 +120,7 @@ var product float64 = Multiply("42", true)
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Go is Type Safe"
+      "Go Is Type Safe"
       ( div []
         [ p []
           [ text "Compilation fails if a function is called with non-matching parameter types:" ]
@@ -159,7 +159,7 @@ var product float64 = Multiply("42", true)
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Go is Type Safe"
+      "Go Is Type Safe"
       ( div []
         [ p []
           [ text "You cannot accidentally get around the Go type system:" ]
@@ -199,7 +199,7 @@ var product float64 = Multiply("42", true)
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Go is Type Safe"
+      "Go Is Type Safe"
       ( div []
         [ p []
           [ text "While possible, you would have to Go out of your way to defeat the type system:" ]
@@ -668,7 +668,7 @@ val product: Double = multiply(42.0, 2.718)
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Kotlin is Type Safe"
+      "Kotlin Is Type Safe"
       ( div []
         [ p []
           [ text "Function parameters and return values "
@@ -707,7 +707,7 @@ val product: Double = multiply("42", true)
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Kotlin is Type Safe"
+      "Kotlin Is Type Safe"
       ( div []
         [ p []
           [ text "Compilation fails if a function is called with non-matching parameter types:" ]
@@ -748,7 +748,7 @@ val product: Double = multiply("42.0", true)
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Kotlin is Type Safe"
+      "Kotlin Is Type Safe"
       ( div []
         [ p []
           [ text "As with Go, you can’t accidentally get around Kotlin’s type safety:" ]
@@ -785,7 +785,7 @@ val product: Double? = multiply("42.0", true)
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Kotlin is Type Safe"
+      "Kotlin Is Type Safe"
       ( div []
         [ p []
           [ text "It takes a little more effort:" ]
@@ -814,7 +814,7 @@ let product: Double = multiply(42, 2.718)
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Swift is Type Safe"
+      "Swift Is Type Safe"
       ( div []
         [ p []
           [ text "Function parameters and return values "
@@ -855,7 +855,7 @@ let product: Double = multiply("42", true)
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Swift is Type Safe"
+      "Swift Is Type Safe"
       ( div []
         [ p []
           [ text "Compilation fails if a function is called with non-matching parameter types:" ]
@@ -892,7 +892,7 @@ let product: Double = multiply("42", true)
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Swift is Type Safe"
+      "Swift Is Type Safe"
       ( div []
         [ p []
           [ text "As is the case with statically typed languages, you cannot accidentally forget type safety:" ]
@@ -932,7 +932,7 @@ let product: Double? = multiply("42", true)
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Swift is Type Safe"
+      "Swift Is Type Safe"
       ( div []
         [ p []
           [ text "Defeating Swift's type safety takes effort:" ]
