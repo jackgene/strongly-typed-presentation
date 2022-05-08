@@ -132,7 +132,7 @@ outOfScope =
             , li []
               [ b [] [ text "Functional Errors / Incorrectness" ]
               , text " - program not meeting functional requirements"
-              , text " e.g., font is the wrong color, using floating point numbers for monetary values"
+              , text " e.g., font is the wrong color, using floating point numbers for monetary calculations"
               ]
             ]
           ]
