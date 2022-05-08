@@ -751,7 +751,7 @@ val product: Double = multiply("42.0", true)
       "Kotlin Is Type Safe"
       ( div []
         [ p []
-          [ text "As with Go, you can’t accidentally get around Kotlin’s type safety:" ]
+          [ text "As with Go, you cannot accidentally get around Kotlin’s type safety:" ]
         , div [] [ codeBlock ]
         ]
       )
