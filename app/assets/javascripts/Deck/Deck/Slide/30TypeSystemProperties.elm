@@ -107,7 +107,7 @@ typeSystemProperties =
           , ( "Swift", scoreDefeatable )
           ]
         )
-      , ( "Checked Error Handling" -- "Unhandled General Errors"
+      , ( "Exception Safety" -- "Unhandled General Errors"
         , Dict.fromList
           [ ( "Go", scoreUnsupported )
           , ( "Python", scoreImplementable )

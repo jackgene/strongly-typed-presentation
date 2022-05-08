@@ -21,7 +21,7 @@ import SyntaxHighlight.Model exposing
 
 -- Constants
 title : String
-title = TypeSystemProperties.title ++ ": Checked Error Handling"
+title = TypeSystemProperties.title ++ ": Exception Safety"
 
 
 -- Slides
