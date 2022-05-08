@@ -70,17 +70,28 @@ slidesList =
   , TypeSafety.introduction
   , TypeSafety.safeGo
   , TypeSafety.invalidSafeGo
+  , TypeSafety.invalidUnsafeGo
   , TypeSafety.unsafeGo
   , TypeSafety.safePython
   , TypeSafety.invalidSafePython
-  , TypeSafety.unsafePython
-  , TypeSafety.unsafePythonOutput
+  , TypeSafety.unsafePythonAny
+  , TypeSafety.unsafePythonUnannotated
+  , TypeSafety.unsafePythonRun
+  , TypeSafety.pythonTypeHintUnannotated
+  , TypeSafety.pythonTypeHintWrong
+  , TypeSafety.pythonTypeHintWrongRun
   , TypeSafety.safeTypeScript
   , TypeSafety.invalidSafeTypeScript
+  , TypeSafety.unsafeTypeScriptAny
+  , TypeSafety.unsafeTypeScriptUnannotated
   , TypeSafety.safeKotlin
   , TypeSafety.invalidSafeKotlin
+  , TypeSafety.invalidUnsafeKotlin
+  , TypeSafety.unsafeKotlin
   , TypeSafety.safeSwift
   , TypeSafety.invalidSafeSwift
+  , TypeSafety.invalidUnsafeSwift
+  , TypeSafety.unsafeSwift
   , TypeSystemProperties.languageReport 0
   , TypeSystemProperties.tableOfContent (Just 1)
   , NullSafety.introduction

@@ -82,8 +82,8 @@ type Language = Go | Kotlin | Python | Swift | TypeScript
 
 
 -- Functions
-syntaxHighlightedCodeBlock : Language -> Dict Int LineEmphasis -> Dict Int (List ColumnEmphasis) -> Maybe (CodeBlockError msg) -> String -> Html msg
-syntaxHighlightedCodeBlock language lineEmphases columnEmphases maybeError source =
+syntaxHighlightedCodeBlock : Language -> Dict Int LineEmphasis -> Dict Int (List ColumnEmphasis) -> List (CodeBlockError msg) -> String -> Html msg
+syntaxHighlightedCodeBlock language lineEmphases columnEmphases errors source =
   Result.withDefault (text "Error Parsing Source")
   ( let
       parser : String -> Result Parser.Error Block
@@ -136,19 +136,19 @@ syntaxHighlightedCodeBlock language lineEmphases columnEmphases maybeError sourc
       in
       div
       [ css [ position relative, marginTop (em -0.75), fontSize (vw codeFontSizeVw) ] ]
-      [ if language == Go then codeBlock else emptyPlaceholder
-      , if language == Kotlin then codeBlock else emptyPlaceholder
-      , if language == Python then codeBlock else emptyPlaceholder
-      , if language == Swift then codeBlock else emptyPlaceholder
-      , if language == TypeScript then codeBlock else emptyPlaceholder
-      , div
-        [ css
-          [ position absolute, top (em 0.625), right (em 0.5), opacity (num 0.875) ]
+      ( [ if language == Go then codeBlock else emptyPlaceholder
+        , if language == Kotlin then codeBlock else emptyPlaceholder
+        , if language == Python then codeBlock else emptyPlaceholder
+        , if language == Swift then codeBlock else emptyPlaceholder
+        , if language == TypeScript then codeBlock else emptyPlaceholder
+        , div
+          [ css
+            [ position absolute, top (em 0.625), right (em 0.5), opacity (num 0.875) ]
+          ]
+          [ languageLogo ]
         ]
-        [ languageLogo ]
-      , ( case maybeError of
-            Nothing -> div [ css [ opacity (num 0) ] ] []
-            Just {line, column, content} ->
+      ++( List.map
+          ( \{line, column, content} ->
               div
               [ css
                 [ display inlineBlock, position absolute
@@ -161,8 +161,10 @@ syntaxHighlightedCodeBlock language lineEmphases columnEmphases maybeError sourc
                 ]
               ]
               content
+          )
+          errors
         )
-      ]
+      )
     )
     ( parser (String.trim source) )
   )

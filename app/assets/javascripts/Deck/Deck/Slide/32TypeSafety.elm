@@ -1,15 +1,16 @@
 module Deck.Slide.TypeSafety exposing
   ( introduction
-  , safeGo, invalidSafeGo, unsafeGo
-  , safePython, invalidSafePython, unsafePython, unsafePythonOutput
-  , safeTypeScript, invalidSafeTypeScript
-  , safeKotlin, invalidSafeKotlin
-  , safeSwift, invalidSafeSwift
+  , safeGo, invalidSafeGo, invalidUnsafeGo, unsafeGo
+  , safePython, invalidSafePython, unsafePythonAny, unsafePythonUnannotated, unsafePythonRun
+  , pythonTypeHintUnannotated, pythonTypeHintWrong, pythonTypeHintWrongRun
+  , safeTypeScript, invalidSafeTypeScript, unsafeTypeScriptAny, unsafeTypeScriptUnannotated
+  , safeKotlin, invalidSafeKotlin, invalidUnsafeKotlin, unsafeKotlin
+  , safeSwift, invalidSafeSwift, invalidUnsafeSwift, unsafeSwift
   )
 
 import Css exposing
   -- Container
-  ( height
+  ( marginBottom
   -- Units
   , vw
   -- Other Values
@@ -47,9 +48,9 @@ introduction =
           , text ". As do function inputs (parameters) and outputs (return value). Types must match across the entire program."
           ]
         , p []
-          [ text "To most people this ", em [] [ text "is" ], text " strong typing." ]
-        , p []
-          [ text "Indeed, the other properties of strong typing build upon this." ]
+          [ text "To most people this ", em [] [ text "is" ], text " strong typing. "
+          , text "The other properties of strong typing build upon this."
+          ]
         ]
       )
     )
@@ -61,12 +62,12 @@ safeGo =
   let
     codeBlock : Html msg
     codeBlock =
-      syntaxHighlightedCodeBlock Go Dict.empty Dict.empty Nothing
+      syntaxHighlightedCodeBlock Go Dict.empty Dict.empty []
       """
 package typesafety
 
 func Multiply(num1 float64, num2 float64) float64 {
-  return num1 * num2
+    return num1 * num2
 }
 
 var product float64 = Multiply(42, 2.718)
@@ -97,20 +98,18 @@ invalidSafeGo =
       syntaxHighlightedCodeBlock Go
       ( Dict.fromList [ (6, Deletion), (7, Addition) ] )
       ( Dict.fromList [ (7, [ ColumnEmphasis Error 31 4,  ColumnEmphasis Error 37 4 ] ) ] )
-      ( Just
-        ( CodeBlockError 7 23
-          [ div []
-            [ text """cannot use "42" (type untyped string) as type float64 in argument to Multiply""" ]
-          , div []
-            [ text "cannot use true (type untyped bool) as type float64 in argument to Multiply" ]
-          ]
-        )
-      )
+      [ CodeBlockError 7 23
+        [ div []
+          [ text """cannot use "42" (type untyped string) as type float64 in argument to Multiply""" ]
+        , div []
+          [ text "cannot use true (type untyped bool) as type float64 in argument to Multiply" ]
+        ]
+      ]
       """
 package typesafety
 
 func Multiply(num1 float64, num2 float64) float64 {
-  return num1 * num2
+    return num1 * num2
 }
 
 var product float64 = Multiply(42, 2.718)
@@ -132,24 +131,28 @@ var product float64 = Multiply("42", true)
   }
 
 
-unsafeGo : UnindexedSlideModel
-unsafeGo =
+invalidUnsafeGo : UnindexedSlideModel
+invalidUnsafeGo =
   let
     codeBlock : Html msg
     codeBlock =
-      syntaxHighlightedCodeBlock Go Dict.empty Dict.empty Nothing
+      syntaxHighlightedCodeBlock Go
+      ( Dict.fromList [ (2, Deletion), (3, Addition) ] )
+      ( Dict.fromList [ (4, [ ColumnEmphasis Error 11 11 ] ) ] )
+      [ CodeBlockError 4 10
+        [ div []
+          [ text "invalid operation: left * right (operator * not defined on interface)" ]
+        ]
+      ]
       """
 package typesafety
-import "errors"
 
-func Multiply(any1, any2 interface{}) (float64, error) {
-  num1, ok := any1.(float64)
-  if !ok { return 0, errors.New("any1 is not a float64") }
-  num2, ok := any2.(float64)
-  if !ok { return 0, errors.New("any2 is not a float64") }
-  return num1 * num2, nil
+func Multiply(num1 float64, num2 float64) float64 {
+func Multiply(num1 interface{}, num1 interface{}) float64 {
+    return num1 * num2
 }
-var product, err = Multiply("42", true)
+
+var product float64 = Multiply("42", true)
 """
   in
   { baseSlideModel
@@ -159,8 +162,45 @@ var product, err = Multiply("42", true)
       "Go is Type Safe"
       ( div []
         [ p []
-          [ text "You would have to Go out of your way to defeat the type system:" ]
-        , div [] [] -- Different block, to bypass transition
+          [ text "You cannot accidentally get around the Go type system:" ]
+        , div [] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
+unsafeGo : UnindexedSlideModel
+unsafeGo =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Go
+      ( Dict.fromList
+        [ (3, Deletion), (4, Addition)
+        ]
+      )
+      Dict.empty
+      []
+      """
+package typesafety
+
+func Multiply(num1 interface{}, num2 interface{}) float64 {
+    return num1 * num2
+    return num1.(float64) * num2.(float64) // Unsafe!
+}
+
+var product float64 = Multiply("42", true) // Panic!
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "Go is Type Safe"
+      ( div []
+        [ p []
+          [ text "While possible, you would have to Go out of your way to defeat the type system:" ]
         , div [] [ codeBlock ]
         ]
       )
@@ -173,10 +213,11 @@ safePython =
   let
     codeBlock : Html msg
     codeBlock =
-      syntaxHighlightedCodeBlock Python Dict.empty Dict.empty Nothing
+      syntaxHighlightedCodeBlock Python Dict.empty Dict.empty []
       """
 def multiply(num1: float, num2: float) -> float:
-  return num1 * num2
+    return num1 * num2
+
 
 product: float = multiply(42, 2.718)
 """
@@ -189,7 +230,7 @@ product: float = multiply(42, 2.718)
       ( div []
         [ p []
           [ text "Function parameters and return values can have declared types..." ]
-        , div [ css [ height (vw 15) ] ] [ codeBlock ]
+        , div [] [ codeBlock ]
         , p []
           [ text "...and if so, must be called with those types." ]
         ]
@@ -204,18 +245,17 @@ invalidSafePython =
     codeBlock : Html msg
     codeBlock =
       syntaxHighlightedCodeBlock Python
-      ( Dict.fromList [ (3, Deletion), (4, Addition) ] )
-      ( Dict.fromList [ (4, [ ColumnEmphasis Error 26 4 ] ) ] )
-      ( Just
-        ( CodeBlockError 4 5
-          [ div []
-            [ text """Argument of type "Literal['42']" cannot be assigned to parameter "num1" of type "float" in function "multiply" """ ]
-          ]
-        )
-      )
+      ( Dict.fromList [ (4, Deletion), (5, Addition) ] )
+      ( Dict.fromList [ (5, [ ColumnEmphasis Error 26 4 ] ) ] )
+      [ CodeBlockError 5 5
+        [ div []
+          [ text """Argument of type "Literal['42']" cannot be assigned to parameter "num1" of type "float" in function "multiply" """ ]
+        ]
+      ]
       """
 def multiply(num1: float, num2: float) -> float:
-  return num1 * num2
+    return num1 * num2
+
 
 product: float = multiply(42, 2.718)
 product: float = multiply("42", True)
@@ -229,7 +269,7 @@ product: float = multiply("42", True)
       ( div []
         [ p []
           [ text "Type-checking fails if a function is called with non-matching parameter types:" ]
-        , div [ css [ height (vw 15) ] ] [ codeBlock ]
+        , div [ css [ marginBottom (vw 4) ] ] [ codeBlock ]
         , p []
           [ text "Note: "
           , syntaxHighlightedCodeSnippet Python "True"
@@ -247,25 +287,26 @@ product: float = multiply("42", True)
   }
 
 
-unsafePython : UnindexedSlideModel
-unsafePython =
+unsafePythonAny : UnindexedSlideModel
+unsafePythonAny =
   let
     codeBlock : Html msg
     codeBlock =
       syntaxHighlightedCodeBlock Python
       ( Dict.fromList
         [ (0, Deletion), (1, Addition)
-        , (4, Deletion), (5, Addition)
+        , (5, Deletion), (6, Addition)
         ]
       )
-      Dict.empty Nothing
+      Dict.empty []
       """
 def multiply(num1: float, num2: float) -> float:
-def multiply(num1, num2):
-  return num1 * num2
+def multiply(num1: any, num2: any) -> any:
+    return num1 * num2
+
 
 product: float = multiply("42", True)
-product = multiply([1,2,3], {"key":"value"})
+product = multiply("42", "2.718")
 """
   in
   { baseSlideModel
@@ -275,8 +316,44 @@ product = multiply([1,2,3], {"key":"value"})
       "Python Can Be Type Safe"
       ( div []
         [ p []
-          [ text "Python typing is optional, and is incredibly easy to defeat. Python type-checkers will happily allow this:" ]
-        , div [ css [ height (vw 15) ] ] [ codeBlock ]
+          [ text "Python typing is optional, and is incredibly easy to defeat. Python type checkers will happily allow this:" ]
+        , div [ css [] ] [ codeBlock ]
+        , p [] [ text "..." ]
+        ]
+      )
+    )
+  }
+
+
+unsafePythonUnannotated : UnindexedSlideModel
+unsafePythonUnannotated =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Python
+      ( Dict.fromList
+        [ (0, Deletion), (1, Addition)
+        ]
+      )
+      Dict.empty []
+      """
+def multiply(num1: any, num2: any) -> any:
+def multiply(num1, num2):
+    return num1 * num2
+
+
+product = multiply("42", "2.718")
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "Python Can Be Type Safe"
+      ( div []
+        [ p []
+          [ text "...Or even this:" ]
+        , div [ css [] ] [ codeBlock ]
         , p []
           [ text "However, when you run the program..." ]
         ]
@@ -285,8 +362,8 @@ product = multiply([1,2,3], {"key":"value"})
   }
 
 
-unsafePythonOutput : UnindexedSlideModel
-unsafePythonOutput =
+unsafePythonRun : UnindexedSlideModel
+unsafePythonRun =
   { baseSlideModel
   | view =
     ( \page _ ->
@@ -296,13 +373,13 @@ unsafePythonOutput =
         [ p [] [ text "...the program fails with the following:" ]
         , console
           """
-% python typesafety_unsafe.py
+% python type_safety/unsafe.py
 Traceback (most recent call last):
-  File "/strongly-typed/typesafety_unsafe.py", line 5, in <module>
+  File "/strongly-typed/type_safety/unsafe.py", line 5, in <module>
     product = multiply([1,2,3], {"key":"value"})
-  File "/strongly-typed/typesafety_unsafe.py", line 2, in multiply
+  File "/strongly-typed/type_safety/unsafe.py", line 2, in multiply
     return num1 * num2
-TypeError: can't multiply sequence by non-int of type 'dict'
+TypeError: can't multiply sequence by non-int of type 'str'
 """
         ]
       )
@@ -310,7 +387,121 @@ TypeError: can't multiply sequence by non-int of type 'dict'
   }
 
 
--- It is up to the programmer to be disciplined about type-checking.
+pythonTypeHintUnannotated : UnindexedSlideModel
+pythonTypeHintUnannotated =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Python Dict.empty Dict.empty []
+      """
+def multiply(num1, num2):
+    return num1 * num2
+
+
+print(multiply(42, 2.718))
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "A Word About Python Type Hints"
+      ( div []
+        [ p [] [ text "Python type hints are just that - hints. Consider the program with type hints removed, it is simple enough you can tell it is correct:" ]
+        , div [ css [] ] [ codeBlock ]
+        , p [] [ text "A test run shows that the program is indeed correct:" ]
+        , console
+          """
+% python type_safety/unannotated_valid.py
+114.156
+"""
+        ]
+      )
+    )
+  }
+
+
+pythonTypeHintWrong : UnindexedSlideModel
+pythonTypeHintWrong =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Python
+      ( Dict.fromList
+        [ (0, Deletion), (1, Addition)
+        ]
+      )
+      ( Dict.fromList
+        [ (2, [ ColumnEmphasis Error 16 1 ] )
+        , (5, [ ColumnEmphasis Error 15 2, ColumnEmphasis Error 19 5 ] )
+        ]
+      )
+      [ CodeBlockError 2 15
+        [ div []
+          [ text """Operator "*" not supported for types "str" and "str" """ ]
+        ]
+      , CodeBlockError 5 3
+        [ div []
+          [ text """Argument of type "Literal[42]" cannot be assigned to parameter "num1" of type "str" in function "multiply_strs" """ ]
+        , div []
+          [ text """Argument of type "float" cannot be assigned to parameter "num2" of type "str" in function "multiply_strs" """ ]
+        ]
+      ]
+      """
+def multiply(num1, num2):
+def multiply(num1: str, num2: str) -> str:
+    return num1 * num2
+
+
+print(multiply(42, 2.718))
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "A Word About Python Type Hints"
+      ( div []
+        [ p [] [ text "Now we add a bunch of clearly incorrect type information to it:" ]
+        , div [ css [] ] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
+pythonTypeHintWrongRun : UnindexedSlideModel
+pythonTypeHintWrongRun =
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "A Word About Python Type Hints"
+      ( div []
+        [ p []
+          [ text "The program "
+          , em [] [ text "still" ]
+          , text " runs correctly. Type information is "
+          , em [] [ text "completely ignored" ]
+          , text " by the Python interpreter:" ]
+        , console
+          """
+% python type_safety/wrong_type_valid.py
+114.156
+"""
+        , p []
+          [ text "Type annotations in Python are just "
+          , em [] [ text "hints" ]
+          , text " to facilitate 3rd-party type checkers, such as those built into PyCharm or VSCode. "
+          ]
+        , p []
+          [ text "It is up to programming teams to incorporate these type checkers in their build process, "
+          , text "where they’d use a dedicate type checker like MyPy, PyRight, or Pyre."
+          ]
+        ]
+      )
+    )
+  }
 
 
 safeTypeScript : UnindexedSlideModel
@@ -318,7 +509,7 @@ safeTypeScript =
   let
     codeBlock : Html msg
     codeBlock =
-      syntaxHighlightedCodeBlock TypeScript Dict.empty Dict.empty Nothing
+      syntaxHighlightedCodeBlock TypeScript Dict.empty Dict.empty []
       """
 function multiply(num1: number, num2: number): number {
   return num1 * num2;
@@ -352,15 +543,13 @@ invalidSafeTypeScript =
       syntaxHighlightedCodeBlock TypeScript
       ( Dict.fromList [ (4, Deletion), (5, Addition) ] )
       ( Dict.fromList [ (5, [ ColumnEmphasis Error 33 4,  ColumnEmphasis Error 39 4 ] ) ] )
-      ( Just
-        ( CodeBlockError 5 19
-          [ div []
-            [ text "TS2345: Argument of type 'string' is not assignable to parameter of type 'number'." ]
-          , div []
-            [ text "TS2345: Argument of type 'boolean' is not assignable to parameter of type 'number'." ]
-          ]
-        )
-      )
+      [ CodeBlockError 5 19
+        [ div []
+          [ text "TS2345: Argument of type 'string' is not assignable to parameter of type 'number'." ]
+        , div []
+          [ text "TS2345: Argument of type 'boolean' is not assignable to parameter of type 'number'." ]
+        ]
+      ]
       """
 function multiply(num1: number, num2: number): number {
   return num1 * num2;
@@ -385,12 +574,88 @@ const product: number = multiply("42", true);
   }
 
 
+unsafeTypeScriptAny : UnindexedSlideModel
+unsafeTypeScriptAny =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock TypeScript
+      ( Dict.fromList
+        [ (0, Deletion), (1, Addition)
+        , (5, Deletion), (6, Addition)
+        ]
+      )
+      Dict.empty []
+      """
+function multiply(num1: number, num2: number): number {
+function multiply(num1: any, num2: any): any {
+  return num1 * num2;
+}
+
+const product = multiply("42", true);
+const product = multiply("42", "2.718");
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "TypeScript Can Be Type Safe"
+      ( div []
+        [ p []
+          [ text "As with Python, TypeScript allows you to annotate anything with "
+          , syntaxHighlightedCodeSnippet TypeScript "any"
+          , text ". The TypeScript compiler will happily allow this:"
+          ]
+        , div [ css [] ] [ codeBlock ]
+        , p [] [ text "..." ]
+        ]
+      )
+    )
+  }
+
+
+unsafeTypeScriptUnannotated : UnindexedSlideModel
+unsafeTypeScriptUnannotated =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock TypeScript
+      ( Dict.fromList
+        [ (0, Deletion), (1, Addition)
+        ]
+      )
+      Dict.empty []
+      """
+function multiply(num1: any, num2: any): any {
+function multiply(num1, num2) {
+  return num1 * num2;
+}
+
+const product = multiply("42", "2.718");
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "TypeScript Can Be Type Safe"
+      ( div []
+        [ p []
+          [ text "...Or plain JavaScript, when not in strict mode:" ]
+        , div [ css [] ] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
 safeKotlin : UnindexedSlideModel
 safeKotlin =
   let
     codeBlock : Html msg
     codeBlock =
-      syntaxHighlightedCodeBlock Kotlin Dict.empty Dict.empty Nothing
+      syntaxHighlightedCodeBlock Kotlin Dict.empty Dict.empty []
       """
 fun multiply(num1: Double, num2: Double): Double = num1 * num2
 
@@ -422,15 +687,13 @@ invalidSafeKotlin =
       syntaxHighlightedCodeBlock Kotlin
       ( Dict.fromList [ (2, Deletion), (3, Addition) ] )
       ( Dict.fromList [ (3, [ ColumnEmphasis Error 31 4,  ColumnEmphasis Error 37 4 ] ) ] )
-      ( Just
-        ( CodeBlockError 3 29
-          [ div []
-            [ text "type mismatch: inferred type is String but Double was expected" ]
-          , div []
-            [ text "the boolean literal does not conform to the expected type Double" ]
-          ]
-        )
-      )
+      [ CodeBlockError 3 29
+        [ div []
+          [ text "type mismatch: inferred type is String but Double was expected" ]
+        , div []
+          [ text "the boolean literal does not conform to the expected type Double" ]
+        ]
+      ]
       """
 fun multiply(num1: Double, num2: Double): Double = num1 * num2
 
@@ -453,12 +716,90 @@ val product: Double = multiply("42", true)
   }
 
 
+invalidUnsafeKotlin : UnindexedSlideModel
+invalidUnsafeKotlin =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Kotlin
+      ( Dict.fromList [ (0, Deletion), (1, Addition) ] )
+      ( Dict.fromList [ (1, [ ColumnEmphasis Error 50 1 ] ) ] )
+      [ CodeBlockError 1 6
+        [ div []
+          [ text "unresolved reference. None of the following candidates is applicable because of receiver type mismatch: " ]
+        , div []
+          [ text "public inline operator fun BigDecimal.times(other: BigDecimal): BigDecimal defined in kotlin" ]
+        , div []
+          [ text "public inline operator fun BigInteger.times(other: BigInteger): BigInteger defined in kotlin" ]
+        ]
+      ]
+      """
+fun multiply(num1: Double, num2: Double): Double = num1 * num2
+fun multiply(num1: Any, num2: Any): Double = num1 * num2
+
+
+
+val product: Double = multiply("42.0", true)
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "Kotlin is Type Safe"
+      ( div []
+        [ p []
+          [ text "As with Go, you can’t accidentally get around Kotlin’s type safety:" ]
+        , div [] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
+unsafeKotlin : UnindexedSlideModel
+unsafeKotlin =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Kotlin
+      ( Dict.fromList
+        [ (0, Deletion), (1, Addition), (2, Addition), (3, Addition)
+        , (5, Deletion), (6, Addition)
+        ]
+      )
+      Dict.empty []
+      """
+fun multiply(num1: Any, num2: Any): Double = num1 * num2
+fun multiply(num1: Any, num2: Any): Double? =
+    if (num1 !is Double || num2 !is Double) null
+    else num1 * num2
+
+val product: Double = multiply("42.0", true)
+val product: Double? = multiply("42.0", true)
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "Kotlin is Type Safe"
+      ( div []
+        [ p []
+          [ text "It takes a little more effort:" ]
+        , div [] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
 safeSwift : UnindexedSlideModel
 safeSwift =
   let
     codeBlock : Html msg
     codeBlock =
-      syntaxHighlightedCodeBlock Swift Dict.empty Dict.empty Nothing
+      syntaxHighlightedCodeBlock Swift Dict.empty Dict.empty []
       """
 func multiply(_ num1: Double, _ num2: Double) -> Double {
     num1 * num2
@@ -492,15 +833,13 @@ invalidSafeSwift =
       syntaxHighlightedCodeBlock Swift
       ( Dict.fromList [ (4, Deletion), (5, Addition) ] )
       ( Dict.fromList [ (5, [ ColumnEmphasis Error 31 4,  ColumnEmphasis Error 37 4 ] ) ] )
-      ( Just
-        ( CodeBlockError 5 25
-          [ div []
-            [ text "cannot convert value of type 'String' to expected argument type 'Double'" ]
-          , div []
-            [ text "cannot convert value of type 'Bool' to expected argument type 'Double'" ]
-          ]
-        )
-      )
+      [ CodeBlockError 5 25
+        [ div []
+          [ text "cannot convert value of type 'String' to expected argument type 'Double'" ]
+        , div []
+          [ text "cannot convert value of type 'Bool' to expected argument type 'Double'" ]
+        ]
+      ]
       """
 func multiply(_ num1: Double, _ num2: Double) -> Double {
     num1 * num2
@@ -518,6 +857,83 @@ let product: Double = multiply("42", true)
       ( div []
         [ p []
           [ text "Compilation fails if a function is called with non-matching parameter types:" ]
+        , div [] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
+invalidUnsafeSwift : UnindexedSlideModel
+invalidUnsafeSwift =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Swift
+      ( Dict.fromList [ (0, Deletion), (1, Addition) ] )
+      ( Dict.fromList [ (2, [ ColumnEmphasis Error 16 1 ] ) ] )
+      [ CodeBlockError 2 14
+        [ div []
+          [ text "binary operator '*' cannot be applied to two 'Any' operands" ]
+        ]
+      ]
+      """
+func multiply(_ num1: Double, _ num2: Double) -> Double {
+func multiply(_ num1: Any, _ num2: Any) -> Double {
+    return num1 * num2
+}
+
+let product: Double = multiply("42", true)
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "Swift is Type Safe"
+      ( div []
+        [ p []
+          [ text "As is the case with statically typed languages, you cannot accidentally forget type safety:" ]
+        , div [] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
+unsafeSwift : UnindexedSlideModel
+unsafeSwift =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Swift
+      ( Dict.fromList
+        [ (0, Deletion), (1, Addition), (2, Addition), (3, Addition), (4, Addition)
+        , (8, Deletion), (9, Addition)
+        ]
+      )
+      Dict.empty []
+      """
+func multiply(_ num1: Any, _ num2: Any) -> Double {
+func multiply(_ num1: Any, _ num2: Any) -> Double? {
+    guard
+        let num1 = num1 as? Double, let num2 = num2 as? Double
+    else { return nil }
+    return num1 * num2
+}
+
+let product: Double = multiply("42", true)
+let product: Double? = multiply("42", true)
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title
+      "Swift is Type Safe"
+      ( div []
+        [ p []
+          [ text "Defeating Swift's type safety takes effort:" ]
         , div [] [ codeBlock ]
         ]
       )
