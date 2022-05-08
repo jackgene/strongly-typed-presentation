@@ -38359,12 +38359,20 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeGo = function () {
 				_1: {
 					ctor: '::',
 					_0: {ctor: '_Tuple2', _0: 4, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
-					_1: {ctor: '[]'}
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 5, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 6, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
+							_1: {ctor: '[]'}
+						}
+					}
 				}
 			}),
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\npackage typesafety\n\nfunc Multiply(num1 interface{}, num2 interface{}) float64 {\n    return num1 * num2\n    return num1.(float64) * num2.(float64) // Unsafe!\n}\n\nvar product float64 = Multiply(\"42\", true) // Panic!\n');
+		'\npackage typesafety\n\nfunc Multiply(num1 interface{}, num2 interface{}) float64 {\n    return num1 * num2\n    num1_, _ := num1.(float64)\n    num2_, _ := num2.(float64)\n    return num1_ * num2_\n}\n\nvar product float64 = Multiply(\"42\", true)\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{

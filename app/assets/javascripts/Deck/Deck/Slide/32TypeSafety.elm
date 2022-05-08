@@ -177,7 +177,7 @@ unsafeGo =
     codeBlock =
       syntaxHighlightedCodeBlock Go
       ( Dict.fromList
-        [ (3, Deletion), (4, Addition)
+        [ (3, Deletion), (4, Addition), (5, Addition), (6, Addition)
         ]
       )
       Dict.empty
@@ -187,10 +187,12 @@ package typesafety
 
 func Multiply(num1 interface{}, num2 interface{}) float64 {
     return num1 * num2
-    return num1.(float64) * num2.(float64) // Unsafe!
+    num1_, _ := num1.(float64)
+    num2_, _ := num2.(float64)
+    return num1_ * num2_
 }
 
-var product float64 = Multiply("42", true) // Panic!
+var product float64 = Multiply("42", true)
 """
   in
   { baseSlideModel
