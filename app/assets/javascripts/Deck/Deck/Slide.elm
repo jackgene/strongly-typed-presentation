@@ -95,6 +95,20 @@ slidesList =
   , TypeSystemProperties.languageReport 0
   , TypeSystemProperties.tableOfContent (Just 1)
   , NullSafety.introduction
+  , NullSafety.unsafeGo
+  , NullSafety.unsafeGoRun
+  , NullSafety.safePythonNonNull
+  , NullSafety.safePythonNonNullInvalid
+  , NullSafety.safePythonNullableInvalid
+  , NullSafety.safePythonNullable
+  , NullSafety.safeTypeScriptNonNullInvalid
+  , NullSafety.safeTypeScriptNullableInvalid
+  , NullSafety.safeTypeScriptNullable
+  , NullSafety.safeKotlinNullable
+  , NullSafety.unsafeKotlin
+  , NullSafety.safeSwiftNullable
+  , NullSafety.safeSwiftNullableFun
+  , NullSafety.unsafeSwift
   , TypeSystemProperties.languageReport 1
   , TypeSystemProperties.tableOfContent (Just 2)
   , CheckedErrorHandling.introduction
