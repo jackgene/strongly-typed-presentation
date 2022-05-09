@@ -155,7 +155,7 @@ typeSystemProperties =
       , ( "Immutability" -- "Unintended State Mutation"
         , Dict.fromList
           [ ( "Go", scoreImplementable )
-          , ( "Python", scoreUnsupported )
+          , ( "Python", scoreImplementable  )
           , ( "TypeScript", scoreOptional )
           , ( "Kotlin", scoreOptional )
           , ( "Swift", scoreOptional )
