@@ -32,14 +32,12 @@ introduction =
       "Prevents Null Pointer Dereferences"
       ( div []
         [ p []
-          [ text "A null-safe (or void-safe) language is one where is it impossible to dereference a null pointer. "
-          , text "This is achieved by requiring that all nullable pointers be checked for null before access."
-          ]
+          [ text "Null-safe languages make it impossible to dereference a null pointers." ]
         , p []
-          [ text "As having to do a null-check for every pointer access can become cumbersome, "
-          , text "null-safe languages also introduce the concept of non-nullable pointers, "
-          , text "where a non-null value must always be assigned. "
-          , text "Null-checking can therefore be omitted on non-nullable pointers."
+          [ text "All nullable pointers must be checked to be non-null before access." ]
+        , p []
+          [ text "Null-safe languages also introduce the concept of non-nullable pointers. "
+          , text "Null-checking can be omitted on non-nullable pointers."
           ]
         ]
       )
@@ -570,7 +568,7 @@ let num: Int? = text
       ( div []
         [ p []
           [ text "Because Swift’s nilable types are really implemented as "
-          , syntaxHighlightedCodeSnippet Swift ": Optional<Wrapped>"
+          , syntaxHighlightedCodeSnippet Swift "_: Optional<Wrapped>" -- TODO not highlighting
           , text "s, they can be chained in a functional way:"
           ]
         , div [] [ codeBlockFun ]
