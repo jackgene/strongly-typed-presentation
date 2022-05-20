@@ -41,15 +41,16 @@ introduction =
       "Prevents Type Mismatch Errors"
       ( div []
         [ p []
-          [ text "This is the most fundamental aspect of strong typing." ]
-        , p []
-          [ text "All data values (variables, constants) have distinct "
-          , em [] [ text "types" ]
-          , text ". As do function inputs (parameters) and outputs (return value). Types must match across the entire program."
+          [ text "The most fundamental aspect of strong typing - "
+          , text "the other properties build on this."
           ]
         , p []
-          [ text "To most people this ", em [] [ text "is" ], text " strong typing. "
-          , text "The other properties of strong typing build on this fundamental concept."
+          [ text "All data values have distinct "
+          , em [] [ text "types" ]
+          , text ". As do function inputs and outputs."
+          ]
+        , p []
+          [ text "Types must match across the entire program."
           ]
         ]
       )
@@ -318,7 +319,10 @@ product = multiply("42", "2.718")
       "Python Can Be Type Safe"
       ( div []
         [ p []
-          [ text "Python typing is optional, and is incredibly easy to defeat. Python type checkers will happily allow this:" ]
+          [ text "Python typing is optional by design, you can use the "
+          , syntaxHighlightedCodeSnippet Python "any"
+          , text " type to defeat type-checking:"
+          ]
         , div [ css [] ] [ codeBlock ]
         , p [] [ text "..." ]
         ]
@@ -354,7 +358,7 @@ product = multiply("42", "2.718")
       "Python Can Be Type Safe"
       ( div []
         [ p []
-          [ text "...Or even this:" ]
+          [ text "...Or omit type annotations completely:" ]
         , div [ css [] ] [ codeBlock ]
         , p []
           [ text "However, when you run the program..." ]
@@ -464,7 +468,7 @@ print(multiply(42, 2.718))
       standardSlideView page title
       "A Word About Python Type Hints"
       ( div []
-        [ p [] [ text "Now we add a bunch of clearly incorrect type information to it:" ]
+        [ p [] [ text "Now we add a bunch of clearly incorrect type information:" ]
         , div [ css [] ] [ codeBlock ]
         ]
       )
@@ -607,7 +611,7 @@ const product = multiply("42", "2.718");
         [ p []
           [ text "As with Python, TypeScript allows you to annotate anything with "
           , syntaxHighlightedCodeSnippet TypeScript "any"
-          , text ". The TypeScript compiler will happily allow this:"
+          , text ":"
           ]
         , div [ css [] ] [ codeBlock ]
         , p [] [ text "..." ]
