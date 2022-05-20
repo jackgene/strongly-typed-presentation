@@ -344,9 +344,11 @@ methodology =
       "Analysis of Languages Used at GoodRx"
       ( div []
         [ p []
-          [ text "This talk goes through each of the type system properties "
-          , text "and evaluates if they apply to the languages used at GoodRx. "
-          , text "For each language & property, a lower and upper-bound score is assigned as follows:"
+          [ text "We’ll go through each type system property "
+          , text "and evaluates how they apply to the languages used at GoodRx. "
+          ]
+        , p []
+          [ text "For each language & property, a lower and upper-bound score is assigned:"
           ]
         , table [ css [ width (pct 96), margin2 zero auto, borderCollapse collapse ] ]
           [ tr [ css [ subHeaderStyle ] ]
