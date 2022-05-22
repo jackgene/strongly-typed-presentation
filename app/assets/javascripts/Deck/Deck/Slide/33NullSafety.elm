@@ -452,7 +452,7 @@ println(text?.uppercase() ?: "(text was null)")
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Kotlin Is Null Safe, But With An Escape Hatch"
+      "Kotlin Is Null Safe (With Options to Be Unsafe)"
       ( div []
         [ p []
           [ text "Kotlin shares all of TypeScript’s null safety features. "
@@ -487,7 +487,7 @@ println(text!!.uppercase())
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Kotlin Is Null Safe, But With An Escape Hatch"
+      "Kotlin Is Null Safe (With Options to Be Unsafe)"
       ( div []
         [ p []
           [ text "Unfortunately, Kotlin does offer a non-null assertion operator ("
@@ -529,7 +529,7 @@ print(text?.uppercased() ?? "(text was nil)")
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Swift Is Null Safe, But With An Escape Hatch"
+      "Swift Is Null Safe (With Options to Be Unsafe)"
       ( div []
         [ p []
           [ text "Swift and Kotlin’s null safety syntax differs only subtly:"
@@ -563,7 +563,7 @@ let num: Int? = text
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Swift Is Null Safe, But With An Escape Hatch"
+      "Swift Is Null Safe (With Options to Be Unsafe)"
       ( div []
         [ p []
           [ text "Because Swift’s nilable types are really implemented as "
@@ -600,7 +600,7 @@ print(unsafeText.uppercased())
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Swift Is Null Safe, But With An Escape Hatch"
+      "Swift Is Null Safe (With Options to Be Unsafe)"
       ( div []
         [ p []
           [ text "Now the bad news: Like Kotlin, Swift offers unsafe nil access. "
