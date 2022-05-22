@@ -492,8 +492,7 @@ println(text!!.uppercase())
         [ p []
           [ text "Unfortunately, Kotlin does offer a non-null assertion operator ("
           , syntaxHighlightedCodeSnippet Kotlin "!!"
-          , text ") that bypasses its otherwise flawless null checking. "
-          , text "The use of this operator is highly discourage however. "
+          , text "). "
           , text "Per Kotlin documentation, it is for “NullPointerException-lovers”:"
           ]
         , div [] [ codeBlock ]
@@ -533,7 +532,7 @@ print(text?.uppercased() ?? "(text was nil)")
       "Swift Is Null Safe, But With An Escape Hatch"
       ( div []
         [ p []
-          [ text "Swift and Kotlin’s null safety syntax differs only subtly (though their implementations are very different):"
+          [ text "Swift and Kotlin’s null safety syntax differs only subtly:"
           ]
         , div [] [ codeBlock1 ]
         , p []
