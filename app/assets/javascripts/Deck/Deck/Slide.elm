@@ -25,7 +25,7 @@ import Deck.Slide.Introduction as Introduction
 import Deck.Slide.TypeSystemProperties as TypeSystemProperties
 import Deck.Slide.TypeSafety as TypeSafety
 import Deck.Slide.NullSafety as NullSafety
-import Deck.Slide.CheckedErrorHandling as CheckedErrorHandling
+import Deck.Slide.ExceptionSafety as ExceptionSafety
 import Deck.Slide.SafeTypeCast as SafeTypeCast
 import Deck.Slide.SafeArrayAccess as SafeArrayAccess
 import Deck.Slide.ExhaustivenessChecking as ExhaustivenessChecking
@@ -111,7 +111,21 @@ slidesList =
   , NullSafety.unsafeSwift
   , TypeSystemProperties.languageReport 1
   , TypeSystemProperties.tableOfContent (Just 2)
-  , CheckedErrorHandling.introduction
+  , ExceptionSafety.introduction
+  , ExceptionSafety.introGo
+  , ExceptionSafety.unsafeGoExplicit
+  , ExceptionSafety.unsafeGoVariableReuse
+  , ExceptionSafety.unsafePython
+  , ExceptionSafety.unsafePythonRun
+  , ExceptionSafety.safePython
+  , ExceptionSafety.unsafeTypeScript
+  , ExceptionSafety.safeTypeScript
+  , ExceptionSafety.unsafeKotlin
+  , ExceptionSafety.safeKotlin
+  , ExceptionSafety.safeSwift
+  , ExceptionSafety.safeSwiftInvalid
+  , ExceptionSafety.safeSwiftInvocation
+  , ExceptionSafety.unsafeSwift
   , TypeSystemProperties.languageReport 2
   , TypeSystemProperties.tableOfContent (Just 3)
   , SafeTypeCast.introduction
