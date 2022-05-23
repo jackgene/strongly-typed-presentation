@@ -155,7 +155,7 @@ syntaxHighlightedCodeBlock language lineEmphases columnEmphases errors source =
                 div
                 [ css
                   [ display inlineBlock, position absolute
-                  , top (vw (codeFontSizeVw * 1.325 * (toFloat line + 1) + 0.5))
+                  , top (vw (codeFontSizeVw * 1.325 * (toFloat line + 1) + 0.125))
                   , left (vw (codeFontSizeVw * 0.6125 * (toFloat column) + 5))
                   , padding2 (em 0.0625) (em 0.125), border3 (em 0.1) solid goodRxDigitalRed
                   , fontSize (em 0.8), color goodRxDigitalRed, backgroundColor goodRxLightRed2
