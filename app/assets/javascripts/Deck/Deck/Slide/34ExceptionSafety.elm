@@ -3,8 +3,9 @@ module Deck.Slide.ExceptionSafety exposing
   , introGo, unsafeGoExplicit, unsafeGoVariableReuse
   , unsafePython, unsafePythonRun, safePython
   , unsafeTypeScript, safeTypeScript
-  , unsafeKotlin, safeKotlin
+  , unsafeKotlin, safeKotlin, safeKotlinInvalid
   , safeSwift, safeSwiftInvalid, safeSwiftInvocation, unsafeSwift
+  , safeSwiftMonadic, safeSwiftMonadicInvalid
   )
 
 import Deck.Slide.Common exposing (..)
@@ -403,7 +404,7 @@ fun safeDecodeUrl(s: String, enc: String): Result<String> =
 val urlRes: Result<String> = safeDecodeUrl("bad%url", "UTF-8")
 urlRes.fold(
     onSuccess = { println(it) },
-    onFailure = { println("Unable to decode URL") }
+    onFailure = { println("Unable to decode URL") },
 )
 """
   in
@@ -416,6 +417,45 @@ urlRes.fold(
           [ text "However, it provides an exception safe option, in the form of "
           , syntaxHighlightedCodeSnippet Kotlin "_ : Result<T>"
           , text ":"
+          ]
+        , div [] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
+safeKotlinInvalid : UnindexedSlideModel
+safeKotlinInvalid =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Kotlin
+      ( Dict.fromList [ (6, Deletion) ] )
+      ( Dict.fromList [ (7, [ ColumnEmphasis Error 0 1 ] ) ] )
+      [ CodeBlockError 7 0
+        [ div []
+          [ text "no value passed for parameter 'onFailure'" ]
+        ]
+      ]
+      """
+fun safeDecodeUrl(s: String, enc: String): Result<String> =
+    Result.runCatching { java.net.URLDecoder.decode(s, enc) }
+
+val urlRes: Result<String> = safeDecodeUrl("bad%url", "UTF-8")
+urlRes.fold(
+    onSuccess = { println(it) },
+    onFailure = { println("Unable to decode URL") },
+)
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title kotlinSubheading
+      ( div []
+        [ p []
+          [ text "Not accounting for the failure case results in a compile error:"
           ]
         , div [] [ codeBlock ]
         ]
@@ -579,6 +619,80 @@ print(url)
 Build complete! (0.13s)
 zsh: illegal hardware instruction  swift run exception_safety
 """
+        ]
+      )
+    )
+  }
+
+
+safeSwiftMonadic : UnindexedSlideModel
+safeSwiftMonadic =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Swift Dict.empty Dict.empty []
+      """
+let urlRes: Result<String, Error> = Result {
+    try decodeUri("bad%url")
+}
+
+switch urlRes {
+case .success(let url): print(url)
+case .failure(_): print("Unable to decode URI")
+}
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title swiftSubheading
+      ( div []
+        [ p []
+          [ text "Swift also has a "
+          , syntaxHighlightedCodeSnippet Swift "_: Result<Success, Failure>"
+          , text " that behaves very much same way as in Kotlin:"
+          ]
+        , div [] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
+safeSwiftMonadicInvalid : UnindexedSlideModel
+safeSwiftMonadicInvalid =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Swift
+      ( Dict.fromList [ (6, Deletion) ] )
+      ( Dict.fromList [ (4, [ ColumnEmphasis Error 0 6 ] ) ] )
+      [ CodeBlockError 3 15
+        [ div []
+          [ text "switch must be exhaustive" ]
+        ]
+      ]
+      """
+let urlRes: Result<String, Error> = Result {
+    try decodeUri("bad%url")
+}
+
+switch urlRes {
+case .success(let url): print(url)
+case .failure(_): print("Unable to decode URI")
+}
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title swiftSubheading
+      ( div []
+        [ p []
+          [ text "Failing to account for both success and failure cases result in a compile error:"
+          ]
+        , div [] [] -- No transition
+        , div [] [ codeBlock ]
         ]
       )
     )

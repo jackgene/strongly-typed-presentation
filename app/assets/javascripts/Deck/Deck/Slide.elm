@@ -122,10 +122,13 @@ slidesList =
   , ExceptionSafety.safeTypeScript
   , ExceptionSafety.unsafeKotlin
   , ExceptionSafety.safeKotlin
+  , ExceptionSafety.safeKotlinInvalid
   , ExceptionSafety.safeSwift
   , ExceptionSafety.safeSwiftInvalid
   , ExceptionSafety.safeSwiftInvocation
   , ExceptionSafety.unsafeSwift
+  , ExceptionSafety.safeSwiftMonadic
+  , ExceptionSafety.safeSwiftMonadicInvalid
   , TypeSystemProperties.languageReport 2
   , TypeSystemProperties.tableOfContent (Just 3)
   , SafeTypeCast.introduction
