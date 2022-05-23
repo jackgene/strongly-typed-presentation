@@ -36,7 +36,7 @@ introduction =
           [ text "Programs don’t always run according to plan - errors occur."
           ]
         , p []
-          [ text "Some errors are recoverable, for instance, users entering invalid input - "
+          [ text "Some errors are recoverable: Users providing invalid input - "
           , text "recover by rejecting the input and re-prompting the user."
           ]
         , p []
