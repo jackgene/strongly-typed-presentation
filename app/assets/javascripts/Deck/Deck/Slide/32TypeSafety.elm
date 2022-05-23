@@ -822,8 +822,8 @@ let product: Double = multiply(42, 2.718)
       ( div []
         [ p []
           [ text "Function parameters and return values "
-          , em [] [ text "must " ]
-          , text "have declared types, and must be called with those types:" ]
+          , em [] [ text "must" ]
+          , text " have declared types, and must be called with those types:" ]
         , div [] [ codeBlock ]
         ]
       )
