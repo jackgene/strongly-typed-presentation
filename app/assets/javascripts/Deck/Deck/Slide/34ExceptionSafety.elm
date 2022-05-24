@@ -36,11 +36,12 @@ introduction =
           [ text "Programs don’t always run according to plan - errors occur."
           ]
         , p []
-          [ text "Some errors are recoverable: Users providing invalid input - "
-          , text "recover by rejecting the input and re-prompting the user."
+          [ text "Some errors are recoverable: "
+          , text "Users providing invalid input "
+          , text "(Recover by rejecting the input and re-prompting the user)."
           ]
         , p []
-          [ text "Some are clearly not: Programs running out of memory."
+          [ text "Some are clearly not: When the system is out of memory."
           ]
         , p []
           [ text "An exception safe language requires the programmer to handle recoverable errors."
