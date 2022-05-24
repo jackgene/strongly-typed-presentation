@@ -19,8 +19,17 @@ import SyntaxHighlight.Model exposing
 
 
 -- Constants
-title : String
 title = TypeSystemProperties.title ++ ": Exception Safety"
+
+subheadingGo = "Go Is Not Exception Safe"
+
+subheadingPython = "Python Is Not Exception Safe (But Can Be Made Safer)"
+
+subheadingTypeScript = "TypeScript Is Not Exception Safe (But Can Be Made Safer)"
+
+subheadingKotlin = "Kotlin Is Not Exception Safe (But Includes a Safer Option)"
+
+subheadingSwift = "Swift Is Exception Safe (With Options to Be Unsafe)"
 
 
 -- Slides
@@ -54,10 +63,6 @@ introduction =
   }
 
 
-goSubheading : String
-goSubheading = "Go Is Not Exception Safe"
-
-
 introGo : UnindexedSlideModel
 introGo =
   let
@@ -73,7 +78,7 @@ func QueryUnescape(s string) (string, error)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title goSubheading
+      standardSlideView page title subheadingGo
       ( div []
         [ p []
           [ text "Go’s convention for error-handling is to return the success value "
@@ -121,7 +126,7 @@ func main() {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title goSubheading
+      standardSlideView page title subheadingGo
       ( div []
         [ p []
           [ text "In this example, the error from the "
@@ -171,7 +176,7 @@ func main() {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title goSubheading
+      standardSlideView page title subheadingGo
       ( div []
         [ p []
           [ text "...The real problem arises when the error variable is re-used, and accidentally ignored:" ]
@@ -180,10 +185,6 @@ func main() {
       )
     )
   }
-
-
-pythonSubheading : String
-pythonSubheading = "Python Is Not Exception Safe (But Can Be Made Safer)"
 
 
 unsafePython : UnindexedSlideModel
@@ -202,7 +203,7 @@ print(url)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title pythonSubheading
+      standardSlideView page title subheadingPython
       ( div []
         [ p []
           [ text "Any function can raise an exception, you are never required to check for it:"
@@ -222,7 +223,7 @@ unsafePythonRun =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title pythonSubheading
+      standardSlideView page title subheadingPython
       ( div []
         [ p []
           [ text "...but fails at runtime:"
@@ -267,7 +268,7 @@ if not isinstance(unquoted_or_err, Exception):
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title pythonSubheading
+      standardSlideView page title subheadingPython
       ( div []
         [ p []
           [ text "Python can be made exception safe by returning the exception instead of raising:"
@@ -277,10 +278,6 @@ if not isinstance(unquoted_or_err, Exception):
       )
     )
   }
-
-
-typeScriptSubheading : String
-typeScriptSubheading = "TypeScript Is Not Exception Safe (But Can Be Made Safer)"
 
 
 unsafeTypeScript : UnindexedSlideModel
@@ -297,7 +294,7 @@ console.log(url);
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title typeScriptSubheading
+      standardSlideView page title subheadingTypeScript
       ( div []
         [ p []
           [ text "Any function can throw an exception, you are never required to check for it:"
@@ -341,7 +338,7 @@ if (urlOrEr instanceof string) console.log(urlOrEr.toLowerCase());
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title typeScriptSubheading
+      standardSlideView page title subheadingTypeScript
       ( div []
         [ p []
           [ text "As with Python, you can return the exception instead of throwing it:"
@@ -351,10 +348,6 @@ if (urlOrEr instanceof string) console.log(urlOrEr.toLowerCase());
       )
     )
   }
-
-
-kotlinSubheading : String
-kotlinSubheading = "Kotlin Is Not Exception Safe (But Includes a Safer Option)"
 
 
 unsafeKotlin : UnindexedSlideModel
@@ -371,7 +364,7 @@ println(url)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title kotlinSubheading
+      standardSlideView page title subheadingKotlin
       ( div []
         [ p []
           [ text "Exceptions are unchecked, any function can throw one:"
@@ -414,7 +407,7 @@ urlRes.fold(
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title kotlinSubheading
+      standardSlideView page title subheadingKotlin
       ( div []
         [ p []
           [ text "However, it provides an exception safe option, in the form of "
@@ -455,7 +448,7 @@ urlRes.fold(
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title kotlinSubheading
+      standardSlideView page title subheadingKotlin
       ( div []
         [ p []
           [ text "Not accounting for the failure case results in a compile error:"
@@ -465,10 +458,6 @@ urlRes.fold(
       )
     )
   }
-
-
-swiftSubheading : String
-swiftSubheading = "Swift Is Exception Safe (With Options to Be Unsafe)"
 
 
 safeSwift : UnindexedSlideModel
@@ -491,7 +480,7 @@ func decodeUri(_ encodedUri: String) throws -> String {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title swiftSubheading
+      standardSlideView page title subheadingSwift
       ( div []
         [ p []
           [ text "In fact, it pretty much nails exception handling. Twice. "
@@ -534,7 +523,7 @@ func decodeUri(_ encodedUri: String) -> String {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title swiftSubheading
+      standardSlideView page title subheadingSwift
       ( div []
         [ p []
           [ text "Removing "
@@ -576,7 +565,7 @@ do {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title swiftSubheading
+      standardSlideView page title subheadingSwift
       ( div []
         [ p []
           [ text "The compiler makes you handle errors that may arise from a "
@@ -605,7 +594,7 @@ print(url)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title swiftSubheading
+      standardSlideView page title subheadingSwift
       ( div []
         [ p []
           [ text "Swift however, does provide an unsafe escape hatch by means of "
@@ -648,7 +637,7 @@ case .failure(_): print("Unable to decode URI")
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title swiftSubheading
+      standardSlideView page title subheadingSwift
       ( div []
         [ p []
           [ text "Swift also has a "
@@ -689,7 +678,7 @@ case .failure(_): print("Unable to decode URI")
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title swiftSubheading
+      standardSlideView page title subheadingSwift
       ( div []
         [ p []
           [ text "Failing to account for both success and failure cases result in a compile error:"
