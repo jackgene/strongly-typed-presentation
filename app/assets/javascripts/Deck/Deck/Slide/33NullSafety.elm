@@ -32,12 +32,15 @@ introduction =
       "Prevents Null Pointer Dereferences"
       ( div []
         [ p []
-          [ text "Null-safe languages make it impossible to dereference a null pointers." ]
+          [ text "Null-safe languages make it "
+          , mark [] [ text "impossible to dereference null pointers" ]
+          , text "."
+          ]
         , p []
-          [ text "All nullable pointers must be checked to be non-null before access." ]
+          [ text "Nullable pointers must be null-checked before access." ]
         , p []
-          [ text "Null-safe languages also introduce the concept of non-nullable pointers. "
-          , text "Null-checking can be omitted on non-nullable pointers."
+          [ text "Non-nullable pointers are required to always have a value, "
+          , text "and can be accessed without null-checking."
           ]
         ]
       )

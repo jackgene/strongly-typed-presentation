@@ -38083,12 +38083,8 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$introduction = _elm_lang$core$Nati
 								{ctor: '[]'},
 								{
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Html_Styled$text('The most fundamental aspect of strong typing - '),
-									_1: {
-										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('the other properties build on this.'),
-										_1: {ctor: '[]'}
-									}
+									_0: _rtfeldman$elm_css$Html_Styled$text('The most fundamental aspect of strong typing.'),
+									_1: {ctor: '[]'}
 								}),
 							_1: {
 								ctor: '::',
@@ -38097,23 +38093,8 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$introduction = _elm_lang$core$Nati
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('All data values have distinct '),
-										_1: {
-											ctor: '::',
-											_0: A2(
-												_rtfeldman$elm_css$Html_Styled$em,
-												{ctor: '[]'},
-												{
-													ctor: '::',
-													_0: _rtfeldman$elm_css$Html_Styled$text('types'),
-													_1: {ctor: '[]'}
-												}),
-											_1: {
-												ctor: '::',
-												_0: _rtfeldman$elm_css$Html_Styled$text('. As do function inputs and outputs.'),
-												_1: {ctor: '[]'}
-											}
-										}
+										_0: _rtfeldman$elm_css$Html_Styled$text('All data values have distinct types. As do function inputs and outputs.'),
+										_1: {ctor: '[]'}
 									}),
 								_1: {
 									ctor: '::',
@@ -38122,8 +38103,23 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$introduction = _elm_lang$core$Nati
 										{ctor: '[]'},
 										{
 											ctor: '::',
-											_0: _rtfeldman$elm_css$Html_Styled$text('Types must match across the entire program.'),
-											_1: {ctor: '[]'}
+											_0: _rtfeldman$elm_css$Html_Styled$text('Type safe languages ensure that '),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_jackgene$live_deck$Deck_Slide_Common$mark,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled$text('types match across the entire program'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled$text('.'),
+													_1: {ctor: '[]'}
+												}
+											}
 										}),
 									_1: {ctor: '[]'}
 								}
@@ -40153,8 +40149,23 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$introduction = _elm_lang$core$Nati
 								{ctor: '[]'},
 								{
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Html_Styled$text('Null-safe languages make it impossible to dereference a null pointers.'),
-									_1: {ctor: '[]'}
+									_0: _rtfeldman$elm_css$Html_Styled$text('Null-safe languages make it '),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_jackgene$live_deck$Deck_Slide_Common$mark,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text('impossible to dereference null pointers'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled$text('.'),
+											_1: {ctor: '[]'}
+										}
+									}
 								}),
 							_1: {
 								ctor: '::',
@@ -40163,7 +40174,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$introduction = _elm_lang$core$Nati
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('All nullable pointers must be checked to be non-null before access.'),
+										_0: _rtfeldman$elm_css$Html_Styled$text('Nullable pointers must be null-checked before access.'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -40173,10 +40184,10 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$introduction = _elm_lang$core$Nati
 										{ctor: '[]'},
 										{
 											ctor: '::',
-											_0: _rtfeldman$elm_css$Html_Styled$text('Null-safe languages also introduce the concept of non-nullable pointers. '),
+											_0: _rtfeldman$elm_css$Html_Styled$text('Non-nullable pointers are required to always have a value, '),
 											_1: {
 												ctor: '::',
-												_0: _rtfeldman$elm_css$Html_Styled$text('Null-checking can be omitted on non-nullable pointers.'),
+												_0: _rtfeldman$elm_css$Html_Styled$text('and can be accessed without null-checking.'),
 												_1: {ctor: '[]'}
 											}
 										}),
@@ -41413,8 +41424,23 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$introduction = _elm_lang$core
 											{ctor: '[]'},
 											{
 												ctor: '::',
-												_0: _rtfeldman$elm_css$Html_Styled$text('An exception safe language requires the programmer to handle recoverable errors.'),
-												_1: {ctor: '[]'}
+												_0: _rtfeldman$elm_css$Html_Styled$text('Exception safe languages require the programmer to '),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_jackgene$live_deck$Deck_Slide_Common$mark,
+														{ctor: '[]'},
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled$text('handle all recoverable errors'),
+															_1: {ctor: '[]'}
+														}),
+													_1: {
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled$text('.'),
+														_1: {ctor: '[]'}
+													}
+												}
 											}),
 										_1: {ctor: '[]'}
 									}
@@ -42649,10 +42675,47 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeCast$introduction = _elm_lang$core$Na
 								{ctor: '[]'},
 								{
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Html_Styled$text('TODO'),
+									_0: _rtfeldman$elm_css$Html_Styled$text('As long as there is a type hierarchy, or abstract types, type casts are inevitable.'),
 									_1: {ctor: '[]'}
 								}),
-							_1: {ctor: '[]'}
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('Languages with safe type casts treat type casting as a recoverable error.'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$p,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled$text('Programmers are required to '),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_jackgene$live_deck$Deck_Slide_Common$mark,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled$text('account for cast failures'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled$text('.'),
+													_1: {ctor: '[]'}
+												}
+											}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}
 						}));
 			})
 	});

@@ -41,16 +41,15 @@ introduction =
       "Prevents Type Mismatch Errors"
       ( div []
         [ p []
-          [ text "The most fundamental aspect of strong typing - "
-          , text "the other properties build on this."
+          [ text "The most fundamental aspect of strong typing."
           ]
         , p []
-          [ text "All data values have distinct "
-          , em [] [ text "types" ]
-          , text ". As do function inputs and outputs."
+          [ text "All data values have distinct types. As do function inputs and outputs."
           ]
         , p []
-          [ text "Types must match across the entire program."
+          [ text "Type safe languages ensure that "
+          , mark [] [ text "types match across the entire program" ]
+          , text "."
           ]
         ]
       )

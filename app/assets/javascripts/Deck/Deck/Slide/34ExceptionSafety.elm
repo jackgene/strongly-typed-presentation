@@ -44,7 +44,9 @@ introduction =
           [ text "Some are clearly not: When the system is out of memory."
           ]
         , p []
-          [ text "An exception safe language requires the programmer to handle recoverable errors."
+          [ text "Exception safe languages require the programmer to "
+          , mark [] [ text "handle all recoverable errors" ]
+          , text "."
           ]
         ]
       )
