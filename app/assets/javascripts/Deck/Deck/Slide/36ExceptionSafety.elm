@@ -453,6 +453,7 @@ urlRes.fold(
         [ p []
           [ text "Not accounting for the failure case results in a compile error:"
           ]
+        , div [] [] -- No transition
         , div [] [ codeBlock ]
         ]
       )
@@ -642,7 +643,7 @@ case .failure(_): print("Unable to decode URI")
         [ p []
           [ text "Swift also has a "
           , syntaxHighlightedCodeSnippet Swift "_: Result<Success, Failure>"
-          , text " that behaves very much same way as in Kotlin:"
+          , text " just like Kotlin’s:"
           ]
         , div [] [ codeBlock ]
         ]

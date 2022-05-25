@@ -111,6 +111,23 @@ slidesList =
   , NullSafety.unsafeSwift
   , TypeSystemProperties.languageReport 1
   , TypeSystemProperties.tableOfContent (Just 2)
+  , SafeTypeCast.introduction
+  , SafeTypeCast.unsafeGo
+  , SafeTypeCast.unsafeGoRun
+  , SafeTypeCast.blahPython
+  , SafeTypeCast.blahTypeScript
+  , SafeTypeCast.blahKotlin
+  , SafeTypeCast.blahSwift
+  , TypeSystemProperties.languageReport 2
+  , TypeSystemProperties.tableOfContent (Just 3)
+  , SafeArrayAccess.introduction
+  , SafeArrayAccess.blahGo
+  , SafeArrayAccess.blahPython
+  , SafeArrayAccess.blahTypeScript
+  , SafeArrayAccess.blahKotlin
+  , SafeArrayAccess.blahSwift
+  , TypeSystemProperties.languageReport 3
+  , TypeSystemProperties.tableOfContent (Just 4)
   , ExceptionSafety.introduction
   , ExceptionSafety.introGo
   , ExceptionSafety.unsafeGoExplicit
@@ -129,21 +146,30 @@ slidesList =
   , ExceptionSafety.unsafeSwift
   , ExceptionSafety.safeSwiftMonadic
   , ExceptionSafety.safeSwiftMonadicInvalid
-  , TypeSystemProperties.languageReport 2
-  , TypeSystemProperties.tableOfContent (Just 3)
-  , SafeTypeCast.introduction
-  , TypeSystemProperties.languageReport 3
-  , TypeSystemProperties.tableOfContent (Just 4)
-  , SafeArrayAccess.introduction
   , TypeSystemProperties.languageReport 4
   , TypeSystemProperties.tableOfContent (Just 5)
   , ExhaustivenessChecking.introduction
+  , ExhaustivenessChecking.blahGo
+  , ExhaustivenessChecking.blahPython
+  , ExhaustivenessChecking.blahTypeScript
+  , ExhaustivenessChecking.blahKotlin
+  , ExhaustivenessChecking.blahSwift
   , TypeSystemProperties.languageReport 5
   , TypeSystemProperties.tableOfContent (Just 6)
   , Encapsulation.introduction
+  , Encapsulation.blahGo
+  , Encapsulation.blahPython
+  , Encapsulation.blahTypeScript
+  , Encapsulation.blahKotlin
+  , Encapsulation.blahSwift
   , TypeSystemProperties.languageReport 6
   , TypeSystemProperties.tableOfContent (Just 7)
   , Immutability.introduction
+  , Immutability.blahGo
+  , Immutability.blahPython
+  , Immutability.blahTypeScript
+  , Immutability.blahKotlin
+  , Immutability.blahSwift
   , TypeSystemProperties.languageReport 7
   , SectionCover.conclusion
   -- TODO strong typing + unit testing

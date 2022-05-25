@@ -1,4 +1,4 @@
-module Deck.Slide.Encapsulation exposing
+module Deck.Slide.SafeArrayAccess exposing
   ( introduction
   , blahGo
   , blahPython
@@ -18,7 +18,7 @@ import SyntaxHighlight.Model exposing
 
 
 -- Constants
-title = TypeSystemProperties.title ++ ": Encapsulation"
+title = TypeSystemProperties.title ++ ": Safe Array Access"
 
 subheadingGo = "Go "
 
@@ -38,7 +38,7 @@ introduction =
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Prevents Accidental Changes to Internal States"
+      "Prevents Errors Related to Accessing Out Of Bounds Array Elements"
       ( div []
         [ p []
           [ text "TODO" ]

@@ -1,6 +1,6 @@
-module Deck.Slide.Encapsulation exposing
+module Deck.Slide.SafeTypeCast exposing
   ( introduction
-  , blahGo
+  , unsafeGo, unsafeGoRun
   , blahPython
   , blahTypeScript
   , blahKotlin
@@ -18,17 +18,17 @@ import SyntaxHighlight.Model exposing
 
 
 -- Constants
-title = TypeSystemProperties.title ++ ": Encapsulation"
+title = TypeSystemProperties.title ++ ": Safe Type Cast"
 
-subheadingGo = "Go "
+subheadingGo = "Go Is Not Type Cast Safe"
 
-subheadingPython = "Python "
+subheadingPython = "Python Is Not Type Cast Safe"
 
-subheadingTypeScript = "TypeScript "
+subheadingTypeScript = "TypeScript Is Not Type Cast Safe"
 
-subheadingKotlin = "Kotlin "
+subheadingKotlin = "Kotlin Is Type Cast Safe (With Options to Be Unsafe)"
 
-subheadingSwift = "Swift "
+subheadingSwift = "Swift Is Type Cast Safe (With Options to Be Unsafe)"
 
 
 -- Slides
@@ -38,24 +38,40 @@ introduction =
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Prevents Accidental Changes to Internal States"
+      "Prevents Type Cast Failures"
       ( div []
         [ p []
-          [ text "TODO" ]
+          [ text "As long as there is a type hierarchy, or abstract types, type casts are inevitable."
+          ]
+        , p []
+          [ text "Languages with safe type casts treat type casting as a recoverable error."
+          ]
+        , p []
+          [ text "Programmers are required to "
+          , mark [] [ text "account for cast failures" ]
+          , text "."
+          ]
         ]
       )
     )
   }
 
 
-blahGo : UnindexedSlideModel
-blahGo =
+unsafeGo : UnindexedSlideModel
+unsafeGo =
   let
     codeBlock : Html msg
     codeBlock =
       syntaxHighlightedCodeBlock Go Dict.empty Dict.empty []
       """
-// Blah blah
+package main
+
+func main() {
+    var any interface{} = "hello"
+    num, _ := any.(int) // "safe" type assertion
+    println(num)        // let's hope zero-value is Ok!
+    num = any.(int)     // unsafe type assertion - panic!
+}
 """
   in
   { baseSlideModel
@@ -64,8 +80,32 @@ blahGo =
       standardSlideView page title subheadingGo
       ( div []
         [ p []
-          [ text "Blah blah:" ]
+          [ text "The following type assertion will clearly fail, but the Go compiler allows it:" ]
         , div [] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
+unsafeGoRun : UnindexedSlideModel
+unsafeGoRun =
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title subheadingGo
+      ( div []
+        [ p [] [ text "But the program immediately panics when run:" ]
+        , console
+          """
+% safe_type_cast/unsafe
+0
+panic: interface conversion: interface {} is string, not int
+
+goroutine 1 [running]:
+main.main()
+    /strongly-typed/safe_type_cast/unsafe.go:7 +0x49
+"""
         ]
       )
     )
