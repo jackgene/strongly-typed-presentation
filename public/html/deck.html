@@ -30957,23 +30957,23 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 				ctor: '::',
 				_0: {
 					ctor: '_Tuple2',
-					_0: 'Safe Type Cast',
+					_0: 'Safe Array Access',
 					_1: _elm_lang$core$Dict$fromList(
 						{
 							ctor: '::',
 							_0: {ctor: '_Tuple2', _0: 'Go', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
 							_1: {
 								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'Python', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
+								_0: {ctor: '_Tuple2', _0: 'Python', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreImplementable},
 								_1: {
 									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'TypeScript', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
+									_0: {ctor: '_Tuple2', _0: 'TypeScript', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreImplementable},
 									_1: {
 										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'Kotlin', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreDefeatable},
+										_0: {ctor: '_Tuple2', _0: 'Kotlin', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreOptional},
 										_1: {
 											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: 'Swift', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreDefeatable},
+											_0: {ctor: '_Tuple2', _0: 'Swift', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreImplementable},
 											_1: {ctor: '[]'}
 										}
 									}
@@ -30985,23 +30985,23 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 					ctor: '::',
 					_0: {
 						ctor: '_Tuple2',
-						_0: 'Safe Array Access',
+						_0: 'Safe Type Cast',
 						_1: _elm_lang$core$Dict$fromList(
 							{
 								ctor: '::',
 								_0: {ctor: '_Tuple2', _0: 'Go', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
 								_1: {
 									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'Python', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreImplementable},
+									_0: {ctor: '_Tuple2', _0: 'Python', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
 									_1: {
 										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'TypeScript', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreImplementable},
+										_0: {ctor: '_Tuple2', _0: 'TypeScript', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
 										_1: {
 											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: 'Kotlin', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreOptional},
+											_0: {ctor: '_Tuple2', _0: 'Kotlin', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreDefeatable},
 											_1: {
 												ctor: '::',
-												_0: {ctor: '_Tuple2', _0: 'Swift', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreImplementable},
+												_0: {ctor: '_Tuple2', _0: 'Swift', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreDefeatable},
 												_1: {ctor: '[]'}
 											}
 										}
@@ -42707,36 +42707,25 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeCast$introduction = _elm_lang$core$Na
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Languages with safe type casts treat type casting as a recoverable error.'),
-										_1: {ctor: '[]'}
-									}),
-								_1: {
-									ctor: '::',
-									_0: A2(
-										_rtfeldman$elm_css$Html_Styled$p,
-										{ctor: '[]'},
-										{
+										_0: _rtfeldman$elm_css$Html_Styled$text('Languages with safe type casts require programmers to '),
+										_1: {
 											ctor: '::',
-											_0: _rtfeldman$elm_css$Html_Styled$text('Programmers are required to '),
+											_0: A2(
+												_jackgene$live_deck$Deck_Slide_Common$mark,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled$text('account for cast failures'),
+													_1: {ctor: '[]'}
+												}),
 											_1: {
 												ctor: '::',
-												_0: A2(
-													_jackgene$live_deck$Deck_Slide_Common$mark,
-													{ctor: '[]'},
-													{
-														ctor: '::',
-														_0: _rtfeldman$elm_css$Html_Styled$text('account for cast failures'),
-														_1: {ctor: '[]'}
-													}),
-												_1: {
-													ctor: '::',
-													_0: _rtfeldman$elm_css$Html_Styled$text('.'),
-													_1: {ctor: '[]'}
-												}
+												_0: _rtfeldman$elm_css$Html_Styled$text('.'),
+												_1: {ctor: '[]'}
 											}
-										}),
-									_1: {ctor: '[]'}
-								}
+										}
+									}),
+								_1: {ctor: '[]'}
 							}
 						}));
 			})
@@ -42748,7 +42737,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeCast$unsafeGo = function () {
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\npackage main\n\nfunc main() {\n    var any interface{} = \"hello\"\n    num, _ := any.(int) // \"safe\" type assertion\n    println(num)        // let\'s hope zero-value is Ok!\n    num = any.(int)     // unsafe type assertion - panic!\n}\n');
+		'\npackage main\n\nfunc main() {\n    var data interface{} = \"hello\"\n\n    num, _ := data.(int) // non-panicking type assertion\n    println(num)         // let\'s hope zero-value is Ok!\n\n    num = data.(int)     // unsafe type assertion - panic!\n}\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -42813,20 +42802,20 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeCast$unsafeGoRun = _elm_lang$core$Nat
 								}),
 							_1: {
 								ctor: '::',
-								_0: _jackgene$live_deck$Deck_Slide_Common$console('\n% safe_type_cast/unsafe\n0\npanic: interface conversion: interface {} is string, not int\n\ngoroutine 1 [running]:\nmain.main()\n    /strongly-typed/safe_type_cast/unsafe.go:7 +0x49\n'),
+								_0: _jackgene$live_deck$Deck_Slide_Common$console('\n% safe_type_cast/unsafe\n0\npanic: interface conversion: interface {} is string, not int\n\ngoroutine 1 [running]:\nmain.main()\n    /strongly-typed/safe_type_cast/unsafe.go:8 +0x49\n'),
 								_1: {ctor: '[]'}
 							}
 						}));
 			})
 	});
-var _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahPython = function () {
+var _jackgene$live_deck$Deck_Slide_SafeTypeCast$unsafePython = function () {
 	var codeBlock = A5(
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Python,
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\n# Blah blah\n');
+		'\nfrom typing import cast\n\ndictionary: dict[str, str] = cast(dict[str, str], 42)\nprint(dictionary[\"key\"])\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -42847,7 +42836,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahPython = function () {
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Blah blah:'),
+										_0: _rtfeldman$elm_css$Html_Styled$text('Casting is just an escape hatch to “cheat” the type system:'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -42860,7 +42849,22 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahPython = function () {
 											_0: codeBlock,
 											_1: {ctor: '[]'}
 										}),
-									_1: {ctor: '[]'}
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$p,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text('Casts will never fail in Python, but what happens after may:'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: _jackgene$live_deck$Deck_Slide_Common$console('\n% python unsafe.py\nTraceback (most recent call last):\n  File \"/strongly-typed/safe_type_cast/unsafe.py\", line 4, in <module>\n    print(dictionary[\"key\"])\nTypeError: \'int\' object is not subscriptable\n'),
+											_1: {ctor: '[]'}
+										}
+									}
 								}
 							}));
 				})
@@ -43033,10 +43037,36 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$introduction = _elm_lang$core
 								{ctor: '[]'},
 								{
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Html_Styled$text('TODO'),
+									_0: _rtfeldman$elm_css$Html_Styled$text('Virtually all languages since C/C++ perform array bound-checking.'),
 									_1: {ctor: '[]'}
 								}),
-							_1: {ctor: '[]'}
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('Languages that have safe array access further '),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_jackgene$live_deck$Deck_Slide_Common$mark,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled$text('require programmers to explicitly account for out of bounds array access'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text(', instead of just having the program crash at runtime.'),
+												_1: {ctor: '[]'}
+											}
+										}
+									}),
+								_1: {ctor: '[]'}
+							}
 						}));
 			})
 	});
@@ -43047,7 +43077,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahGo = function () {
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\n# Blah blah\n');
+		'\n// Blah blah\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -43269,7 +43299,18 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahSwift = function () {
 											_0: codeBlock,
 											_1: {ctor: '[]'}
 										}),
-									_1: {ctor: '[]'}
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$p,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text('https://stackoverflow.com/q/25329186'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}
 								}
 							}));
 				})
@@ -43315,7 +43356,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$blahGo = function () {
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\n# Blah blah\n');
+		'\n// Blah blah\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -43583,7 +43624,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$blahGo = function () {
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\n# Blah blah\n');
+		'\n// Blah blah\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -43851,7 +43892,7 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$blahGo = function () {
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\n# Blah blah\n');
+		'\n// Blah blah\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -44444,50 +44485,50 @@ var _jackgene$live_deck$Deck_Slide$slidesList = A2(
 																																																											_elm_lang$core$Maybe$Just(2)),
 																																																										_1: {
 																																																											ctor: '::',
-																																																											_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$introduction,
+																																																											_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$introduction,
 																																																											_1: {
 																																																												ctor: '::',
-																																																												_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$unsafeGo,
+																																																												_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahGo,
 																																																												_1: {
 																																																													ctor: '::',
-																																																													_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$unsafeGoRun,
+																																																													_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahPython,
 																																																													_1: {
 																																																														ctor: '::',
-																																																														_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahPython,
+																																																														_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahTypeScript,
 																																																														_1: {
 																																																															ctor: '::',
-																																																															_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahTypeScript,
+																																																															_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahKotlin,
 																																																															_1: {
 																																																																ctor: '::',
-																																																																_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahKotlin,
+																																																																_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahSwift,
 																																																																_1: {
 																																																																	ctor: '::',
-																																																																	_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahSwift,
+																																																																	_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(2),
 																																																																	_1: {
 																																																																		ctor: '::',
-																																																																		_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(2),
+																																																																		_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																																																			_elm_lang$core$Maybe$Just(3)),
 																																																																		_1: {
 																																																																			ctor: '::',
-																																																																			_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																																																				_elm_lang$core$Maybe$Just(3)),
+																																																																			_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$introduction,
 																																																																			_1: {
 																																																																				ctor: '::',
-																																																																				_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$introduction,
+																																																																				_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$unsafeGo,
 																																																																				_1: {
 																																																																					ctor: '::',
-																																																																					_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahGo,
+																																																																					_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$unsafeGoRun,
 																																																																					_1: {
 																																																																						ctor: '::',
-																																																																						_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahPython,
+																																																																						_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$unsafePython,
 																																																																						_1: {
 																																																																							ctor: '::',
-																																																																							_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahTypeScript,
+																																																																							_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahTypeScript,
 																																																																							_1: {
 																																																																								ctor: '::',
-																																																																								_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahKotlin,
+																																																																								_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahKotlin,
 																																																																								_1: {
 																																																																									ctor: '::',
-																																																																									_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahSwift,
+																																																																									_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahSwift,
 																																																																									_1: {
 																																																																										ctor: '::',
 																																																																										_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(3),

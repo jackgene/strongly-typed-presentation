@@ -1,7 +1,7 @@
 module Deck.Slide.SafeTypeCast exposing
   ( introduction
   , unsafeGo, unsafeGoRun
-  , blahPython
+  , unsafePython
   , blahTypeScript
   , blahKotlin
   , blahSwift
@@ -44,10 +44,7 @@ introduction =
           [ text "As long as there is a type hierarchy, or abstract types, type casts are inevitable."
           ]
         , p []
-          [ text "Languages with safe type casts treat type casting as a recoverable error."
-          ]
-        , p []
-          [ text "Programmers are required to "
+          [ text "Languages with safe type casts require programmers to "
           , mark [] [ text "account for cast failures" ]
           , text "."
           ]
@@ -67,10 +64,12 @@ unsafeGo =
 package main
 
 func main() {
-    var any interface{} = "hello"
-    num, _ := any.(int) // "safe" type assertion
-    println(num)        // let's hope zero-value is Ok!
-    num = any.(int)     // unsafe type assertion - panic!
+    var data interface{} = "hello"
+
+    num, _ := data.(int) // non-panicking type assertion
+    println(num)         // let's hope zero-value is Ok!
+
+    num = data.(int)     // unsafe type assertion - panic!
 }
 """
   in
@@ -104,7 +103,7 @@ panic: interface conversion: interface {} is string, not int
 
 goroutine 1 [running]:
 main.main()
-    /strongly-typed/safe_type_cast/unsafe.go:7 +0x49
+    /strongly-typed/safe_type_cast/unsafe.go:8 +0x49
 """
         ]
       )
@@ -112,14 +111,17 @@ main.main()
   }
 
 
-blahPython : UnindexedSlideModel
-blahPython =
+unsafePython : UnindexedSlideModel
+unsafePython =
   let
     codeBlock : Html msg
     codeBlock =
       syntaxHighlightedCodeBlock Python Dict.empty Dict.empty []
       """
-# Blah blah
+from typing import cast
+
+dictionary: dict[str, str] = cast(dict[str, str], 42)
+print(dictionary["key"])
 """
   in
   { baseSlideModel
@@ -128,8 +130,18 @@ blahPython =
       standardSlideView page title subheadingPython
       ( div []
         [ p []
-          [ text "Blah blah:" ]
+          [ text "Casting is just an escape hatch to “cheat” the type system:" ]
         , div [] [ codeBlock ]
+        , p []
+          [ text "Casts will never fail in Python, but what happens after may:" ]
+        , console
+          """
+% python unsafe.py
+Traceback (most recent call last):
+  File "/strongly-typed/safe_type_cast/unsafe.py", line 4, in <module>
+    print(dictionary["key"])
+TypeError: 'int' object is not subscriptable
+"""
         ]
       )
     )

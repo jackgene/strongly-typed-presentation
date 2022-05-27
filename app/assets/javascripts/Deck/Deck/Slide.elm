@@ -111,21 +111,21 @@ slidesList =
   , NullSafety.unsafeSwift
   , TypeSystemProperties.languageReport 1
   , TypeSystemProperties.tableOfContent (Just 2)
-  , SafeTypeCast.introduction
-  , SafeTypeCast.unsafeGo
-  , SafeTypeCast.unsafeGoRun
-  , SafeTypeCast.blahPython
-  , SafeTypeCast.blahTypeScript
-  , SafeTypeCast.blahKotlin
-  , SafeTypeCast.blahSwift
-  , TypeSystemProperties.languageReport 2
-  , TypeSystemProperties.tableOfContent (Just 3)
   , SafeArrayAccess.introduction
-  , SafeArrayAccess.blahGo
+  , SafeArrayAccess.unsafeGo
   , SafeArrayAccess.blahPython
   , SafeArrayAccess.blahTypeScript
   , SafeArrayAccess.blahKotlin
   , SafeArrayAccess.blahSwift
+  , TypeSystemProperties.languageReport 2
+  , TypeSystemProperties.tableOfContent (Just 3)
+  , SafeTypeCast.introduction
+  , SafeTypeCast.unsafeGo
+  , SafeTypeCast.unsafeGoRun
+  , SafeTypeCast.unsafePython
+  , SafeTypeCast.blahTypeScript
+  , SafeTypeCast.blahKotlin
+  , SafeTypeCast.blahSwift
   , TypeSystemProperties.languageReport 3
   , TypeSystemProperties.tableOfContent (Just 4)
   , ExceptionSafety.introduction

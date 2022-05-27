@@ -107,15 +107,6 @@ typeSystemProperties =
           , ( "Swift", scoreDefeatable )
           ]
         )
-      , ( "Safe Type Cast" -- "Type Conversion Errors"
-        , Dict.fromList
-          [ ( "Go", scoreUnsupported )
-          , ( "Python", scoreUnsupported )
-          , ( "TypeScript", scoreUnsupported )
-          , ( "Kotlin", scoreDefeatable )
-          , ( "Swift", scoreDefeatable )
-          ]
-        )
       , ( "Safe Array Access" -- "Out Of Bounds Array Access"
         , Dict.fromList
           [ ( "Go", scoreUnsupported )
@@ -123,6 +114,15 @@ typeSystemProperties =
           , ( "TypeScript", scoreImplementable )
           , ( "Kotlin", scoreOptional )
           , ( "Swift", scoreImplementable )
+          ]
+        )
+      , ( "Safe Type Cast" -- "Type Conversion Errors"
+        , Dict.fromList
+          [ ( "Go", scoreUnsupported )
+          , ( "Python", scoreUnsupported )
+          , ( "TypeScript", scoreUnsupported )
+          , ( "Kotlin", scoreDefeatable )
+          , ( "Swift", scoreDefeatable )
           ]
         )
       , ( "Exception Safety" -- "Unhandled General Errors"
