@@ -30967,10 +30967,10 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 								_0: {ctor: '_Tuple2', _0: 'Python', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreImplementable},
 								_1: {
 									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'TypeScript', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreImplementable},
+									_0: {ctor: '_Tuple2', _0: 'TypeScript', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreOptional},
 									_1: {
 										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'Kotlin', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreOptional},
+										_0: {ctor: '_Tuple2', _0: 'Kotlin', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreImplementable},
 										_1: {
 											ctor: '::',
 											_0: {ctor: '_Tuple2', _0: 'Swift', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreImplementable},
@@ -30992,10 +30992,10 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 								_0: {ctor: '_Tuple2', _0: 'Go', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
 								_1: {
 									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'Python', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
+									_0: {ctor: '_Tuple2', _0: 'Python', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreOptional},
 									_1: {
 										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'TypeScript', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
+										_0: {ctor: '_Tuple2', _0: 'TypeScript', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreImplementable},
 										_1: {
 											ctor: '::',
 											_0: {ctor: '_Tuple2', _0: 'Kotlin', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreDefeatable},
@@ -40668,7 +40668,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safeTypeScriptNonNull = function (
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\nconst text: string = \"Lorem Ipsum\"\n\nalert(text.toUpperCase())\n');
+		'\nconst text: string = \"Lorem Ipsum\";\n\nalert(text.toUpperCase());\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -40750,7 +40750,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safeTypeScriptNonNullInvalid = fun
 				}),
 			_1: {ctor: '[]'}
 		},
-		'\nconst text: string = null\n\nalert(text.toUpperCase())\n');
+		'\nconst text: string = null;\n\nalert(text.toUpperCase());\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -40853,7 +40853,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safeTypeScriptNullableInvalid = fu
 				}),
 			_1: {ctor: '[]'}
 		},
-		'\nconst text: string = null\nconst text: string|null = null\n\nalert(text.toUpperCase())\n');
+		'\nconst text: string = null;\nconst text: string|null = null;\n\nalert(text.toUpperCase());\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -40913,7 +40913,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safeTypeScriptNullable = function 
 			}),
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\nalert(text.toUpperCase())\nalert(text?.toUpperCase() ?? \"(text was null)\")\n');
+		'\nalert(text.toUpperCase());\nalert(text?.toUpperCase() ?? \"(text was null)\");\n');
 	var codeBlock1 = A5(
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$TypeScript,
@@ -40929,7 +40929,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safeTypeScriptNullable = function 
 			}),
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\nconst text: string|null = null\n\nalert(text.toUpperCase())\nif (text !== null) alert(text.toUpperCase())\n');
+		'\nconst text: string|null = null;\n\nalert(text.toUpperCase());\nif (text !== null) alert(text.toUpperCase());\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -43011,11 +43011,11 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahSwift = function () {
 				})
 		});
 }();
-var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingSwift = 'Swift ';
-var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingKotlin = 'Kotlin ';
-var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingTypeScript = 'TypeScript ';
-var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingPython = 'Python ';
-var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingGo = 'Go ';
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingSwift = 'Swift Does Not Have Safe Array Access (But Can Be Made Safer)';
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingKotlin = 'Kotlin Has Safe Array Access (But With Options to Be Unsafe)';
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingTypeScript = 'TypeScript Does Not Have Safe Array Access (But Can Be Made Safer)';
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingPython = 'Python Does Not Have Safe Array Access (But Can Be Made Safer)';
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingGo = 'Go Does Not Have Safe Array Access';
 var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$title = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title, ': Safe Array Access');
 var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$introduction = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
@@ -43037,7 +43037,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$introduction = _elm_lang$core
 								{ctor: '[]'},
 								{
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Html_Styled$text('Virtually all languages since C/C++ perform array bound-checking.'),
+									_0: _rtfeldman$elm_css$Html_Styled$text('Virtually all languages since C/C++ prevent out of bounds array access.'),
 									_1: {ctor: '[]'}
 								}),
 							_1: {
@@ -43055,7 +43055,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$introduction = _elm_lang$core
 												{ctor: '[]'},
 												{
 													ctor: '::',
-													_0: _rtfeldman$elm_css$Html_Styled$text('require programmers to explicitly account for out of bounds array access'),
+													_0: _rtfeldman$elm_css$Html_Styled$text('require programmers to explicitly handle out of bounds array access'),
 													_1: {ctor: '[]'}
 												}),
 											_1: {
@@ -43070,14 +43070,14 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$introduction = _elm_lang$core
 						}));
 			})
 	});
-var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahGo = function () {
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeGo = function () {
 	var codeBlock = A5(
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Go,
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\n// Blah blah\n');
+		'\npackage main\n\nfunc main() {\n    words := []string{\"one\", \"two\", \"three\"}\n    _ = words[10]  // panic!\n}');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -43098,7 +43098,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahGo = function () {
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Blah blah:'),
+										_0: _rtfeldman$elm_css$Html_Styled$text('The Go compiler allows:'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -43117,19 +43117,50 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahGo = function () {
 				})
 		});
 }();
-var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahPython = function () {
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeGoRun = _elm_lang$core$Native_Utils.update(
+	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+	{
+		view: F2(
+			function (page, _p2) {
+				return A4(
+					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+					page,
+					_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+					_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingGo,
+					A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$p,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled$text('But the program panics at runtime:'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: _jackgene$live_deck$Deck_Slide_Common$console('\n% safe_array_access/unsafe\npanic: runtime error: index out of range [10] with length 3\n\ngoroutine 1 [running]:\nmain.main()\n    /strongly-typed/safe_array_access/unsafe.go:5 +0x1d\n'),
+								_1: {ctor: '[]'}
+							}
+						}));
+			})
+	});
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafePython = function () {
 	var codeBlock = A5(
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Python,
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\n# Blah blah\n');
+		'\nwords: list[str] = [\"one\", \"two\", \"three\"]\nword: str = words[10]\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
 			view: F2(
-				function (page, _p2) {
+				function (page, _p3) {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
@@ -43145,148 +43176,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahPython = function () {
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Blah blah:'),
-										_1: {ctor: '[]'}
-									}),
-								_1: {
-									ctor: '::',
-									_0: A2(
-										_rtfeldman$elm_css$Html_Styled$div,
-										{ctor: '[]'},
-										{
-											ctor: '::',
-											_0: codeBlock,
-											_1: {ctor: '[]'}
-										}),
-									_1: {ctor: '[]'}
-								}
-							}));
-				})
-		});
-}();
-var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahTypeScript = function () {
-	var codeBlock = A5(
-		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
-		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$TypeScript,
-		_elm_lang$core$Dict$empty,
-		_elm_lang$core$Dict$empty,
-		{ctor: '[]'},
-		'\n// Blah blah\n');
-	return _elm_lang$core$Native_Utils.update(
-		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
-		{
-			view: F2(
-				function (page, _p3) {
-					return A4(
-						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
-						page,
-						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
-						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingTypeScript,
-						A2(
-							_rtfeldman$elm_css$Html_Styled$div,
-							{ctor: '[]'},
-							{
-								ctor: '::',
-								_0: A2(
-									_rtfeldman$elm_css$Html_Styled$p,
-									{ctor: '[]'},
-									{
-										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Blah blah:'),
-										_1: {ctor: '[]'}
-									}),
-								_1: {
-									ctor: '::',
-									_0: A2(
-										_rtfeldman$elm_css$Html_Styled$div,
-										{ctor: '[]'},
-										{
-											ctor: '::',
-											_0: codeBlock,
-											_1: {ctor: '[]'}
-										}),
-									_1: {ctor: '[]'}
-								}
-							}));
-				})
-		});
-}();
-var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahKotlin = function () {
-	var codeBlock = A5(
-		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
-		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Kotlin,
-		_elm_lang$core$Dict$empty,
-		_elm_lang$core$Dict$empty,
-		{ctor: '[]'},
-		'\n// Blah blah\n');
-	return _elm_lang$core$Native_Utils.update(
-		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
-		{
-			view: F2(
-				function (page, _p4) {
-					return A4(
-						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
-						page,
-						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
-						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingKotlin,
-						A2(
-							_rtfeldman$elm_css$Html_Styled$div,
-							{ctor: '[]'},
-							{
-								ctor: '::',
-								_0: A2(
-									_rtfeldman$elm_css$Html_Styled$p,
-									{ctor: '[]'},
-									{
-										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Blah blah:'),
-										_1: {ctor: '[]'}
-									}),
-								_1: {
-									ctor: '::',
-									_0: A2(
-										_rtfeldman$elm_css$Html_Styled$div,
-										{ctor: '[]'},
-										{
-											ctor: '::',
-											_0: codeBlock,
-											_1: {ctor: '[]'}
-										}),
-									_1: {ctor: '[]'}
-								}
-							}));
-				})
-		});
-}();
-var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahSwift = function () {
-	var codeBlock = A5(
-		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
-		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Swift,
-		_elm_lang$core$Dict$empty,
-		_elm_lang$core$Dict$empty,
-		{ctor: '[]'},
-		'\n// Blah blah\n');
-	return _elm_lang$core$Native_Utils.update(
-		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
-		{
-			view: F2(
-				function (page, _p5) {
-					return A4(
-						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
-						page,
-						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
-						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingSwift,
-						A2(
-							_rtfeldman$elm_css$Html_Styled$div,
-							{ctor: '[]'},
-							{
-								ctor: '::',
-								_0: A2(
-									_rtfeldman$elm_css$Html_Styled$p,
-									{ctor: '[]'},
-									{
-										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Blah blah:'),
+										_0: _rtfeldman$elm_css$Html_Styled$text('This program type checks:'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -43306,8 +43196,600 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahSwift = function () {
 											{ctor: '[]'},
 											{
 												ctor: '::',
-												_0: _rtfeldman$elm_css$Html_Styled$text('https://stackoverflow.com/q/25329186'),
+												_0: _rtfeldman$elm_css$Html_Styled$text('But crashes at runtime:'),
 												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: _jackgene$live_deck$Deck_Slide_Common$console('\n% python safe_array_access/unsafe.py\nTraceback (most recent call last):\n  File \"/strongly-typed/safe_array_access/unsafe.py\", line 2, in <module>\n    word: str = words[10]\nIndexError: list index out of range\n'),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}));
+				})
+		});
+}();
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safePython = function () {
+	var codeBlock = A5(
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Python,
+		_elm_lang$core$Dict$empty,
+		_elm_lang$core$Dict$empty,
+		{ctor: '[]'},
+		'\nfrom typing import Optional, TypeVar\nT = TypeVar(\"T\")\n\ndef safe_get(xs: list[T], idx: int) -> Optional[T]:\n    if -len(xs) <= idx < len(xs):\n        return xs[idx]\n\nwords: list[str] = [\"one\", \"two\", \"three\"]\nword: Optional[str] = safe_get(words, 3)\nif word is not None:\n    word = word.upper()\n');
+	return _elm_lang$core$Native_Utils.update(
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+		{
+			view: F2(
+				function (page, _p4) {
+					return A4(
+						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+						page,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingPython,
+						A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('It is however, possible to provide your own safer solution:'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$div,
+										{ctor: '[]'},
+										{ctor: '[]'}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$div,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: codeBlock,
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
+							}));
+				})
+		});
+}();
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeTypeScript = function () {
+	var codeBlock = A5(
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$TypeScript,
+		_elm_lang$core$Dict$empty,
+		_elm_lang$core$Dict$empty,
+		{ctor: '[]'},
+		'\nconst words: string[] = [\"one\", \"two\", \"three\"];\nconst word: string = words[-1].toUpperCase();\n');
+	return _elm_lang$core$Native_Utils.update(
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+		{
+			view: F2(
+				function (page, _p5) {
+					return A4(
+						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+						page,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingTypeScript,
+						A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('This code is clearly wrong:'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$div,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: codeBlock,
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$p,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text('But compiles, even in '),
+												_1: {
+													ctor: '::',
+													_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$TypeScript, '--strict'),
+													_1: {
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled$text(' mode, only to fail at runtime:'),
+														_1: {ctor: '[]'}
+													}
+												}
+											}),
+										_1: {
+											ctor: '::',
+											_0: _jackgene$live_deck$Deck_Slide_Common$console('\n% tsc --strict safe_array_access/unsafe.ts\n% jsc safe_array_access/unsafe.js\nException: TypeError: undefined is not an object (evaluating \'words[-1].toUpp\nerCase\')\nglobal code@safe_array_access/unsafe.js:3:21\n'),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}));
+				})
+		});
+}();
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeTypeScriptInvalid = function () {
+	var codeBlock = A5(
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$TypeScript,
+		_elm_lang$core$Dict$empty,
+		_elm_lang$core$Dict$fromList(
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 1,
+					_1: {
+						ctor: '::',
+						_0: A3(_jackgene$live_deck$SyntaxHighlight_Model$ColumnEmphasis, _jackgene$live_deck$SyntaxHighlight_Model$Error, 21, 9),
+						_1: {ctor: '[]'}
+					}
+				},
+				_1: {ctor: '[]'}
+			}),
+		{
+			ctor: '::',
+			_0: A3(
+				_jackgene$live_deck$Deck_Slide_SyntaxHighlight$CodeBlockError,
+				1,
+				19,
+				{
+					ctor: '::',
+					_0: A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Html_Styled$text('TS2532: Object is possibly \'undefined\'.'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
+		'\nconst words: string[] = [\"one\", \"two\", \"three\"];\nconst word: string = words[-1].toUpperCase();\n');
+	return _elm_lang$core$Native_Utils.update(
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+		{
+			view: F2(
+				function (page, _p6) {
+					return A4(
+						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+						page,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingTypeScript,
+						A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('The exact same code can by made array access safe, just by adding the '),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_rtfeldman$elm_css$Html_Styled$br,
+												{ctor: '[]'},
+												{ctor: '[]'}),
+											_1: {
+												ctor: '::',
+												_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$TypeScript, '--noUncheckedIndexedAccess'),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled$text(' compile option:'),
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$div,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: codeBlock,
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}));
+				})
+		});
+}();
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeTypeScript = function () {
+	var codeBlock = A5(
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$TypeScript,
+		_elm_lang$core$Dict$fromList(
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 1, _1: _jackgene$live_deck$SyntaxHighlight_Model$Deletion},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 2, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
+					_1: {ctor: '[]'}
+				}
+			}),
+		_elm_lang$core$Dict$empty,
+		{ctor: '[]'},
+		'\nconst words: string[] = [\"one\", \"two\", \"three\"];\nconst word: string = words[-1].toUpperCase();\nconst word: string|null = words[-1]?.toUpperCase() ?? null;\n');
+	return _elm_lang$core$Native_Utils.update(
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+		{
+			view: F2(
+				function (page, _p7) {
+					return A4(
+						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+						page,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingTypeScript,
+						A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('With '),
+										_1: {
+											ctor: '::',
+											_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$TypeScript, '--noUncheckedIndexedAccess'),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text(', array access is safe. The programmer is required to use the '),
+												_1: {
+													ctor: '::',
+													_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$TypeScript, '?.'),
+													_1: {
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled$text(' operator to access the potentially '),
+														_1: {
+															ctor: '::',
+															_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$TypeScript, 'undefined'),
+															_1: {
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled$text(' value:'),
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												}
+											}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$div,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: codeBlock,
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}));
+				})
+		});
+}();
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeKotlin = function () {
+	var codeBlock = A5(
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Kotlin,
+		_elm_lang$core$Dict$empty,
+		_elm_lang$core$Dict$empty,
+		{ctor: '[]'},
+		'\nval words: List<String> = listOf(\"one\", \"two\", \"three\")\nval word: String = words[-1]\n');
+	return _elm_lang$core$Native_Utils.update(
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+		{
+			view: F2(
+				function (page, _p8) {
+					return A4(
+						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+						page,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingKotlin,
+						A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('Kotlin’s array access is unsafe by default:'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$div,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: codeBlock,
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$p,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text('This compiles and fails at runtime:'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: _jackgene$live_deck$Deck_Slide_Common$console('\n% kotlinc -script safe_array_access/unsafe.kts\njava.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 3\n    at java.base/java.util.Arrays$ArrayList.get(Arrays.java:4165)\n    at Unsafe.<init>(unsafe.kts:2)\n'),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}));
+				})
+		});
+}();
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeKotlin = function () {
+	var codeBlock = A5(
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Kotlin,
+		_elm_lang$core$Dict$fromList(
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 1, _1: _jackgene$live_deck$SyntaxHighlight_Model$Deletion},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 2, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
+					_1: {ctor: '[]'}
+				}
+			}),
+		_elm_lang$core$Dict$empty,
+		{ctor: '[]'},
+		'\nval words: List<String> = listOf(\"one\", \"two\", \"three\")\nval word: String = words[-1]\nval word: String? = words.getOrNull(-1)?.uppercase()\n');
+	return _elm_lang$core$Native_Utils.update(
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+		{
+			view: F2(
+				function (page, _p9) {
+					return A4(
+						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+						page,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingKotlin,
+						A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('For safe array access, use the built-in '),
+										_1: {
+											ctor: '::',
+											_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$Kotlin, 'getOrNull(Int)'),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text(' method:'),
+												_1: {ctor: '[]'}
+											}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$div,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: codeBlock,
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}));
+				})
+		});
+}();
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeSwift = function () {
+	var codeBlock = A5(
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Swift,
+		_elm_lang$core$Dict$empty,
+		_elm_lang$core$Dict$empty,
+		{ctor: '[]'},
+		'\nlet words: [String] = [\"one\", \"two\", \"three\"]\nlet word: String = words[-1]\n');
+	return _elm_lang$core$Native_Utils.update(
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+		{
+			view: F2(
+				function (page, _p10) {
+					return A4(
+						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+						page,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingKotlin,
+						A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('Swift’s array access is unsafe:'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$div,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: codeBlock,
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$p,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text('This compiles and fails at runtime:'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: _jackgene$live_deck$Deck_Slide_Common$console('\n% ./safe_array_access\nSwift/ContiguousArrayBuffer.swift:575: Fatal error: Index out of range\nzsh: illegal hardware instruction  ./safe_array_access\n'),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}));
+				})
+		});
+}();
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeSwift = function () {
+	var codeBlock = A5(
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Swift,
+		_elm_lang$core$Dict$fromList(
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 0, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 1, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 2, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 3, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 4, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 7, _1: _jackgene$live_deck$SyntaxHighlight_Model$Deletion},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 8, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			}),
+		_elm_lang$core$Dict$empty,
+		{ctor: '[]'},
+		'\nextension Collection {\n    subscript (safe index: Index) -> Element? {\n        return indices.contains(index) ? self[index] : nil\n    }\n}\n\nlet words: [String] = [\"one\", \"two\", \"three\"]\nlet word: String = words[safe: -1]\nlet word: String? = words[safe: -1]\n');
+	return _elm_lang$core$Native_Utils.update(
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+		{
+			view: F2(
+				function (page, _p11) {
+					return A4(
+						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+						page,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingSwift,
+						A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('But can be made safe by existing Swift’s collection:'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$div,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: codeBlock,
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$p,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text('Source: '),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_rtfeldman$elm_css$Html_Styled$a,
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled_Attributes$href('https://stackoverflow.com/q/25329186'),
+															_1: {ctor: '[]'}
+														},
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled$text('https://stackoverflow.com/q/25329186'),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												}
 											}),
 										_1: {ctor: '[]'}
 									}
@@ -44488,196 +44970,220 @@ var _jackgene$live_deck$Deck_Slide$slidesList = A2(
 																																																											_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$introduction,
 																																																											_1: {
 																																																												ctor: '::',
-																																																												_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahGo,
+																																																												_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeGo,
 																																																												_1: {
 																																																													ctor: '::',
-																																																													_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahPython,
+																																																													_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeGoRun,
 																																																													_1: {
 																																																														ctor: '::',
-																																																														_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahTypeScript,
+																																																														_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafePython,
 																																																														_1: {
 																																																															ctor: '::',
-																																																															_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahKotlin,
+																																																															_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safePython,
 																																																															_1: {
 																																																																ctor: '::',
-																																																																_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$blahSwift,
+																																																																_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeTypeScript,
 																																																																_1: {
 																																																																	ctor: '::',
-																																																																	_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(2),
+																																																																	_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeTypeScriptInvalid,
 																																																																	_1: {
 																																																																		ctor: '::',
-																																																																		_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																																																			_elm_lang$core$Maybe$Just(3)),
+																																																																		_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeTypeScript,
 																																																																		_1: {
 																																																																			ctor: '::',
-																																																																			_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$introduction,
+																																																																			_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeKotlin,
 																																																																			_1: {
 																																																																				ctor: '::',
-																																																																				_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$unsafeGo,
+																																																																				_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeKotlin,
 																																																																				_1: {
 																																																																					ctor: '::',
-																																																																					_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$unsafeGoRun,
+																																																																					_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeSwift,
 																																																																					_1: {
 																																																																						ctor: '::',
-																																																																						_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$unsafePython,
+																																																																						_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeSwift,
 																																																																						_1: {
 																																																																							ctor: '::',
-																																																																							_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahTypeScript,
+																																																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(2),
 																																																																							_1: {
 																																																																								ctor: '::',
-																																																																								_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahKotlin,
+																																																																								_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																																																									_elm_lang$core$Maybe$Just(3)),
 																																																																								_1: {
 																																																																									ctor: '::',
-																																																																									_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahSwift,
+																																																																									_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$introduction,
 																																																																									_1: {
 																																																																										ctor: '::',
-																																																																										_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(3),
+																																																																										_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$unsafeGo,
 																																																																										_1: {
 																																																																											ctor: '::',
-																																																																											_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																																																												_elm_lang$core$Maybe$Just(4)),
+																																																																											_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$unsafeGoRun,
 																																																																											_1: {
 																																																																												ctor: '::',
-																																																																												_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$introduction,
+																																																																												_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$unsafePython,
 																																																																												_1: {
 																																																																													ctor: '::',
-																																																																													_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$introGo,
+																																																																													_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahTypeScript,
 																																																																													_1: {
 																																																																														ctor: '::',
-																																																																														_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeGoExplicit,
+																																																																														_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahKotlin,
 																																																																														_1: {
 																																																																															ctor: '::',
-																																																																															_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeGoVariableReuse,
+																																																																															_0: _jackgene$live_deck$Deck_Slide_SafeTypeCast$blahSwift,
 																																																																															_1: {
 																																																																																ctor: '::',
-																																																																																_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafePython,
+																																																																																_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(3),
 																																																																																_1: {
 																																																																																	ctor: '::',
-																																																																																	_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafePythonRun,
+																																																																																	_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																																																																		_elm_lang$core$Maybe$Just(4)),
 																																																																																	_1: {
 																																																																																		ctor: '::',
-																																																																																		_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safePython,
+																																																																																		_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$introduction,
 																																																																																		_1: {
 																																																																																			ctor: '::',
-																																																																																			_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeTypeScript,
+																																																																																			_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$introGo,
 																																																																																			_1: {
 																																																																																				ctor: '::',
-																																																																																				_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeTypeScript,
+																																																																																				_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeGoExplicit,
 																																																																																				_1: {
 																																																																																					ctor: '::',
-																																																																																					_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeKotlin,
+																																																																																					_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeGoVariableReuse,
 																																																																																					_1: {
 																																																																																						ctor: '::',
-																																																																																						_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeKotlin,
+																																																																																						_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafePython,
 																																																																																						_1: {
 																																																																																							ctor: '::',
-																																																																																							_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeKotlinInvalid,
+																																																																																							_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafePythonRun,
 																																																																																							_1: {
 																																																																																								ctor: '::',
-																																																																																								_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwift,
+																																																																																								_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safePython,
 																																																																																								_1: {
 																																																																																									ctor: '::',
-																																																																																									_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftInvalid,
+																																																																																									_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeTypeScript,
 																																																																																									_1: {
 																																																																																										ctor: '::',
-																																																																																										_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftInvocation,
+																																																																																										_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeTypeScript,
 																																																																																										_1: {
 																																																																																											ctor: '::',
-																																																																																											_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeSwift,
+																																																																																											_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeKotlin,
 																																																																																											_1: {
 																																																																																												ctor: '::',
-																																																																																												_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftMonadic,
+																																																																																												_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeKotlin,
 																																																																																												_1: {
 																																																																																													ctor: '::',
-																																																																																													_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftMonadicInvalid,
+																																																																																													_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeKotlinInvalid,
 																																																																																													_1: {
 																																																																																														ctor: '::',
-																																																																																														_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(4),
+																																																																																														_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwift,
 																																																																																														_1: {
 																																																																																															ctor: '::',
-																																																																																															_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																																																																																_elm_lang$core$Maybe$Just(5)),
+																																																																																															_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftInvalid,
 																																																																																															_1: {
 																																																																																																ctor: '::',
-																																																																																																_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$introduction,
+																																																																																																_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftInvocation,
 																																																																																																_1: {
 																																																																																																	ctor: '::',
-																																																																																																	_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$blahGo,
+																																																																																																	_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeSwift,
 																																																																																																	_1: {
 																																																																																																		ctor: '::',
-																																																																																																		_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$blahPython,
+																																																																																																		_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftMonadic,
 																																																																																																		_1: {
 																																																																																																			ctor: '::',
-																																																																																																			_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$blahTypeScript,
+																																																																																																			_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftMonadicInvalid,
 																																																																																																			_1: {
 																																																																																																				ctor: '::',
-																																																																																																				_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$blahKotlin,
+																																																																																																				_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(4),
 																																																																																																				_1: {
 																																																																																																					ctor: '::',
-																																																																																																					_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$blahSwift,
+																																																																																																					_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																																																																																						_elm_lang$core$Maybe$Just(5)),
 																																																																																																					_1: {
 																																																																																																						ctor: '::',
-																																																																																																						_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(5),
+																																																																																																						_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$introduction,
 																																																																																																						_1: {
 																																																																																																							ctor: '::',
-																																																																																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																																																																																								_elm_lang$core$Maybe$Just(6)),
+																																																																																																							_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$blahGo,
 																																																																																																							_1: {
 																																																																																																								ctor: '::',
-																																																																																																								_0: _jackgene$live_deck$Deck_Slide_Encapsulation$introduction,
+																																																																																																								_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$blahPython,
 																																																																																																								_1: {
 																																																																																																									ctor: '::',
-																																																																																																									_0: _jackgene$live_deck$Deck_Slide_Encapsulation$blahGo,
+																																																																																																									_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$blahTypeScript,
 																																																																																																									_1: {
 																																																																																																										ctor: '::',
-																																																																																																										_0: _jackgene$live_deck$Deck_Slide_Encapsulation$blahPython,
+																																																																																																										_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$blahKotlin,
 																																																																																																										_1: {
 																																																																																																											ctor: '::',
-																																																																																																											_0: _jackgene$live_deck$Deck_Slide_Encapsulation$blahTypeScript,
+																																																																																																											_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$blahSwift,
 																																																																																																											_1: {
 																																																																																																												ctor: '::',
-																																																																																																												_0: _jackgene$live_deck$Deck_Slide_Encapsulation$blahKotlin,
+																																																																																																												_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(5),
 																																																																																																												_1: {
 																																																																																																													ctor: '::',
-																																																																																																													_0: _jackgene$live_deck$Deck_Slide_Encapsulation$blahSwift,
+																																																																																																													_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																																																																																														_elm_lang$core$Maybe$Just(6)),
 																																																																																																													_1: {
 																																																																																																														ctor: '::',
-																																																																																																														_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(6),
+																																																																																																														_0: _jackgene$live_deck$Deck_Slide_Encapsulation$introduction,
 																																																																																																														_1: {
 																																																																																																															ctor: '::',
-																																																																																																															_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																																																																																																_elm_lang$core$Maybe$Just(7)),
+																																																																																																															_0: _jackgene$live_deck$Deck_Slide_Encapsulation$blahGo,
 																																																																																																															_1: {
 																																																																																																																ctor: '::',
-																																																																																																																_0: _jackgene$live_deck$Deck_Slide_Immutability$introduction,
+																																																																																																																_0: _jackgene$live_deck$Deck_Slide_Encapsulation$blahPython,
 																																																																																																																_1: {
 																																																																																																																	ctor: '::',
-																																																																																																																	_0: _jackgene$live_deck$Deck_Slide_Immutability$blahGo,
+																																																																																																																	_0: _jackgene$live_deck$Deck_Slide_Encapsulation$blahTypeScript,
 																																																																																																																	_1: {
 																																																																																																																		ctor: '::',
-																																																																																																																		_0: _jackgene$live_deck$Deck_Slide_Immutability$blahPython,
+																																																																																																																		_0: _jackgene$live_deck$Deck_Slide_Encapsulation$blahKotlin,
 																																																																																																																		_1: {
 																																																																																																																			ctor: '::',
-																																																																																																																			_0: _jackgene$live_deck$Deck_Slide_Immutability$blahTypeScript,
+																																																																																																																			_0: _jackgene$live_deck$Deck_Slide_Encapsulation$blahSwift,
 																																																																																																																			_1: {
 																																																																																																																				ctor: '::',
-																																																																																																																				_0: _jackgene$live_deck$Deck_Slide_Immutability$blahKotlin,
+																																																																																																																				_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(6),
 																																																																																																																				_1: {
 																																																																																																																					ctor: '::',
-																																																																																																																					_0: _jackgene$live_deck$Deck_Slide_Immutability$blahSwift,
+																																																																																																																					_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																																																																																																						_elm_lang$core$Maybe$Just(7)),
 																																																																																																																					_1: {
 																																																																																																																						ctor: '::',
-																																																																																																																						_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(7),
+																																																																																																																						_0: _jackgene$live_deck$Deck_Slide_Immutability$introduction,
 																																																																																																																						_1: {
 																																																																																																																							ctor: '::',
-																																																																																																																							_0: _jackgene$live_deck$Deck_Slide_SectionCover$conclusion,
+																																																																																																																							_0: _jackgene$live_deck$Deck_Slide_Immutability$blahGo,
 																																																																																																																							_1: {
 																																																																																																																								ctor: '::',
-																																																																																																																								_0: _jackgene$live_deck$Deck_Slide_SectionCover$questions,
+																																																																																																																								_0: _jackgene$live_deck$Deck_Slide_Immutability$blahPython,
 																																																																																																																								_1: {
 																																																																																																																									ctor: '::',
-																																																																																																																									_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide,
-																																																																																																																									_1: {ctor: '[]'}
+																																																																																																																									_0: _jackgene$live_deck$Deck_Slide_Immutability$blahTypeScript,
+																																																																																																																									_1: {
+																																																																																																																										ctor: '::',
+																																																																																																																										_0: _jackgene$live_deck$Deck_Slide_Immutability$blahKotlin,
+																																																																																																																										_1: {
+																																																																																																																											ctor: '::',
+																																																																																																																											_0: _jackgene$live_deck$Deck_Slide_Immutability$blahSwift,
+																																																																																																																											_1: {
+																																																																																																																												ctor: '::',
+																																																																																																																												_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(7),
+																																																																																																																												_1: {
+																																																																																																																													ctor: '::',
+																																																																																																																													_0: _jackgene$live_deck$Deck_Slide_SectionCover$conclusion,
+																																																																																																																													_1: {
+																																																																																																																														ctor: '::',
+																																																																																																																														_0: _jackgene$live_deck$Deck_Slide_SectionCover$questions,
+																																																																																																																														_1: {
+																																																																																																																															ctor: '::',
+																																																																																																																															_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide,
+																																																																																																																															_1: {ctor: '[]'}
+																																																																																																																														}
+																																																																																																																													}
+																																																																																																																												}
+																																																																																																																											}
+																																																																																																																										}
+																																																																																																																									}
 																																																																																																																								}
 																																																																																																																							}
 																																																																																																																						}

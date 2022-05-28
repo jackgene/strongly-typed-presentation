@@ -111,14 +111,14 @@ typeSystemProperties =
         , Dict.fromList
           [ ( "Go", scoreUnsupported )
           , ( "Python", scoreImplementable )
-          , ( "TypeScript", scoreImplementable )
-          , ( "Kotlin", scoreOptional )
+          , ( "TypeScript", scoreOptional )
+          , ( "Kotlin", scoreImplementable )
           , ( "Swift", scoreImplementable )
           ]
         )
       , ( "Safe Type Cast" -- "Type Conversion Errors"
         , Dict.fromList
-          [ ( "Go", scoreImplementable )
+          [ ( "Go", scoreUnsupported )
           , ( "Python", scoreOptional )
           , ( "TypeScript", scoreImplementable )
           , ( "Kotlin", scoreDefeatable )

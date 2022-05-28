@@ -113,10 +113,16 @@ slidesList =
   , TypeSystemProperties.tableOfContent (Just 2)
   , SafeArrayAccess.introduction
   , SafeArrayAccess.unsafeGo
-  , SafeArrayAccess.blahPython
-  , SafeArrayAccess.blahTypeScript
-  , SafeArrayAccess.blahKotlin
-  , SafeArrayAccess.blahSwift
+  , SafeArrayAccess.unsafeGoRun
+  , SafeArrayAccess.unsafePython
+  , SafeArrayAccess.safePython
+  , SafeArrayAccess.unsafeTypeScript
+  , SafeArrayAccess.safeTypeScriptInvalid
+  , SafeArrayAccess.safeTypeScript
+  , SafeArrayAccess.unsafeKotlin
+  , SafeArrayAccess.safeKotlin
+  , SafeArrayAccess.unsafeSwift
+  , SafeArrayAccess.safeSwift
   , TypeSystemProperties.languageReport 2
   , TypeSystemProperties.tableOfContent (Just 3)
   , SafeTypeCast.introduction
