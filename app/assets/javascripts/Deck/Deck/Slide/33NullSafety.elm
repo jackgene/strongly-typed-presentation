@@ -281,9 +281,9 @@ safeTypeScriptNonNull =
     codeBlock =
       syntaxHighlightedCodeBlock TypeScript Dict.empty Dict.empty []
       """
-const text: string = "Lorem Ipsum"
+const text: string = "Lorem Ipsum";
 
-alert(text.toUpperCase())
+alert(text.toUpperCase());
 """
   in
   { baseSlideModel
@@ -315,9 +315,9 @@ safeTypeScriptNonNullInvalid =
         ]
       ]
       """
-const text: string = null
+const text: string = null;
 
-alert(text.toUpperCase())
+alert(text.toUpperCase());
 """
   in
   { baseSlideModel
@@ -353,10 +353,10 @@ safeTypeScriptNullableInvalid =
         ]
       ]
       """
-const text: string = null
-const text: string|null = null
+const text: string = null;
+const text: string|null = null;
 
-alert(text.toUpperCase())
+alert(text.toUpperCase());
 """
   in
   { baseSlideModel
@@ -387,10 +387,10 @@ safeTypeScriptNullable =
       )
       Dict.empty []
       """
-const text: string|null = null
+const text: string|null = null;
 
-alert(text.toUpperCase())
-if (text !== null) alert(text.toUpperCase())
+alert(text.toUpperCase());
+if (text !== null) alert(text.toUpperCase());
 """
 
     codeBlock2 : Html msg
@@ -402,8 +402,8 @@ if (text !== null) alert(text.toUpperCase())
       )
       Dict.empty []
       """
-alert(text.toUpperCase())
-alert(text?.toUpperCase() ?? "(text was null)")
+alert(text.toUpperCase());
+alert(text?.toUpperCase() ?? "(text was null)");
 """
   in
   { baseSlideModel
