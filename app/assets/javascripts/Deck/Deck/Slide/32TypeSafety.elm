@@ -1,7 +1,7 @@
 module Deck.Slide.TypeSafety exposing
   ( introduction
   , safeGo, invalidSafeGo, invalidUnsafeGo, unsafeGo
-  , safePython, invalidSafePython, unsafePythonAny, unsafePythonUnannotated, unsafePythonRun
+  , safePython, invalidSafePython, unsafePythonUnannotated, unsafePythonRun
   , pythonTypeHintUnannotated, pythonTypeHintWrong, pythonTypeHintWrongRun
   , safeTypeScript, invalidSafeTypeScript, unsafeTypeScriptAny, unsafeTypeScriptUnannotated
   , safeKotlin, invalidSafeKotlin, invalidUnsafeKotlin, unsafeKotlin
@@ -292,46 +292,6 @@ product: float = multiply("42", True)
   }
 
 
-unsafePythonAny : UnindexedSlideModel
-unsafePythonAny =
-  let
-    codeBlock : Html msg
-    codeBlock =
-      syntaxHighlightedCodeBlock Python
-      ( Dict.fromList
-        [ (0, Deletion), (1, Addition)
-        , (5, Deletion), (6, Addition)
-        ]
-      )
-      Dict.empty []
-      """
-def multiply(num1: float, num2: float) -> float:
-def multiply(num1: any, num2: any) -> any:
-    return num1 * num2
-
-
-product: float = multiply("42", True)
-product = multiply("42", "2.718")
-"""
-  in
-  { baseSlideModel
-  | view =
-    ( \page _ ->
-      standardSlideView page title subheadingPython
-      ( div []
-        [ p []
-          [ text "Python typing is optional by design, you can use the "
-          , syntaxHighlightedCodeSnippet Python "any"
-          , text " type to defeat type-checking:"
-          ]
-        , div [ css [] ] [ codeBlock ]
-        , p [] [ text "..." ]
-        ]
-      )
-    )
-  }
-
-
 unsafePythonUnannotated : UnindexedSlideModel
 unsafePythonUnannotated =
   let
@@ -358,7 +318,7 @@ product = multiply("42", "2.718")
       standardSlideView page title subheadingPython
       ( div []
         [ p []
-          [ text "...Or omit type annotations completely:" ]
+          [ text "Python typing is optional by design - you can simply omit type annotations:" ]
         , div [ css [] ] [ codeBlock ]
         , p []
           [ text "However, when you run the program..." ]

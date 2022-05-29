@@ -74,7 +74,6 @@ slidesList =
   , TypeSafety.unsafeGo
   , TypeSafety.safePython
   , TypeSafety.invalidSafePython
-  , TypeSafety.unsafePythonAny
   , TypeSafety.unsafePythonUnannotated
   , TypeSafety.unsafePythonRun
   , TypeSafety.pythonTypeHintUnannotated
@@ -126,8 +125,10 @@ slidesList =
   , TypeSystemProperties.languageReport 2
   , TypeSystemProperties.tableOfContent (Just 3)
   , SafeTypeCast.introduction
+  , SafeTypeCast.introGo
   , SafeTypeCast.unsafeGo
   , SafeTypeCast.unsafeGoRun
+  , SafeTypeCast.safePython
   , SafeTypeCast.unsafePython
   , SafeTypeCast.blahTypeScript
   , SafeTypeCast.blahKotlin
