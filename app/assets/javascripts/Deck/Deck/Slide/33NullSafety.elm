@@ -67,8 +67,8 @@ unsafeGo =
 package main
 
 func main() {
-    var name *string = nil
-    println(*name) // Unchecked pointer access - Panic!💥
+    var name *string = nil // clearly nil
+    println(*name)         // unchecked pointer access - panic!
 }
 """
   in
@@ -266,7 +266,9 @@ if text is not None:
           , syntaxHighlightedCodeSnippet Python ": Optional[str]"
           , text " is a type alias for "
           , syntaxHighlightedCodeSnippet Python ": Union[str, None]"
-          , text ", which you can also use."
+          , text ", or in Python 3.10 "
+          , syntaxHighlightedCodeSnippet Python ": str | None"
+          , text "."
           ]
         ]
       )
