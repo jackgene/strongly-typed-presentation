@@ -25,7 +25,7 @@ subheadingGo = "Go Does Not Have Safe Array Access"
 
 subheadingPython = "Python Does Not Have Safe Array Access (But Can Be Made Safer)"
 
-subheadingTypeScript = "TypeScript Does Not Have Safe Array Access (But Can Be Made Safer)"
+subheadingTypeScript = "TypeScript Has Safe Array Access (But With Options to Be Unsafe)"
 
 subheadingKotlin = "Kotlin Has Safe Array Access (But With Options to Be Unsafe)"
 
@@ -363,7 +363,7 @@ let word: String = words[-1]
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page title subheadingSwift
       ( div []
         [ p []
           [ text "Swift’s array access is unsafe:" ]
@@ -403,7 +403,7 @@ extension Collection {
 }
 
 let words: [String] = ["one", "two", "three"]
-let word: String = words[safe: -1]
+let word: String = words[-1]
 let word: String? = words[safe: -1]
 """
   in
