@@ -887,6 +887,7 @@ let product: Double? = multiply("42", true)
       ( div []
         [ p []
           [ text "Defeating Swift's type safety takes effort:" ]
+        , div [] [] -- Skip transition animation
         , div [] [ codeBlock ]
         ]
       )
