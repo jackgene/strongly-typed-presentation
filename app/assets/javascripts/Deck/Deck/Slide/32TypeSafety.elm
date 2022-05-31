@@ -225,7 +225,6 @@ safePython =
 def multiply(num1: float, num2: float) -> float:
     return num1 * num2
 
-
 product: float = multiply(42, 2.718)
 """
   in
@@ -251,9 +250,9 @@ invalidSafePython =
     codeBlock : Html msg
     codeBlock =
       syntaxHighlightedCodeBlock Python
-      ( Dict.fromList [ (4, Deletion), (5, Addition) ] )
-      ( Dict.fromList [ (5, [ ColumnEmphasis Error 26 4 ] ) ] )
-      [ CodeBlockError 5 5
+      ( Dict.fromList [ (3, Deletion), (4, Addition) ] )
+      ( Dict.fromList [ (4, [ ColumnEmphasis Error 26 4 ] ) ] )
+      [ CodeBlockError 4 5
         [ div []
           [ text """Argument of type "Literal['42']" cannot be assigned to parameter "num1" of type "float" in function "multiply" """ ]
         ]
@@ -261,7 +260,6 @@ invalidSafePython =
       """
 def multiply(num1: float, num2: float) -> float:
     return num1 * num2
-
 
 product: float = multiply(42, 2.718)
 product: float = multiply("42", True)
@@ -307,7 +305,6 @@ unsafePythonUnannotated =
 def multiply(num1: any, num2: any) -> any:
 def multiply(num1, num2):
     return num1 * num2
-
 
 product = multiply("42", "2.718")
 """
@@ -361,7 +358,6 @@ pythonTypeHintUnannotated =
       """
 def multiply(num1, num2):
     return num1 * num2
-
 
 print(multiply(42, 2.718))
 """

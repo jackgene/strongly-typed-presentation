@@ -30807,7 +30807,7 @@ var _jackgene$live_deck$Deck_Slide_Introduction$inScope = _elm_lang$core$Native_
 																				},
 																				{
 																					ctor: '::',
-																					_0: _rtfeldman$elm_css$Html_Styled$text('Unintended Data Corruption'),
+																					_0: _rtfeldman$elm_css$Html_Styled$text('State Data Corruption'),
 																					_1: {ctor: '[]'}
 																				}),
 																			_1: {ctor: '[]'}
@@ -38444,7 +38444,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeGo = function () {
 			}),
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\npackage typesafety\n\nfunc Multiply(num1 interface{}, num2 interface{}) float64 {\n    return num1 * num2\n    num1_, _ := num1.(float64)\n    num2_, _ := num2.(float64)\n    return num1_ * num2_\n}\n\nvar product float64 = Multiply(\"42\", true)\n');
+		'\npackage typesafety\n\nfunc Multiply(num1 interface{}, num2 interface{}) float64 {\n    return num1 * num2;\n    num1_, _ := num1.(float64)\n    num2_, _ := num2.(float64)\n    return num1_ * num2_\n}\n\nvar product float64 = Multiply(\"42\", true)\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -38491,7 +38491,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$safePython = function () {
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\ndef multiply(num1: float, num2: float) -> float:\n    return num1 * num2\n\n\nproduct: float = multiply(42, 2.718)\n');
+		'\ndef multiply(num1: float, num2: float) -> float:\n    return num1 * num2\n\nproduct: float = multiply(42, 2.718)\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -38549,10 +38549,10 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafePython = function () {
 		_elm_lang$core$Dict$fromList(
 			{
 				ctor: '::',
-				_0: {ctor: '_Tuple2', _0: 4, _1: _jackgene$live_deck$SyntaxHighlight_Model$Deletion},
+				_0: {ctor: '_Tuple2', _0: 3, _1: _jackgene$live_deck$SyntaxHighlight_Model$Deletion},
 				_1: {
 					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 5, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
+					_0: {ctor: '_Tuple2', _0: 4, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
 					_1: {ctor: '[]'}
 				}
 			}),
@@ -38561,7 +38561,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafePython = function () {
 				ctor: '::',
 				_0: {
 					ctor: '_Tuple2',
-					_0: 5,
+					_0: 4,
 					_1: {
 						ctor: '::',
 						_0: A3(_jackgene$live_deck$SyntaxHighlight_Model$ColumnEmphasis, _jackgene$live_deck$SyntaxHighlight_Model$Error, 26, 4),
@@ -38574,7 +38574,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafePython = function () {
 			ctor: '::',
 			_0: A3(
 				_jackgene$live_deck$Deck_Slide_SyntaxHighlight$CodeBlockError,
-				5,
+				4,
 				5,
 				{
 					ctor: '::',
@@ -38590,7 +38590,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafePython = function () {
 				}),
 			_1: {ctor: '[]'}
 		},
-		'\ndef multiply(num1: float, num2: float) -> float:\n    return num1 * num2\n\n\nproduct: float = multiply(42, 2.718)\nproduct: float = multiply(\"42\", True)\n');
+		'\ndef multiply(num1: float, num2: float) -> float:\n    return num1 * num2\n\nproduct: float = multiply(42, 2.718)\nproduct: float = multiply(\"42\", True)\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -38699,7 +38699,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePythonUnannotated = function
 			}),
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\ndef multiply(num1: any, num2: any) -> any:\ndef multiply(num1, num2):\n    return num1 * num2\n\n\nproduct = multiply(\"42\", \"2.718\")\n');
+		'\ndef multiply(num1: any, num2: any) -> any:\ndef multiply(num1, num2):\n    return num1 * num2\n\nproduct = multiply(\"42\", \"2.718\")\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -38793,7 +38793,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$pythonTypeHintUnannotated = functi
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\ndef multiply(num1, num2):\n    return num1 * num2\n\n\nprint(multiply(42, 2.718))\n');
+		'\ndef multiply(num1, num2):\n    return num1 * num2\n\nprint(multiply(42, 2.718))\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
