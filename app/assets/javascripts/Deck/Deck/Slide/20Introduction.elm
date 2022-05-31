@@ -163,7 +163,7 @@ inScope =
           , ul [] [ li [ css [ listStyle ] ] [ text "Type Casting Failure" ] ]
           , ul [] [ li [ css [ listStyle ] ] [ text "Out Of Bounds Array Access" ] ]
           , ul [] [ li [ css [ listStyle ] ] [ text "Inexhaustive Matches" ] ]
-          , ul [] [ li [ css [ listStyle ] ] [ text "Unintended State Mutation" ] ]
+          , ul [] [ li [ css [ listStyle ] ] [ text "Unintended Data Corruption" ] ]
           --, ul [] [ li [ css [ listStyle ] ] [ text "Race Conditions" ] ]
           ]
         ]
