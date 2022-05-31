@@ -302,7 +302,7 @@ unsafePythonUnannotated =
       )
       Dict.empty []
       """
-def multiply(num1: any, num2: any) -> any:
+def multiply(num1: float, num2: float) -> float:
 def multiply(num1, num2):
     return num1 * num2
 
@@ -337,8 +337,8 @@ unsafePythonRun =
           """
 % python type_safety/unsafe.py
 Traceback (most recent call last):
-  File "/strongly-typed/type_safety/unsafe.py", line 5, in <module>
-    product = multiply([1,2,3], {"key":"value"})
+  File "/strongly-typed/type_safety/unsafe.py", line 4, in <module>
+    product = multiply("42", "2.718")
   File "/strongly-typed/type_safety/unsafe.py", line 2, in multiply
     return num1 * num2
 TypeError: can't multiply sequence by non-int of type 'str'

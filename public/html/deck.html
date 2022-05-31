@@ -38699,7 +38699,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePythonUnannotated = function
 			}),
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\ndef multiply(num1: any, num2: any) -> any:\ndef multiply(num1, num2):\n    return num1 * num2\n\nproduct = multiply(\"42\", \"2.718\")\n');
+		'\ndef multiply(num1: float, num2: float) -> float:\ndef multiply(num1, num2):\n    return num1 * num2\n\nproduct = multiply(\"42\", \"2.718\")\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -38780,7 +38780,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePythonRun = _elm_lang$core$N
 								}),
 							_1: {
 								ctor: '::',
-								_0: _jackgene$live_deck$Deck_Slide_Common$console('\n% python type_safety/unsafe.py\nTraceback (most recent call last):\n  File \"/strongly-typed/type_safety/unsafe.py\", line 5, in <module>\n    product = multiply([1,2,3], {\"key\":\"value\"})\n  File \"/strongly-typed/type_safety/unsafe.py\", line 2, in multiply\n    return num1 * num2\nTypeError: can\'t multiply sequence by non-int of type \'str\'\n'),
+								_0: _jackgene$live_deck$Deck_Slide_Common$console('\n% python type_safety/unsafe.py\nTraceback (most recent call last):\n  File \"/strongly-typed/type_safety/unsafe.py\", line 4, in <module>\n    product = multiply(\"42\", \"2.718\")\n  File \"/strongly-typed/type_safety/unsafe.py\", line 2, in multiply\n    return num1 * num2\nTypeError: can\'t multiply sequence by non-int of type \'str\'\n'),
 								_1: {ctor: '[]'}
 							}
 						}));
