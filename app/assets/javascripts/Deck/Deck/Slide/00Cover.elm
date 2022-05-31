@@ -38,7 +38,7 @@ cover =
           ]
         , h2
           [ css [ margin2 (em 0.5) zero, paragraphFontFamily, color goodRxLightGray2, fontWeight (normal), fontSize (vw 2.4) ] ]
-          [ text "And How Does it Help Me Produce Quality Software?" ]
+          [ text "And How Does it Help Me Produce Reliable Software?" ]
         , p
           [ css [ margin2 (em 3) zero, color goodRxLightGray3, fontSize (em 0.8) ] ]
           [ text "Jack Leow"
