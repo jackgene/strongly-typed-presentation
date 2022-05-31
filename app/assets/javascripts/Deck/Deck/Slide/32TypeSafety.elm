@@ -192,7 +192,7 @@ unsafeGo =
 package typesafety
 
 func Multiply(num1 interface{}, num2 interface{}) float64 {
-    return num1 * num2
+    return num1 * num2;
     num1_, _ := num1.(float64)
     num2_, _ := num2.(float64)
     return num1_ * num2_
