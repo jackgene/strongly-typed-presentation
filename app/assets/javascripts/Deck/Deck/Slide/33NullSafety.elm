@@ -256,7 +256,7 @@ if text is not None:
       standardSlideView page title subheadingPython
       ( div []
         [ p []
-          [ text "Before accessing a nullable variable, a program is required to check that it is not "
+          [ text "Before accessing a nullable variable, the programmer is required to check that it is not "
           , syntaxHighlightedCodeSnippet Python "None"
           , text ":"
           ]
