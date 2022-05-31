@@ -65,9 +65,9 @@ scoreOptional : Score
 scoreOptional = { range = 1.0, upper = 1.0, rank = -1 }
 
 
--- 0.0 - 0.5
-scoreImplementable : Score
-scoreImplementable = { range = 0.5, upper = 0.5, rank = -1 }
+-- 0.0 - 0.5 - also "implementable"
+scorePartialAndOptional : Score
+scorePartialAndOptional = { range = 0.5, upper = 0.5, rank = -1 }
 
 
 -- 0.0 - 0.0
@@ -110,17 +110,17 @@ typeSystemProperties =
       , ( "Safe Array Access" -- "Out Of Bounds Array Access"
         , Dict.fromList
           [ ( "Go", scoreUnsupported )
-          , ( "Python", scoreImplementable )
+          , ( "Python", scorePartialAndOptional )
           , ( "TypeScript", scoreOptional )
-          , ( "Kotlin", scoreImplementable )
-          , ( "Swift", scoreImplementable )
+          , ( "Kotlin", scorePartialAndOptional )
+          , ( "Swift", scorePartialAndOptional )
           ]
         )
-      , ( "Safe Type Cast" -- "Type Conversion Errors"
+      , ( "Safe Type Conversion" -- "Type Conversion Errors"
         , Dict.fromList
           [ ( "Go", scoreUnsupported )
-          , ( "Python", scoreOptional )
-          , ( "TypeScript", scoreImplementable )
+          , ( "Python", scorePartialAndOptional )
+          , ( "TypeScript", scorePartialAndOptional )
           , ( "Kotlin", scoreDefeatable )
           , ( "Swift", scoreDefeatable )
           ]
@@ -128,9 +128,9 @@ typeSystemProperties =
       , ( "Exception Safety" -- "Unhandled General Errors"
         , Dict.fromList
           [ ( "Go", scoreUnsupported )
-          , ( "Python", scoreImplementable )
-          , ( "TypeScript", scoreImplementable )
-          , ( "Kotlin", scoreImplementable )
+          , ( "Python", scorePartialAndOptional )
+          , ( "TypeScript", scorePartialAndOptional )
+          , ( "Kotlin", scorePartialAndOptional )
           , ( "Swift", scoreDefeatable )
           ]
         )
@@ -154,8 +154,8 @@ typeSystemProperties =
         )
       , ( "Immutability" -- "Unintended State Mutation"
         , Dict.fromList
-          [ ( "Go", scoreImplementable )
-          , ( "Python", scoreImplementable  )
+          [ ( "Go", scorePartialAndOptional )
+          , ( "Python", scorePartialAndOptional  )
           , ( "TypeScript", scoreOptional )
           , ( "Kotlin", scoreOptional )
           , ( "Swift", scoreOptional )
