@@ -26,7 +26,7 @@ import Deck.Slide.TypeSystemProperties as TypeSystemProperties
 import Deck.Slide.TypeSafety as TypeSafety
 import Deck.Slide.NullSafety as NullSafety
 import Deck.Slide.ExceptionSafety as ExceptionSafety
-import Deck.Slide.SafeTypeCast as SafeTypeCast
+import Deck.Slide.SafeTypeConversion as SafeTypeConversion
 import Deck.Slide.SafeArrayAccess as SafeArrayAccess
 import Deck.Slide.ExhaustivenessChecking as ExhaustivenessChecking
 import Deck.Slide.Immutability as Immutability
@@ -124,15 +124,25 @@ slidesList =
   , SafeArrayAccess.safeSwift
   , TypeSystemProperties.languageReport 2
   , TypeSystemProperties.tableOfContent (Just 3)
-  , SafeTypeCast.introduction
-  , SafeTypeCast.introGo
-  , SafeTypeCast.unsafeGo
-  , SafeTypeCast.unsafeGoRun
-  , SafeTypeCast.safePython
-  , SafeTypeCast.unsafePython
-  , SafeTypeCast.blahTypeScript
-  , SafeTypeCast.blahKotlin
-  , SafeTypeCast.blahSwift
+  , SafeTypeConversion.introduction
+  , SafeTypeConversion.introGo
+  , SafeTypeConversion.unsafeGo
+  , SafeTypeConversion.unsafeGoRun
+  , SafeTypeConversion.safePython
+  , SafeTypeConversion.unsafePythonGoodGuard
+  , SafeTypeConversion.unsafePythonBadGuard
+  , SafeTypeConversion.unsafePythonBadGuardRun
+  , SafeTypeConversion.unsafePythonCast
+  , SafeTypeConversion.safeTypeScript
+  , SafeTypeConversion.unsafeTypeScriptGoodPredicateInvalid
+  , SafeTypeConversion.unsafeTypeScriptGoodPredicate
+  , SafeTypeConversion.unsafeTypeScriptBadPredicate
+  , SafeTypeConversion.unsafeTypeScriptBadPredicateRun
+  , SafeTypeConversion.safeKotlinSmart
+  , SafeTypeConversion.safeKotlinExplicit
+  , SafeTypeConversion.unsafeKotlin
+  , SafeTypeConversion.safeSwift
+  , SafeTypeConversion.unsafeSwift
   , TypeSystemProperties.languageReport 3
   , TypeSystemProperties.tableOfContent (Just 4)
   , ExceptionSafety.introduction
