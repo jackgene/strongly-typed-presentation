@@ -34561,19 +34561,31 @@ var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$variableOrFunctionR
 								_elm_lang$core$String$fromChar(opt.valueTypeAnnotationOperator))))),
 				_1: {
 					ctor: '::',
-					_0: A3(
-						_jackgene$live_deck$SyntaxHighlight_Language_Common$addThen,
-						A2(_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$variableOrFunctionReferenceLoop, opt, identifier),
-						revTokens,
-						_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$whitespaceOrComment),
+					_0: A2(
+						_elm_tools$parser$Parser$map,
+						function (_p1) {
+							return {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: _jackgene$live_deck$SyntaxHighlight_Model$Operator, _1: '('},
+								_1: A2(
+									_elm_lang$core$Basics_ops['++'],
+									revTokens,
+									{
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: _jackgene$live_deck$SyntaxHighlight_Model$FunctionReference, _1: identifier},
+										_1: {ctor: '[]'}
+									})
+							};
+						},
+						_elm_tools$parser$Parser$symbol('(')),
 					_1: {
 						ctor: '::',
 						_0: A2(
 							_elm_tools$parser$Parser$map,
-							function (_p1) {
+							function (_p2) {
 								return {
 									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: _jackgene$live_deck$SyntaxHighlight_Model$Operator, _1: '('},
+									_0: {ctor: '_Tuple2', _0: _jackgene$live_deck$SyntaxHighlight_Model$Operator, _1: '{'},
 									_1: A2(
 										_elm_lang$core$Basics_ops['++'],
 										revTokens,
@@ -34584,39 +34596,19 @@ var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$variableOrFunctionR
 										})
 								};
 							},
-							_elm_tools$parser$Parser$symbol('(')),
+							_elm_tools$parser$Parser$symbol('{')),
 						_1: {
 							ctor: '::',
-							_0: A2(
-								_elm_tools$parser$Parser$map,
-								function (_p2) {
-									return {
+							_0: _elm_tools$parser$Parser$succeed(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									revTokens,
+									{
 										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: _jackgene$live_deck$SyntaxHighlight_Model$Operator, _1: '{'},
-										_1: A2(
-											_elm_lang$core$Basics_ops['++'],
-											revTokens,
-											{
-												ctor: '::',
-												_0: {ctor: '_Tuple2', _0: _jackgene$live_deck$SyntaxHighlight_Model$FunctionReference, _1: identifier},
-												_1: {ctor: '[]'}
-											})
-									};
-								},
-								_elm_tools$parser$Parser$symbol('{')),
-							_1: {
-								ctor: '::',
-								_0: _elm_tools$parser$Parser$succeed(
-									A2(
-										_elm_lang$core$Basics_ops['++'],
-										revTokens,
-										{
-											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: _jackgene$live_deck$SyntaxHighlight_Model$Normal, _1: identifier},
-											_1: {ctor: '[]'}
-										})),
-								_1: {ctor: '[]'}
-							}
+										_0: {ctor: '_Tuple2', _0: _jackgene$live_deck$SyntaxHighlight_Model$Normal, _1: identifier},
+										_1: {ctor: '[]'}
+									})),
+							_1: {ctor: '[]'}
 						}
 					}
 				}
@@ -43824,7 +43816,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeSwift = function () 
 }();
 var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingSwift = 'Swift Does Not Have Safe Array Access (But Can Be Made Safer)';
 var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingKotlin = 'Kotlin Has Safe Array Access (But With Options to Be Unsafe)';
-var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingTypeScript = 'TypeScript Has Safe Array Access (But With Options to Be Unsafe)';
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingTypeScript = 'TypeScript Can Have Safe Array Access';
 var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingPython = 'Python Does Not Have Safe Array Access (But Can Be Made Safer)';
 var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingGo = 'Go Does Not Have Safe Array Access';
 var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$title = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title, ': Safe Array Access');

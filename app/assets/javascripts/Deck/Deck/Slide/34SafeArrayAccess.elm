@@ -25,7 +25,7 @@ subheadingGo = "Go Does Not Have Safe Array Access"
 
 subheadingPython = "Python Does Not Have Safe Array Access (But Can Be Made Safer)"
 
-subheadingTypeScript = "TypeScript Has Safe Array Access (But With Options to Be Unsafe)"
+subheadingTypeScript = "TypeScript Can Have Safe Array Access"
 
 subheadingKotlin = "Kotlin Has Safe Array Access (But With Options to Be Unsafe)"
 
