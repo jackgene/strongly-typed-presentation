@@ -19,16 +19,22 @@ import SyntaxHighlight.Model exposing
 
 
 -- Constants
+title : String
 title = TypeSystemProperties.title ++ ": Exception Safety"
 
+subheadingGo : String
 subheadingGo = "Go Is Not Exception Safe"
 
+subheadingPython : String
 subheadingPython = "Python Is Not Exception Safe (But Can Be Made Safer)"
 
+subheadingTypeScript : String
 subheadingTypeScript = "TypeScript Is Not Exception Safe (But Can Be Made Safer)"
 
+subheadingKotlin : String
 subheadingKotlin = "Kotlin Is Not Exception Safe (But Includes a Safer Option)"
 
+subheadingSwift : String
 subheadingSwift = "Swift Is Exception Safe (With Options to Be Unsafe)"
 
 

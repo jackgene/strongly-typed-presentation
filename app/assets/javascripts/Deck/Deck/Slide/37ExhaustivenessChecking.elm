@@ -13,22 +13,28 @@ import Deck.Slide.Template exposing (standardSlideView)
 import Deck.Slide.TypeSystemProperties as TypeSystemProperties
 import Dict exposing (Dict)
 import Html.Styled exposing (Html, div, p, text)
-import SyntaxHighlight.Model exposing
-  ( ColumnEmphasis, ColumnEmphasisType(..), LineEmphasis(..) )
+--import SyntaxHighlight.Model exposing
+--  ( ColumnEmphasis, ColumnEmphasisType(..), LineEmphasis(..) )
 
 
 -- Constants
+title : String
 title = TypeSystemProperties.title ++ ": Exhaustiveness Checking"
 
-subheadingGo = "Go "
+subheadingGo : String
+subheadingGo = "Go Does Not Have Exhaustiveness Checking"
 
-subheadingPython = "Python "
+subheadingPython : String
+subheadingPython = "Python Can Have Exhaustiveness Checking"
 
-subheadingTypeScript = "TypeScript "
+subheadingTypeScript : String
+subheadingTypeScript = "TypeScript Can Have Exhaustiveness Checking"
 
-subheadingKotlin = "Kotlin "
+subheadingKotlin : String
+subheadingKotlin = "Kotlin Can Have Exhaustiveness Checking"
 
-subheadingSwift = "Swift "
+subheadingSwift : String
+subheadingSwift = "Swift Can Have Exhaustiveness Checking"
 
 
 -- Slides
@@ -38,7 +44,7 @@ introduction =
   | view =
     ( \page _ ->
       standardSlideView page title
-      "Ensure All Code Flows Are Accounted For"
+      "Ensures All Code Flows Are Accounted For"
       ( div []
         [ p []
           [ text "TODO" ]

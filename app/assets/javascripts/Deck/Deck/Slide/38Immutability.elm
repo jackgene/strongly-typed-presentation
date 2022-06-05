@@ -13,21 +13,27 @@ import Deck.Slide.Template exposing (standardSlideView)
 import Deck.Slide.TypeSystemProperties as TypeSystemProperties
 import Dict exposing (Dict)
 import Html.Styled exposing (Html, div, p, text)
-import SyntaxHighlight.Model exposing
-  ( ColumnEmphasis, ColumnEmphasisType(..), LineEmphasis(..) )
+--import SyntaxHighlight.Model exposing
+--  ( ColumnEmphasis, ColumnEmphasisType(..), LineEmphasis(..) )
 
 
 -- Constants
+title : String
 title = TypeSystemProperties.title ++ ": Immutability"
 
+subheadingGo : String
 subheadingGo = "Go "
 
+subheadingPython : String
 subheadingPython = "Python "
 
+subheadingTypeScript : String
 subheadingTypeScript = "TypeScript "
 
+subheadingKotlin : String
 subheadingKotlin = "Kotlin "
 
+subheadingSwift : String
 subheadingSwift = "Swift "
 
 

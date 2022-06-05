@@ -18,16 +18,22 @@ import SyntaxHighlight.Model exposing
 
 
 -- Constants
+title : String
 title = TypeSystemProperties.title ++ ": Null Safety"
 
+subheadingGo : String
 subheadingGo = "Go Is Not Null Safe"
 
+subheadingPython : String
 subheadingPython = "Python Can Be Null Safe"
 
+subheadingTypeScript : String
 subheadingTypeScript = "TypeScript Can Be Null Safe"
 
+subheadingKotlin : String
 subheadingKotlin = "Kotlin Is Null Safe (With Options to Be Unsafe)"
 
+subheadingSwift : String
 subheadingSwift = "Swift Is Null Safe (With Options to Be Unsafe)"
 
 

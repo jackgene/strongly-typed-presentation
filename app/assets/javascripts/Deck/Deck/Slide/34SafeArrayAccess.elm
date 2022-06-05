@@ -19,16 +19,22 @@ import SyntaxHighlight.Model exposing
 
 
 -- Constants
+title : String
 title = TypeSystemProperties.title ++ ": Safe Array Access"
 
+subheadingGo : String
 subheadingGo = "Go Does Not Have Safe Array Access"
 
+subheadingPython : String
 subheadingPython = "Python Does Not Have Safe Array Access (But Can Be Made Safer)"
 
+subheadingTypeScript : String
 subheadingTypeScript = "TypeScript Can Have Safe Array Access"
 
+subheadingKotlin : String
 subheadingKotlin = "Kotlin Has Safe Array Access (But With Options to Be Unsafe)"
 
+subheadingSwift : String
 subheadingSwift = "Swift Does Not Have Safe Array Access (But Can Be Made Safer)"
 
 

@@ -20,16 +20,22 @@ import SyntaxHighlight.Model exposing
 
 
 -- Constants
+title : String
 title = TypeSystemProperties.title ++ ": Safe Type Conversion"
 
+subheadingGo : String
 subheadingGo = "Go Is Not Type Conversion Safe"
 
+subheadingPython : String
 subheadingPython = "Python Can Be Type Conversion Safe"
 
+subheadingTypeScript : String
 subheadingTypeScript = "TypeScript Can Be Type Conversion Safe"
 
+subheadingKotlin : String
 subheadingKotlin = "Kotlin Is Type Conversion Safe (With Options to Be Unsafe)"
 
+subheadingSwift : String
 subheadingSwift = "Swift Is Type Conversion Safe (With Options to Be Unsafe)"
 
 
