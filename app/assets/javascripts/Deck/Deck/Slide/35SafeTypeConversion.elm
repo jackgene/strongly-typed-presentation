@@ -26,7 +26,7 @@ subheadingGo = "Go Is Not Type Conversion Safe"
 
 subheadingPython = "Python Can Be Type Conversion Safe"
 
-subheadingTypeScript = "TypeScript Is Not Type Conversion Safe"
+subheadingTypeScript = "TypeScript Can Be Type Conversion Safe"
 
 subheadingKotlin = "Kotlin Is Type Conversion Safe (With Options to Be Unsafe)"
 
@@ -66,9 +66,9 @@ introGo =
 package main
 
 func main() {
-    var data interface{} = 42
-    if str, ok := data.(string); ok {
-        println("data is the string:", str)
+    var thing interface{} = 42
+    if str, ok := thing.(string); ok {
+        println("thing is the string:", str)
     }
 }
 """
@@ -97,12 +97,12 @@ unsafeGo =
 package main
 
 func main() {
-    var data interface{} = 42
+    var thing interface{} = 42
 
-    text, _ := data.(string) // non-panicking type assertion
-    println(text)            // let's hope zero-value is ok!
+    text, _ := thing.(string) // non-panicking type assertion
+    println(text)             // let's hope zero-value is ok!
 
-    text = data.(string)     // unsafe type assertion - panic!
+    text = thing.(string)     // unsafe type assertion - panic!
 }
 """
   in
@@ -358,8 +358,8 @@ unsafeTypeScriptGoodPredicateInvalid =
     codeBlock : Html msg
     codeBlock =
       syntaxHighlightedCodeBlock TypeScript Dict.empty
-      ( Dict.fromList [ (7, [ ColumnEmphasis Error 30 13 ] ) ] )
-      [ CodeBlockError 7 24
+      ( Dict.fromList [ (6, [ ColumnEmphasis Error 30 13 ] ) ] )
+      [ CodeBlockError 6 24
         [ div []
           [ text "TS2339: Property 'toUpperCase' does not exist on type 'string | number'."
           , br [] []
@@ -371,8 +371,7 @@ function isStringArray(objs: any[]): objs is string[] {
   return objs.every(obj => typeof(obj) === "string");
 }
 
-const nums: (number|string)[] = Math.random() < 0.5
-  ? [1, 2, 3] : ["one", "two", "three"];
+const nums: (number|string)[] = [1, 2, 3];
 
 nums.forEach(num => alert(num.toUpperCase()));
 
@@ -400,7 +399,7 @@ unsafeTypeScriptGoodPredicate =
     codeBlock =
       syntaxHighlightedCodeBlock TypeScript
       ( Dict.fromList
-        [ (7, Deletion), (8, Addition), (9, Addition), (10, Addition)
+        [ (6, Deletion), (7, Addition), (8, Addition), (9, Addition)
         ]
       )
       Dict.empty []
@@ -409,8 +408,7 @@ function isStringArray(objs: any[]): objs is string[] {
   return objs.every(obj => typeof(obj) === "string");
 }
 
-const nums: (number|string)[] = Math.random() < 0.5
-  ? [1, 2, 3] : ["one", "two", "three"];
+const nums: (number|string)[] =  [1, 2, 3];
 
 nums.forEach(num => alert(num.toUpperCase()));
 if (isStringArray(nums)) {
@@ -449,8 +447,7 @@ function isStringArray(objs: any[]): objs is string[] {
   return objs.length % 2 === 1;
 }
 
-const nums: (number|string)[] = Math.random() < 0.5
-  ? [1, 2, 3] : ["one", "two", "three"];
+const nums: (number|string)[] = [1, 2, 3];
 
 if (isStringArray(nums)) {
   nums.forEach(num => alert(num.toUpperCase()));
@@ -479,7 +476,7 @@ unsafeTypeScriptBadPredicateRun =
       standardSlideView page title subheadingTypeScript
       ( div []
         [ p []
-          [ text "About half the time, the program in the previous page fails with:" ]
+          [ text "At runtime, the program in the previous page fails with:" ]
         , console
           """
 % jsc safe_type_cast/unsafe_predicate.js

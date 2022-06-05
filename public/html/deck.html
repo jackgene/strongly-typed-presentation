@@ -42691,7 +42691,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$introGo = function () {
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\npackage main\n\nfunc main() {\n    var data interface{} = 42\n    if str, ok := data.(string); ok {\n        println(\"data is the string:\", str)\n    }\n}\n');
+		'\npackage main\n\nfunc main() {\n    var thing interface{} = 42\n    if str, ok := thing.(string); ok {\n        println(\"thing is the string:\", str)\n    }\n}\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -42738,7 +42738,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeGo = function () {
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\npackage main\n\nfunc main() {\n    var data interface{} = 42\n\n    text, _ := data.(string) // non-panicking type assertion\n    println(text)            // let\'s hope zero-value is ok!\n\n    text = data.(string)     // unsafe type assertion - panic!\n}\n');
+		'\npackage main\n\nfunc main() {\n    var thing interface{} = 42\n\n    text, _ := thing.(string) // non-panicking type assertion\n    println(text)             // let\'s hope zero-value is ok!\n\n    text = thing.(string)     // unsafe type assertion - panic!\n}\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -43191,7 +43191,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptGoodPredic
 				ctor: '::',
 				_0: {
 					ctor: '_Tuple2',
-					_0: 7,
+					_0: 6,
 					_1: {
 						ctor: '::',
 						_0: A3(_jackgene$live_deck$SyntaxHighlight_Model$ColumnEmphasis, _jackgene$live_deck$SyntaxHighlight_Model$Error, 30, 13),
@@ -43204,7 +43204,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptGoodPredic
 			ctor: '::',
 			_0: A3(
 				_jackgene$live_deck$Deck_Slide_SyntaxHighlight$CodeBlockError,
-				7,
+				6,
 				24,
 				{
 					ctor: '::',
@@ -43231,7 +43231,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptGoodPredic
 				}),
 			_1: {ctor: '[]'}
 		},
-		'\nfunction isStringArray(objs: any[]): objs is string[] {\n  return objs.every(obj => typeof(obj) === \"string\");\n}\n\nconst nums: (number|string)[] = Math.random() < 0.5\n  ? [1, 2, 3] : [\"one\", \"two\", \"three\"];\n\nnums.forEach(num => alert(num.toUpperCase()));\n\n                                      //\n');
+		'\nfunction isStringArray(objs: any[]): objs is string[] {\n  return objs.every(obj => typeof(obj) === \"string\");\n}\n\nconst nums: (number|string)[] = [1, 2, 3];\n\nnums.forEach(num => alert(num.toUpperCase()));\n\n                                      //\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -43278,16 +43278,16 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptGoodPredic
 		_elm_lang$core$Dict$fromList(
 			{
 				ctor: '::',
-				_0: {ctor: '_Tuple2', _0: 7, _1: _jackgene$live_deck$SyntaxHighlight_Model$Deletion},
+				_0: {ctor: '_Tuple2', _0: 6, _1: _jackgene$live_deck$SyntaxHighlight_Model$Deletion},
 				_1: {
 					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 8, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
+					_0: {ctor: '_Tuple2', _0: 7, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
 					_1: {
 						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 9, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
+						_0: {ctor: '_Tuple2', _0: 8, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
 						_1: {
 							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 10, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
+							_0: {ctor: '_Tuple2', _0: 9, _1: _jackgene$live_deck$SyntaxHighlight_Model$Addition},
 							_1: {ctor: '[]'}
 						}
 					}
@@ -43295,7 +43295,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptGoodPredic
 			}),
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\nfunction isStringArray(objs: any[]): objs is string[] {\n  return objs.every(obj => typeof(obj) === \"string\");\n}\n\nconst nums: (number|string)[] = Math.random() < 0.5\n  ? [1, 2, 3] : [\"one\", \"two\", \"three\"];\n\nnums.forEach(num => alert(num.toUpperCase()));\nif (isStringArray(nums)) {\n  nums.forEach(num => alert(num.toUpperCase()));\n}\n');
+		'\nfunction isStringArray(objs: any[]): objs is string[] {\n  return objs.every(obj => typeof(obj) === \"string\");\n}\n\nconst nums: (number|string)[] =  [1, 2, 3];\n\nnums.forEach(num => alert(num.toUpperCase()));\nif (isStringArray(nums)) {\n  nums.forEach(num => alert(num.toUpperCase()));\n}\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -43351,7 +43351,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptBadPredica
 			}),
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\nfunction isStringArray(objs: any[]): objs is string[] {\n  return objs.every(obj => typeof(obj) === \"string\");\n  return objs.length % 2 === 1;\n}\n\nconst nums: (number|string)[] = Math.random() < 0.5\n  ? [1, 2, 3] : [\"one\", \"two\", \"three\"];\n\nif (isStringArray(nums)) {\n  nums.forEach(num => alert(num.toUpperCase()));\n}\n');
+		'\nfunction isStringArray(objs: any[]): objs is string[] {\n  return objs.every(obj => typeof(obj) === \"string\");\n  return objs.length % 2 === 1;\n}\n\nconst nums: (number|string)[] = [1, 2, 3];\n\nif (isStringArray(nums)) {\n  nums.forEach(num => alert(num.toUpperCase()));\n}\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -43411,7 +43411,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptBadPredica
 								{ctor: '[]'},
 								{
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Html_Styled$text('About half the time, the program in the previous page fails with:'),
+									_0: _rtfeldman$elm_css$Html_Styled$text('At runtime, the program in the previous page fails with:'),
 									_1: {ctor: '[]'}
 								}),
 							_1: {
