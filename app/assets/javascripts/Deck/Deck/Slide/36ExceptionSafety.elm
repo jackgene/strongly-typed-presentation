@@ -13,7 +13,7 @@ import Deck.Slide.SyntaxHighlight exposing (..)
 import Deck.Slide.Template exposing (standardSlideView)
 import Deck.Slide.TypeSystemProperties as TypeSystemProperties
 import Dict exposing (Dict)
-import Html.Styled exposing (Html, div, em, p, text, ul)
+import Html.Styled exposing (Html, div, em, p, text)
 import SyntaxHighlight.Model exposing
   ( ColumnEmphasis, ColumnEmphasisType(..), LineEmphasis(..) )
 
@@ -89,24 +89,8 @@ func QueryUnescape(s string) (string, error)
         [ p []
           [ text "Go’s convention for error-handling is to return the success value "
           , em [] [ text "and" ]
-          , text " the error. Consider the signature of this standard library function:" ]
+          , text " the error:" ]
         , div [] [ codeBlock ]
-        , p []
-          [ text "The benefit is that it is explicit in the function signature that errors can occur. "
-          , text "However, there are two problems:"
-          , ul []
-            [ li []
-              [ text "Functions succeed "
-              , em [] [ text "or" ]
-              , text " fail - not both, Go’s tuple-like syntax does not reflect this"
-              ]
-            , li []
-              [ text "Go does not "
-              , em [] [ text "require" ]
-              , text " programmers to handle an error"
-              ]
-            ]
-          ]
         ]
       )
     )
