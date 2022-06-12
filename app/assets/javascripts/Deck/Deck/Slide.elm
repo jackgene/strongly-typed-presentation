@@ -166,11 +166,18 @@ slidesList =
   , TypeSystemProperties.languageReport 4
   , TypeSystemProperties.tableOfContent (Just 5)
   , ExhaustivenessChecking.introduction
-  , ExhaustivenessChecking.blahGo
-  , ExhaustivenessChecking.blahPython
-  , ExhaustivenessChecking.blahTypeScript
-  , ExhaustivenessChecking.blahKotlin
-  , ExhaustivenessChecking.blahSwift
+  , ExhaustivenessChecking.unsafeGoPrep
+  , ExhaustivenessChecking.unsafeGo
+  , ExhaustivenessChecking.safePython
+  , ExhaustivenessChecking.safePythonInvalid
+  , ExhaustivenessChecking.safeTypeScript
+  , ExhaustivenessChecking.safeTypeScriptInvalid
+  , ExhaustivenessChecking.safeKotlin
+  , ExhaustivenessChecking.safeKotlinInvalid
+  , ExhaustivenessChecking.safeSwiftPrep
+  , ExhaustivenessChecking.safeSwift
+  , ExhaustivenessChecking.safeSwiftInvalid
+  , ExhaustivenessChecking.safeSwiftAlt
   , TypeSystemProperties.languageReport 5
   , TypeSystemProperties.tableOfContent (Just 6)
   , Encapsulation.introduction
