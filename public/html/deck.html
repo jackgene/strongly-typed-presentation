@@ -34777,7 +34777,7 @@ var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$keywordParser = F2(
 				A2(
 					_elm_tools$parser$Parser$repeat,
 					_elm_tools$parser$Parser$zeroOrMore,
-					_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$functionDeclarationLoop(opt)))) : ((_elm_lang$core$Native_Utils.eq(n, 'class') || _elm_lang$core$Native_Utils.eq(n, 'enum')) ? A2(
+					_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$functionDeclarationLoop(opt)))) : (_elm_lang$core$Native_Utils.eq(n, 'class') ? A2(
 			_jackgene$live_deck$SyntaxHighlight_Language_Common$consThenRevConcat,
 			{
 				ctor: '::',
@@ -36009,77 +36009,85 @@ var _jackgene$live_deck$SyntaxHighlight_Language_Python$keywordSet = _elm_lang$c
 					_0: 'break',
 					_1: {
 						ctor: '::',
-						_0: 'continue',
+						_0: 'case',
 						_1: {
 							ctor: '::',
-							_0: 'del',
+							_0: 'continue',
 							_1: {
 								ctor: '::',
-								_0: 'elif',
+								_0: 'del',
 								_1: {
 									ctor: '::',
-									_0: 'else',
+									_0: 'elif',
 									_1: {
 										ctor: '::',
-										_0: 'except',
+										_0: 'else',
 										_1: {
 											ctor: '::',
-											_0: 'finally',
+											_0: 'except',
 											_1: {
 												ctor: '::',
-												_0: 'for',
+												_0: 'finally',
 												_1: {
 													ctor: '::',
-													_0: 'from',
+													_0: 'for',
 													_1: {
 														ctor: '::',
-														_0: 'global',
+														_0: 'from',
 														_1: {
 															ctor: '::',
-															_0: 'if',
+															_0: 'global',
 															_1: {
 																ctor: '::',
-																_0: 'import',
+																_0: 'if',
 																_1: {
 																	ctor: '::',
-																	_0: 'in',
+																	_0: 'import',
 																	_1: {
 																		ctor: '::',
-																		_0: 'is',
+																		_0: 'in',
 																		_1: {
 																			ctor: '::',
-																			_0: 'lambda',
+																			_0: 'is',
 																			_1: {
 																				ctor: '::',
-																				_0: 'nonlocal',
+																				_0: 'lambda',
 																				_1: {
 																					ctor: '::',
-																					_0: 'not',
+																					_0: 'match',
 																					_1: {
 																						ctor: '::',
-																						_0: 'or',
+																						_0: 'nonlocal',
 																						_1: {
 																							ctor: '::',
-																							_0: 'pass',
+																							_0: 'not',
 																							_1: {
 																								ctor: '::',
-																								_0: 'raise',
+																								_0: 'or',
 																								_1: {
 																									ctor: '::',
-																									_0: 'return',
+																									_0: 'pass',
 																									_1: {
 																										ctor: '::',
-																										_0: 'try',
+																										_0: 'raise',
 																										_1: {
 																											ctor: '::',
-																											_0: 'while',
+																											_0: 'return',
 																											_1: {
 																												ctor: '::',
-																												_0: 'with',
+																												_0: 'try',
 																												_1: {
 																													ctor: '::',
-																													_0: 'yield',
-																													_1: {ctor: '[]'}
+																													_0: 'while',
+																													_1: {
+																														ctor: '::',
+																														_0: 'with',
+																														_1: {
+																															ctor: '::',
+																															_0: 'yield',
+																															_1: {ctor: '[]'}
+																														}
+																													}
 																												}
 																											}
 																										}
@@ -44586,7 +44594,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$unsafeGoPrep = functio
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\npackage status\n\ntype AccountStatus interface { isStatus() }\ntype Active struct{}; func (_ Active) isStatus() {}\ntype Inactive struct{}; func (_ Inactive) isStatus() {}\n');
+		'\npackage status\n\ntype AccountStatus interface { isStatus() }\n\ntype Active struct{}\nfunc (_ Active) isStatus() {}\n\ntype Inactive struct{}\nfunc (_ Inactive) isStatus() {}\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{

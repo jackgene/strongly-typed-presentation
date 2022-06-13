@@ -69,8 +69,12 @@ unsafeGoPrep =
 package status
 
 type AccountStatus interface { isStatus() }
-type Active struct{}; func (_ Active) isStatus() {}
-type Inactive struct{}; func (_ Inactive) isStatus() {}
+
+type Active struct{}
+func (_ Active) isStatus() {}
+
+type Inactive struct{}
+func (_ Inactive) isStatus() {}
 """
   in
   { baseSlideModel
