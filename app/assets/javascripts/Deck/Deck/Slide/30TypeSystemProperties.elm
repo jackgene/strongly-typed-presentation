@@ -146,7 +146,7 @@ typeSystemProperties =
       , ( "Encapsulation" -- "Private/Unexported Data"
         , Dict.fromList
           [ ( "Go", scoreOptional )
-          , ( "Python", scoreUnsupported )
+          , ( "Python", scoreOptional )
           , ( "TypeScript", scoreOptional )
           , ( "Kotlin", scoreOptional )
           , ( "Swift", scoreOptional )

@@ -31103,7 +31103,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 											_0: {ctor: '_Tuple2', _0: 'Go', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreOptional},
 											_1: {
 												ctor: '::',
-												_0: {ctor: '_Tuple2', _0: 'Python', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
+												_0: {ctor: '_Tuple2', _0: 'Python', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreOptional},
 												_1: {
 													ctor: '::',
 													_0: {ctor: '_Tuple2', _0: 'TypeScript', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreOptional},
@@ -45747,11 +45747,11 @@ var _jackgene$live_deck$Deck_Slide_Immutability$blahSwift = function () {
 				})
 		});
 }();
-var _jackgene$live_deck$Deck_Slide_Encapsulation$subheadingSwift = 'Swift ';
-var _jackgene$live_deck$Deck_Slide_Encapsulation$subheadingKotlin = 'Kotlin ';
-var _jackgene$live_deck$Deck_Slide_Encapsulation$subheadingTypeScript = 'TypeScript ';
-var _jackgene$live_deck$Deck_Slide_Encapsulation$subheadingPython = 'Python ';
-var _jackgene$live_deck$Deck_Slide_Encapsulation$subheadingGo = 'Go ';
+var _jackgene$live_deck$Deck_Slide_Encapsulation$subheadingSwift = 'Swift Can Enforce Encapsulation';
+var _jackgene$live_deck$Deck_Slide_Encapsulation$subheadingKotlin = 'Kotlin Can Enforce Encapsulation';
+var _jackgene$live_deck$Deck_Slide_Encapsulation$subheadingTypeScript = 'TypeScript Can Enforce Encapsulation';
+var _jackgene$live_deck$Deck_Slide_Encapsulation$subheadingPython = 'Python Can Enforce Encapsulation';
+var _jackgene$live_deck$Deck_Slide_Encapsulation$subheadingGo = 'Go Can Enforce Encapsulation';
 var _jackgene$live_deck$Deck_Slide_Encapsulation$title = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title, ': Encapsulation');
 var _jackgene$live_deck$Deck_Slide_Encapsulation$introduction = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
@@ -45762,7 +45762,7 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$introduction = _elm_lang$core$N
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
 					_jackgene$live_deck$Deck_Slide_Encapsulation$title,
-					'Prevents Accidental Changes to Internal States',
+					'Prevents Accidental State Transitions',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
 						{ctor: '[]'},
@@ -45773,21 +45773,40 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$introduction = _elm_lang$core$N
 								{ctor: '[]'},
 								{
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Html_Styled$text('TODO'),
+									_0: _rtfeldman$elm_css$Html_Styled$text('Program state is rarely relevant globally to a program, they often pertain to a more limited scope.'),
 									_1: {ctor: '[]'}
 								}),
-							_1: {ctor: '[]'}
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('A language that enforces encapsulation allows the programmer to '),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled$text('declare data within a fixed scope. '),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text('And limits access to that data only within the declared scope.'),
+												_1: {ctor: '[]'}
+											}
+										}
+									}),
+								_1: {ctor: '[]'}
+							}
 						}));
 			})
 	});
-var _jackgene$live_deck$Deck_Slide_Encapsulation$blahGo = function () {
+var _jackgene$live_deck$Deck_Slide_Encapsulation$safeGoPrep = function () {
 	var codeBlock = A5(
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Go,
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\n// Blah blah\n');
+		'\npackage counter\n\ntype Counter struct {\n    count int\n}\n\nfunc (c *Counter) Count() int { return c.count }\nfunc (c *Counter) Increment() { c.count ++ }\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -45808,7 +45827,7 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$blahGo = function () {
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Blah blah:'),
+										_0: _rtfeldman$elm_css$Html_Styled$text('Consider the following counter implementation:'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -45827,19 +45846,138 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$blahGo = function () {
 				})
 		});
 }();
-var _jackgene$live_deck$Deck_Slide_Encapsulation$blahPython = function () {
+var _jackgene$live_deck$Deck_Slide_Encapsulation$safeGo = function () {
 	var codeBlock = A5(
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
-		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Python,
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Go,
 		_elm_lang$core$Dict$empty,
-		_elm_lang$core$Dict$empty,
-		{ctor: '[]'},
-		'\n# Blah blah\n');
+		_elm_lang$core$Dict$fromList(
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 5,
+					_1: {
+						ctor: '::',
+						_0: A3(_jackgene$live_deck$SyntaxHighlight_Model$ColumnEmphasis, _jackgene$live_deck$SyntaxHighlight_Model$Error, 6, 5),
+						_1: {ctor: '[]'}
+					}
+				},
+				_1: {ctor: '[]'}
+			}),
+		{
+			ctor: '::',
+			_0: A3(
+				_jackgene$live_deck$Deck_Slide_SyntaxHighlight$CodeBlockError,
+				5,
+				6,
+				{
+					ctor: '::',
+					_0: A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Html_Styled$text('c.count undefined (cannot refer to unexported field or method count)'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
+		'\npackage main\nimport \"strongly-typed-go/encapsulation/counter\"\n\nfunc main() {\n    c := counter.Counter{}\n    c.count = -1\n\n    print(\"Count: \", c.Count())\n}\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
 			view: F2(
 				function (page, _p2) {
+					return A4(
+						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+						page,
+						_jackgene$live_deck$Deck_Slide_Encapsulation$title,
+						_jackgene$live_deck$Deck_Slide_Encapsulation$subheadingGo,
+						A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('Go does not allow access to the private '),
+										_1: {
+											ctor: '::',
+											_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$Go, 'count'),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text(' field:'),
+												_1: {ctor: '[]'}
+											}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$div,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: codeBlock,
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}));
+				})
+		});
+}();
+var _jackgene$live_deck$Deck_Slide_Encapsulation$safePython = function () {
+	var codeBlock = A5(
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
+		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Python,
+		_elm_lang$core$Dict$empty,
+		_elm_lang$core$Dict$fromList(
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 8,
+					_1: {
+						ctor: '::',
+						_0: A3(_jackgene$live_deck$SyntaxHighlight_Model$ColumnEmphasis, _jackgene$live_deck$SyntaxHighlight_Model$Error, 2, 6),
+						_1: {ctor: '[]'}
+					}
+				},
+				_1: {ctor: '[]'}
+			}),
+		{
+			ctor: '::',
+			_0: A3(
+				_jackgene$live_deck$Deck_Slide_SyntaxHighlight$CodeBlockError,
+				8,
+				2,
+				{
+					ctor: '::',
+					_0: A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Html_Styled$text('\"_count\" is protected and used outside of the class in which it is declared'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
+		'\nclass Counter:\n    def __init__(self) -> None:\n        self._count = 0\n    def count(self) -> int:\n        return self._count\n    def increment(self) -> None:\n        self._count += 1\nc = Counter()\nc._count = -1\n\nprint(\"Count\", c.count())\n');
+	return _elm_lang$core$Native_Utils.update(
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+		{
+			view: F2(
+				function (page, _p3) {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
@@ -45855,7 +45993,7 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$blahPython = function () {
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Blah blah:'),
+										_0: _rtfeldman$elm_css$Html_Styled$text('The Python type checker prevents external access to private members:'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -45874,19 +46012,51 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$blahPython = function () {
 				})
 		});
 }();
-var _jackgene$live_deck$Deck_Slide_Encapsulation$blahTypeScript = function () {
+var _jackgene$live_deck$Deck_Slide_Encapsulation$safeTypeScript = function () {
 	var codeBlock = A5(
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$TypeScript,
 		_elm_lang$core$Dict$empty,
-		_elm_lang$core$Dict$empty,
-		{ctor: '[]'},
-		'\n// Blah blah\n');
+		_elm_lang$core$Dict$fromList(
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 7,
+					_1: {
+						ctor: '::',
+						_0: A3(_jackgene$live_deck$SyntaxHighlight_Model$ColumnEmphasis, _jackgene$live_deck$SyntaxHighlight_Model$Error, 2, 6),
+						_1: {ctor: '[]'}
+					}
+				},
+				_1: {ctor: '[]'}
+			}),
+		{
+			ctor: '::',
+			_0: A3(
+				_jackgene$live_deck$Deck_Slide_SyntaxHighlight$CodeBlockError,
+				7,
+				2,
+				{
+					ctor: '::',
+					_0: A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Html_Styled$text('TS18013: Property \'#count\' is not accessible outside class \'Counter\' because it has a private identifier.'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
+		'\nclass Counter {\n  #count: number = 0;\n  public get count(): number { return this.#count; }\n  public increment() { this.#count ++; }\n}\n\nlet c = new Counter();\nc.#count = -1\n\nconsole.log(\"Count:\", c.count)\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
 			view: F2(
-				function (page, _p3) {
+				function (page, _p4) {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
@@ -45902,7 +46072,7 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$blahTypeScript = function () {
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Blah blah:'),
+										_0: _rtfeldman$elm_css$Html_Styled$text('TypeScript prevents external access to private members:'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -45921,19 +46091,51 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$blahTypeScript = function () {
 				})
 		});
 }();
-var _jackgene$live_deck$Deck_Slide_Encapsulation$blahKotlin = function () {
+var _jackgene$live_deck$Deck_Slide_Encapsulation$safeKotlin = function () {
 	var codeBlock = A5(
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Kotlin,
 		_elm_lang$core$Dict$empty,
-		_elm_lang$core$Dict$empty,
-		{ctor: '[]'},
-		'\n// Blah blah\n');
+		_elm_lang$core$Dict$fromList(
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 7,
+					_1: {
+						ctor: '::',
+						_0: A3(_jackgene$live_deck$SyntaxHighlight_Model$ColumnEmphasis, _jackgene$live_deck$SyntaxHighlight_Model$Error, 2, 5),
+						_1: {ctor: '[]'}
+					}
+				},
+				_1: {ctor: '[]'}
+			}),
+		{
+			ctor: '::',
+			_0: A3(
+				_jackgene$live_deck$Deck_Slide_SyntaxHighlight$CodeBlockError,
+				7,
+				2,
+				{
+					ctor: '::',
+					_0: A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Html_Styled$text('cannot assign to \'count\': the setter is private in \'Counter\''),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
+		'\nclass Counter {\n    var count: Int = 0\n        private set\n    fun increment() { count ++ }\n}\n\nval c = Counter()\nc.count = -1\n\nprintln(\"Count: \" + c.count)\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
 			view: F2(
-				function (page, _p4) {
+				function (page, _p5) {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
@@ -45949,7 +46151,7 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$blahKotlin = function () {
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Blah blah:'),
+										_0: _rtfeldman$elm_css$Html_Styled$text('Kotlin prevents external access to private members:'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -45968,19 +46170,51 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$blahKotlin = function () {
 				})
 		});
 }();
-var _jackgene$live_deck$Deck_Slide_Encapsulation$blahSwift = function () {
+var _jackgene$live_deck$Deck_Slide_Encapsulation$safeSwift = function () {
 	var codeBlock = A5(
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
 		_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Swift,
 		_elm_lang$core$Dict$empty,
-		_elm_lang$core$Dict$empty,
-		{ctor: '[]'},
-		'\n// Blah blah\n');
+		_elm_lang$core$Dict$fromList(
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 7,
+					_1: {
+						ctor: '::',
+						_0: A3(_jackgene$live_deck$SyntaxHighlight_Model$ColumnEmphasis, _jackgene$live_deck$SyntaxHighlight_Model$Error, 2, 5),
+						_1: {ctor: '[]'}
+					}
+				},
+				_1: {ctor: '[]'}
+			}),
+		{
+			ctor: '::',
+			_0: A3(
+				_jackgene$live_deck$Deck_Slide_SyntaxHighlight$CodeBlockError,
+				7,
+				2,
+				{
+					ctor: '::',
+					_0: A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Html_Styled$text('cannot assign to property: \'count\' setter is inaccessible'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
+		'\npublic struct Counter {\n    private(set) var count: Int = 0\n\n    public mutating func increment() { count += 1 }\n}\n\nvar c = Counter()\nc.count = -1\n\nprint(\"Count:\", c.count)\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
 			view: F2(
-				function (page, _p5) {
+				function (page, _p6) {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
@@ -45996,7 +46230,7 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$blahSwift = function () {
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Blah blah:'),
+										_0: _rtfeldman$elm_css$Html_Styled$text('Swift prevents external access to private members::'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -46594,57 +46828,61 @@ var _jackgene$live_deck$Deck_Slide$slidesList = A2(
 																																																																																																																																_0: _jackgene$live_deck$Deck_Slide_Encapsulation$introduction,
 																																																																																																																																_1: {
 																																																																																																																																	ctor: '::',
-																																																																																																																																	_0: _jackgene$live_deck$Deck_Slide_Encapsulation$blahGo,
+																																																																																																																																	_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safeGoPrep,
 																																																																																																																																	_1: {
 																																																																																																																																		ctor: '::',
-																																																																																																																																		_0: _jackgene$live_deck$Deck_Slide_Encapsulation$blahPython,
+																																																																																																																																		_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safeGo,
 																																																																																																																																		_1: {
 																																																																																																																																			ctor: '::',
-																																																																																																																																			_0: _jackgene$live_deck$Deck_Slide_Encapsulation$blahTypeScript,
+																																																																																																																																			_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safePython,
 																																																																																																																																			_1: {
 																																																																																																																																				ctor: '::',
-																																																																																																																																				_0: _jackgene$live_deck$Deck_Slide_Encapsulation$blahKotlin,
+																																																																																																																																				_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safeTypeScript,
 																																																																																																																																				_1: {
 																																																																																																																																					ctor: '::',
-																																																																																																																																					_0: _jackgene$live_deck$Deck_Slide_Encapsulation$blahSwift,
+																																																																																																																																					_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safeKotlin,
 																																																																																																																																					_1: {
 																																																																																																																																						ctor: '::',
-																																																																																																																																						_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(6),
+																																																																																																																																						_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safeSwift,
 																																																																																																																																						_1: {
 																																																																																																																																							ctor: '::',
-																																																																																																																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																																																																																																																								_elm_lang$core$Maybe$Just(7)),
+																																																																																																																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(6),
 																																																																																																																																							_1: {
 																																																																																																																																								ctor: '::',
-																																																																																																																																								_0: _jackgene$live_deck$Deck_Slide_Immutability$introduction,
+																																																																																																																																								_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																																																																																																																									_elm_lang$core$Maybe$Just(7)),
 																																																																																																																																								_1: {
 																																																																																																																																									ctor: '::',
-																																																																																																																																									_0: _jackgene$live_deck$Deck_Slide_Immutability$blahGo,
+																																																																																																																																									_0: _jackgene$live_deck$Deck_Slide_Immutability$introduction,
 																																																																																																																																									_1: {
 																																																																																																																																										ctor: '::',
-																																																																																																																																										_0: _jackgene$live_deck$Deck_Slide_Immutability$blahPython,
+																																																																																																																																										_0: _jackgene$live_deck$Deck_Slide_Immutability$blahGo,
 																																																																																																																																										_1: {
 																																																																																																																																											ctor: '::',
-																																																																																																																																											_0: _jackgene$live_deck$Deck_Slide_Immutability$blahTypeScript,
+																																																																																																																																											_0: _jackgene$live_deck$Deck_Slide_Immutability$blahPython,
 																																																																																																																																											_1: {
 																																																																																																																																												ctor: '::',
-																																																																																																																																												_0: _jackgene$live_deck$Deck_Slide_Immutability$blahKotlin,
+																																																																																																																																												_0: _jackgene$live_deck$Deck_Slide_Immutability$blahTypeScript,
 																																																																																																																																												_1: {
 																																																																																																																																													ctor: '::',
-																																																																																																																																													_0: _jackgene$live_deck$Deck_Slide_Immutability$blahSwift,
+																																																																																																																																													_0: _jackgene$live_deck$Deck_Slide_Immutability$blahKotlin,
 																																																																																																																																													_1: {
 																																																																																																																																														ctor: '::',
-																																																																																																																																														_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(7),
+																																																																																																																																														_0: _jackgene$live_deck$Deck_Slide_Immutability$blahSwift,
 																																																																																																																																														_1: {
 																																																																																																																																															ctor: '::',
-																																																																																																																																															_0: _jackgene$live_deck$Deck_Slide_SectionCover$conclusion,
+																																																																																																																																															_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(7),
 																																																																																																																																															_1: {
 																																																																																																																																																ctor: '::',
-																																																																																																																																																_0: _jackgene$live_deck$Deck_Slide_SectionCover$questions,
+																																																																																																																																																_0: _jackgene$live_deck$Deck_Slide_SectionCover$conclusion,
 																																																																																																																																																_1: {
 																																																																																																																																																	ctor: '::',
-																																																																																																																																																	_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide,
-																																																																																																																																																	_1: {ctor: '[]'}
+																																																																																																																																																	_0: _jackgene$live_deck$Deck_Slide_SectionCover$questions,
+																																																																																																																																																	_1: {
+																																																																																																																																																		ctor: '::',
+																																																																																																																																																		_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide,
+																																																																																																																																																		_1: {ctor: '[]'}
+																																																																																																																																																	}
 																																																																																																																																																}
 																																																																																																																																															}
 																																																																																																																																														}

@@ -181,11 +181,12 @@ slidesList =
   , TypeSystemProperties.languageReport 5
   , TypeSystemProperties.tableOfContent (Just 6)
   , Encapsulation.introduction
-  , Encapsulation.blahGo
-  , Encapsulation.blahPython
-  , Encapsulation.blahTypeScript
-  , Encapsulation.blahKotlin
-  , Encapsulation.blahSwift
+  , Encapsulation.safeGoPrep
+  , Encapsulation.safeGo
+  , Encapsulation.safePython
+  , Encapsulation.safeTypeScript
+  , Encapsulation.safeKotlin
+  , Encapsulation.safeSwift
   , TypeSystemProperties.languageReport 6
   , TypeSystemProperties.tableOfContent (Just 7)
   , Immutability.introduction
