@@ -13,7 +13,7 @@ import Deck.Slide.Template exposing (standardSlideView)
 import Deck.Slide.TypeSystemProperties as TypeSystemProperties
 import Dict exposing (Dict)
 import Html.Styled exposing (Html, a, br, div, p, text)
-import Html.Styled.Attributes exposing (href)
+import Html.Styled.Attributes exposing (href, target)
 import SyntaxHighlight.Model exposing
   ( ColumnEmphasis, ColumnEmphasisType(..), LineEmphasis(..) )
 
@@ -419,12 +419,12 @@ let word: String? = words[safe: -1]
       standardSlideView page title subheadingSwift
       ( div []
         [ p []
-          [ text "But can be made safe by existing Swift’s collection:" ]
+          [ text "But can be made safe by extending Swift’s collection:" ]
         , div [] [ codeBlock ]
         , p []
           [ text "Source: "
-          , a [ href "https://stackoverflow.com/q/25329186" ]
-            [ text "https://stackoverflow.com/q/25329186" ]
+          , a [ href "https://stackoverflow.com/a/30593673/31506", target "_blank" ]
+            [ text "https://stackoverflow.com/a/30593673/31506" ]
           ]
         ]
       )
