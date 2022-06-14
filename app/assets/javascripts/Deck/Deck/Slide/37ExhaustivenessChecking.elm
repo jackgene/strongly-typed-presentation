@@ -50,8 +50,9 @@ introduction =
           [ text "A computer program can be thought of as a series of state transitions." ]
         , p []
           [ text "A language that checks for exhaustiveness is "
-          , text "one that requires the programmer to account for all possible states, "
-          , text "when performing a transition to the next state."
+          , text "one that requires the programmer to "
+          , mark [] [ text "account for all possible states" ]
+          , text ", when performing a transition to the next state."
           ]
         ]
       )
@@ -124,9 +125,9 @@ func DoWork(s status.AccountStatus) string {
       standardSlideView page title subheadingGo
       ( div []
         [ p []
-          [ text "Consider the following "
-          , em [] [ text "sealed" ]
-          , text " interface, with two possible implementations:"
+          [ text "Even though the "
+          , syntaxHighlightedCodeSnippet Go "switch"
+          , text " accounts for both values, the Go compiler is not satisfied:"
           ]
         , div [] [ codeBlock ]
         ]
@@ -459,7 +460,7 @@ safeSwiftInvalid =
       syntaxHighlightedCodeBlock Swift
       ( Dict.fromList [ (5, Deletion) ] )
       ( Dict.fromList [ (1, [ ColumnEmphasis Error 4 6 ] ) ] )
-      [ CodeBlockError 0 19
+      [ CodeBlockError 0 29
         [ div []
           [ text "switch must be exhaustive: add missing case: '(.inactive, .gold)"
           ]
