@@ -507,7 +507,7 @@ safeKotlinSmart =
       ( Dict.fromList [ (2, [ ColumnEmphasis Error 6 11 ] ) ] )
       [ CodeBlockError 2 2
         [ div []
-          [ text "error: unresolved reference. None of the following candidates is applicable because of receiver type mismatch:"
+          [ text "unresolved reference. None of the following candidates is applicable because of receiver type mismatch:"
           , br [] []
           , text "..." ]
         ]
