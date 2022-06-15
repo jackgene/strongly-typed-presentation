@@ -300,7 +300,7 @@ alert(text.toUpperCase());
       standardSlideView page title subheadingTypeScript
       ( div []
         [ p []
-          [ text "As with all modern languages, TypeScript variables are non-nullable by default: "
+          [ text "TypeScript variables are non-nullable by default: "
           ]
         , div [] [ codeBlock ]
         ]
