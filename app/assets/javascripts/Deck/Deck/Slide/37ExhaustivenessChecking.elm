@@ -49,10 +49,9 @@ introduction =
         [ p []
           [ text "A computer program can be thought of as a series of state transitions." ]
         , p []
-          [ text "A language that checks for exhaustiveness is "
-          , text "one that requires the programmer to "
+          [ text "Languages that check for exhaustiveness require the programmer to "
           , mark [] [ text "account for all possible states" ]
-          , text ", when performing a transition to the next state."
+          , text ", when performing transitions between states."
           ]
         ]
       )
