@@ -50,8 +50,10 @@ introduction =
           [ text "Program state is rarely relevant globally to a program, they often pertain to a more limited scope." ]
         , p []
           [ text "A language that enforces encapsulation allows the programmer to "
-          , text "declare data within a fixed scope. "
-          , text "And limits access to that data only within the declared scope."
+          , text "declare data within a specific scope, "
+          , text "and "
+          , mark [] [ text "limits access to that data only within the declared scope" ]
+          , text "."
           ]
         ]
       )
