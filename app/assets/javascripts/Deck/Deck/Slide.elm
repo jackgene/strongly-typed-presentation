@@ -190,11 +190,17 @@ slidesList =
   , TypeSystemProperties.languageReport 6
   , TypeSystemProperties.tableOfContent (Just 7)
   , Immutability.introduction
-  , Immutability.blahGo
-  , Immutability.blahPython
-  , Immutability.blahTypeScript
-  , Immutability.blahKotlin
-  , Immutability.blahSwift
+  , Immutability.unsafeGoPrep
+  , Immutability.unsafeGo
+  , Immutability.safeGoPrep
+  , Immutability.safeGo
+  , Immutability.safePythonPrep
+  , Immutability.safePython
+  , Immutability.unsafePythonFrozenMutation
+  , Immutability.unsafePythonConstantMutation
+  , Immutability.safeTypeScript
+  , Immutability.safeKotlin
+  , Immutability.safeSwift
   , TypeSystemProperties.languageReport 7
   , SectionCover.conclusion
   -- TODO strong typing + unit testing

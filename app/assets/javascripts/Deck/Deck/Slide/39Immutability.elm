@@ -1,10 +1,10 @@
 module Deck.Slide.Immutability exposing
   ( introduction
-  , blahGo
-  , blahPython
-  , blahTypeScript
-  , blahKotlin
-  , blahSwift
+  , unsafeGoPrep, unsafeGo, safeGoPrep, safeGo
+  , safePythonPrep, safePython, unsafePythonFrozenMutation, unsafePythonConstantMutation
+  , safeTypeScript
+  , safeKotlin
+  , safeSwift
   )
 
 import Deck.Slide.Common exposing (..)
@@ -13,8 +13,8 @@ import Deck.Slide.Template exposing (standardSlideView)
 import Deck.Slide.TypeSystemProperties as TypeSystemProperties
 import Dict exposing (Dict)
 import Html.Styled exposing (Html, div, p, text)
---import SyntaxHighlight.Model exposing
---  ( ColumnEmphasis, ColumnEmphasisType(..), LineEmphasis(..) )
+import SyntaxHighlight.Model exposing
+  ( ColumnEmphasis, ColumnEmphasisType(..), LineEmphasis(..) )
 
 
 -- Constants
@@ -22,19 +22,19 @@ title : String
 title = TypeSystemProperties.title ++ ": Immutability"
 
 subheadingGo : String
-subheadingGo = "Go "
+subheadingGo = "Go Can Enforce Immutability Through Encapsulation"
 
 subheadingPython : String
-subheadingPython = "Python "
+subheadingPython = "Python Has Partial Support for Immutability"
 
 subheadingTypeScript : String
-subheadingTypeScript = "TypeScript "
+subheadingTypeScript = "TypeScript Can Have Immutability"
 
 subheadingKotlin : String
-subheadingKotlin = "Kotlin "
+subheadingKotlin = "Kotlin Can Have Immutability"
 
 subheadingSwift : String
-subheadingSwift = "Swift "
+subheadingSwift = "Swift Can Have Immutability"
 
 
 -- Slides
@@ -47,21 +47,34 @@ introduction =
       "Prevents Accidental Changes to Invariant Data, Race Conditions"
       ( div []
         [ p []
-          [ text "TODO" ]
+          [ text "Mutability is the source of many bugs, especially with parallelism." ]
+        , p []
+          [ text "Languages that enforce immutability require the programmer to indicate if data is mutable or immutable, and "
+          , mark [] [ text "prevent changes to immutable data" ]
+          , text "."
+          ]
         ]
       )
     )
   }
 
 
-blahGo : UnindexedSlideModel
-blahGo =
+unsafeGoPrep : UnindexedSlideModel
+unsafeGoPrep =
   let
     codeBlock : Html msg
     codeBlock =
       syntaxHighlightedCodeBlock Go Dict.empty Dict.empty []
       """
-// Blah blah
+package circle
+import "math"
+
+type Circle struct {
+    Radius float64
+}
+func (c *Circle) Area() float64 {
+    return math.Pi * c.Radius * c.Radius
+}
 """
   in
   { baseSlideModel
@@ -70,7 +83,7 @@ blahGo =
       standardSlideView page title subheadingGo
       ( div []
         [ p []
-          [ text "Blah blah:" ]
+          [ text "Consider this implementation of a circle:" ]
         , div [] [ codeBlock ]
         ]
       )
@@ -78,14 +91,137 @@ blahGo =
   }
 
 
-blahPython : UnindexedSlideModel
-blahPython =
+unsafeGo : UnindexedSlideModel
+unsafeGo =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Go Dict.empty Dict.empty []
+      """
+package main
+import "strongly-typed-go/immutability/circle"
+
+func main() {
+    unitCircle := circle.Circle{Radius: 1.0}
+    unitCircle.Radius = 2.0
+    println("r:", unitCircle.Radius, "a:", unitCircle.Area())
+}
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title subheadingGo
+      ( div []
+        [ p []
+          [ text "Go really does not have language support for immutability:" ]
+        , div [] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
+safeGoPrep : UnindexedSlideModel
+safeGoPrep =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Go Dict.empty Dict.empty []
+      """
+package circle
+import "math"
+
+type Circle struct {
+    r float64
+}
+func (c *Circle) Radius() float64 { return c.r }
+func (c *Circle) Area() float64 { return math.Pi * c.r * c.r }
+// Constructor function
+func New(radius float64) *Circle { return &Circle{r: radius} }
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title subheadingGo
+      ( div []
+        [ p []
+          [ text "Immutability can be achieved by keeping mutable state private, and only exporting accessor methods to them:" ]
+        , div [] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
+safeGo : UnindexedSlideModel
+safeGo =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Go Dict.empty
+      ( Dict.fromList
+        [ (6, [ ColumnEmphasis Error 15 1 ] )
+        , (7, [ ColumnEmphasis Error 12 1 ] )
+        ]
+      )
+      [ CodeBlockError 6 18
+        [ div []
+          [ text "unitCircle.r undefined (cannot refer to unexported field or method r)"
+          ]
+        ]
+      , CodeBlockError 7 12
+        [ div []
+          [ text "cannot assign to math.Pi (declared const)"
+          ]
+        ]
+      ]
+      """
+package main
+import "math"
+import "strongly-typed-go/immutability/circle"
+
+func main() {
+    unitCircle := circle.New(1.0)
+    unitCircle.r = 2.0
+    math.Pi = 0.0
+}
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title subheadingGo
+      ( div []
+        [ p []
+          [ text "Updating "
+          , syntaxHighlightedCodeSnippet Go "const"
+          , text "s or unexported members is forbidden:"
+          ]
+        , div [] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
+safePythonPrep : UnindexedSlideModel
+safePythonPrep =
   let
     codeBlock : Html msg
     codeBlock =
       syntaxHighlightedCodeBlock Python Dict.empty Dict.empty []
       """
-# Blah blah
+import math
+from dataclasses import dataclass
+
+@dataclass(frozen=True)
+class Circle:
+    radius: float
+
+    def area(self):
+        return math.pi * self.radius ** 2
 """
   in
   { baseSlideModel
@@ -94,7 +230,8 @@ blahPython =
       standardSlideView page title subheadingPython
       ( div []
         [ p []
-          [ text "Blah blah:" ]
+          [ text "Making something “frozen” in Python makes it mostly immutable:"
+          ]
         , div [] [ codeBlock ]
         ]
       )
@@ -102,14 +239,152 @@ blahPython =
   }
 
 
-blahTypeScript : UnindexedSlideModel
-blahTypeScript =
+safePython : UnindexedSlideModel
+safePython =
   let
     codeBlock : Html msg
     codeBlock =
-      syntaxHighlightedCodeBlock TypeScript Dict.empty Dict.empty []
+      syntaxHighlightedCodeBlock Python Dict.empty
+      ( Dict.fromList [ (4, [ ColumnEmphasis Error 12 6 ] ) ] )
+      [ CodeBlockError 4 11
+        [ div []
+          [ text """Cannot assign member "radius" for type "Circle": "Circle" is frozen"""
+          ]
+        ]
+      ]
       """
-// Blah blah
+from circle import Circle
+
+unit_circle = Circle(1.0)
+print("r:", unit_circle.radius, ", a:", unit_circle.area)
+unit_circle.radius = 2.0
+
+print("r:", unit_circle.radius, ", a:", unit_circle.area)
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title subheadingPython
+      ( div []
+        [ p []
+          [ text "Python does not let you mutate a frozen object:" ]
+        , div [] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
+unsafePythonFrozenMutation : UnindexedSlideModel
+unsafePythonFrozenMutation =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Python
+      ( Dict.fromList [ (4, Deletion), (5, Addition) ] )
+      Dict.empty []
+      """
+from circle import Circle
+
+unit_circle = Circle(1.0)
+print("r:", unit_circle.radius, ", a:", unit_circle.area)
+unit_circle.radius = 2.0
+object.__setattr__(unit_circle, "radius", 2.0)
+print("r:", unit_circle.radius, ", a:", unit_circle.area)
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title subheadingPython
+      ( div []
+        [ p []
+          [ text "Unless you really want to:" ]
+        , div [] [ codeBlock ]
+        , console
+          """
+% python immutability/unsafe_frozen.py
+r: 1.0 , a: 3.141592653589793
+r: 2.0 , a: 3.141592653589793
+"""
+        ]
+      )
+    )
+  }
+
+
+unsafePythonConstantMutation : UnindexedSlideModel
+unsafePythonConstantMutation =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Python Dict.empty Dict.empty []
+      """
+from circle import Circle
+import math
+
+circle = Circle(123)
+math.pi = 0.0
+print("r:", circle.radius, ", a:", circle.area)
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page title subheadingPython
+      ( div []
+        [ p []
+          [ text "You can even define your own "
+          , syntaxHighlightedCodeSnippet Python "math.pi"
+          , text ":"
+          ]
+        , div [] [] -- no animation
+        , div [] [ codeBlock ]
+        , console
+          """
+% python immutability/unsafe_constant.py
+r: 123 , a: 0.0
+"""
+        ]
+      )
+    )
+  }
+
+
+safeTypeScript : UnindexedSlideModel
+safeTypeScript =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock TypeScript Dict.empty
+      ( Dict.fromList
+        [ (8, [ ColumnEmphasis Error 11 6 ] )
+        , (9, [ ColumnEmphasis Error 5 2 ] )
+        ]
+      )
+      [ CodeBlockError 8 15
+        [ div []
+          [ text "TS2540: Cannot assign to 'radius' because it is a read-only property."
+          ]
+        ]
+      , CodeBlockError 9 5
+        [ div []
+          [ text "TS2540: Cannot assign to 'PI' because it is a read-only property."
+          ]
+        ]
+      ]
+      """
+class Circle {
+  readonly radius: number;
+  constructor(radius: number) { this.radius = radius; }
+  public get area() {
+    return Math.PI * Math.pow(this.radius, 2);
+  }
+}
+let unitCircle = new Circle(1.0);
+unitCircle.radius = 2.0;
+Math.PI = 0.0;
 """
   in
   { baseSlideModel
@@ -118,7 +393,10 @@ blahTypeScript =
       standardSlideView page title subheadingTypeScript
       ( div []
         [ p []
-          [ text "Blah blah:" ]
+          [ text "Declare a field as "
+          , syntaxHighlightedCodeSnippet TypeScript "readonly"
+          , text " and the TypeScript compiler guarantees that it is:"
+          ]
         , div [] [ codeBlock ]
         ]
       )
@@ -126,14 +404,38 @@ blahTypeScript =
   }
 
 
-blahKotlin : UnindexedSlideModel
-blahKotlin =
+safeKotlin : UnindexedSlideModel
+safeKotlin =
   let
     codeBlock : Html msg
     codeBlock =
-      syntaxHighlightedCodeBlock Kotlin Dict.empty Dict.empty []
+      syntaxHighlightedCodeBlock Kotlin Dict.empty
+      ( Dict.fromList
+        [ (7, [ ColumnEmphasis Error 11 6 ] )
+        , (8, [ ColumnEmphasis Error 0 2 ] )
+        ]
+      )
+      [ CodeBlockError 7 11
+        [ div []
+          [ text "val cannot be reassigned"
+          ]
+        ]
+      , CodeBlockError 8 0
+        [ div []
+          [ text "val cannot be reassigned"
+          ]
+        ]
+      ]
       """
-// Blah blah
+import kotlin.math.PI
+
+data class Circle(val radius: Double) {
+    val area: Double by lazy { PI * radius * radius }
+}
+
+val unitCircle = Circle(radius = 1.0)
+unitCircle.radius = 2.0
+PI = 0.0
 """
   in
   { baseSlideModel
@@ -142,7 +444,10 @@ blahKotlin =
       standardSlideView page title subheadingKotlin
       ( div []
         [ p []
-          [ text "Blah blah:" ]
+          [ text "Kotlin encourages immutability. Values, declared using "
+          , syntaxHighlightedCodeSnippet Kotlin "val"
+          , text " are immutable:"
+          ]
         , div [] [ codeBlock ]
         ]
       )
@@ -150,14 +455,37 @@ blahKotlin =
   }
 
 
-blahSwift : UnindexedSlideModel
-blahSwift =
+safeSwift : UnindexedSlideModel
+safeSwift =
   let
     codeBlock : Html msg
     codeBlock =
-      syntaxHighlightedCodeBlock Swift Dict.empty Dict.empty []
+      syntaxHighlightedCodeBlock Swift Dict.empty
+      ( Dict.fromList
+        [ (6, [ ColumnEmphasis Error 11 6 ] )
+        , (7, [ ColumnEmphasis Error 7 2 ] )
+        ]
+      )
+      [ CodeBlockError 6 16
+        [ div []
+          [ text "cannot assign to property: 'radius' is a 'let' constant"
+          ]
+        ]
+      , CodeBlockError 7 6
+        [ div []
+          [ text "cannot assign to property: 'pi' is a get-only property"
+          ]
+        ]
+      ]
       """
-// Blah blah
+struct Circle {
+    let radius: Double
+    private(set) lazy var area: Double = Double.pi * radius * radius
+}
+
+let unitCircle = Circle(radius: +1.0)
+unitCircle.radius = 2.0
+Double.pi = 0.0
 """
   in
   { baseSlideModel
@@ -166,7 +494,12 @@ blahSwift =
       standardSlideView page title subheadingSwift
       ( div []
         [ p []
-          [ text "Blah blah:" ]
+          [ text "Swift "
+          , syntaxHighlightedCodeSnippet Swift "let"
+          , text "s are immutable encouraging immutability, however "
+          , syntaxHighlightedCodeSnippet Swift "var"
+          , text "s are inevitable:"
+          ]
         , div [] [ codeBlock ]
         ]
       )
