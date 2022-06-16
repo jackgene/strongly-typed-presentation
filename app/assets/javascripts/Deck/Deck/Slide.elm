@@ -4,7 +4,7 @@ import Array exposing (Array)
 import Css exposing
   ( property
   -- Container
-  , height, margin, width, overflow, position
+  , height, margin, width, overflow, overflowY, position
   -- Content
   , backgroundColor, color, fontSize
   -- Units
@@ -281,7 +281,7 @@ slideView model slide =
     [ property "display" "grid", position absolute
     , width (pct 100), height (pct 100)
     , backgroundColor (rgb 0 0 0)
-    , overflow hidden
+    , overflowY auto
     ]
   ]
   [ node "style" [ type_ "text/css" ]
