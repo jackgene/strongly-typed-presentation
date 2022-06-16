@@ -47,10 +47,10 @@ introduction =
       "Prevents Accidental Changes to Invariant Data, Race Conditions"
       ( div []
         [ p []
-          [ text "Mutability is the source of many bugs, especially with parallelism." ]
+          [ text "Mutability is the source of many bugs, especially when combined with parallelism." ]
         , p []
-          [ text "Languages that enforce immutability require the programmer to indicate if data is mutable or immutable, and "
-          , mark [] [ text "prevent changes to immutable data" ]
+          [ text "Languages that enforce immutability require the programmer to indicate if data is mutable or immutable. They then "
+          , mark [] [ text "forbid changes to immutable data" ]
           , text "."
           ]
         ]
@@ -215,11 +215,13 @@ safePythonPrep =
       """
 import math
 from dataclasses import dataclass
+from functools import cached_property
 
 @dataclass(frozen=True)
 class Circle:
     radius: float
 
+    @cached_property
     def area(self):
         return math.pi * self.radius ** 2
 """
@@ -359,16 +361,16 @@ safeTypeScript =
     codeBlock =
       syntaxHighlightedCodeBlock TypeScript Dict.empty
       ( Dict.fromList
-        [ (8, [ ColumnEmphasis Error 11 6 ] )
-        , (9, [ ColumnEmphasis Error 5 2 ] )
+        [ (7, [ ColumnEmphasis Error 11 6 ] )
+        , (8, [ ColumnEmphasis Error 5 2 ] )
         ]
       )
-      [ CodeBlockError 8 15
+      [ CodeBlockError 7 15
         [ div []
           [ text "TS2540: Cannot assign to 'radius' because it is a read-only property."
           ]
         ]
-      , CodeBlockError 9 5
+      , CodeBlockError 8 5
         [ div []
           [ text "TS2540: Cannot assign to 'PI' because it is a read-only property."
           ]
@@ -378,10 +380,9 @@ safeTypeScript =
 class Circle {
   readonly radius: number;
   constructor(radius: number) { this.radius = radius; }
-  public get area() {
-    return Math.PI * Math.pow(this.radius, 2);
-  }
+  public get area() { return Math.PI * Math.pow(this.radius, 2); }
 }
+
 let unitCircle = new Circle(1.0);
 unitCircle.radius = 2.0;
 Math.PI = 0.0;
@@ -483,7 +484,7 @@ struct Circle {
     private(set) lazy var area: Double = Double.pi * radius * radius
 }
 
-let unitCircle = Circle(radius: +1.0)
+let unitCircle = Circle(radius: 1.0)
 unitCircle.radius = 2.0
 Double.pi = 0.0
 """

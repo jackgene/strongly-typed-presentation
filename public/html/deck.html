@@ -34421,7 +34421,9 @@ var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isPunctuaction = fu
 	return A2(_elm_lang$core$Set$member, c, _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$punctuactorSet);
 };
 var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isIdentifierNameChar = function (c) {
-	return !(_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isPunctuaction(c) || (_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isStringLiteralChar(c) || (_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isCommentChar(c) || _jackgene$live_deck$SyntaxHighlight_Language_Common$isWhitespace(c))));
+	return !(_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isPunctuaction(c) || (_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isStringLiteralChar(c) || (_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isCommentChar(c) || (_jackgene$live_deck$SyntaxHighlight_Language_Common$isWhitespace(c) || _elm_lang$core$Native_Utils.eq(
+		c,
+		_elm_lang$core$Native_Utils.chr('1'))))));
 };
 var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$annotationLoop = function (at) {
 	return A2(
@@ -40651,7 +40653,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safeTypeScriptNonNull = function (
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('As with all modern languages, TypeScript variables are non-nullable by default: '),
+										_0: _rtfeldman$elm_css$Html_Styled$text('TypeScript variables are non-nullable by default: '),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -45509,7 +45511,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$introduction = _elm_lang$core$Na
 								{ctor: '[]'},
 								{
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Html_Styled$text('Mutability is the source of many bugs, especially with parallelism.'),
+									_0: _rtfeldman$elm_css$Html_Styled$text('Mutability is the source of many bugs, especially when combined with parallelism.'),
 									_1: {ctor: '[]'}
 								}),
 							_1: {
@@ -45519,7 +45521,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$introduction = _elm_lang$core$Na
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Languages that enforce immutability require the programmer to indicate if data is mutable or immutable, and '),
+										_0: _rtfeldman$elm_css$Html_Styled$text('Languages that enforce immutability require the programmer to indicate if data is mutable or immutable. They then '),
 										_1: {
 											ctor: '::',
 											_0: A2(
@@ -45527,7 +45529,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$introduction = _elm_lang$core$Na
 												{ctor: '[]'},
 												{
 													ctor: '::',
-													_0: _rtfeldman$elm_css$Html_Styled$text('prevent changes to immutable data'),
+													_0: _rtfeldman$elm_css$Html_Styled$text('forbid changes to immutable data'),
 													_1: {ctor: '[]'}
 												}),
 											_1: {
@@ -45808,7 +45810,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$safePythonPrep = function () {
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\nimport math\nfrom dataclasses import dataclass\n\n@dataclass(frozen=True)\nclass Circle:\n    radius: float\n\n    def area(self):\n        return math.pi * self.radius ** 2\n');
+		'\nimport math\nfrom dataclasses import dataclass\nfrom functools import cached_property\n\n@dataclass(frozen=True)\nclass Circle:\n    radius: float\n\n    @cached_property\n    def area(self):\n        return math.pi * self.radius ** 2\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -46063,7 +46065,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$safeTypeScript = function () {
 				ctor: '::',
 				_0: {
 					ctor: '_Tuple2',
-					_0: 8,
+					_0: 7,
 					_1: {
 						ctor: '::',
 						_0: A3(_jackgene$live_deck$SyntaxHighlight_Model$ColumnEmphasis, _jackgene$live_deck$SyntaxHighlight_Model$Error, 11, 6),
@@ -46074,7 +46076,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$safeTypeScript = function () {
 					ctor: '::',
 					_0: {
 						ctor: '_Tuple2',
-						_0: 9,
+						_0: 8,
 						_1: {
 							ctor: '::',
 							_0: A3(_jackgene$live_deck$SyntaxHighlight_Model$ColumnEmphasis, _jackgene$live_deck$SyntaxHighlight_Model$Error, 5, 2),
@@ -46088,7 +46090,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$safeTypeScript = function () {
 			ctor: '::',
 			_0: A3(
 				_jackgene$live_deck$Deck_Slide_SyntaxHighlight$CodeBlockError,
-				8,
+				7,
 				15,
 				{
 					ctor: '::',
@@ -46106,7 +46108,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$safeTypeScript = function () {
 				ctor: '::',
 				_0: A3(
 					_jackgene$live_deck$Deck_Slide_SyntaxHighlight$CodeBlockError,
-					9,
+					8,
 					5,
 					{
 						ctor: '::',
@@ -46123,7 +46125,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$safeTypeScript = function () {
 				_1: {ctor: '[]'}
 			}
 		},
-		'\nclass Circle {\n  readonly radius: number;\n  constructor(radius: number) { this.radius = radius; }\n  public get area() {\n    return Math.PI * Math.pow(this.radius, 2);\n  }\n}\nlet unitCircle = new Circle(1.0);\nunitCircle.radius = 2.0;\nMath.PI = 0.0;\n');
+		'\nclass Circle {\n  readonly radius: number;\n  constructor(radius: number) { this.radius = radius; }\n  public get area() { return Math.PI * Math.pow(this.radius, 2); }\n}\n\nlet unitCircle = new Circle(1.0);\nunitCircle.radius = 2.0;\nMath.PI = 0.0;\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -46359,7 +46361,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$safeSwift = function () {
 				_1: {ctor: '[]'}
 			}
 		},
-		'\nstruct Circle {\n    let radius: Double\n    private(set) lazy var area: Double = Double.pi * radius * radius\n}\n\nlet unitCircle = Circle(radius: +1.0)\nunitCircle.radius = 2.0\nDouble.pi = 0.0\n');
+		'\nstruct Circle {\n    let radius: Double\n    private(set) lazy var area: Double = Double.pi * radius * radius\n}\n\nlet unitCircle = Circle(radius: 1.0)\nunitCircle.radius = 2.0\nDouble.pi = 0.0\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
