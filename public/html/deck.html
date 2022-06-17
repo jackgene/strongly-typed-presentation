@@ -44607,7 +44607,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$unsafeGoPrep = functio
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\npackage status\n\ntype AccountStatus interface { isStatus() }\n\ntype Active struct{}\nfunc (_ Active) isStatus() {}\n\ntype Inactive struct{}\nfunc (_ Inactive) isStatus() {}\n');
+		'\npackage status\n\ntype AccountStatus interface {\n    isStatus()\n}\n\ntype Active struct{}\nfunc (_ Active) isStatus() {}\n\ntype Inactive struct{}\nfunc (_ Inactive) isStatus() {}\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -45598,7 +45598,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$unsafeGo = function () {
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\npackage main\nimport \"strongly-typed-go/immutability/circle\"\n\nfunc main() {\n    unitCircle := circle.Circle{Radius: 1.0}\n    unitCircle.Radius = 2.0\n    println(\"r:\", unitCircle.Radius, \"a:\", unitCircle.Area())\n}\n');
+		'\npackage main\nimport \"strongly-typed-go/immutability/circle\"\n\nfunc main() {\n    unitCircle := circle.Circle{Radius: 1.0}\n    println(\"r:\", unitCircle.Radius, \"a:\", unitCircle.Area())\n    unitCircle.Radius = 2.0\n    println(\"r:\", unitCircle.Radius, \"a:\", unitCircle.Area())\n}\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{

@@ -103,6 +103,7 @@ import "strongly-typed-go/immutability/circle"
 
 func main() {
     unitCircle := circle.Circle{Radius: 1.0}
+    println("r:", unitCircle.Radius, "a:", unitCircle.Area())
     unitCircle.Radius = 2.0
     println("r:", unitCircle.Radius, "a:", unitCircle.Area())
 }
