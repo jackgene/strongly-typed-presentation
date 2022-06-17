@@ -7,6 +7,7 @@ import Html.Styled exposing (Html, div, p, text)
 
 
 -- Constants
+title : String
 title = TypeSystemProperties.title ++ ": Memory Safety"
 
 
