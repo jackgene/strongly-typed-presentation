@@ -68,7 +68,9 @@ unsafeGoPrep =
       """
 package status
 
-type AccountStatus interface { isStatus() }
+type AccountStatus interface {
+    isStatus()
+}
 
 type Active struct{}
 func (_ Active) isStatus() {}
