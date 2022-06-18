@@ -19,8 +19,8 @@ import Html.Styled.Attributes exposing (css)
 
 
 -- Constants
-title : String
-title = "What is “Strongly Typed”?"
+heading : String
+heading = "What is “Strongly Typed”?"
 
 
 -- Slides
@@ -29,7 +29,7 @@ wikipediaDefinitions =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "There Are No Formal Definitions of the Term"
       ( div []
         [ p []
@@ -58,7 +58,7 @@ typefulDefinitions =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "There Are No Formal Definitions of the Term"
       ( div []
         [ p []
@@ -79,7 +79,7 @@ ourDefinition =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "Definition for the Purpose of this Talk"
       ( div []
         [ p []
@@ -108,7 +108,7 @@ outOfScope =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "Not All Errors Can Be Detected Before Runtime"
       ( div []
         [ p []
@@ -147,7 +147,7 @@ inScope =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "Errors That A Strong Type System Can Prevent"
       ( let
           listStyle : Style

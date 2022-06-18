@@ -27,8 +27,8 @@ import SyntaxHighlight.Model exposing
 
 
 -- Constants
-title : String
-title = TypeSystemProperties.title ++ ": Type Safety"
+heading : String
+heading = TypeSystemProperties.heading ++ ": Type Safety"
 
 subheadingGo : String
 subheadingGo = "Go Is Type Safe"
@@ -52,7 +52,7 @@ introduction =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "Prevents Type Mismatch Errors"
       ( div []
         [ p []
@@ -91,7 +91,7 @@ var product float64 = Multiply(42, 2.718)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "Function parameters and return values "
@@ -133,7 +133,7 @@ var product float64 = Multiply("42", true)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "Compilation fails if a function is called with non-matching parameter types:" ]
@@ -171,7 +171,7 @@ var product float64 = Multiply("42", true)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "You cannot accidentally get around the Go type system:" ]
@@ -210,7 +210,7 @@ var product float64 = Multiply("42", true)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "While possible, you would have to Go out of your way to defeat the type system:" ]
@@ -237,7 +237,7 @@ product: float = multiply(42, 2.718)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Function parameters and return values can have declared types..." ]
@@ -274,7 +274,7 @@ product: float = multiply("42", True)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Type-checking fails if a function is called with non-matching parameter types:" ]
@@ -318,7 +318,7 @@ product = multiply("42", "2.718")
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Python typing is optional by design - you can simply omit type annotations:" ]
@@ -336,7 +336,7 @@ unsafePythonRun =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p [] [ text "...the program fails with the following:" ]
         , console
@@ -371,7 +371,7 @@ print(multiply(42, 2.718))
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "A Word About Python Type Hints"
       ( div []
         [ p [] [ text "Python type hints are just that - hints. Consider the program with type hints removed, it is simple enough you can tell it is correct:" ]
@@ -426,7 +426,7 @@ print(multiply(42, 2.718))
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "A Word About Python Type Hints"
       ( div []
         [ p [] [ text "Now we add a bunch of clearly incorrect type information:" ]
@@ -442,7 +442,7 @@ pythonTypeHintWrongRun =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "A Word About Python Type Hints"
       ( div []
         [ p []
@@ -488,7 +488,7 @@ const product: number = multiply(42, 2.718);
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "Function parameters and return values can have declared types..." ]
@@ -528,7 +528,7 @@ const product: number = multiply("42", true);
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "Compilation fails if a function is called with non-matching parameter types:" ]
@@ -564,7 +564,7 @@ const product = multiply("42", "2.718");
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "As with Python, TypeScript allows you to annotate anything with "
@@ -602,7 +602,7 @@ const product = multiply("42", "2.718");
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "...Or plain JavaScript, when not in strict mode:" ]
@@ -628,7 +628,7 @@ val product: Double = multiply(42.0, 2.718)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "Function parameters and return values "
@@ -666,7 +666,7 @@ val product: Double = multiply("42", true)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "Compilation fails if a function is called with non-matching parameter types:" ]
@@ -706,7 +706,7 @@ val product: Double = multiply("42.0", true)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "As with Go, you cannot accidentally get around Kotlin’s type safety:" ]
@@ -742,7 +742,7 @@ val product: Double? = multiply("42.0", true)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "It takes a little more effort:" ]
@@ -770,7 +770,7 @@ let product: Double = multiply(42, 2.718)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "Function parameters and return values "
@@ -810,7 +810,7 @@ let product: Double = multiply("42", true)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "Compilation fails if a function is called with non-matching parameter types:" ]
@@ -846,7 +846,7 @@ let product: Double = multiply("42", true)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "As is the case with statically typed languages, you cannot accidentally forget type safety:" ]
@@ -885,7 +885,7 @@ let product: Double? = multiply("42", true)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "Defeating Swift's type safety takes effort:" ]

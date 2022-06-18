@@ -19,8 +19,8 @@ import SyntaxHighlight.Model exposing
 
 
 -- Constants
-title : String
-title = TypeSystemProperties.title ++ ": Exception Safety"
+heading : String
+heading = TypeSystemProperties.heading ++ ": Exception Safety"
 
 subheadingGo : String
 subheadingGo = "Go Is Not Exception Safe"
@@ -44,7 +44,7 @@ introduction =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "Prevents Unhandled Recoverable Exceptions"
       ( div []
         [ p []
@@ -84,7 +84,7 @@ func QueryUnescape(s string) (string, error)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "Go’s convention for error-handling is to return the success value "
@@ -116,7 +116,7 @@ func main() {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "In this example, the error from the "
@@ -166,7 +166,7 @@ func main() {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "...The real problem arises when the error variable is re-used, and accidentally ignored:" ]
@@ -193,7 +193,7 @@ print(url)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Any function can raise an exception, you are never required to check for it:"
@@ -213,7 +213,7 @@ unsafePythonRun =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "...but fails at runtime:"
@@ -258,7 +258,7 @@ if not isinstance(unquoted_or_err, Exception):
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Python can be made exception safe by returning the exception instead of raising:"
@@ -284,7 +284,7 @@ console.log(url);
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "Any function can throw an exception, you are never required to check for it:"
@@ -328,7 +328,7 @@ if (urlOrEr instanceof string) console.log(urlOrEr.toLowerCase());
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "As with Python, you can return the exception instead of throwing it:"
@@ -354,7 +354,7 @@ println(url)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "Exceptions are unchecked, any function can throw one:"
@@ -397,7 +397,7 @@ urlRes.fold(
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "However, it provides an exception safe option, in the form of "
@@ -438,7 +438,7 @@ urlRes.fold(
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "Not accounting for the failure case results in a compile error:"
@@ -471,7 +471,7 @@ func decodeUri(_ encodedUri: String) throws -> String {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "In fact, it pretty much nails exception handling. Twice. "
@@ -514,7 +514,7 @@ func decodeUri(_ encodedUri: String) -> String {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "Removing "
@@ -556,7 +556,7 @@ do {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "The compiler makes you handle errors that may arise from a "
@@ -585,7 +585,7 @@ print(url)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "Swift however, does provide an unsafe escape hatch by means of "
@@ -628,7 +628,7 @@ case .failure(_): print("Unable to decode URI")
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "Swift also has a "
@@ -669,7 +669,7 @@ case .failure(_): print("Unable to decode URI")
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "Failing to account for both success and failure cases result in a compile error:"

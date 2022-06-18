@@ -19,8 +19,8 @@ import SyntaxHighlight.Model exposing
 
 
 -- Constants
-title : String
-title = TypeSystemProperties.title ++ ": Safe Array Access"
+heading : String
+heading = TypeSystemProperties.heading ++ ": Safe Array Access"
 
 subheadingGo : String
 subheadingGo = "Go Does Not Have Safe Array Access"
@@ -44,7 +44,7 @@ introduction =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "Prevents Errors Related to Accessing Out Of Bounds Array Elements"
       ( div []
         [ p []
@@ -77,7 +77,7 @@ func main() {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "The Go compiler allows:" ]
@@ -93,7 +93,7 @@ unsafeGoRun =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p [] [ text "But the program panics at runtime:" ]
         , console
@@ -125,7 +125,7 @@ word: str = words[10]
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "This program type checks:" ]
@@ -168,7 +168,7 @@ if word is not None:
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "It is however, possible to provide your own safer solution:" ]
@@ -194,7 +194,7 @@ const word: string = words[-1].toUpperCase();
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "This code is clearly wrong:"
@@ -239,7 +239,7 @@ const word: string = words[-1].toUpperCase();
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "The exact same code can by made array access safe, just by adding the "
@@ -271,7 +271,7 @@ const word: string|null = words[-1]?.toUpperCase() ?? null;
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "With "
@@ -303,7 +303,7 @@ val word: String = words[-1]
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "Kotlin’s array access is unsafe by default:" ]
@@ -341,7 +341,7 @@ val word: String? = words.getOrNull(-1)?.uppercase()
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "For safe array access, use the built-in "
@@ -369,7 +369,7 @@ let word: String = words[-1]
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "Swift’s array access is unsafe:" ]
@@ -416,7 +416,7 @@ let word: String? = words[safe: -1]
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "But can be made safe by extending Swift’s collection:" ]

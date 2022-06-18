@@ -29,8 +29,8 @@ import Html.Styled.Keyed as Keyed
 
 
 -- Constants
-title : String
-title = "Audience Poll"
+heading : String
+heading = "Audience Poll"
 
 
 maxDisplayCount : Int
@@ -65,7 +65,7 @@ poll =
   { baseSlideModel
   | view =
     ( \page model ->
-      standardSlideView page title
+      standardSlideView page heading
       "What is your preferred programming language?"
       ( div []
         [ div
@@ -170,7 +170,7 @@ jsVsTs =
     )
   , view =
     ( \page model ->
-      standardSlideView page title
+      standardSlideView page heading
       "What is your preferred programming language?"
       ( div []
         [ div [ css [ display none ] ] []

@@ -18,8 +18,8 @@ import SyntaxHighlight.Model exposing
 
 
 -- Constants
-title : String
-title = TypeSystemProperties.title ++ ": Immutability"
+heading : String
+heading = TypeSystemProperties.heading ++ ": Immutability"
 
 subheadingGo : String
 subheadingGo = "Go Can Enforce Immutability Through Encapsulation"
@@ -43,7 +43,7 @@ introduction =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "Prevents Accidental Changes to Invariant Data, Race Conditions"
       ( div []
         [ p []
@@ -80,7 +80,7 @@ func (c *Circle) Area() float64 {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "Consider this implementation of a circle:" ]
@@ -112,7 +112,7 @@ func main() {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "Go really does not have language support for immutability:" ]
@@ -145,7 +145,7 @@ func New(radius float64) *Circle { return &Circle{r: radius} }
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "Immutability can be achieved by keeping mutable state private, and only exporting accessor methods to them:" ]
@@ -193,7 +193,7 @@ func main() {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "Updating "
@@ -230,7 +230,7 @@ class Circle:
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Making something “frozen” in Python makes it mostly immutable:"
@@ -268,7 +268,7 @@ print("r:", unit_circle.radius, ", a:", unit_circle.area)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Python does not let you mutate a frozen object:" ]
@@ -300,7 +300,7 @@ print("r:", unit_circle.radius, ", a:", unit_circle.area)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Unless you really want to:" ]
@@ -335,7 +335,7 @@ print("r:", circle.radius, ", a:", circle.area)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "You can even define your own "
@@ -392,7 +392,7 @@ Math.PI = 0.0;
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "Declare a field as "
@@ -443,7 +443,7 @@ PI = 0.0
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "Kotlin encourages immutability. Values, declared using "
@@ -493,7 +493,7 @@ Double.pi = 0.0
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "Swift "

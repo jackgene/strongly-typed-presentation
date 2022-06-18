@@ -18,8 +18,8 @@ import SyntaxHighlight.Model exposing
 
 
 -- Constants
-title : String
-title = TypeSystemProperties.title ++ ": Exhaustiveness Checking"
+heading : String
+heading = TypeSystemProperties.heading ++ ": Exhaustiveness Checking"
 
 subheadingGo : String
 subheadingGo = "Go Does Not Have Exhaustiveness Checking"
@@ -43,7 +43,7 @@ introduction =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "Ensures All Program State Transitions Are Accounted For"
       ( div []
         [ p []
@@ -82,7 +82,7 @@ func (_ Inactive) isStatus() {}
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "Consider the following "
@@ -123,7 +123,7 @@ func DoWork(s status.AccountStatus) string {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "Even though the "
@@ -159,7 +159,7 @@ def do_work(status: AccountStatus):
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Some Python type checkers are able to determine when a "
@@ -208,7 +208,7 @@ def do_work(status: AccountStatus):
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "When a value is added to the "
@@ -246,7 +246,7 @@ function doWork(status: AccountStatus): string {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "The TypeScript compiler is able to determine when code flow is exhaustive:"
@@ -289,7 +289,7 @@ function doWork(status: AccountStatus): string {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "Adding new "
@@ -327,7 +327,7 @@ fun doWork(status: AccountStatus): String =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "The Kotlin compiler is able to determine when a "
@@ -372,7 +372,7 @@ fun doWork(status: AccountStatus): String =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "Inexhaustive matches do not compile:" ]
@@ -404,7 +404,7 @@ enum Membership {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "Swift’s exhaustiveness checking is more comprehensive, consider these "
@@ -438,7 +438,7 @@ func doWork(status: Status, membership: Membership) -> String {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "The Swift compiler is able to check for exhaustiveness even across "
@@ -481,7 +481,7 @@ func doWork(status: Status, membership: Membership) -> String {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "Removing a "
@@ -519,7 +519,7 @@ func doWork(status: Status, membership: Membership) -> String {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "The Swift compiler even accounts for wildcards when checking exhaustiveness:" ]

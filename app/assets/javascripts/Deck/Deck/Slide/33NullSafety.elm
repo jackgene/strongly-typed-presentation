@@ -18,8 +18,8 @@ import SyntaxHighlight.Model exposing
 
 
 -- Constants
-title : String
-title = TypeSystemProperties.title ++ ": Null Safety"
+heading : String
+heading = TypeSystemProperties.heading ++ ": Null Safety"
 
 subheadingGo : String
 subheadingGo = "Go Is Not Null Safe"
@@ -43,7 +43,7 @@ introduction =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "Prevents Null Pointer Dereferences"
       ( div []
         [ p []
@@ -81,7 +81,7 @@ func main() {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "Consider the following program that accesses a pointer without checking for "
@@ -106,7 +106,7 @@ unsafeGoRun =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p [] [ text "But the program immediately panics when run:" ]
         , console
@@ -140,7 +140,7 @@ print(text.upper())
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Variables are non-nullable (cannot be "
@@ -177,7 +177,7 @@ print(text.upper())
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Attempting to assign "
@@ -220,7 +220,7 @@ print(text.upper())
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Nullable variables must be explicitly annotated "
@@ -259,7 +259,7 @@ if text is not None:
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Before accessing a nullable variable, the programmer is required to check that it is not "
@@ -297,7 +297,7 @@ alert(text.toUpperCase());
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "TypeScript variables are non-nullable by default: "
@@ -331,7 +331,7 @@ alert(text.toUpperCase());
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "As with all modern languages, variables in TypeScript are non-nullable by default. "
@@ -370,7 +370,7 @@ alert(text.toUpperCase());
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "Nullable variables work the same way in TypeScript as in Python, "
@@ -417,7 +417,7 @@ alert(text?.toUpperCase() ?? "(text was null)");
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "As with Python, an explicit check for "
@@ -461,7 +461,7 @@ println(text?.uppercase() ?: "(text was null)")
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "Kotlin shares all of TypeScript’s null safety features. "
@@ -495,7 +495,7 @@ println(text!!.uppercase())
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "Unfortunately, Kotlin does offer a non-null assertion operator ("
@@ -536,7 +536,7 @@ print(text?.uppercased() ?? "(text was nil)")
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "Swift and Kotlin’s null safety syntax differs only subtly:"
@@ -569,7 +569,7 @@ let num: Int? = text
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "Because Swift’s nilable types are really implemented as "
@@ -605,7 +605,7 @@ print(unsafeText.uppercased())
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "Now the bad news: Like Kotlin, Swift offers unsafe nil access. "

@@ -29332,7 +29332,7 @@ var _jackgene$live_deck$Deck_Slide_AudiencePoll$horizontalBarView = F2(
 			});
 	});
 var _jackgene$live_deck$Deck_Slide_AudiencePoll$maxDisplayCount = 8;
-var _jackgene$live_deck$Deck_Slide_AudiencePoll$title = 'Audience Poll';
+var _jackgene$live_deck$Deck_Slide_AudiencePoll$heading = 'Audience Poll';
 var _jackgene$live_deck$Deck_Slide_AudiencePoll$poll = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
@@ -29341,7 +29341,7 @@ var _jackgene$live_deck$Deck_Slide_AudiencePoll$poll = _elm_lang$core$Native_Uti
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_AudiencePoll$title,
+					_jackgene$live_deck$Deck_Slide_AudiencePoll$heading,
 					'What is your preferred programming language?',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -29691,7 +29691,7 @@ var _jackgene$live_deck$Deck_Slide_AudiencePoll$jsVsTs = _elm_lang$core$Native_U
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_AudiencePoll$title,
+					_jackgene$live_deck$Deck_Slide_AudiencePoll$heading,
 					'What is your preferred programming language?',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -30223,7 +30223,7 @@ var _jackgene$live_deck$Deck_Slide_SectionCover$introduction = _elm_lang$core$Na
 				return A2(_jackgene$live_deck$Deck_Slide_Template$sectionCoverSlideView, 1, 'Introduction');
 			})
 	});
-var _jackgene$live_deck$Deck_Slide_Introduction$title = 'What is “Strongly Typed”?';
+var _jackgene$live_deck$Deck_Slide_Introduction$heading = 'What is “Strongly Typed”?';
 var _jackgene$live_deck$Deck_Slide_Introduction$wikipediaDefinitions = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
@@ -30232,7 +30232,7 @@ var _jackgene$live_deck$Deck_Slide_Introduction$wikipediaDefinitions = _elm_lang
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_Introduction$title,
+					_jackgene$live_deck$Deck_Slide_Introduction$heading,
 					'There Are No Formal Definitions of the Term',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -30318,7 +30318,7 @@ var _jackgene$live_deck$Deck_Slide_Introduction$typefulDefinitions = _elm_lang$c
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_Introduction$title,
+					_jackgene$live_deck$Deck_Slide_Introduction$heading,
 					'There Are No Formal Definitions of the Term',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -30371,7 +30371,7 @@ var _jackgene$live_deck$Deck_Slide_Introduction$ourDefinition = _elm_lang$core$N
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_Introduction$title,
+					_jackgene$live_deck$Deck_Slide_Introduction$heading,
 					'Definition for the Purpose of this Talk',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -30458,7 +30458,7 @@ var _jackgene$live_deck$Deck_Slide_Introduction$outOfScope = _elm_lang$core$Nati
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_Introduction$title,
+					_jackgene$live_deck$Deck_Slide_Introduction$heading,
 					'Not All Errors Can Be Detected Before Runtime',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -30606,7 +30606,7 @@ var _jackgene$live_deck$Deck_Slide_Introduction$inScope = _elm_lang$core$Native_
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_Introduction$title,
+					_jackgene$live_deck$Deck_Slide_Introduction$heading,
 					'Errors That A Strong Type System Can Prevent',
 					function () {
 						var listStyle = _rtfeldman$elm_css$Css$batch(
@@ -31266,7 +31266,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 			propertiesAndCumulativeScores));
 }();
 var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$numTypeSystemProperties = _elm_lang$core$List$length(_jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties);
-var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport = function (language) {
+var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport = function (language) {
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -31384,7 +31384,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport = function
 							}
 						}
 					};
-					var problemsAndScores = A2(
+					var errorsAndScores = A2(
 						_elm_lang$core$Basics_ops['++'],
 						A2(
 							_elm_lang$core$List$filterMap,
@@ -31419,11 +31419,11 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport = function
 						_elm_lang$core$Basics_ops['++'],
 						'Errors Prevented by the ',
 						A2(_elm_lang$core$Basics_ops['++'], language, ' Type System'));
-					var heading = A2(_elm_lang$core$Basics_ops['++'], 'Type System Strength: ', language);
+					var languageHeading = A2(_elm_lang$core$Basics_ops['++'], 'Type System Strength: ', language);
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						heading,
+						languageHeading,
 						subheading,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -31477,7 +31477,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport = function
 																	_0: _rtfeldman$elm_css$Css$width(
 																		_rtfeldman$elm_css$Css$pct(
 																			100.0 / _elm_lang$core$Basics$toFloat(
-																				_elm_lang$core$List$length(problemsAndScores)))),
+																				_elm_lang$core$List$length(errorsAndScores)))),
 																	_1: {ctor: '[]'}
 																}
 															}
@@ -31537,7 +31537,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport = function
 												var _p30 = _p29._1;
 												return {ctor: '_Tuple2', _0: 0 - _p30.upper, _1: _p30.range};
 											},
-											problemsAndScores))),
+											errorsAndScores))),
 								_1: {
 									ctor: '::',
 									_0: A2(
@@ -31612,7 +31612,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport = function
 				})
 		});
 };
-var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title = 'Type System Properties';
+var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$heading = 'Type System Properties';
 var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent = function (maybePropertyIndex) {
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
@@ -31630,10 +31630,10 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent = functio
 					if (_p33.ctor === 'Just') {
 						return A2(
 							_elm_lang$core$Basics_ops['++'],
-							_jackgene$live_deck$Deck_Slide_TypeSystemProperties$title,
+							_jackgene$live_deck$Deck_Slide_TypeSystemProperties$heading,
 							A2(_elm_lang$core$Basics_ops['++'], ': ', _p33._0.name));
 					} else {
-						return _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title;
+						return _jackgene$live_deck$Deck_Slide_TypeSystemProperties$heading;
 					}
 				}();
 				return F2(
@@ -31750,7 +31750,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$methodology = _elm_lang$
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_TypeSystemProperties$title,
+					_jackgene$live_deck$Deck_Slide_TypeSystemProperties$heading,
 					'Analysis of Languages Used at GoodRx',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -32065,18 +32065,18 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport = functio
 							_1: 0
 						},
 						_jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties));
-				var heading = ((_elm_lang$core$Native_Utils.cmp(propertyIndex, 0) < 0) || (_elm_lang$core$Native_Utils.cmp(
+				var propertyHeading = ((_elm_lang$core$Native_Utils.cmp(propertyIndex, 0) < 0) || (_elm_lang$core$Native_Utils.cmp(
 					propertyIndex,
-					_elm_lang$core$List$length(_jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties)) > -1)) ? _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title : A2(
+					_elm_lang$core$List$length(_jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties)) > -1)) ? _jackgene$live_deck$Deck_Slide_TypeSystemProperties$heading : A2(
 					_elm_lang$core$Basics_ops['++'],
-					_jackgene$live_deck$Deck_Slide_TypeSystemProperties$title,
+					_jackgene$live_deck$Deck_Slide_TypeSystemProperties$heading,
 					A2(_elm_lang$core$Basics_ops['++'], ': ', property.name));
 				return F2(
 					function (page, model) {
 						return A4(
 							_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 							page,
-							heading,
+							propertyHeading,
 							'Strong Typing Score Card',
 							A2(
 								_rtfeldman$elm_css$Html_Styled$div,
@@ -38470,7 +38470,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$subheadingKotlin = 'Kotlin Is Type
 var _jackgene$live_deck$Deck_Slide_TypeSafety$subheadingTypeScript = 'TypeScript Can Be Type Safe';
 var _jackgene$live_deck$Deck_Slide_TypeSafety$subheadingPython = 'Python Can Be Type Safe';
 var _jackgene$live_deck$Deck_Slide_TypeSafety$subheadingGo = 'Go Is Type Safe';
-var _jackgene$live_deck$Deck_Slide_TypeSafety$title = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title, ': Type Safety');
+var _jackgene$live_deck$Deck_Slide_TypeSafety$heading = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$heading, ': Type Safety');
 var _jackgene$live_deck$Deck_Slide_TypeSafety$introduction = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
@@ -38479,7 +38479,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$introduction = _elm_lang$core$Nati
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+					_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 					'Prevents Type Mismatch Errors',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -38551,7 +38551,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$safeGo = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -38669,7 +38669,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeGo = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -38757,7 +38757,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidUnsafeGo = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -38821,7 +38821,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeGo = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -38868,7 +38868,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$safePython = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -38967,7 +38967,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafePython = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -39076,7 +39076,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePythonUnannotated = function
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -39131,7 +39131,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePythonRun = _elm_lang$core$N
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+					_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 					_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingPython,
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -39170,7 +39170,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$pythonTypeHintUnannotated = functi
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						'A Word About Python Type Hints',
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -39324,7 +39324,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$pythonTypeHintWrong = function () 
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						'A Word About Python Type Hints',
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -39368,7 +39368,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$pythonTypeHintWrongRun = _elm_lang
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+					_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 					'A Word About Python Type Hints',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -39478,7 +39478,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$safeTypeScript = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -39592,7 +39592,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeTypeScript = function (
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -39656,7 +39656,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeTypeScriptAny = function () 
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -39736,7 +39736,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeTypeScriptUnannotated = func
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -39788,7 +39788,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$safeKotlin = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -39906,7 +39906,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeKotlin = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -40016,7 +40016,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidUnsafeKotlin = function () 
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -40088,7 +40088,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeKotlin = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -40135,7 +40135,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$safeSwift = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -40253,7 +40253,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeSwift = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -40341,7 +40341,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$invalidUnsafeSwift = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -40417,7 +40417,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeSwift = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_TypeSafety$title,
+						_jackgene$live_deck$Deck_Slide_TypeSafety$heading,
 						_jackgene$live_deck$Deck_Slide_TypeSafety$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -40460,7 +40460,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$subheadingKotlin = 'Kotlin Is Null
 var _jackgene$live_deck$Deck_Slide_NullSafety$subheadingTypeScript = 'TypeScript Can Be Null Safe';
 var _jackgene$live_deck$Deck_Slide_NullSafety$subheadingPython = 'Python Can Be Null Safe';
 var _jackgene$live_deck$Deck_Slide_NullSafety$subheadingGo = 'Go Is Not Null Safe';
-var _jackgene$live_deck$Deck_Slide_NullSafety$title = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title, ': Null Safety');
+var _jackgene$live_deck$Deck_Slide_NullSafety$heading = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$heading, ': Null Safety');
 var _jackgene$live_deck$Deck_Slide_NullSafety$introduction = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
@@ -40469,7 +40469,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$introduction = _elm_lang$core$Nati
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_NullSafety$title,
+					_jackgene$live_deck$Deck_Slide_NullSafety$heading,
 					'Prevents Null Pointer Dereferences',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -40545,7 +40545,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$unsafeGo = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_NullSafety$title,
+						_jackgene$live_deck$Deck_Slide_NullSafety$heading,
 						_jackgene$live_deck$Deck_Slide_NullSafety$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -40607,7 +40607,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$unsafeGoRun = _elm_lang$core$Nativ
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_NullSafety$title,
+					_jackgene$live_deck$Deck_Slide_NullSafety$heading,
 					_jackgene$live_deck$Deck_Slide_NullSafety$subheadingGo,
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -40646,7 +40646,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safePythonNonNull = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_NullSafety$title,
+						_jackgene$live_deck$Deck_Slide_NullSafety$heading,
 						_jackgene$live_deck$Deck_Slide_NullSafety$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -40742,7 +40742,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safePythonNonNullInvalid = functio
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_NullSafety$title,
+						_jackgene$live_deck$Deck_Slide_NullSafety$heading,
 						_jackgene$live_deck$Deck_Slide_NullSafety$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -40842,7 +40842,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safePythonNullableInvalid = functi
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_NullSafety$title,
+						_jackgene$live_deck$Deck_Slide_NullSafety$heading,
 						_jackgene$live_deck$Deck_Slide_NullSafety$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -40917,7 +40917,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safePythonNullable = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_NullSafety$title,
+						_jackgene$live_deck$Deck_Slide_NullSafety$heading,
 						_jackgene$live_deck$Deck_Slide_NullSafety$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -41007,7 +41007,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safeTypeScriptNonNull = function (
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_NullSafety$title,
+						_jackgene$live_deck$Deck_Slide_NullSafety$heading,
 						_jackgene$live_deck$Deck_Slide_NullSafety$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -41089,7 +41089,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safeTypeScriptNonNullInvalid = fun
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_NullSafety$title,
+						_jackgene$live_deck$Deck_Slide_NullSafety$heading,
 						_jackgene$live_deck$Deck_Slide_NullSafety$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -41192,7 +41192,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safeTypeScriptNullableInvalid = fu
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_NullSafety$title,
+						_jackgene$live_deck$Deck_Slide_NullSafety$heading,
 						_jackgene$live_deck$Deck_Slide_NullSafety$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -41268,7 +41268,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safeTypeScriptNullable = function 
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_NullSafety$title,
+						_jackgene$live_deck$Deck_Slide_NullSafety$heading,
 						_jackgene$live_deck$Deck_Slide_NullSafety$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -41360,7 +41360,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safeKotlinNullable = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_NullSafety$title,
+						_jackgene$live_deck$Deck_Slide_NullSafety$heading,
 						_jackgene$live_deck$Deck_Slide_NullSafety$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -41445,7 +41445,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$unsafeKotlin = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_NullSafety$title,
+						_jackgene$live_deck$Deck_Slide_NullSafety$heading,
 						_jackgene$live_deck$Deck_Slide_NullSafety$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -41511,7 +41511,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safeSwiftNullable = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_NullSafety$title,
+						_jackgene$live_deck$Deck_Slide_NullSafety$heading,
 						_jackgene$live_deck$Deck_Slide_NullSafety$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -41580,7 +41580,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$safeSwiftNullableFun = function ()
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_NullSafety$title,
+						_jackgene$live_deck$Deck_Slide_NullSafety$heading,
 						_jackgene$live_deck$Deck_Slide_NullSafety$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -41654,7 +41654,7 @@ var _jackgene$live_deck$Deck_Slide_NullSafety$unsafeSwift = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_NullSafety$title,
+						_jackgene$live_deck$Deck_Slide_NullSafety$heading,
 						_jackgene$live_deck$Deck_Slide_NullSafety$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -41705,7 +41705,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingKotlin = 'Kotlin Is
 var _jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingTypeScript = 'TypeScript Is Not Exception Safe (But Can Be Made Safer)';
 var _jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingPython = 'Python Is Not Exception Safe (But Can Be Made Safer)';
 var _jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingGo = 'Go Is Not Exception Safe';
-var _jackgene$live_deck$Deck_Slide_ExceptionSafety$title = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title, ': Exception Safety');
+var _jackgene$live_deck$Deck_Slide_ExceptionSafety$heading = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$heading, ': Exception Safety');
 var _jackgene$live_deck$Deck_Slide_ExceptionSafety$introduction = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
@@ -41714,7 +41714,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$introduction = _elm_lang$core
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+					_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 					'Prevents Unhandled Recoverable Exceptions',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -41805,7 +41805,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$introGo = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+						_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 						_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -41867,7 +41867,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeGoExplicit = function (
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+						_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 						_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -41978,7 +41978,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeGoVariableReuse = funct
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+						_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 						_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -42025,7 +42025,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafePython = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+						_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 						_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -42075,7 +42075,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafePythonRun = _elm_lang$c
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+					_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 					_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingPython,
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -42114,7 +42114,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$safePython = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+						_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 						_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -42161,7 +42161,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeTypeScript = function (
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+						_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 						_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -42223,7 +42223,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeTypeScript = function () 
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+						_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 						_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -42270,7 +42270,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeKotlin = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+						_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 						_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -42332,7 +42332,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeKotlin = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+						_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 						_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -42424,7 +42424,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeKotlinInvalid = function 
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+						_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 						_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -42478,7 +42478,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwift = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+						_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 						_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -42578,7 +42578,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftInvalid = function (
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+						_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 						_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -42665,7 +42665,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftInvocation = functio
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+						_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 						_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -42727,7 +42727,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeSwift = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+						_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 						_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -42797,7 +42797,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftMonadic = function (
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+						_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 						_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -42889,7 +42889,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftMonadicInvalid = fun
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExceptionSafety$title,
+						_jackgene$live_deck$Deck_Slide_ExceptionSafety$heading,
 						_jackgene$live_deck$Deck_Slide_ExceptionSafety$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -42932,7 +42932,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingKotlin = 'Kotlin
 var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingTypeScript = 'TypeScript Can Be Type Conversion Safe';
 var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingPython = 'Python Can Be Type Conversion Safe';
 var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingGo = 'Go Is Not Type Conversion Safe';
-var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$title = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title, ': Safe Type Conversion');
+var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$heading, ': Safe Type Conversion');
 var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$introduction = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
@@ -42941,7 +42941,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$introduction = _elm_lang$c
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+					_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 					'Prevents Type Conversion Failures',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -43002,7 +43002,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$introGo = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -43049,7 +43049,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeGo = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -43088,7 +43088,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeGoRun = _elm_lang$co
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+					_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 					_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingGo,
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -43159,7 +43159,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$safePython = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -43206,7 +43206,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafePythonGoodGuard = fu
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -43262,7 +43262,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafePythonBadGuard = fun
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -43301,7 +43301,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafePythonBadGuardRun = 
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+					_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 					_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingPython,
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -43340,7 +43340,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafePythonCast = functio
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -43452,7 +43452,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$safeTypeScript = function 
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -43542,7 +43542,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptGoodPredic
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -43606,7 +43606,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptGoodPredic
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -43662,7 +43662,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptBadPredica
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -43701,7 +43701,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptBadPredica
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+					_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 					_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingTypeScript,
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -43783,7 +43783,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$safeKotlinSmart = function
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -43830,7 +43830,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$safeKotlinExplicit = funct
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -43877,7 +43877,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeKotlin = function ()
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -43993,7 +43993,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$safeSwift = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -44040,7 +44040,7 @@ var _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeSwift = function () 
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$title,
+						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$heading,
 						_jackgene$live_deck$Deck_Slide_SafeTypeConversion$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -44121,7 +44121,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingKotlin = 'Kotlin Ha
 var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingTypeScript = 'TypeScript Can Have Safe Array Access';
 var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingPython = 'Python Does Not Have Safe Array Access (But Can Be Made Safer)';
 var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingGo = 'Go Does Not Have Safe Array Access';
-var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$title = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title, ': Safe Array Access');
+var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$heading = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$heading, ': Safe Array Access');
 var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$introduction = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
@@ -44130,7 +44130,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$introduction = _elm_lang$core
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+					_jackgene$live_deck$Deck_Slide_SafeArrayAccess$heading,
 					'Prevents Errors Related to Accessing Out Of Bounds Array Elements',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -44191,7 +44191,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeGo = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$heading,
 						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -44230,7 +44230,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeGoRun = _elm_lang$core$
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+					_jackgene$live_deck$Deck_Slide_SafeArrayAccess$heading,
 					_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingGo,
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -44269,7 +44269,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafePython = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$heading,
 						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -44331,7 +44331,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safePython = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$heading,
 						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -44385,7 +44385,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeTypeScript = function (
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$heading,
 						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -44487,7 +44487,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeTypeScriptInvalid = funct
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$heading,
 						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -44558,7 +44558,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeTypeScript = function () 
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$heading,
 						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -44629,7 +44629,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeKotlin = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$heading,
 						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -44700,7 +44700,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeKotlin = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$heading,
 						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -44755,7 +44755,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeSwift = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$heading,
 						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -44846,7 +44846,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeSwift = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$title,
+						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$heading,
 						_jackgene$live_deck$Deck_Slide_SafeArrayAccess$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -44912,7 +44912,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$subheadingKotlin = 'Ko
 var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$subheadingTypeScript = 'TypeScript Can Have Exhaustiveness Checking';
 var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$subheadingPython = 'Python Can Have Exhaustiveness Checking';
 var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$subheadingGo = 'Go Does Not Have Exhaustiveness Checking';
-var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$title = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title, ': Exhaustiveness Checking');
+var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$heading = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$heading, ': Exhaustiveness Checking');
 var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$introduction = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
@@ -44921,7 +44921,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$introduction = _elm_la
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$title,
+					_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$heading,
 					'Ensures All Program State Transitions Are Accounted For',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -44982,7 +44982,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$unsafeGoPrep = functio
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$title,
+						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$heading,
 						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -45076,7 +45076,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$unsafeGo = function ()
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$title,
+						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$heading,
 						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -45131,7 +45131,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safePython = function 
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$title,
+						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$heading,
 						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -45245,7 +45245,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safePythonInvalid = fu
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$title,
+						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$heading,
 						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -45308,7 +45308,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeTypeScript = funct
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$title,
+						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$heading,
 						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -45392,7 +45392,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeTypeScriptInvalid 
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$title,
+						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$heading,
 						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -45455,7 +45455,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeKotlin = function 
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$title,
+						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$heading,
 						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -45547,7 +45547,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeKotlinInvalid = fu
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$title,
+						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$heading,
 						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -45594,7 +45594,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeSwiftPrep = functi
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$title,
+						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$heading,
 						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -45649,7 +45649,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeSwift = function (
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$title,
+						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$heading,
 						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -45748,7 +45748,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeSwiftInvalid = fun
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$title,
+						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$heading,
 						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -45820,7 +45820,7 @@ var _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeSwiftAlt = functio
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$title,
+						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$heading,
 						_jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -45856,7 +45856,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$subheadingKotlin = 'Kotlin Can H
 var _jackgene$live_deck$Deck_Slide_Immutability$subheadingTypeScript = 'TypeScript Can Have Immutability';
 var _jackgene$live_deck$Deck_Slide_Immutability$subheadingPython = 'Python Has Partial Support for Immutability';
 var _jackgene$live_deck$Deck_Slide_Immutability$subheadingGo = 'Go Can Enforce Immutability Through Encapsulation';
-var _jackgene$live_deck$Deck_Slide_Immutability$title = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title, ': Immutability');
+var _jackgene$live_deck$Deck_Slide_Immutability$heading = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$heading, ': Immutability');
 var _jackgene$live_deck$Deck_Slide_Immutability$introduction = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
@@ -45865,7 +45865,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$introduction = _elm_lang$core$Na
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_Immutability$title,
+					_jackgene$live_deck$Deck_Slide_Immutability$heading,
 					'Prevents Accidental Changes to Invariant Data, Race Conditions',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -45926,7 +45926,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$unsafeGoPrep = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Immutability$title,
+						_jackgene$live_deck$Deck_Slide_Immutability$heading,
 						_jackgene$live_deck$Deck_Slide_Immutability$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -45973,7 +45973,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$unsafeGo = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Immutability$title,
+						_jackgene$live_deck$Deck_Slide_Immutability$heading,
 						_jackgene$live_deck$Deck_Slide_Immutability$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -46020,7 +46020,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$safeGoPrep = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Immutability$title,
+						_jackgene$live_deck$Deck_Slide_Immutability$heading,
 						_jackgene$live_deck$Deck_Slide_Immutability$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -46130,7 +46130,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$safeGo = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Immutability$title,
+						_jackgene$live_deck$Deck_Slide_Immutability$heading,
 						_jackgene$live_deck$Deck_Slide_Immutability$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -46185,7 +46185,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$safePythonPrep = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Immutability$title,
+						_jackgene$live_deck$Deck_Slide_Immutability$heading,
 						_jackgene$live_deck$Deck_Slide_Immutability$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -46264,7 +46264,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$safePython = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Immutability$title,
+						_jackgene$live_deck$Deck_Slide_Immutability$heading,
 						_jackgene$live_deck$Deck_Slide_Immutability$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -46320,7 +46320,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$unsafePythonFrozenMutation = fun
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Immutability$title,
+						_jackgene$live_deck$Deck_Slide_Immutability$heading,
 						_jackgene$live_deck$Deck_Slide_Immutability$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -46371,7 +46371,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$unsafePythonConstantMutation = f
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Immutability$title,
+						_jackgene$live_deck$Deck_Slide_Immutability$heading,
 						_jackgene$live_deck$Deck_Slide_Immutability$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -46500,7 +46500,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$safeTypeScript = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Immutability$title,
+						_jackgene$live_deck$Deck_Slide_Immutability$heading,
 						_jackgene$live_deck$Deck_Slide_Immutability$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -46618,7 +46618,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$safeKotlin = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Immutability$title,
+						_jackgene$live_deck$Deck_Slide_Immutability$heading,
 						_jackgene$live_deck$Deck_Slide_Immutability$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -46736,7 +46736,7 @@ var _jackgene$live_deck$Deck_Slide_Immutability$safeSwift = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Immutability$title,
+						_jackgene$live_deck$Deck_Slide_Immutability$heading,
 						_jackgene$live_deck$Deck_Slide_Immutability$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -46788,7 +46788,7 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$subheadingKotlin = 'Kotlin Can 
 var _jackgene$live_deck$Deck_Slide_Encapsulation$subheadingTypeScript = 'TypeScript Can Enforce Encapsulation';
 var _jackgene$live_deck$Deck_Slide_Encapsulation$subheadingPython = 'Python Can Enforce Encapsulation';
 var _jackgene$live_deck$Deck_Slide_Encapsulation$subheadingGo = 'Go Can Enforce Encapsulation';
-var _jackgene$live_deck$Deck_Slide_Encapsulation$title = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title, ': Encapsulation');
+var _jackgene$live_deck$Deck_Slide_Encapsulation$heading = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$heading, ': Encapsulation');
 var _jackgene$live_deck$Deck_Slide_Encapsulation$introduction = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
@@ -46797,7 +46797,7 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$introduction = _elm_lang$core$N
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_Encapsulation$title,
+					_jackgene$live_deck$Deck_Slide_Encapsulation$heading,
 					'Prevents Accidental State Transitions',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -46862,7 +46862,7 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$safeGoPrep = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Encapsulation$title,
+						_jackgene$live_deck$Deck_Slide_Encapsulation$heading,
 						_jackgene$live_deck$Deck_Slide_Encapsulation$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -46941,7 +46941,7 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$safeGo = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Encapsulation$title,
+						_jackgene$live_deck$Deck_Slide_Encapsulation$heading,
 						_jackgene$live_deck$Deck_Slide_Encapsulation$subheadingGo,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -47028,7 +47028,7 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$safePython = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Encapsulation$title,
+						_jackgene$live_deck$Deck_Slide_Encapsulation$heading,
 						_jackgene$live_deck$Deck_Slide_Encapsulation$subheadingPython,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -47107,7 +47107,7 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$safeTypeScript = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Encapsulation$title,
+						_jackgene$live_deck$Deck_Slide_Encapsulation$heading,
 						_jackgene$live_deck$Deck_Slide_Encapsulation$subheadingTypeScript,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -47186,7 +47186,7 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$safeKotlin = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Encapsulation$title,
+						_jackgene$live_deck$Deck_Slide_Encapsulation$heading,
 						_jackgene$live_deck$Deck_Slide_Encapsulation$subheadingKotlin,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -47265,7 +47265,7 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$safeSwift = function () {
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
-						_jackgene$live_deck$Deck_Slide_Encapsulation$title,
+						_jackgene$live_deck$Deck_Slide_Encapsulation$heading,
 						_jackgene$live_deck$Deck_Slide_Encapsulation$subheadingSwift,
 						A2(
 							_rtfeldman$elm_css$Html_Styled$div,
@@ -47942,19 +47942,19 @@ var _jackgene$live_deck$Deck_Slide$slidesList = A2(
 																																																																																																																																																						_0: _jackgene$live_deck$Deck_Slide_SectionCover$conclusion,
 																																																																																																																																																						_1: {
 																																																																																																																																																							ctor: '::',
-																																																																																																																																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport('Go'),
+																																																																																																																																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport('Go'),
 																																																																																																																																																							_1: {
 																																																																																																																																																								ctor: '::',
-																																																																																																																																																								_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport('Python'),
+																																																																																																																																																								_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport('Python'),
 																																																																																																																																																								_1: {
 																																																																																																																																																									ctor: '::',
-																																																																																																																																																									_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport('TypeScript'),
+																																																																																																																																																									_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport('TypeScript'),
 																																																																																																																																																									_1: {
 																																																																																																																																																										ctor: '::',
-																																																																																																																																																										_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport('Kotlin'),
+																																																																																																																																																										_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport('Kotlin'),
 																																																																																																																																																										_1: {
 																																																																																																																																																											ctor: '::',
-																																																																																																																																																											_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport('Swift'),
+																																																																																																																																																											_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport('Swift'),
 																																																																																																																																																											_1: {
 																																																																																																																																																												ctor: '::',
 																																																																																																																																																												_0: _jackgene$live_deck$Deck_Slide_SectionCover$questions,
@@ -48505,7 +48505,7 @@ var _jackgene$live_deck$Deck$main = A2(
 		},
 		subscriptions: _jackgene$live_deck$Deck$subscriptions
 	})();
-var _jackgene$live_deck$Deck_Slide_Conclusion$slide = _elm_lang$core$Native_Utils.update(
+var _jackgene$live_deck$Deck_Slide_Conclusion$testing = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
 		view: F2(
@@ -48518,7 +48518,47 @@ var _jackgene$live_deck$Deck_Slide_Conclusion$slide = _elm_lang$core$Native_Util
 					_rtfeldman$elm_css$Html_Styled$text(''));
 			})
 	});
-var _jackgene$live_deck$Deck_Slide_MemorySafety$title = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title, ': Memory Safety');
+var _jackgene$live_deck$Deck_Slide_Conclusion$preCompileChecks = _elm_lang$core$Native_Utils.update(
+	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+	{
+		view: F2(
+			function (page, _p1) {
+				return A4(
+					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+					page,
+					'Audience Questions',
+					'Questions and Maybe Answers',
+					_rtfeldman$elm_css$Html_Styled$text(''));
+			})
+	});
+var _jackgene$live_deck$Deck_Slide_Conclusion$codeGeneration = _elm_lang$core$Native_Utils.update(
+	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+	{
+		view: F2(
+			function (page, _p2) {
+				return A4(
+					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+					page,
+					'Audience Questions',
+					'Questions and Maybe Answers',
+					_rtfeldman$elm_css$Html_Styled$text(''));
+			})
+	});
+var _jackgene$live_deck$Deck_Slide_Conclusion$heading = 'Strong Typing & Quality Software';
+var _jackgene$live_deck$Deck_Slide_Conclusion$introduction = _elm_lang$core$Native_Utils.update(
+	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+	{
+		view: F2(
+			function (page, _p3) {
+				return A4(
+					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+					page,
+					_jackgene$live_deck$Deck_Slide_Conclusion$heading,
+					'Questions and Maybe Answers',
+					_rtfeldman$elm_css$Html_Styled$text(''));
+			})
+	});
+var _jackgene$live_deck$Deck_Slide_MemorySafety$heading = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$heading, ': Memory Safety');
 var _jackgene$live_deck$Deck_Slide_MemorySafety$slide = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
@@ -48527,7 +48567,7 @@ var _jackgene$live_deck$Deck_Slide_MemorySafety$slide = _elm_lang$core$Native_Ut
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
-					_jackgene$live_deck$Deck_Slide_MemorySafety$title,
+					_jackgene$live_deck$Deck_Slide_MemorySafety$heading,
 					'Prevents Buffer Overflows',
 					A2(
 						_rtfeldman$elm_css$Html_Styled$div,

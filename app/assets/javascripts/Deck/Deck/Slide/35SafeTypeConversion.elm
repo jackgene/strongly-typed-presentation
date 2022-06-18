@@ -20,8 +20,8 @@ import SyntaxHighlight.Model exposing
 
 
 -- Constants
-title : String
-title = TypeSystemProperties.title ++ ": Safe Type Conversion"
+heading : String
+heading = TypeSystemProperties.heading ++ ": Safe Type Conversion"
 
 subheadingGo : String
 subheadingGo = "Go Is Not Type Conversion Safe"
@@ -45,7 +45,7 @@ introduction =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "Prevents Type Conversion Failures"
       ( div []
         [ p []
@@ -82,7 +82,7 @@ func main() {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "This is the idiomatic way to do type assertions:" ]
@@ -115,7 +115,7 @@ func main() {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "The following type assertion will clearly fail, but the Go compiler allows it:" ]
@@ -131,7 +131,7 @@ unsafeGoRun =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p [] [ text "But the program immediately panics when run:" ]
         , console
@@ -176,7 +176,7 @@ if isinstance(thing, str):
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Through type narrowing, there’s rarely a need to explicitly convert types:" ]
@@ -208,7 +208,7 @@ if is_str_array(nums):
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "However, Python sometimes require you to implement your own type checking:" ]
@@ -246,7 +246,7 @@ if is_str_array(nums):
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Without verifying your type checking logic:" ]
@@ -262,7 +262,7 @@ unsafePythonBadGuardRun =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Only at runtime do you learn about these errors:" ]
@@ -297,7 +297,7 @@ print(text.upper())
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "Casting is just an escape hatch to “cheat” the type system:" ]
@@ -347,7 +347,7 @@ if (typeof(thing) === "string") {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "Thanks to narrowing, type conversion is rarely necessary:" ]
@@ -387,7 +387,7 @@ nums.forEach(num => alert(num.toUpperCase()));
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "As with Python, TypeScript sometimes outsources type checking to the programmer:" ]
@@ -425,7 +425,7 @@ if (isStringArray(nums)) {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "As with Python, TypeScript sometimes outsources type checking to the programmer:" ]
@@ -463,7 +463,7 @@ if (isStringArray(nums)) {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "TypeScript does nothing to ensure that type predicates are correct:" ]
@@ -479,7 +479,7 @@ unsafeTypeScriptBadPredicateRun =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "At runtime, the program in the previous page fails with:" ]
@@ -526,7 +526,7 @@ if (thing is String) {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "Kotlin’s implicit “smart casts” make explicit casts rarely necessary:" ]
@@ -557,7 +557,7 @@ if (text != null) {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "The the option of a safe explicit cast is available:" ]
@@ -582,7 +582,7 @@ text.uppercase()
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "An explicit "
@@ -631,7 +631,7 @@ if let thing = thing as? String {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "Swift casts must be explicit, but the syntax is fairly succinct:" ]
@@ -656,7 +656,7 @@ text.uppercased()
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "When every nanosecond counts, Swift has the "

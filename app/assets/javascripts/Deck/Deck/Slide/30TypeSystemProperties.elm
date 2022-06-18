@@ -1,5 +1,5 @@
 module Deck.Slide.TypeSystemProperties exposing
-  ( title, tableOfContent, methodology, languageReport, errorPreventionReport )
+  ( heading, tableOfContent, methodology, languageReport, errorPreventionReport )
 
 import Css exposing
   ( Color, Style, property
@@ -49,8 +49,8 @@ type alias TypeSystemProperty =
 
 
 -- Constants
-title : String
-title = "Type System Properties"
+heading : String
+heading = "Type System Properties"
 
 
 -- 1.0 - 1.0
@@ -291,8 +291,8 @@ tableOfContent maybePropertyIndex =
       slideTitle : String
       slideTitle =
         case maybeTypeSystemProperty of
-          Just property -> title ++ ": " ++ property.name
-          Nothing -> title
+          Just property -> heading ++ ": " ++ property.name
+          Nothing -> heading
     in
     ( \page _ ->
       standardSlideView page slideTitle
@@ -335,7 +335,7 @@ methodology =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "Analysis of Languages Used at GoodRx"
       ( div []
         [ p []
@@ -400,13 +400,13 @@ languageReport propertyIndex =
           typeSystemProperties
         )
 
-      heading : String
-      heading =
-        if propertyIndex < 0 || propertyIndex >= List.length typeSystemProperties then title
-        else title ++ ": " ++ property.name
+      propertyHeading : String
+      propertyHeading =
+        if propertyIndex < 0 || propertyIndex >= List.length typeSystemProperties then heading
+        else heading ++ ": " ++ property.name
     in
     ( \page model ->
-      standardSlideView page heading
+      standardSlideView page propertyHeading
       "Strong Typing Score Card"
       ( div []
         [ p [] [ text "Type system strengths of the languages we are evaluating:" ]
@@ -507,8 +507,8 @@ errorPreventionReport language =
   | view =
     ( \page _ ->
       let
-        heading : String
-        heading = "Type System Strength: " ++ language
+        languageHeading : String
+        languageHeading = "Type System Strength: " ++ language
 
         subheading : String
         subheading = "Errors Prevented by the " ++ language ++ " Type System"
@@ -516,9 +516,9 @@ errorPreventionReport language =
         errorsAndScores : List (String, Score)
         errorsAndScores =
           ( List.filterMap
-            ( \{ error, individualScores } ->
+            ( \{ problem, individualScores } ->
               Maybe.map
-              ( \score -> (error, score) )
+              ( \score -> (problem, score) )
               ( Dict.get language individualScores )
             )
             typeSystemProperties
@@ -556,7 +556,7 @@ errorPreventionReport language =
           )
 
       in
-      standardSlideView page heading subheading
+      standardSlideView page languageHeading subheading
       ( div [ css [ fontSize (em 0.75) ] ]
         [ div [ css [ displayFlex, height (vw 20) ] ]
           ( List.map

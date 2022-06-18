@@ -7,8 +7,8 @@ import Html.Styled exposing (Html, div, p, text)
 
 
 -- Constants
-title : String
-title = TypeSystemProperties.title ++ ": Memory Safety"
+heading : String
+heading = TypeSystemProperties.heading ++ ": Memory Safety"
 
 
 -- Slides
@@ -17,7 +17,7 @@ slide =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "Prevents Buffer Overflows"
       ( div []
         [ p []

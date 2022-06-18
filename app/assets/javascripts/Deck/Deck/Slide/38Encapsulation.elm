@@ -18,8 +18,8 @@ import SyntaxHighlight.Model exposing
 
 
 -- Constants
-title : String
-title = TypeSystemProperties.title ++ ": Encapsulation"
+heading : String
+heading = TypeSystemProperties.heading ++ ": Encapsulation"
 
 subheadingGo : String
 subheadingGo = "Go Can Enforce Encapsulation"
@@ -43,7 +43,7 @@ introduction =
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title
+      standardSlideView page heading
       "Prevents Accidental State Transitions"
       ( div []
         [ p []
@@ -80,7 +80,7 @@ func (c *Counter) Increment() { c.count ++ }
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "Consider the following counter implementation:" ]
@@ -122,7 +122,7 @@ func main() {
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingGo
+      standardSlideView page heading subheadingGo
       ( div []
         [ p []
           [ text "Go does not allow access to the private "
@@ -169,7 +169,7 @@ print("Count", c.count())
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingPython
+      standardSlideView page heading subheadingPython
       ( div []
         [ p []
           [ text "The Python type checker prevents external access to private members:" ]
@@ -212,7 +212,7 @@ console.log("Count:", c.count)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingTypeScript
+      standardSlideView page heading subheadingTypeScript
       ( div []
         [ p []
           [ text "TypeScript prevents external access to private members:" ]
@@ -255,7 +255,7 @@ println("Count: " + c.count)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingKotlin
+      standardSlideView page heading subheadingKotlin
       ( div []
         [ p []
           [ text "Kotlin prevents external access to private members:" ]
@@ -298,7 +298,7 @@ print("Count:", c.count)
   { baseSlideModel
   | view =
     ( \page _ ->
-      standardSlideView page title subheadingSwift
+      standardSlideView page heading subheadingSwift
       ( div []
         [ p []
           [ text "Swift prevents external access to private members::" ]
