@@ -1,20 +1,21 @@
 module Deck.Slide.TypeSystemProperties exposing
-  ( title, tableOfContent, methodology, languageReport )
+  ( title, tableOfContent, methodology, languageReport, errorPreventionReport )
 
 import Css exposing
+  ( Color, Style, property
   -- Container
-  ( borderBottom3, borderCollapse, borderLeft3, display, height
+  , borderBottom3, borderCollapse, borderLeft3, display, height
   , margin2, position, right, top, transform, width
   -- Content
   , backgroundColor, color, fontSize, opacity, textAlign, verticalAlign
   -- Units
-  , em, pct, vw, zero
+  , em, deg, pct, rgb, vw, zero
   -- Alignments & Positions
   , absolute, center, middle, relative
   -- Transforms
-  , translateY
+  , rotate, translateY
   -- Other values
-  , auto, collapse, inlineBlock, left, num, solid
+  , auto, collapse, displayFlex, inlineBlock, left, num, solid
   )
 import Css.Transitions exposing (easeInOut, transition)
 import Deck.Common exposing (Slide(Slide), SlideModel)
@@ -41,6 +42,8 @@ type alias CumulativeScore =
 
 type alias TypeSystemProperty =
   { name : String
+  , problem : String
+  , individualScores: Dict String Score
   , cumulativeScores : Dict String CumulativeScore
   }
 
@@ -78,9 +81,9 @@ scoreUnsupported = { range = 0.0, upper = 0.0, rank = -1 }
 typeSystemProperties : List TypeSystemProperty
 typeSystemProperties =
   let
-    nameAndScores : List (String, Dict String Score)
-    nameAndScores =
-      --[ ( "Memory Safety" -- "Memory Leaks, Buffer Overlow"
+    nameProblemAndScores : List (String, String, Dict String Score)
+    nameProblemAndScores =
+      --[ ( "Memory Safety", "Memory Leaks, Buffer Overlow"
       --  , Dict.fromList
       --    [ ( "Go", scoreDefeatable )
       --    , ( "Python", scoreRequired )
@@ -89,7 +92,7 @@ typeSystemProperties =
       --    , ( "Swift", scoreDefeatable )
       --    ]
       --  )
-      [ ( "Type Safety" -- "Errors Related to Type Mismatches"
+      [ ( "Type Safety", "Type Mismatches"
         , Dict.fromList
           [ ( "Go", scoreRequired )
           , ( "Python", scoreOptional )
@@ -98,7 +101,7 @@ typeSystemProperties =
           , ( "Swift", scoreRequired )
           ]
         )
-      , ( "Null Safety"-- "Null Pointer Dereference"
+      , ( "Null Safety", "Null Pointer Dereference"
         , Dict.fromList
           [ ( "Go", scoreUnsupported )
           , ( "Python", scoreOptional )
@@ -107,7 +110,7 @@ typeSystemProperties =
           , ( "Swift", scoreDefeatable )
           ]
         )
-      , ( "Safe Array Access" -- "Out Of Bounds Array Access"
+      , ( "Safe Array Access", "Out Of Bounds Array Access"
         , Dict.fromList
           [ ( "Go", scoreUnsupported )
           , ( "Python", scorePartialAndOptional )
@@ -116,7 +119,7 @@ typeSystemProperties =
           , ( "Swift", scorePartialAndOptional )
           ]
         )
-      , ( "Safe Type Conversion" -- "Type Conversion Errors"
+      , ( "Safe Type Conversion", "Type Conversion Failure"
         , Dict.fromList
           [ ( "Go", scoreUnsupported )
           , ( "Python", scorePartialAndOptional )
@@ -125,7 +128,7 @@ typeSystemProperties =
           , ( "Swift", scoreDefeatable )
           ]
         )
-      , ( "Exception Safety" -- "Unhandled General Errors"
+      , ( "Exception Safety", "Unhandled Recoverable Errors"
         , Dict.fromList
           [ ( "Go", scoreUnsupported )
           , ( "Python", scorePartialAndOptional )
@@ -134,7 +137,7 @@ typeSystemProperties =
           , ( "Swift", scoreDefeatable )
           ]
         )
-      , ( "Exhaustiveness Checking" -- "Bugs related to default behavior occurring when they shouldn't" -- TODO
+      , ( "Exhaustiveness Checking", "Inexhaustive Matches"
         , Dict.fromList
           [ ( "Go", scoreUnsupported )
           , ( "Python", scoreOptional )
@@ -143,7 +146,7 @@ typeSystemProperties =
           , ( "Swift", scoreOptional )
           ]
         )
-      , ( "Encapsulation" -- "Private/Unexported Data"
+      , ( "Encapsulation", "State Data Corruption"
         , Dict.fromList
           [ ( "Go", scoreOptional )
           , ( "Python", scoreOptional )
@@ -152,7 +155,7 @@ typeSystemProperties =
           , ( "Swift", scoreOptional )
           ]
         )
-      , ( "Immutability" -- "Unintended State Mutation"
+      , ( "Immutability", "Unintended State Mutation"
         , Dict.fromList
           [ ( "Go", scorePartialAndOptional )
           , ( "Python", scorePartialAndOptional  )
@@ -161,7 +164,7 @@ typeSystemProperties =
           , ( "Swift", scoreOptional )
           ]
         )
-      --, ( "Data Race Free" -- "Race Condition"
+      --, ( "Data Race Free", "Race Condition"
       --  , Dict.fromList
       --    [ ( "Go", scoreUnsupported )
       --    , ( "Python", scoreUnsupported )
@@ -171,16 +174,6 @@ typeSystemProperties =
       --    ]
       --  )
       ]
-      --[ "Memory Leak & Buffer Overflow"
-      --, "Type Mismatch"
-      --, "Null Pointer Dereference"
-      --, "I/O and Custom Failure"
-      --, "Inexhaustive Match"
-      --, "Type Conversion Failure"
-      --, "Out Of Bounds Array Access"
-      --, "Arithmetic Error"
-      --, "Data Race"
-      --]
 
     initialCumulativeScores : Dict String Score -> Dict String CumulativeScore
     initialCumulativeScores scores =
@@ -196,7 +189,7 @@ typeSystemProperties =
             )
             ( List.sortBy
               ( \(_, score) -> (-score.upper, score.range) )
-              ( Dict.toList scores)
+              ( Dict.toList scores )
             )
           )
       in
@@ -208,14 +201,14 @@ typeSystemProperties =
       )
       rankedScores
 
-    nameAndCumulativeScores : List (String, Dict String CumulativeScore)
-    nameAndCumulativeScores =
+    propertiesAndCumulativeScores : List (String, String, (Dict String Score, Dict String CumulativeScore))
+    propertiesAndCumulativeScores =
       List.foldl
-      ( \(name, scores) accum ->
+      ( \(name, problem, scores) accum ->
         case accum of
-          [] -> [ (name, initialCumulativeScores scores) ]
+          [] -> [ (name, problem, (scores, initialCumulativeScores scores)) ]
 
-          (_, prevCumScores) :: _ ->
+          (_, _, (_, prevCumScores)) :: _ ->
             let
               curCumScoresUnranked : Dict String CumulativeScore
               curCumScoresUnranked =
@@ -259,19 +252,21 @@ typeSystemProperties =
                   )
                 )
             in
-            (name, curCumScores) :: accum
+            (name, problem, (scores, curCumScores)) :: accum
       )
       []
-      nameAndScores
+      nameProblemAndScores
   in
   List.reverse
   ( List.map
-    ( \(name, cumulativeScores) ->
+    ( \(name, problem, (scores, cumulativeScores)) ->
       { name = name
+      , problem = problem
+      , individualScores = scores
       , cumulativeScores = cumulativeScores
       }
     )
-    nameAndCumulativeScores
+    propertiesAndCumulativeScores
   )
 
 
@@ -385,6 +380,7 @@ methodology =
 labelWidthPct : Float
 labelWidthPct = 7.5
 
+
 languageReport : Int -> UnindexedSlideModel
 languageReport propertyIndex =
   { baseSlideModel
@@ -400,17 +396,17 @@ languageReport propertyIndex =
             , idx + 1
             )
           )
-          ( { name = "", cumulativeScores = Dict.empty }, 0 )
+          ( { name = "", problem = "", individualScores = Dict.empty, cumulativeScores = Dict.empty }, 0 )
           typeSystemProperties
         )
 
-      slideTitle : String
-      slideTitle =
+      heading : String
+      heading =
         if propertyIndex < 0 || propertyIndex >= List.length typeSystemProperties then title
         else title ++ ": " ++ property.name
     in
     ( \page model ->
-      standardSlideView page slideTitle
+      standardSlideView page heading
       "Strong Typing Score Card"
       ( div []
         [ p [] [ text "Type system strengths of the languages we are evaluating:" ]
@@ -499,6 +495,112 @@ languageReport propertyIndex =
               ( List.range 0 numTypeSystemProperties )
             )
           ]
+        ]
+      )
+    )
+  }
+
+
+errorPreventionReport : String -> UnindexedSlideModel
+errorPreventionReport language =
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      let
+        heading : String
+        heading = "Type System Strength: " ++ language
+
+        subheading : String
+        subheading = "Errors Prevented by the " ++ language ++ " Type System"
+
+        errorsAndScores : List (String, Score)
+        errorsAndScores =
+          ( List.filterMap
+            ( \{ error, individualScores } ->
+              Maybe.map
+              ( \score -> (error, score) )
+              ( Dict.get language individualScores )
+            )
+            typeSystemProperties
+          )
+          ++[ ("Arithmetic Errors", scoreUnsupported)
+            , ("Infinite Loops", scoreUnsupported)
+            , ("Functional Errors", scoreUnsupported)
+            , ("Others", scoreUnsupported)
+            ]
+
+        legendAndScores : List (String, Score)
+        legendAndScores =
+          [ ("Error Prevented", scoreRequired)
+          , ("Error Probably Prevented", scoreDefeatable)
+          , ("Error May or May Not Be Prevented", scoreOptional)
+          , ("Error Probably Not Prevented", scorePartialAndOptional)
+          , ("Error Not Prevented", scoreUnsupported)
+          ]
+        scoreColor : Score -> Style
+        scoreColor score =
+          Css.batch
+          ( case (score.upper, score.range) of
+            (1.0, 0.0) ->
+              [ color goodRxGreen, backgroundColor goodRxLightGreen1 ]
+            (1.0, 0.5) ->
+              [ color (rgb 128 185 69), backgroundColor (rgb 238 247 208) ]
+            (1.0, 1.0) ->
+              [ color goodRxDigitalOrange, backgroundColor goodRxLightYellow4 ]
+            (0.5, 0.5) ->
+              [ color goodRxOrange, backgroundColor goodRxLightOrange1 ]
+            (0.0, 0.0) ->
+              [ color goodRxRed, backgroundColor goodRxLightRed1 ]
+            _ ->
+              [ color goodRxLightGray1, backgroundColor goodRxLightGray4]
+          )
+
+      in
+      standardSlideView page heading subheading
+      ( div [ css [ fontSize (em 0.75) ] ]
+        [ div [ css [ displayFlex, height (vw 20) ] ]
+          ( List.map
+            ( \(error, score) ->
+              div
+              [ css
+                [ property "display" "grid"
+                , scoreColor score
+                , width (pct (100.0 / toFloat (List.length errorsAndScores)))
+                ]
+              ]
+              [ div
+                [ css
+                  [ position relative, width (vw 15), left (pct -25)
+                  , margin2 auto auto
+                  , transform ( rotate (deg -90) )
+                  , textAlign center
+                  ]
+                ]
+                [ text error ]
+              ]
+            )
+            ( List.sortBy
+              ( \(_, score) -> (-score.upper, score.range) )
+              errorsAndScores
+            )
+          )
+        , div []
+          ( List.map
+            ( \(legend, score) ->
+              div [ css [ margin2 (em 0.25) zero ] ]
+              [ div
+                [ css
+                  [ display inlineBlock, width (em 0.75), height (em 0.75)
+                  , margin2 zero (em 0.25)
+                  , scoreColor score
+                  ]
+                ]
+                []
+              , text legend
+              ]
+            )
+            legendAndScores
+          )
         ]
       )
     )

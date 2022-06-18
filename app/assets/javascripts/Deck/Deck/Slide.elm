@@ -205,6 +205,11 @@ slidesList =
   , SectionCover.conclusion
   -- TODO strong typing + unit testing
   -- TODO pie charts of languages, and errors prevented
+  , TypeSystemProperties.errorPreventionReport "Go"
+  , TypeSystemProperties.errorPreventionReport "Python"
+  , TypeSystemProperties.errorPreventionReport "TypeScript"
+  , TypeSystemProperties.errorPreventionReport "Kotlin"
+  , TypeSystemProperties.errorPreventionReport "Swift"
   -- Q & A
   , SectionCover.questions
   , QuestionAnswer.slide

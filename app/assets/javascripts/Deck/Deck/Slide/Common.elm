@@ -142,6 +142,10 @@ goodRxDigitalOrange : Color
 goodRxDigitalOrange = rgb 245 145 15
 
 
+goodRxLightOrange1 : Color
+goodRxLightOrange1 = rgb 255 222 196
+
+
 goodRxRed : Color
 goodRxRed = rgb 143 37 4
 

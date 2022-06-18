@@ -20395,6 +20395,7 @@ var _jackgene$live_deck$Deck_Slide_Common$goodRxLightRed2 = A3(_rtfeldman$elm_cs
 var _jackgene$live_deck$Deck_Slide_Common$goodRxLightRed1 = A3(_rtfeldman$elm_css$Css$rgb, 255, 213, 200);
 var _jackgene$live_deck$Deck_Slide_Common$goodRxDigitalRed = A3(_rtfeldman$elm_css$Css$rgb, 209, 71, 21);
 var _jackgene$live_deck$Deck_Slide_Common$goodRxRed = A3(_rtfeldman$elm_css$Css$rgb, 143, 37, 4);
+var _jackgene$live_deck$Deck_Slide_Common$goodRxLightOrange1 = A3(_rtfeldman$elm_css$Css$rgb, 255, 222, 196);
 var _jackgene$live_deck$Deck_Slide_Common$goodRxDigitalOrange = A3(_rtfeldman$elm_css$Css$rgb, 245, 145, 15);
 var _jackgene$live_deck$Deck_Slide_Common$goodRxOrange = A3(_rtfeldman$elm_css$Css$rgb, 171, 77, 0);
 var _jackgene$live_deck$Deck_Slide_Common$goodRxLightGreen1 = A3(_rtfeldman$elm_css$Css$rgb, 221, 247, 225);
@@ -30924,12 +30925,13 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 				}),
 			rankedScores);
 	};
-	var nameAndScores = {
+	var nameProblemAndScores = {
 		ctor: '::',
 		_0: {
-			ctor: '_Tuple2',
+			ctor: '_Tuple3',
 			_0: 'Type Safety',
-			_1: _elm_lang$core$Dict$fromList(
+			_1: 'Type Mismatches',
+			_2: _elm_lang$core$Dict$fromList(
 				{
 					ctor: '::',
 					_0: {ctor: '_Tuple2', _0: 'Go', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreRequired},
@@ -30955,9 +30957,10 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 		_1: {
 			ctor: '::',
 			_0: {
-				ctor: '_Tuple2',
+				ctor: '_Tuple3',
 				_0: 'Null Safety',
-				_1: _elm_lang$core$Dict$fromList(
+				_1: 'Null Pointer Dereference',
+				_2: _elm_lang$core$Dict$fromList(
 					{
 						ctor: '::',
 						_0: {ctor: '_Tuple2', _0: 'Go', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
@@ -30983,9 +30986,10 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 			_1: {
 				ctor: '::',
 				_0: {
-					ctor: '_Tuple2',
+					ctor: '_Tuple3',
 					_0: 'Safe Array Access',
-					_1: _elm_lang$core$Dict$fromList(
+					_1: 'Out Of Bounds Array Access',
+					_2: _elm_lang$core$Dict$fromList(
 						{
 							ctor: '::',
 							_0: {ctor: '_Tuple2', _0: 'Go', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
@@ -31011,9 +31015,10 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 				_1: {
 					ctor: '::',
 					_0: {
-						ctor: '_Tuple2',
+						ctor: '_Tuple3',
 						_0: 'Safe Type Conversion',
-						_1: _elm_lang$core$Dict$fromList(
+						_1: 'Type Conversion Failure',
+						_2: _elm_lang$core$Dict$fromList(
 							{
 								ctor: '::',
 								_0: {ctor: '_Tuple2', _0: 'Go', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
@@ -31039,9 +31044,10 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 					_1: {
 						ctor: '::',
 						_0: {
-							ctor: '_Tuple2',
+							ctor: '_Tuple3',
 							_0: 'Exception Safety',
-							_1: _elm_lang$core$Dict$fromList(
+							_1: 'Unhandled Recoverable Errors',
+							_2: _elm_lang$core$Dict$fromList(
 								{
 									ctor: '::',
 									_0: {ctor: '_Tuple2', _0: 'Go', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
@@ -31067,9 +31073,10 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 						_1: {
 							ctor: '::',
 							_0: {
-								ctor: '_Tuple2',
+								ctor: '_Tuple3',
 								_0: 'Exhaustiveness Checking',
-								_1: _elm_lang$core$Dict$fromList(
+								_1: 'Inexhaustive Matches',
+								_2: _elm_lang$core$Dict$fromList(
 									{
 										ctor: '::',
 										_0: {ctor: '_Tuple2', _0: 'Go', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
@@ -31095,9 +31102,10 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 							_1: {
 								ctor: '::',
 								_0: {
-									ctor: '_Tuple2',
+									ctor: '_Tuple3',
 									_0: 'Encapsulation',
-									_1: _elm_lang$core$Dict$fromList(
+									_1: 'State Data Corruption',
+									_2: _elm_lang$core$Dict$fromList(
 										{
 											ctor: '::',
 											_0: {ctor: '_Tuple2', _0: 'Go', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreOptional},
@@ -31123,9 +31131,10 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 								_1: {
 									ctor: '::',
 									_0: {
-										ctor: '_Tuple2',
+										ctor: '_Tuple3',
 										_0: 'Immutability',
-										_1: _elm_lang$core$Dict$fromList(
+										_1: 'Unintended State Mutation',
+										_2: _elm_lang$core$Dict$fromList(
 											{
 												ctor: '::',
 												_0: {ctor: '_Tuple2', _0: 'Go', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scorePartialAndOptional},
@@ -31157,11 +31166,12 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 			}
 		}
 	};
-	var nameAndCumulativeScores = A3(
+	var propertiesAndCumulativeScores = A3(
 		_elm_lang$core$List$foldl,
 		F2(
 			function (_p6, accum) {
 				var _p7 = _p6;
+				var _p19 = _p7._2;
 				var _p18 = _p7._1;
 				var _p17 = _p7._0;
 				var _p8 = accum;
@@ -31169,9 +31179,14 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 					return {
 						ctor: '::',
 						_0: {
-							ctor: '_Tuple2',
+							ctor: '_Tuple3',
 							_0: _p17,
-							_1: initialCumulativeScores(_p18)
+							_1: _p18,
+							_2: {
+								ctor: '_Tuple2',
+								_0: _p19,
+								_1: initialCumulativeScores(_p19)
+							}
 						},
 						_1: {ctor: '[]'}
 					};
@@ -31194,8 +31209,8 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 									scoresAccum);
 							}),
 						_elm_lang$core$Dict$insert,
-						_p18,
-						_p8._0._1,
+						_p19,
+						_p8._0._2._1,
 						_elm_lang$core$Dict$empty);
 					var curCumScores = _elm_lang$core$Dict$fromList(
 						A2(
@@ -31229,23 +31244,374 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 								_elm_lang$core$Dict$toList(curCumScoresUnranked))));
 					return {
 						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: _p17, _1: curCumScores},
+						_0: {
+							ctor: '_Tuple3',
+							_0: _p17,
+							_1: _p18,
+							_2: {ctor: '_Tuple2', _0: _p19, _1: curCumScores}
+						},
 						_1: accum
 					};
 				}
 			}),
 		{ctor: '[]'},
-		nameAndScores);
+		nameProblemAndScores);
 	return _elm_lang$core$List$reverse(
 		A2(
 			_elm_lang$core$List$map,
-			function (_p19) {
-				var _p20 = _p19;
-				return {name: _p20._0, cumulativeScores: _p20._1};
+			function (_p20) {
+				var _p21 = _p20;
+				return {name: _p21._0, problem: _p21._1, individualScores: _p21._2._0, cumulativeScores: _p21._2._1};
 			},
-			nameAndCumulativeScores));
+			propertiesAndCumulativeScores));
 }();
 var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$numTypeSystemProperties = _elm_lang$core$List$length(_jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties);
+var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport = function (language) {
+	return _elm_lang$core$Native_Utils.update(
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+		{
+			view: F2(
+				function (page, _p22) {
+					var scoreColor = function (score) {
+						return _rtfeldman$elm_css$Css$batch(
+							function () {
+								var _p23 = {ctor: '_Tuple2', _0: score.upper, _1: score.range};
+								_v7_5:
+								do {
+									if (_p23.ctor === '_Tuple2') {
+										switch (_p23._0) {
+											case 1.0:
+												switch (_p23._1) {
+													case 0.0:
+														return {
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css$color(_jackgene$live_deck$Deck_Slide_Common$goodRxGreen),
+															_1: {
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Css$backgroundColor(_jackgene$live_deck$Deck_Slide_Common$goodRxLightGreen1),
+																_1: {ctor: '[]'}
+															}
+														};
+													case 0.5:
+														return {
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css$color(
+																A3(_rtfeldman$elm_css$Css$rgb, 128, 185, 69)),
+															_1: {
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Css$backgroundColor(
+																	A3(_rtfeldman$elm_css$Css$rgb, 238, 247, 208)),
+																_1: {ctor: '[]'}
+															}
+														};
+													case 1.0:
+														return {
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css$color(_jackgene$live_deck$Deck_Slide_Common$goodRxDigitalOrange),
+															_1: {
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Css$backgroundColor(_jackgene$live_deck$Deck_Slide_Common$goodRxLightYellow4),
+																_1: {ctor: '[]'}
+															}
+														};
+													default:
+														break _v7_5;
+												}
+											case 0.5:
+												if (_p23._1 === 0.5) {
+													return {
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Css$color(_jackgene$live_deck$Deck_Slide_Common$goodRxOrange),
+														_1: {
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css$backgroundColor(_jackgene$live_deck$Deck_Slide_Common$goodRxLightOrange1),
+															_1: {ctor: '[]'}
+														}
+													};
+												} else {
+													break _v7_5;
+												}
+											case 0.0:
+												if (_p23._1 === 0.0) {
+													return {
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Css$color(_jackgene$live_deck$Deck_Slide_Common$goodRxRed),
+														_1: {
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css$backgroundColor(_jackgene$live_deck$Deck_Slide_Common$goodRxLightRed1),
+															_1: {ctor: '[]'}
+														}
+													};
+												} else {
+													break _v7_5;
+												}
+											default:
+												break _v7_5;
+										}
+									} else {
+										break _v7_5;
+									}
+								} while(false);
+								return {
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$color(_jackgene$live_deck$Deck_Slide_Common$goodRxLightGray1),
+									_1: {
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$backgroundColor(_jackgene$live_deck$Deck_Slide_Common$goodRxLightGray4),
+										_1: {ctor: '[]'}
+									}
+								};
+							}());
+					};
+					var legendAndScores = {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'Error Prevented', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreRequired},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'Error Probably Prevented', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreDefeatable},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'Error May or May Not Be Prevented', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreOptional},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'Error Probably Not Prevented', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scorePartialAndOptional},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'Error Not Prevented', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					};
+					var problemsAndScores = A2(
+						_elm_lang$core$Basics_ops['++'],
+						A2(
+							_elm_lang$core$List$filterMap,
+							function (_p24) {
+								var _p25 = _p24;
+								return A2(
+									_elm_lang$core$Maybe$map,
+									function (score) {
+										return {ctor: '_Tuple2', _0: _p25.problem, _1: score};
+									},
+									A2(_elm_lang$core$Dict$get, language, _p25.individualScores));
+							},
+							_jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties),
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'Arithmetic Errors', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'Infinite Loops', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'Functional Errors', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'Others', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreUnsupported},
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						});
+					var subheading = A2(
+						_elm_lang$core$Basics_ops['++'],
+						'Errors Prevented by the ',
+						A2(_elm_lang$core$Basics_ops['++'], language, ' Type System'));
+					var heading = A2(_elm_lang$core$Basics_ops['++'], 'Type System Strength: ', language);
+					return A4(
+						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+						page,
+						heading,
+						subheading,
+						A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$fontSize(
+											_rtfeldman$elm_css$Css$em(0.75)),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$div,
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$displayFlex,
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Css$height(
+														_rtfeldman$elm_css$Css$vw(20)),
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									},
+									A2(
+										_elm_lang$core$List$map,
+										function (_p26) {
+											var _p27 = _p26;
+											return A2(
+												_rtfeldman$elm_css$Html_Styled$div,
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+														{
+															ctor: '::',
+															_0: A2(_rtfeldman$elm_css$Css$property, 'display', 'grid'),
+															_1: {
+																ctor: '::',
+																_0: scoreColor(_p27._1),
+																_1: {
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Css$width(
+																		_rtfeldman$elm_css$Css$pct(
+																			100.0 / _elm_lang$core$Basics$toFloat(
+																				_elm_lang$core$List$length(problemsAndScores)))),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}),
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: A2(
+														_rtfeldman$elm_css$Html_Styled$div,
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+																{
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
+																	_1: {
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Css$width(
+																			_rtfeldman$elm_css$Css$vw(15)),
+																		_1: {
+																			ctor: '::',
+																			_0: _rtfeldman$elm_css$Css$left(
+																				_rtfeldman$elm_css$Css$pct(-25)),
+																			_1: {
+																				ctor: '::',
+																				_0: A2(_rtfeldman$elm_css$Css$margin2, _rtfeldman$elm_css$Css$auto, _rtfeldman$elm_css$Css$auto),
+																				_1: {
+																					ctor: '::',
+																					_0: _rtfeldman$elm_css$Css$transform(
+																						_rtfeldman$elm_css$Css$rotate(
+																							_rtfeldman$elm_css$Css$deg(-90))),
+																					_1: {
+																						ctor: '::',
+																						_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$center),
+																						_1: {ctor: '[]'}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}),
+															_1: {ctor: '[]'}
+														},
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled$text(_p27._0),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												});
+										},
+										A2(
+											_elm_lang$core$List$sortBy,
+											function (_p28) {
+												var _p29 = _p28;
+												var _p30 = _p29._1;
+												return {ctor: '_Tuple2', _0: 0 - _p30.upper, _1: _p30.range};
+											},
+											problemsAndScores))),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$div,
+										{ctor: '[]'},
+										A2(
+											_elm_lang$core$List$map,
+											function (_p31) {
+												var _p32 = _p31;
+												return A2(
+													_rtfeldman$elm_css$Html_Styled$div,
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+															{
+																ctor: '::',
+																_0: A2(
+																	_rtfeldman$elm_css$Css$margin2,
+																	_rtfeldman$elm_css$Css$em(0.25),
+																	_rtfeldman$elm_css$Css$zero),
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													},
+													{
+														ctor: '::',
+														_0: A2(
+															_rtfeldman$elm_css$Html_Styled$div,
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+																	{
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$inlineBlock),
+																		_1: {
+																			ctor: '::',
+																			_0: _rtfeldman$elm_css$Css$width(
+																				_rtfeldman$elm_css$Css$em(0.75)),
+																			_1: {
+																				ctor: '::',
+																				_0: _rtfeldman$elm_css$Css$height(
+																					_rtfeldman$elm_css$Css$em(0.75)),
+																				_1: {
+																					ctor: '::',
+																					_0: A2(
+																						_rtfeldman$elm_css$Css$margin2,
+																						_rtfeldman$elm_css$Css$zero,
+																						_rtfeldman$elm_css$Css$em(0.25)),
+																					_1: {
+																						ctor: '::',
+																						_0: scoreColor(_p32._1),
+																						_1: {ctor: '[]'}
+																					}
+																				}
+																			}
+																		}
+																	}),
+																_1: {ctor: '[]'}
+															},
+															{ctor: '[]'}),
+														_1: {
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled$text(_p32._0),
+															_1: {ctor: '[]'}
+														}
+													});
+											},
+											legendAndScores)),
+									_1: {ctor: '[]'}
+								}
+							}));
+				})
+		});
+};
 var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title = 'Type System Properties';
 var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent = function (maybePropertyIndex) {
 	return _elm_lang$core$Native_Utils.update(
@@ -31260,18 +31626,18 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent = functio
 					},
 					maybePropertyIndex);
 				var slideTitle = function () {
-					var _p21 = maybeTypeSystemProperty;
-					if (_p21.ctor === 'Just') {
+					var _p33 = maybeTypeSystemProperty;
+					if (_p33.ctor === 'Just') {
 						return A2(
 							_elm_lang$core$Basics_ops['++'],
 							_jackgene$live_deck$Deck_Slide_TypeSystemProperties$title,
-							A2(_elm_lang$core$Basics_ops['++'], ': ', _p21._0.name));
+							A2(_elm_lang$core$Basics_ops['++'], ': ', _p33._0.name));
 					} else {
 						return _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title;
 					}
 				}();
 				return F2(
-					function (page, _p22) {
+					function (page, _p34) {
 						return A4(
 							_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 							page,
@@ -31295,8 +31661,8 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent = functio
 								A2(
 									_elm_lang$core$List$indexedMap,
 									F2(
-										function (idx, _p23) {
-											var _p24 = _p23;
+										function (idx, _p35) {
+											var _p36 = _p35;
 											return A2(
 												_rtfeldman$elm_css$Html_Styled$div,
 												{
@@ -31322,9 +31688,9 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent = functio
 																		_0: _rtfeldman$elm_css$Css$opacity(
 																			_rtfeldman$elm_css$Css$num(
 																				function () {
-																					var _p25 = maybePropertyIndex;
-																					if (_p25.ctor === 'Just') {
-																						return _elm_lang$core$Native_Utils.eq(idx, _p25._0) ? 1.0 : 0.2;
+																					var _p37 = maybePropertyIndex;
+																					if (_p37.ctor === 'Just') {
+																						return _elm_lang$core$Native_Utils.eq(idx, _p37._0) ? 1.0 : 0.2;
 																					} else {
 																						return 1.0;
 																					}
@@ -31366,7 +31732,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent = functio
 														}),
 													_1: {
 														ctor: '::',
-														_0: _rtfeldman$elm_css$Html_Styled$text(_p24.name),
+														_0: _rtfeldman$elm_css$Html_Styled$text(_p36.name),
 														_1: {ctor: '[]'}
 													}
 												});
@@ -31380,7 +31746,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$methodology = _elm_lang$
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
 		view: F2(
-			function (page, _p26) {
+			function (page, _p38) {
 				return A4(
 					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 					page,
@@ -31684,22 +32050,22 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport = functio
 					A3(
 						_elm_lang$core$List$foldl,
 						F2(
-							function (next, _p27) {
-								var _p28 = _p27;
-								var _p29 = _p28._1;
+							function (next, _p39) {
+								var _p40 = _p39;
+								var _p41 = _p40._1;
 								return {
 									ctor: '_Tuple2',
-									_0: ((_elm_lang$core$Native_Utils.cmp(propertyIndex, 0) < 0) || (_elm_lang$core$Native_Utils.cmp(propertyIndex, _p29) > -1)) ? next : _p28._0,
-									_1: _p29 + 1
+									_0: ((_elm_lang$core$Native_Utils.cmp(propertyIndex, 0) < 0) || (_elm_lang$core$Native_Utils.cmp(propertyIndex, _p41) > -1)) ? next : _p40._0,
+									_1: _p41 + 1
 								};
 							}),
 						{
 							ctor: '_Tuple2',
-							_0: {name: '', cumulativeScores: _elm_lang$core$Dict$empty},
+							_0: {name: '', problem: '', individualScores: _elm_lang$core$Dict$empty, cumulativeScores: _elm_lang$core$Dict$empty},
 							_1: 0
 						},
 						_jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties));
-				var slideTitle = ((_elm_lang$core$Native_Utils.cmp(propertyIndex, 0) < 0) || (_elm_lang$core$Native_Utils.cmp(
+				var heading = ((_elm_lang$core$Native_Utils.cmp(propertyIndex, 0) < 0) || (_elm_lang$core$Native_Utils.cmp(
 					propertyIndex,
 					_elm_lang$core$List$length(_jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties)) > -1)) ? _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title : A2(
 					_elm_lang$core$Basics_ops['++'],
@@ -31710,7 +32076,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport = functio
 						return A4(
 							_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 							page,
-							slideTitle,
+							heading,
 							'Strong Typing Score Card',
 							A2(
 								_rtfeldman$elm_css$Html_Styled$div,
@@ -31804,13 +32170,13 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport = functio
 															A2(_elm_lang$core$List$range, 0, _jackgene$live_deck$Deck_Slide_TypeSystemProperties$numTypeSystemProperties)),
 														A2(
 															_elm_lang$core$List$map,
-															function (_p30) {
-																var _p31 = _p30;
-																var _p34 = _p31._0;
-																var _p33 = _p31._1;
+															function (_p42) {
+																var _p43 = _p42;
+																var _p46 = _p43._0;
+																var _p45 = _p43._1;
 																var score = function () {
-																	var _p32 = model.currentSlide;
-																	return _elm_lang$core$Native_Utils.eq(_p32._0.animationFrames, 0) ? _p33.current : _p33.previous;
+																	var _p44 = model.currentSlide;
+																	return _elm_lang$core$Native_Utils.eq(_p44._0.animationFrames, 0) ? _p45.current : _p45.previous;
 																}();
 																return A2(
 																	_rtfeldman$elm_css$Html_Styled$div,
@@ -31879,8 +32245,8 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport = functio
 																				ctor: '::',
 																				_0: A2(
 																					_elm_lang$core$Maybe$withDefault,
-																					_rtfeldman$elm_css$Html_Styled$text(_p34),
-																					A2(_elm_lang$core$Dict$get, _p34, _jackgene$live_deck$Deck_Slide_Graphics$logosByLanguage)),
+																					_rtfeldman$elm_css$Html_Styled$text(_p46),
+																					A2(_elm_lang$core$Dict$get, _p46, _jackgene$live_deck$Deck_Slide_Graphics$logosByLanguage)),
 																				_1: {ctor: '[]'}
 																			}),
 																		_1: {
@@ -32045,9 +32411,9 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$CumulativeScore = F2(
 	function (a, b) {
 		return {previous: a, current: b};
 	});
-var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$TypeSystemProperty = F2(
-	function (a, b) {
-		return {name: a, cumulativeScores: b};
+var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$TypeSystemProperty = F4(
+	function (a, b, c, d) {
+		return {name: a, problem: b, individualScores: c, cumulativeScores: d};
 	});
 var _jackgene$live_deck$SyntaxHighlight_Model$Line = F3(
 	function (a, b, c) {
@@ -47576,11 +47942,31 @@ var _jackgene$live_deck$Deck_Slide$slidesList = A2(
 																																																																																																																																																						_0: _jackgene$live_deck$Deck_Slide_SectionCover$conclusion,
 																																																																																																																																																						_1: {
 																																																																																																																																																							ctor: '::',
-																																																																																																																																																							_0: _jackgene$live_deck$Deck_Slide_SectionCover$questions,
+																																																																																																																																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport('Go'),
 																																																																																																																																																							_1: {
 																																																																																																																																																								ctor: '::',
-																																																																																																																																																								_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide,
-																																																																																																																																																								_1: {ctor: '[]'}
+																																																																																																																																																								_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport('Python'),
+																																																																																																																																																								_1: {
+																																																																																																																																																									ctor: '::',
+																																																																																																																																																									_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport('TypeScript'),
+																																																																																																																																																									_1: {
+																																																																																																																																																										ctor: '::',
+																																																																																																																																																										_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport('Kotlin'),
+																																																																																																																																																										_1: {
+																																																																																																																																																											ctor: '::',
+																																																																																																																																																											_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$problemReport('Swift'),
+																																																																																																																																																											_1: {
+																																																																																																																																																												ctor: '::',
+																																																																																																																																																												_0: _jackgene$live_deck$Deck_Slide_SectionCover$questions,
+																																																																																																																																																												_1: {
+																																																																																																																																																													ctor: '::',
+																																																																																																																																																													_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide,
+																																																																																																																																																													_1: {ctor: '[]'}
+																																																																																																																																																												}
+																																																																																																																																																											}
+																																																																																																																																																										}
+																																																																																																																																																									}
+																																																																																																																																																								}
 																																																																																																																																																							}
 																																																																																																																																																						}
 																																																																																																																																																					}
@@ -48119,6 +48505,19 @@ var _jackgene$live_deck$Deck$main = A2(
 		},
 		subscriptions: _jackgene$live_deck$Deck$subscriptions
 	})();
+var _jackgene$live_deck$Deck_Slide_Conclusion$slide = _elm_lang$core$Native_Utils.update(
+	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+	{
+		view: F2(
+			function (page, _p0) {
+				return A4(
+					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+					page,
+					'Audience Questions',
+					'Questions and Maybe Answers',
+					_rtfeldman$elm_css$Html_Styled$text(''));
+			})
+	});
 var _jackgene$live_deck$Deck_Slide_MemorySafety$title = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$title, ': Memory Safety');
 var _jackgene$live_deck$Deck_Slide_MemorySafety$slide = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
@@ -49100,6 +49499,12 @@ Elm['Deck']['Slide'] = Elm['Deck']['Slide'] || {};
 Elm['Deck']['Slide']['Common'] = Elm['Deck']['Slide']['Common'] || {};
 if (typeof _jackgene$live_deck$Deck_Slide_Common$main !== 'undefined') {
     _jackgene$live_deck$Deck_Slide_Common$main(Elm['Deck']['Slide']['Common'], 'Deck.Slide.Common', {"types":null,"versions":{"elm":"0.18.0"}});
+}
+Elm['Deck'] = Elm['Deck'] || {};
+Elm['Deck']['Slide'] = Elm['Deck']['Slide'] || {};
+Elm['Deck']['Slide']['Conclusion'] = Elm['Deck']['Slide']['Conclusion'] || {};
+if (typeof _jackgene$live_deck$Deck_Slide_Conclusion$main !== 'undefined') {
+    _jackgene$live_deck$Deck_Slide_Conclusion$main(Elm['Deck']['Slide']['Conclusion'], 'Deck.Slide.Conclusion', {"types":null,"versions":{"elm":"0.18.0"}});
 }
 Elm['Deck'] = Elm['Deck'] || {};
 Elm['Deck']['Slide'] = Elm['Deck']['Slide'] || {};
