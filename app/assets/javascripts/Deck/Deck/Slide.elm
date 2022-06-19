@@ -31,6 +31,7 @@ import Deck.Slide.SafeArrayAccess as SafeArrayAccess
 import Deck.Slide.ExhaustivenessChecking as ExhaustivenessChecking
 import Deck.Slide.Immutability as Immutability
 import Deck.Slide.Encapsulation as Encapsulation
+import Deck.Slide.Conclusion as Conclusion
 import Html.Styled exposing (Html, div, node, text)
 import Html.Styled.Attributes exposing (css, type_)
 
@@ -202,14 +203,20 @@ slidesList =
   , Immutability.safeKotlin
   , Immutability.safeSwift
   , TypeSystemProperties.languageReport 7
+
+  -- Conclusion
   , SectionCover.conclusion
-  -- TODO strong typing + unit testing
-  -- TODO pie charts of languages, and errors prevented
   , TypeSystemProperties.errorPreventionReport "Go"
   , TypeSystemProperties.errorPreventionReport "Python"
   , TypeSystemProperties.errorPreventionReport "TypeScript"
   , TypeSystemProperties.errorPreventionReport "Kotlin"
   , TypeSystemProperties.errorPreventionReport "Swift"
+  , Conclusion.introduction
+  , Conclusion.enableStricterTypeChecking
+  , Conclusion.codeGeneration
+  , Conclusion.preCompileChecks
+  , Conclusion.testing
+
   -- Q & A
   , SectionCover.questions
   , QuestionAnswer.slide
@@ -273,7 +280,7 @@ slideFromLocationHash hash =
   ( Maybe.andThen
     ( \parsedIndex -> Array.get (withinIndexRange slides parsedIndex) slides )
     ( Result.toMaybe
-      ( String.toInt ( String.dropLeft 7 hash ) )
+      ( String.toInt (String.dropLeft 7 hash) )
     )
   )
 

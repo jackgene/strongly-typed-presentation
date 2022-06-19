@@ -508,7 +508,7 @@ errorPreventionReport language =
     ( \page _ ->
       let
         languageHeading : String
-        languageHeading = "Type System Strength: " ++ language
+        languageHeading = "Strong Typing & Quality Software"
 
         subheading : String
         subheading = "Errors Prevented by the " ++ language ++ " Type System"

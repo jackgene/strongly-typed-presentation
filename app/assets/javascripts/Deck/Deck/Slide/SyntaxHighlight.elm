@@ -22,7 +22,7 @@ import Deck.Slide.Graphics exposing
 import Dict exposing (Dict)
 import Html.Styled exposing (Attribute, Html, div, text)
 import Parser
-import Svg.Styled exposing (Svg)
+import Svg.Styled exposing (Svg, svg)
 import Svg.Styled.Attributes exposing (css)
 import SyntaxHighlight
 import SyntaxHighlight.Language as Language
@@ -78,7 +78,7 @@ type alias CodeBlockError msg =
   }
 
 
-type Language = Go | Kotlin | Python | Swift | TypeScript
+type Language = Go | Kotlin | Python | Swift | TypeScript | XML
 
 
 -- Functions
@@ -94,6 +94,7 @@ syntaxHighlightedCodeBlock language lineEmphases columnEmphases errors source =
           Python -> Language.python
           Swift -> Language.swift
           TypeScript -> Language.typeScript
+          XML -> Language.xml
     in
     Result.map
     ( \block ->
@@ -133,6 +134,7 @@ syntaxHighlightedCodeBlock language lineEmphases columnEmphases errors source =
             Python -> languagePythonLogo
             Swift -> languageSwiftLogo
             TypeScript -> languageTypeScriptLogo
+            XML -> svg [] []
       in
       div
       [ css [ position relative, marginTop (em -0.75), fontSize (vw codeFontSizeVw) ] ]
@@ -185,6 +187,7 @@ syntaxHighlightedCodeSnippet language source =
           Python -> Language.python
           Swift -> Language.swift
           TypeScript -> Language.typeScript
+          XML -> Language.xml
     in
     Result.map
     ( \block ->

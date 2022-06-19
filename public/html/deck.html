@@ -31419,7 +31419,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport = 
 						_elm_lang$core$Basics_ops['++'],
 						'Errors Prevented by the ',
 						A2(_elm_lang$core$Basics_ops['++'], language, ' Type System'));
-					var languageHeading = A2(_elm_lang$core$Basics_ops['++'], 'Type System Strength: ', language);
+					var languageHeading = 'Strong Typing & Quality Software';
 					return A4(
 						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
 						page,
@@ -37239,12 +37239,8 @@ var _jackgene$live_deck$SyntaxHighlight_Language_Swift$swift = {
 	typeCheckCastOperator: _elm_tools$parser$Parser$oneOf(
 		{
 			ctor: '::',
-			_0: _elm_tools$parser$Parser$keyword('as?'),
-			_1: {
-				ctor: '::',
-				_0: _elm_tools$parser$Parser$keyword('as!'),
-				_1: {ctor: '[]'}
-			}
+			_0: _elm_tools$parser$Parser$keyword('as'),
+			_1: {ctor: '[]'}
 		}),
 	typeCheckCastKeywords: _elm_lang$core$Set$fromList(
 		{
@@ -38186,8 +38182,10 @@ var _jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet 
 							return _jackgene$live_deck$SyntaxHighlight_Language$python;
 						case 'Swift':
 							return _jackgene$live_deck$SyntaxHighlight_Language$swift;
-						default:
+						case 'TypeScript':
 							return _jackgene$live_deck$SyntaxHighlight_Language$typeScript;
+						default:
+							return _jackgene$live_deck$SyntaxHighlight_Language$xml;
 					}
 				}();
 				return A2(
@@ -38213,6 +38211,7 @@ var _jackgene$live_deck$Deck_Slide_SyntaxHighlight$CodeBlockError = F3(
 	function (a, b, c) {
 		return {line: a, column: b, content: c};
 	});
+var _jackgene$live_deck$Deck_Slide_SyntaxHighlight$XML = {ctor: 'XML'};
 var _jackgene$live_deck$Deck_Slide_SyntaxHighlight$TypeScript = {ctor: 'TypeScript'};
 var _jackgene$live_deck$Deck_Slide_SyntaxHighlight$Swift = {ctor: 'Swift'};
 var _jackgene$live_deck$Deck_Slide_SyntaxHighlight$Python = {ctor: 'Python'};
@@ -38235,8 +38234,10 @@ var _jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock = 
 							return _jackgene$live_deck$SyntaxHighlight_Language$python;
 						case 'Swift':
 							return _jackgene$live_deck$SyntaxHighlight_Language$swift;
-						default:
+						case 'TypeScript':
 							return _jackgene$live_deck$SyntaxHighlight_Language$typeScript;
+						default:
+							return _jackgene$live_deck$SyntaxHighlight_Language$xml;
 					}
 				}();
 				return A2(
@@ -38253,8 +38254,13 @@ var _jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock = 
 									return _jackgene$live_deck$Deck_Slide_Graphics$languagePythonLogo;
 								case 'Swift':
 									return _jackgene$live_deck$Deck_Slide_Graphics$languageSwiftLogo;
-								default:
+								case 'TypeScript':
 									return _jackgene$live_deck$Deck_Slide_Graphics$languageTypeScriptLogo;
+								default:
+									return A2(
+										_rtfeldman$elm_css$Svg_Styled$svg,
+										{ctor: '[]'},
+										{ctor: '[]'});
 							}
 						}();
 						var codeFontSizeVw = 1.935;
@@ -47296,6 +47302,483 @@ var _jackgene$live_deck$Deck_Slide_Encapsulation$safeSwift = function () {
 				})
 		});
 }();
+var _jackgene$live_deck$Deck_Slide_Conclusion$heading = 'Strong Typing & Quality Software';
+var _jackgene$live_deck$Deck_Slide_Conclusion$introduction = _elm_lang$core$Native_Utils.update(
+	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+	{
+		view: F2(
+			function (page, _p0) {
+				return A4(
+					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+					page,
+					_jackgene$live_deck$Deck_Slide_Conclusion$heading,
+					'Alternate Ways To Prevent Runtime Errors',
+					A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$ul,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: A2(
+										_jackgene$live_deck$Deck_Slide_Common$li,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled$text('Enable Stricter Type Checking'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_jackgene$live_deck$Deck_Slide_Common$li,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text('Use Code Generation'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_jackgene$live_deck$Deck_Slide_Common$li,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled$text('Additional Pre-compile Checks'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_jackgene$live_deck$Deck_Slide_Common$li,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled$text('Automated Testing'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}),
+							_1: {ctor: '[]'}
+						}));
+			})
+	});
+var _jackgene$live_deck$Deck_Slide_Conclusion$enableStricterTypeChecking = _elm_lang$core$Native_Utils.update(
+	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+	{
+		view: F2(
+			function (page, _p1) {
+				return A4(
+					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+					page,
+					_jackgene$live_deck$Deck_Slide_Conclusion$heading,
+					'Enable Stricter Type Checking',
+					A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$p,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled$text('Simplest solution: Have the compiler perform stricter type checks:'),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$ul,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: A2(
+													_jackgene$live_deck$Deck_Slide_Common$li,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: A2(
+															_rtfeldman$elm_css$Html_Styled$b,
+															{ctor: '[]'},
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled$text('Python'),
+																_1: {ctor: '[]'}
+															}),
+														_1: {
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled$text(' - Different type checkers take different flags: '),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_rtfeldman$elm_css$Html_Styled$ul,
+																	{ctor: '[]'},
+																	{
+																		ctor: '::',
+																		_0: A2(
+																			_jackgene$live_deck$Deck_Slide_Common$li,
+																			{ctor: '[]'},
+																			{
+																				ctor: '::',
+																				_0: _rtfeldman$elm_css$Html_Styled$text('mypy: '),
+																				_1: {
+																					ctor: '::',
+																					_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$XML, '--disallow-any-generics --disallow-untyped-calls ...'),
+																					_1: {ctor: '[]'}
+																				}
+																			}),
+																		_1: {
+																			ctor: '::',
+																			_0: A2(
+																				_jackgene$live_deck$Deck_Slide_Common$li,
+																				{ctor: '[]'},
+																				{
+																					ctor: '::',
+																					_0: _rtfeldman$elm_css$Html_Styled$text('Pyre: '),
+																					_1: {
+																						ctor: '::',
+																						_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$XML, '--strict'),
+																						_1: {ctor: '[]'}
+																					}
+																				}),
+																			_1: {
+																				ctor: '::',
+																				_0: A2(
+																					_jackgene$live_deck$Deck_Slide_Common$li,
+																					{ctor: '[]'},
+																					{
+																						ctor: '::',
+																						_0: _rtfeldman$elm_css$Html_Styled$text('Pyright: '),
+																						_1: {
+																							ctor: '::',
+																							_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$TypeScript, ' \"typeCheckingMode\": \"strict\" '),
+																							_1: {
+																								ctor: '::',
+																								_0: _rtfeldman$elm_css$Html_Styled$text(' in '),
+																								_1: {
+																									ctor: '::',
+																									_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$XML, 'pyrightconfig.json'),
+																									_1: {ctor: '[]'}
+																								}
+																							}
+																						}
+																					}),
+																				_1: {ctor: '[]'}
+																			}
+																		}
+																	}),
+																_1: {ctor: '[]'}
+															}
+														}
+													}),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_jackgene$live_deck$Deck_Slide_Common$li,
+														{ctor: '[]'},
+														{
+															ctor: '::',
+															_0: A2(
+																_rtfeldman$elm_css$Html_Styled$b,
+																{ctor: '[]'},
+																{
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Html_Styled$text('TypeScript'),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled$text(' - '),
+																_1: {
+																	ctor: '::',
+																	_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$XML, 'tsc --strict --noUncheckedIndexedAccess'),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}),
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {ctor: '[]'}
+						}));
+			})
+	});
+var _jackgene$live_deck$Deck_Slide_Conclusion$codeGeneration = _elm_lang$core$Native_Utils.update(
+	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+	{
+		view: F2(
+			function (page, _p2) {
+				return A4(
+					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+					page,
+					_jackgene$live_deck$Deck_Slide_Conclusion$heading,
+					'Use Code Generation',
+					A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$p,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled$text('Mainly for Go, using '),
+									_1: {
+										ctor: '::',
+										_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$XML, 'go generate'),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled$text('.'),
+											_1: {ctor: '[]'}
+										}
+									}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('The Stringer tool ('),
+										_1: {
+											ctor: '::',
+											_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$XML, 'golang.org/x/tools/cmd/stringer'),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text(') generates the following function that forces a compile error should the original source change:'),
+												_1: {ctor: '[]'}
+											}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A5(
+										_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeBlock,
+										_jackgene$live_deck$Deck_Slide_SyntaxHighlight$Go,
+										_elm_lang$core$Dict$empty,
+										_elm_lang$core$Dict$empty,
+										{ctor: '[]'},
+										'\nfunc _() {\n    // An \"invalid array index\" compiler error signifies that the\n    // constant values have changed.\n    // Re-run the stringer command to generate them again.\n    var x [1]struct{}\n    _ = x[Active-0]\n    _ = x[Inactive-1]\n}\n'),
+									_1: {ctor: '[]'}
+								}
+							}
+						}));
+			})
+	});
+var _jackgene$live_deck$Deck_Slide_Conclusion$preCompileChecks = _elm_lang$core$Native_Utils.update(
+	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+	{
+		view: F2(
+			function (page, _p3) {
+				return A4(
+					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+					page,
+					_jackgene$live_deck$Deck_Slide_Conclusion$heading,
+					'Additional Pre-compile Checks',
+					A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$p,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled$text('Linters and additional type checkers augments the type system:'),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$ul,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: A2(
+													_jackgene$live_deck$Deck_Slide_Common$li,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled$text('golangci-lint (github.com/golangci/golangci-lint) highlights such issues as unhandled errors'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_jackgene$live_deck$Deck_Slide_Common$li,
+														{ctor: '[]'},
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled$text('go-sumtype (github.com/BurntSushi/go-sumtype) adds exhaustiveness checking'),
+															_1: {ctor: '[]'}
+														}),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_jackgene$live_deck$Deck_Slide_Common$li,
+															{ctor: '[]'},
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled$text('TypeScript ESLint’s '),
+																_1: {
+																	ctor: '::',
+																	_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$XML, 'no-explicit-any'),
+																	_1: {
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Html_Styled$text(' rule disallows the use of '),
+																		_1: {
+																			ctor: '::',
+																			_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$TypeScript, 'any'),
+																			_1: {ctor: '[]'}
+																		}
+																	}
+																}
+															}),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_jackgene$live_deck$Deck_Slide_Common$li,
+																{ctor: '[]'},
+																{
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Html_Styled$text('SwiftLint can disallow “force” operators: '),
+																	_1: {
+																		ctor: '::',
+																		_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$Swift, 'as!'),
+																		_1: {
+																			ctor: '::',
+																			_0: _rtfeldman$elm_css$Html_Styled$text(', '),
+																			_1: {
+																				ctor: '::',
+																				_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$Swift, 'try!'),
+																				_1: {
+																					ctor: '::',
+																					_0: _rtfeldman$elm_css$Html_Styled$text(', and unsafe unwraps'),
+																					_1: {ctor: '[]'}
+																				}
+																			}
+																		}
+																	}
+																}),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_jackgene$live_deck$Deck_Slide_Common$li,
+																	{ctor: '[]'},
+																	{
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Html_Styled$text('Static analysis tools find potential sources of bugs'),
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {ctor: '[]'}
+						}));
+			})
+	});
+var _jackgene$live_deck$Deck_Slide_Conclusion$testing = _elm_lang$core$Native_Utils.update(
+	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+	{
+		view: F2(
+			function (page, _p4) {
+				return A4(
+					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+					page,
+					_jackgene$live_deck$Deck_Slide_Conclusion$heading,
+					'Automated Testing',
+					A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$p,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled$text('The canonical way to find bugs before running a program.'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$p,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('Picks up where the type checker leaves off:'),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_rtfeldman$elm_css$Html_Styled$ul,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: A2(
+														_jackgene$live_deck$Deck_Slide_Common$li,
+														{ctor: '[]'},
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled$text('Always test '),
+															_1: {
+																ctor: '::',
+																_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$Go, 'nil'),
+																_1: {
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Html_Styled$text(' input to Go functions that take pointer parameters'),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_jackgene$live_deck$Deck_Slide_Common$li,
+															{ctor: '[]'},
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled$text('Always mock error conditions in dependencies, and verify that code under test handles them correctly'),
+																_1: {ctor: '[]'}
+															}),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_jackgene$live_deck$Deck_Slide_Common$li,
+																{ctor: '[]'},
+																{
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Html_Styled$text('Fuzz and property-based testing probabilitically catches corner case errors'),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {ctor: '[]'}
+														}
+													}
+												}),
+											_1: {ctor: '[]'}
+										}
+									}),
+								_1: {ctor: '[]'}
+							}
+						}));
+			})
+	});
 var _jackgene$live_deck$Deck_Slide$slideView = F2(
 	function (model, slide) {
 		return A2(
@@ -47957,11 +48440,31 @@ var _jackgene$live_deck$Deck_Slide$slidesList = A2(
 																																																																																																																																																											_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport('Swift'),
 																																																																																																																																																											_1: {
 																																																																																																																																																												ctor: '::',
-																																																																																																																																																												_0: _jackgene$live_deck$Deck_Slide_SectionCover$questions,
+																																																																																																																																																												_0: _jackgene$live_deck$Deck_Slide_Conclusion$introduction,
 																																																																																																																																																												_1: {
 																																																																																																																																																													ctor: '::',
-																																																																																																																																																													_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide,
-																																																																																																																																																													_1: {ctor: '[]'}
+																																																																																																																																																													_0: _jackgene$live_deck$Deck_Slide_Conclusion$enableStricterTypeChecking,
+																																																																																																																																																													_1: {
+																																																																																																																																																														ctor: '::',
+																																																																																																																																																														_0: _jackgene$live_deck$Deck_Slide_Conclusion$codeGeneration,
+																																																																																																																																																														_1: {
+																																																																																																																																																															ctor: '::',
+																																																																																																																																																															_0: _jackgene$live_deck$Deck_Slide_Conclusion$preCompileChecks,
+																																																																																																																																																															_1: {
+																																																																																																																																																																ctor: '::',
+																																																																																																																																																																_0: _jackgene$live_deck$Deck_Slide_Conclusion$testing,
+																																																																																																																																																																_1: {
+																																																																																																																																																																	ctor: '::',
+																																																																																																																																																																	_0: _jackgene$live_deck$Deck_Slide_SectionCover$questions,
+																																																																																																																																																																	_1: {
+																																																																																																																																																																		ctor: '::',
+																																																																																																																																																																		_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide,
+																																																																																																																																																																		_1: {ctor: '[]'}
+																																																																																																																																																																	}
+																																																																																																																																																																}
+																																																																																																																																																															}
+																																																																																																																																																														}
+																																																																																																																																																													}
 																																																																																																																																																												}
 																																																																																																																																																											}
 																																																																																																																																																										}
@@ -48505,59 +49008,6 @@ var _jackgene$live_deck$Deck$main = A2(
 		},
 		subscriptions: _jackgene$live_deck$Deck$subscriptions
 	})();
-var _jackgene$live_deck$Deck_Slide_Conclusion$testing = _elm_lang$core$Native_Utils.update(
-	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
-	{
-		view: F2(
-			function (page, _p0) {
-				return A4(
-					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
-					page,
-					'Audience Questions',
-					'Questions and Maybe Answers',
-					_rtfeldman$elm_css$Html_Styled$text(''));
-			})
-	});
-var _jackgene$live_deck$Deck_Slide_Conclusion$preCompileChecks = _elm_lang$core$Native_Utils.update(
-	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
-	{
-		view: F2(
-			function (page, _p1) {
-				return A4(
-					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
-					page,
-					'Audience Questions',
-					'Questions and Maybe Answers',
-					_rtfeldman$elm_css$Html_Styled$text(''));
-			})
-	});
-var _jackgene$live_deck$Deck_Slide_Conclusion$codeGeneration = _elm_lang$core$Native_Utils.update(
-	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
-	{
-		view: F2(
-			function (page, _p2) {
-				return A4(
-					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
-					page,
-					'Audience Questions',
-					'Questions and Maybe Answers',
-					_rtfeldman$elm_css$Html_Styled$text(''));
-			})
-	});
-var _jackgene$live_deck$Deck_Slide_Conclusion$heading = 'Strong Typing & Quality Software';
-var _jackgene$live_deck$Deck_Slide_Conclusion$introduction = _elm_lang$core$Native_Utils.update(
-	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
-	{
-		view: F2(
-			function (page, _p3) {
-				return A4(
-					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
-					page,
-					_jackgene$live_deck$Deck_Slide_Conclusion$heading,
-					'Questions and Maybe Answers',
-					_rtfeldman$elm_css$Html_Styled$text(''));
-			})
-	});
 var _jackgene$live_deck$Deck_Slide_MemorySafety$heading = A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide_TypeSystemProperties$heading, ': Memory Safety');
 var _jackgene$live_deck$Deck_Slide_MemorySafety$slide = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
