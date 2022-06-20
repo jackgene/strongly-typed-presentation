@@ -30,3 +30,10 @@ questions =
   { baseSlideModel
   | view = ( \_ _ -> sectionCoverSlideView 4 "Audience Questions" )
   }
+
+
+thankYou : UnindexedSlideModel
+thankYou =
+  { baseSlideModel
+  | view = ( \_ _ -> sectionCoverSlideView 5 "Thank You" )
+  }
