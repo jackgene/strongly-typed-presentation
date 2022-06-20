@@ -116,7 +116,7 @@ preCompileChecks =
       "Additional Pre-compile Checks"
       ( div []
         [ p []
-          [ text "Linters and additional type checkers augments the type system:"
+          [ text "Linters and additional type checkers augment the type system:"
           , ul []
             [ li []
               [ text "golangci-lint (github.com/golangci/golangci-lint) highlights such issues as unhandled errors"
@@ -165,7 +165,7 @@ testing =
             , li []
               [ text "Always mock error conditions in dependencies, and verify that code under test handles them correctly" ]
             , li []
-              [ text "Fuzz and property-based testing probabilitically catches corner case errors" ]
+              [ text "Fuzz and property-based testing probabilistically catch corner case errors" ]
             ]
           ]
         ]
