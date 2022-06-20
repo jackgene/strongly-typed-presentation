@@ -5,6 +5,11 @@ import Html.Styled exposing (Html)
 import Navigation exposing (Location)
 
 
+-- Constants
+typingSpeedMultiplier : Int
+typingSpeedMultiplier = 3
+
+
 -- Messages
 type Msg
   = Next

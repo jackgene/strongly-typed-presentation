@@ -1,4 +1,4 @@
-module Deck.Slide exposing (activeNavigationOf, slideFromLocationHash, slideView)
+module Deck.Slide exposing (activeNavigationOf, slideFromLocationHash, slideView, firstQuestionIndex)
 
 import Array exposing (Array)
 import Css exposing
@@ -49,9 +49,8 @@ indexSlide index unindexedSlide =
   }
 
 
-slidesList : List Slide
-slidesList =
-  List.indexedMap indexSlide
+preQuestionSlides : List UnindexedSlideModel
+preQuestionSlides =
   [ Cover.cover
   , AudiencePoll.poll, AudiencePoll.jsVsTs
 
@@ -219,7 +218,12 @@ slidesList =
 
   -- Q & A
   , SectionCover.questions
-  , QuestionAnswer.slide 0
+  ]
+
+
+questionSlides : List UnindexedSlideModel
+questionSlides =
+  [ QuestionAnswer.slide 0
   , QuestionAnswer.slide 1
   , QuestionAnswer.slide 2
   , QuestionAnswer.slide 3
@@ -233,6 +237,11 @@ slidesList =
   -- Thank you
   , SectionCover.thankYou
   ]
+
+
+slidesList : List Slide
+slidesList =
+  List.indexedMap indexSlide (preQuestionSlides ++ questionSlides)
 
 
 slides : Array Slide
@@ -295,6 +304,10 @@ slideFromLocationHash hash =
       ( String.toInt (String.dropLeft 7 hash) )
     )
   )
+
+
+firstQuestionIndex : Int
+firstQuestionIndex = List.length preQuestionSlides
 
 
 -- View

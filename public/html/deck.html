@@ -19924,6 +19924,7 @@ var _rtfeldman$elm_css$Html_Styled$details = _rtfeldman$elm_css$Html_Styled$node
 var _rtfeldman$elm_css$Html_Styled$summary = _rtfeldman$elm_css$Html_Styled$node('summary');
 var _rtfeldman$elm_css$Html_Styled$menuitem = _rtfeldman$elm_css$Html_Styled$node('menuitem');
 var _rtfeldman$elm_css$Html_Styled$menu = _rtfeldman$elm_css$Html_Styled$node('menu');
+var _jackgene$live_deck$Deck_Common$typingSpeedMultiplier = 3;
 var _jackgene$live_deck$Deck_Common$SlideModel = F6(
 	function (a, b, c, d, e, f) {
 		return {active: a, update: b, view: c, index: d, eventsWsPath: e, animationFrames: f};
@@ -28358,7 +28359,6 @@ var _jackgene$live_deck$Deck_Slide_Template$sectionCoverSlideView = F2(
 				}
 			});
 	});
-var _jackgene$live_deck$Deck_Slide_QuestionAnswer$typingSpeedMultiplier = 3;
 var _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide = function (index) {
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
@@ -28377,7 +28377,7 @@ var _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide = function (index) {
 					A2(
 						_elm_lang$core$Maybe$map,
 						function (question) {
-							return _elm_lang$core$String$length(question) * _jackgene$live_deck$Deck_Slide_QuestionAnswer$typingSpeedMultiplier;
+							return _elm_lang$core$String$length(question) * _jackgene$live_deck$Deck_Common$typingSpeedMultiplier;
 						},
 						A2(_elm_lang$core$Array$get, index, _p3.questions)));
 			},
@@ -28431,7 +28431,11 @@ var _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide = function (index) {
 													ctor: '::',
 													_0: _rtfeldman$elm_css$Css$fontSize(
 														_rtfeldman$elm_css$Css$vw(4)),
-													_1: {ctor: '[]'}
+													_1: {
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$center),
+														_1: {ctor: '[]'}
+													}
 												}
 											}),
 										_1: {ctor: '[]'}
@@ -28442,7 +28446,7 @@ var _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide = function (index) {
 											var _p4 = A2(_elm_lang$core$Array$get, index, model.questions);
 											if (_p4.ctor === 'Just') {
 												return _rtfeldman$elm_css$Html_Styled$text(
-													A2(_elm_lang$core$String$dropRight, (model.animationFramesRemaining / _jackgene$live_deck$Deck_Slide_QuestionAnswer$typingSpeedMultiplier) | 0, _p4._0));
+													A2(_elm_lang$core$String$dropRight, (model.animationFramesRemaining / _jackgene$live_deck$Deck_Common$typingSpeedMultiplier) | 0, _p4._0));
 											} else {
 												return A2(
 													_rtfeldman$elm_css$Html_Styled$input,
@@ -28490,7 +28494,8 @@ var _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide = function (index) {
 									}),
 								_1: {ctor: '[]'}
 							}));
-				})
+				}),
+			eventsWsPath: _elm_lang$core$Maybe$Just('question')
 		});
 };
 var _jackgene$live_deck$Deck_Slide_Cover$cover = _elm_lang$core$Native_Utils.update(
@@ -48080,555 +48085,540 @@ var _jackgene$live_deck$Deck_Slide$withinIndexRange = F2(
 			_elm_lang$core$Array$length(slides) - 1,
 			A2(_elm_lang$core$Basics$max, 0, desiredIndex));
 	});
-var _jackgene$live_deck$Deck_Slide$indexSlide = F2(
-	function (index, unindexedSlide) {
-		return _jackgene$live_deck$Deck_Common$Slide(
-			{
-				active: unindexedSlide.active,
-				update: unindexedSlide.update,
-				view: unindexedSlide.view(index),
-				index: index,
-				eventsWsPath: unindexedSlide.eventsWsPath,
-				animationFrames: unindexedSlide.animationFrames
-			});
-	});
-var _jackgene$live_deck$Deck_Slide$slidesList = A2(
-	_elm_lang$core$List$indexedMap,
-	_jackgene$live_deck$Deck_Slide$indexSlide,
-	{
+var _jackgene$live_deck$Deck_Slide$questionSlides = {
+	ctor: '::',
+	_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(0),
+	_1: {
 		ctor: '::',
-		_0: _jackgene$live_deck$Deck_Slide_Cover$cover,
+		_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(1),
 		_1: {
 			ctor: '::',
-			_0: _jackgene$live_deck$Deck_Slide_AudiencePoll$poll,
+			_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(2),
 			_1: {
 				ctor: '::',
-				_0: _jackgene$live_deck$Deck_Slide_AudiencePoll$jsVsTs,
+				_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(3),
 				_1: {
 					ctor: '::',
-					_0: _jackgene$live_deck$Deck_Slide_SectionCover$introduction,
+					_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(4),
 					_1: {
 						ctor: '::',
-						_0: _jackgene$live_deck$Deck_Slide_Introduction$wikipediaDefinitions,
+						_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(5),
 						_1: {
 							ctor: '::',
-							_0: _jackgene$live_deck$Deck_Slide_Introduction$typefulDefinitions,
+							_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(6),
 							_1: {
 								ctor: '::',
-								_0: _jackgene$live_deck$Deck_Slide_Introduction$ourDefinition,
+								_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(7),
 								_1: {
 									ctor: '::',
-									_0: _jackgene$live_deck$Deck_Slide_Introduction$outOfScope,
+									_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(8),
 									_1: {
 										ctor: '::',
-										_0: _jackgene$live_deck$Deck_Slide_Introduction$inScope,
+										_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(9),
 										_1: {
 											ctor: '::',
-											_0: _jackgene$live_deck$Deck_Slide_SectionCover$typeSystemProperties,
+											_0: _jackgene$live_deck$Deck_Slide_SectionCover$thankYou,
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _jackgene$live_deck$Deck_Slide$preQuestionSlides = {
+	ctor: '::',
+	_0: _jackgene$live_deck$Deck_Slide_Cover$cover,
+	_1: {
+		ctor: '::',
+		_0: _jackgene$live_deck$Deck_Slide_AudiencePoll$poll,
+		_1: {
+			ctor: '::',
+			_0: _jackgene$live_deck$Deck_Slide_AudiencePoll$jsVsTs,
+			_1: {
+				ctor: '::',
+				_0: _jackgene$live_deck$Deck_Slide_SectionCover$introduction,
+				_1: {
+					ctor: '::',
+					_0: _jackgene$live_deck$Deck_Slide_Introduction$wikipediaDefinitions,
+					_1: {
+						ctor: '::',
+						_0: _jackgene$live_deck$Deck_Slide_Introduction$typefulDefinitions,
+						_1: {
+							ctor: '::',
+							_0: _jackgene$live_deck$Deck_Slide_Introduction$ourDefinition,
+							_1: {
+								ctor: '::',
+								_0: _jackgene$live_deck$Deck_Slide_Introduction$outOfScope,
+								_1: {
+									ctor: '::',
+									_0: _jackgene$live_deck$Deck_Slide_Introduction$inScope,
+									_1: {
+										ctor: '::',
+										_0: _jackgene$live_deck$Deck_Slide_SectionCover$typeSystemProperties,
+										_1: {
+											ctor: '::',
+											_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(_elm_lang$core$Maybe$Nothing),
 											_1: {
 												ctor: '::',
-												_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(_elm_lang$core$Maybe$Nothing),
+												_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$methodology,
 												_1: {
 													ctor: '::',
-													_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$methodology,
+													_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+														_elm_lang$core$Maybe$Just(0)),
 													_1: {
 														ctor: '::',
-														_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-															_elm_lang$core$Maybe$Just(0)),
+														_0: _jackgene$live_deck$Deck_Slide_TypeSafety$introduction,
 														_1: {
 															ctor: '::',
-															_0: _jackgene$live_deck$Deck_Slide_TypeSafety$introduction,
+															_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeGo,
 															_1: {
 																ctor: '::',
-																_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeGo,
+																_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeGo,
 																_1: {
 																	ctor: '::',
-																	_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeGo,
+																	_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidUnsafeGo,
 																	_1: {
 																		ctor: '::',
-																		_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidUnsafeGo,
+																		_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeGo,
 																		_1: {
 																			ctor: '::',
-																			_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeGo,
+																			_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safePython,
 																			_1: {
 																				ctor: '::',
-																				_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safePython,
+																				_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafePython,
 																				_1: {
 																					ctor: '::',
-																					_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafePython,
+																					_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePythonUnannotated,
 																					_1: {
 																						ctor: '::',
-																						_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePythonUnannotated,
+																						_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePythonRun,
 																						_1: {
 																							ctor: '::',
-																							_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafePythonRun,
+																							_0: _jackgene$live_deck$Deck_Slide_TypeSafety$pythonTypeHintUnannotated,
 																							_1: {
 																								ctor: '::',
-																								_0: _jackgene$live_deck$Deck_Slide_TypeSafety$pythonTypeHintUnannotated,
+																								_0: _jackgene$live_deck$Deck_Slide_TypeSafety$pythonTypeHintWrong,
 																								_1: {
 																									ctor: '::',
-																									_0: _jackgene$live_deck$Deck_Slide_TypeSafety$pythonTypeHintWrong,
+																									_0: _jackgene$live_deck$Deck_Slide_TypeSafety$pythonTypeHintWrongRun,
 																									_1: {
 																										ctor: '::',
-																										_0: _jackgene$live_deck$Deck_Slide_TypeSafety$pythonTypeHintWrongRun,
+																										_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeTypeScript,
 																										_1: {
 																											ctor: '::',
-																											_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeTypeScript,
+																											_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeTypeScript,
 																											_1: {
 																												ctor: '::',
-																												_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeTypeScript,
+																												_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeTypeScriptAny,
 																												_1: {
 																													ctor: '::',
-																													_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeTypeScriptAny,
+																													_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeTypeScriptUnannotated,
 																													_1: {
 																														ctor: '::',
-																														_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeTypeScriptUnannotated,
+																														_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeKotlin,
 																														_1: {
 																															ctor: '::',
-																															_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeKotlin,
+																															_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeKotlin,
 																															_1: {
 																																ctor: '::',
-																																_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeKotlin,
+																																_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidUnsafeKotlin,
 																																_1: {
 																																	ctor: '::',
-																																	_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidUnsafeKotlin,
+																																	_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeKotlin,
 																																	_1: {
 																																		ctor: '::',
-																																		_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeKotlin,
+																																		_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeSwift,
 																																		_1: {
 																																			ctor: '::',
-																																			_0: _jackgene$live_deck$Deck_Slide_TypeSafety$safeSwift,
+																																			_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeSwift,
 																																			_1: {
 																																				ctor: '::',
-																																				_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidSafeSwift,
+																																				_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidUnsafeSwift,
 																																				_1: {
 																																					ctor: '::',
-																																					_0: _jackgene$live_deck$Deck_Slide_TypeSafety$invalidUnsafeSwift,
+																																					_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeSwift,
 																																					_1: {
 																																						ctor: '::',
-																																						_0: _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeSwift,
+																																						_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(0),
 																																						_1: {
 																																							ctor: '::',
-																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(0),
+																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																								_elm_lang$core$Maybe$Just(1)),
 																																							_1: {
 																																								ctor: '::',
-																																								_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																									_elm_lang$core$Maybe$Just(1)),
+																																								_0: _jackgene$live_deck$Deck_Slide_NullSafety$introduction,
 																																								_1: {
 																																									ctor: '::',
-																																									_0: _jackgene$live_deck$Deck_Slide_NullSafety$introduction,
+																																									_0: _jackgene$live_deck$Deck_Slide_NullSafety$unsafeGo,
 																																									_1: {
 																																										ctor: '::',
-																																										_0: _jackgene$live_deck$Deck_Slide_NullSafety$unsafeGo,
+																																										_0: _jackgene$live_deck$Deck_Slide_NullSafety$unsafeGoRun,
 																																										_1: {
 																																											ctor: '::',
-																																											_0: _jackgene$live_deck$Deck_Slide_NullSafety$unsafeGoRun,
+																																											_0: _jackgene$live_deck$Deck_Slide_NullSafety$safePythonNonNull,
 																																											_1: {
 																																												ctor: '::',
-																																												_0: _jackgene$live_deck$Deck_Slide_NullSafety$safePythonNonNull,
+																																												_0: _jackgene$live_deck$Deck_Slide_NullSafety$safePythonNonNullInvalid,
 																																												_1: {
 																																													ctor: '::',
-																																													_0: _jackgene$live_deck$Deck_Slide_NullSafety$safePythonNonNullInvalid,
+																																													_0: _jackgene$live_deck$Deck_Slide_NullSafety$safePythonNullableInvalid,
 																																													_1: {
 																																														ctor: '::',
-																																														_0: _jackgene$live_deck$Deck_Slide_NullSafety$safePythonNullableInvalid,
+																																														_0: _jackgene$live_deck$Deck_Slide_NullSafety$safePythonNullable,
 																																														_1: {
 																																															ctor: '::',
-																																															_0: _jackgene$live_deck$Deck_Slide_NullSafety$safePythonNullable,
+																																															_0: _jackgene$live_deck$Deck_Slide_NullSafety$safeTypeScriptNonNullInvalid,
 																																															_1: {
 																																																ctor: '::',
-																																																_0: _jackgene$live_deck$Deck_Slide_NullSafety$safeTypeScriptNonNullInvalid,
+																																																_0: _jackgene$live_deck$Deck_Slide_NullSafety$safeTypeScriptNullableInvalid,
 																																																_1: {
 																																																	ctor: '::',
-																																																	_0: _jackgene$live_deck$Deck_Slide_NullSafety$safeTypeScriptNullableInvalid,
+																																																	_0: _jackgene$live_deck$Deck_Slide_NullSafety$safeTypeScriptNullable,
 																																																	_1: {
 																																																		ctor: '::',
-																																																		_0: _jackgene$live_deck$Deck_Slide_NullSafety$safeTypeScriptNullable,
+																																																		_0: _jackgene$live_deck$Deck_Slide_NullSafety$safeKotlinNullable,
 																																																		_1: {
 																																																			ctor: '::',
-																																																			_0: _jackgene$live_deck$Deck_Slide_NullSafety$safeKotlinNullable,
+																																																			_0: _jackgene$live_deck$Deck_Slide_NullSafety$unsafeKotlin,
 																																																			_1: {
 																																																				ctor: '::',
-																																																				_0: _jackgene$live_deck$Deck_Slide_NullSafety$unsafeKotlin,
+																																																				_0: _jackgene$live_deck$Deck_Slide_NullSafety$safeSwiftNullable,
 																																																				_1: {
 																																																					ctor: '::',
-																																																					_0: _jackgene$live_deck$Deck_Slide_NullSafety$safeSwiftNullable,
+																																																					_0: _jackgene$live_deck$Deck_Slide_NullSafety$safeSwiftNullableFun,
 																																																					_1: {
 																																																						ctor: '::',
-																																																						_0: _jackgene$live_deck$Deck_Slide_NullSafety$safeSwiftNullableFun,
+																																																						_0: _jackgene$live_deck$Deck_Slide_NullSafety$unsafeSwift,
 																																																						_1: {
 																																																							ctor: '::',
-																																																							_0: _jackgene$live_deck$Deck_Slide_NullSafety$unsafeSwift,
+																																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(1),
 																																																							_1: {
 																																																								ctor: '::',
-																																																								_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(1),
+																																																								_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																																									_elm_lang$core$Maybe$Just(2)),
 																																																								_1: {
 																																																									ctor: '::',
-																																																									_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																																										_elm_lang$core$Maybe$Just(2)),
+																																																									_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$introduction,
 																																																									_1: {
 																																																										ctor: '::',
-																																																										_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$introduction,
+																																																										_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeGo,
 																																																										_1: {
 																																																											ctor: '::',
-																																																											_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeGo,
+																																																											_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeGoRun,
 																																																											_1: {
 																																																												ctor: '::',
-																																																												_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeGoRun,
+																																																												_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafePython,
 																																																												_1: {
 																																																													ctor: '::',
-																																																													_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafePython,
+																																																													_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safePython,
 																																																													_1: {
 																																																														ctor: '::',
-																																																														_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safePython,
+																																																														_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeTypeScript,
 																																																														_1: {
 																																																															ctor: '::',
-																																																															_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeTypeScript,
+																																																															_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeTypeScriptInvalid,
 																																																															_1: {
 																																																																ctor: '::',
-																																																																_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeTypeScriptInvalid,
+																																																																_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeTypeScript,
 																																																																_1: {
 																																																																	ctor: '::',
-																																																																	_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeTypeScript,
+																																																																	_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeKotlin,
 																																																																	_1: {
 																																																																		ctor: '::',
-																																																																		_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeKotlin,
+																																																																		_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeKotlin,
 																																																																		_1: {
 																																																																			ctor: '::',
-																																																																			_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeKotlin,
+																																																																			_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeSwift,
 																																																																			_1: {
 																																																																				ctor: '::',
-																																																																				_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$unsafeSwift,
+																																																																				_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeSwift,
 																																																																				_1: {
 																																																																					ctor: '::',
-																																																																					_0: _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeSwift,
+																																																																					_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(2),
 																																																																					_1: {
 																																																																						ctor: '::',
-																																																																						_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(2),
+																																																																						_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																																																							_elm_lang$core$Maybe$Just(3)),
 																																																																						_1: {
 																																																																							ctor: '::',
-																																																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																																																								_elm_lang$core$Maybe$Just(3)),
+																																																																							_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$introduction,
 																																																																							_1: {
 																																																																								ctor: '::',
-																																																																								_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$introduction,
+																																																																								_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$introGo,
 																																																																								_1: {
 																																																																									ctor: '::',
-																																																																									_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$introGo,
+																																																																									_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeGo,
 																																																																									_1: {
 																																																																										ctor: '::',
-																																																																										_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeGo,
+																																																																										_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeGoRun,
 																																																																										_1: {
 																																																																											ctor: '::',
-																																																																											_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeGoRun,
+																																																																											_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$safePython,
 																																																																											_1: {
 																																																																												ctor: '::',
-																																																																												_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$safePython,
+																																																																												_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafePythonGoodGuard,
 																																																																												_1: {
 																																																																													ctor: '::',
-																																																																													_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafePythonGoodGuard,
+																																																																													_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafePythonBadGuard,
 																																																																													_1: {
 																																																																														ctor: '::',
-																																																																														_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafePythonBadGuard,
+																																																																														_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafePythonBadGuardRun,
 																																																																														_1: {
 																																																																															ctor: '::',
-																																																																															_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafePythonBadGuardRun,
+																																																																															_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafePythonCast,
 																																																																															_1: {
 																																																																																ctor: '::',
-																																																																																_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafePythonCast,
+																																																																																_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$safeTypeScript,
 																																																																																_1: {
 																																																																																	ctor: '::',
-																																																																																	_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$safeTypeScript,
+																																																																																	_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptGoodPredicateInvalid,
 																																																																																	_1: {
 																																																																																		ctor: '::',
-																																																																																		_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptGoodPredicateInvalid,
+																																																																																		_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptGoodPredicate,
 																																																																																		_1: {
 																																																																																			ctor: '::',
-																																																																																			_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptGoodPredicate,
+																																																																																			_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptBadPredicate,
 																																																																																			_1: {
 																																																																																				ctor: '::',
-																																																																																				_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptBadPredicate,
+																																																																																				_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptBadPredicateRun,
 																																																																																				_1: {
 																																																																																					ctor: '::',
-																																																																																					_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeTypeScriptBadPredicateRun,
+																																																																																					_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$safeKotlinSmart,
 																																																																																					_1: {
 																																																																																						ctor: '::',
-																																																																																						_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$safeKotlinSmart,
+																																																																																						_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$safeKotlinExplicit,
 																																																																																						_1: {
 																																																																																							ctor: '::',
-																																																																																							_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$safeKotlinExplicit,
+																																																																																							_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeKotlin,
 																																																																																							_1: {
 																																																																																								ctor: '::',
-																																																																																								_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeKotlin,
+																																																																																								_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$safeSwift,
 																																																																																								_1: {
 																																																																																									ctor: '::',
-																																																																																									_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$safeSwift,
+																																																																																									_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeSwift,
 																																																																																									_1: {
 																																																																																										ctor: '::',
-																																																																																										_0: _jackgene$live_deck$Deck_Slide_SafeTypeConversion$unsafeSwift,
+																																																																																										_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(3),
 																																																																																										_1: {
 																																																																																											ctor: '::',
-																																																																																											_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(3),
+																																																																																											_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																																																																												_elm_lang$core$Maybe$Just(4)),
 																																																																																											_1: {
 																																																																																												ctor: '::',
-																																																																																												_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																																																																													_elm_lang$core$Maybe$Just(4)),
+																																																																																												_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$introduction,
 																																																																																												_1: {
 																																																																																													ctor: '::',
-																																																																																													_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$introduction,
+																																																																																													_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$introGo,
 																																																																																													_1: {
 																																																																																														ctor: '::',
-																																																																																														_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$introGo,
+																																																																																														_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeGoExplicit,
 																																																																																														_1: {
 																																																																																															ctor: '::',
-																																																																																															_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeGoExplicit,
+																																																																																															_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeGoVariableReuse,
 																																																																																															_1: {
 																																																																																																ctor: '::',
-																																																																																																_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeGoVariableReuse,
+																																																																																																_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafePython,
 																																																																																																_1: {
 																																																																																																	ctor: '::',
-																																																																																																	_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafePython,
+																																																																																																	_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafePythonRun,
 																																																																																																	_1: {
 																																																																																																		ctor: '::',
-																																																																																																		_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafePythonRun,
+																																																																																																		_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safePython,
 																																																																																																		_1: {
 																																																																																																			ctor: '::',
-																																																																																																			_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safePython,
+																																																																																																			_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeTypeScript,
 																																																																																																			_1: {
 																																																																																																				ctor: '::',
-																																																																																																				_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeTypeScript,
+																																																																																																				_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeTypeScript,
 																																																																																																				_1: {
 																																																																																																					ctor: '::',
-																																																																																																					_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeTypeScript,
+																																																																																																					_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeKotlin,
 																																																																																																					_1: {
 																																																																																																						ctor: '::',
-																																																																																																						_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeKotlin,
+																																																																																																						_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeKotlin,
 																																																																																																						_1: {
 																																																																																																							ctor: '::',
-																																																																																																							_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeKotlin,
+																																																																																																							_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeKotlinInvalid,
 																																																																																																							_1: {
 																																																																																																								ctor: '::',
-																																																																																																								_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeKotlinInvalid,
+																																																																																																								_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwift,
 																																																																																																								_1: {
 																																																																																																									ctor: '::',
-																																																																																																									_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwift,
+																																																																																																									_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftInvalid,
 																																																																																																									_1: {
 																																																																																																										ctor: '::',
-																																																																																																										_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftInvalid,
+																																																																																																										_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftInvocation,
 																																																																																																										_1: {
 																																																																																																											ctor: '::',
-																																																																																																											_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftInvocation,
+																																																																																																											_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeSwift,
 																																																																																																											_1: {
 																																																																																																												ctor: '::',
-																																																																																																												_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$unsafeSwift,
+																																																																																																												_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftMonadic,
 																																																																																																												_1: {
 																																																																																																													ctor: '::',
-																																																																																																													_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftMonadic,
+																																																																																																													_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftMonadicInvalid,
 																																																																																																													_1: {
 																																																																																																														ctor: '::',
-																																																																																																														_0: _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeSwiftMonadicInvalid,
+																																																																																																														_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(4),
 																																																																																																														_1: {
 																																																																																																															ctor: '::',
-																																																																																																															_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(4),
+																																																																																																															_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																																																																																																_elm_lang$core$Maybe$Just(5)),
 																																																																																																															_1: {
 																																																																																																																ctor: '::',
-																																																																																																																_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																																																																																																	_elm_lang$core$Maybe$Just(5)),
+																																																																																																																_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$introduction,
 																																																																																																																_1: {
 																																																																																																																	ctor: '::',
-																																																																																																																	_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$introduction,
+																																																																																																																	_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$unsafeGoPrep,
 																																																																																																																	_1: {
 																																																																																																																		ctor: '::',
-																																																																																																																		_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$unsafeGoPrep,
+																																																																																																																		_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$unsafeGo,
 																																																																																																																		_1: {
 																																																																																																																			ctor: '::',
-																																																																																																																			_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$unsafeGo,
+																																																																																																																			_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safePython,
 																																																																																																																			_1: {
 																																																																																																																				ctor: '::',
-																																																																																																																				_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safePython,
+																																																																																																																				_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safePythonInvalid,
 																																																																																																																				_1: {
 																																																																																																																					ctor: '::',
-																																																																																																																					_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safePythonInvalid,
+																																																																																																																					_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeTypeScript,
 																																																																																																																					_1: {
 																																																																																																																						ctor: '::',
-																																																																																																																						_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeTypeScript,
+																																																																																																																						_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeTypeScriptInvalid,
 																																																																																																																						_1: {
 																																																																																																																							ctor: '::',
-																																																																																																																							_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeTypeScriptInvalid,
+																																																																																																																							_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeKotlin,
 																																																																																																																							_1: {
 																																																																																																																								ctor: '::',
-																																																																																																																								_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeKotlin,
+																																																																																																																								_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeKotlinInvalid,
 																																																																																																																								_1: {
 																																																																																																																									ctor: '::',
-																																																																																																																									_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeKotlinInvalid,
+																																																																																																																									_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeSwiftPrep,
 																																																																																																																									_1: {
 																																																																																																																										ctor: '::',
-																																																																																																																										_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeSwiftPrep,
+																																																																																																																										_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeSwift,
 																																																																																																																										_1: {
 																																																																																																																											ctor: '::',
-																																																																																																																											_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeSwift,
+																																																																																																																											_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeSwiftInvalid,
 																																																																																																																											_1: {
 																																																																																																																												ctor: '::',
-																																																																																																																												_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeSwiftInvalid,
+																																																																																																																												_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeSwiftAlt,
 																																																																																																																												_1: {
 																																																																																																																													ctor: '::',
-																																																																																																																													_0: _jackgene$live_deck$Deck_Slide_ExhaustivenessChecking$safeSwiftAlt,
+																																																																																																																													_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(5),
 																																																																																																																													_1: {
 																																																																																																																														ctor: '::',
-																																																																																																																														_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(5),
+																																																																																																																														_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																																																																																																															_elm_lang$core$Maybe$Just(6)),
 																																																																																																																														_1: {
 																																																																																																																															ctor: '::',
-																																																																																																																															_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																																																																																																																_elm_lang$core$Maybe$Just(6)),
+																																																																																																																															_0: _jackgene$live_deck$Deck_Slide_Encapsulation$introduction,
 																																																																																																																															_1: {
 																																																																																																																																ctor: '::',
-																																																																																																																																_0: _jackgene$live_deck$Deck_Slide_Encapsulation$introduction,
+																																																																																																																																_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safeGoPrep,
 																																																																																																																																_1: {
 																																																																																																																																	ctor: '::',
-																																																																																																																																	_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safeGoPrep,
+																																																																																																																																	_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safeGo,
 																																																																																																																																	_1: {
 																																																																																																																																		ctor: '::',
-																																																																																																																																		_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safeGo,
+																																																																																																																																		_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safePython,
 																																																																																																																																		_1: {
 																																																																																																																																			ctor: '::',
-																																																																																																																																			_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safePython,
+																																																																																																																																			_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safeTypeScript,
 																																																																																																																																			_1: {
 																																																																																																																																				ctor: '::',
-																																																																																																																																				_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safeTypeScript,
+																																																																																																																																				_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safeKotlin,
 																																																																																																																																				_1: {
 																																																																																																																																					ctor: '::',
-																																																																																																																																					_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safeKotlin,
+																																																																																																																																					_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safeSwift,
 																																																																																																																																					_1: {
 																																																																																																																																						ctor: '::',
-																																																																																																																																						_0: _jackgene$live_deck$Deck_Slide_Encapsulation$safeSwift,
+																																																																																																																																						_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(6),
 																																																																																																																																						_1: {
 																																																																																																																																							ctor: '::',
-																																																																																																																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(6),
+																																																																																																																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
+																																																																																																																																								_elm_lang$core$Maybe$Just(7)),
 																																																																																																																																							_1: {
 																																																																																																																																								ctor: '::',
-																																																																																																																																								_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent(
-																																																																																																																																									_elm_lang$core$Maybe$Just(7)),
+																																																																																																																																								_0: _jackgene$live_deck$Deck_Slide_Immutability$introduction,
 																																																																																																																																								_1: {
 																																																																																																																																									ctor: '::',
-																																																																																																																																									_0: _jackgene$live_deck$Deck_Slide_Immutability$introduction,
+																																																																																																																																									_0: _jackgene$live_deck$Deck_Slide_Immutability$unsafeGoPrep,
 																																																																																																																																									_1: {
 																																																																																																																																										ctor: '::',
-																																																																																																																																										_0: _jackgene$live_deck$Deck_Slide_Immutability$unsafeGoPrep,
+																																																																																																																																										_0: _jackgene$live_deck$Deck_Slide_Immutability$unsafeGo,
 																																																																																																																																										_1: {
 																																																																																																																																											ctor: '::',
-																																																																																																																																											_0: _jackgene$live_deck$Deck_Slide_Immutability$unsafeGo,
+																																																																																																																																											_0: _jackgene$live_deck$Deck_Slide_Immutability$safeGoPrep,
 																																																																																																																																											_1: {
 																																																																																																																																												ctor: '::',
-																																																																																																																																												_0: _jackgene$live_deck$Deck_Slide_Immutability$safeGoPrep,
+																																																																																																																																												_0: _jackgene$live_deck$Deck_Slide_Immutability$safeGo,
 																																																																																																																																												_1: {
 																																																																																																																																													ctor: '::',
-																																																																																																																																													_0: _jackgene$live_deck$Deck_Slide_Immutability$safeGo,
+																																																																																																																																													_0: _jackgene$live_deck$Deck_Slide_Immutability$safePythonPrep,
 																																																																																																																																													_1: {
 																																																																																																																																														ctor: '::',
-																																																																																																																																														_0: _jackgene$live_deck$Deck_Slide_Immutability$safePythonPrep,
+																																																																																																																																														_0: _jackgene$live_deck$Deck_Slide_Immutability$safePython,
 																																																																																																																																														_1: {
 																																																																																																																																															ctor: '::',
-																																																																																																																																															_0: _jackgene$live_deck$Deck_Slide_Immutability$safePython,
+																																																																																																																																															_0: _jackgene$live_deck$Deck_Slide_Immutability$unsafePythonFrozenMutation,
 																																																																																																																																															_1: {
 																																																																																																																																																ctor: '::',
-																																																																																																																																																_0: _jackgene$live_deck$Deck_Slide_Immutability$unsafePythonFrozenMutation,
+																																																																																																																																																_0: _jackgene$live_deck$Deck_Slide_Immutability$unsafePythonConstantMutation,
 																																																																																																																																																_1: {
 																																																																																																																																																	ctor: '::',
-																																																																																																																																																	_0: _jackgene$live_deck$Deck_Slide_Immutability$unsafePythonConstantMutation,
+																																																																																																																																																	_0: _jackgene$live_deck$Deck_Slide_Immutability$safeTypeScript,
 																																																																																																																																																	_1: {
 																																																																																																																																																		ctor: '::',
-																																																																																																																																																		_0: _jackgene$live_deck$Deck_Slide_Immutability$safeTypeScript,
+																																																																																																																																																		_0: _jackgene$live_deck$Deck_Slide_Immutability$safeKotlin,
 																																																																																																																																																		_1: {
 																																																																																																																																																			ctor: '::',
-																																																																																																																																																			_0: _jackgene$live_deck$Deck_Slide_Immutability$safeKotlin,
+																																																																																																																																																			_0: _jackgene$live_deck$Deck_Slide_Immutability$safeSwift,
 																																																																																																																																																			_1: {
 																																																																																																																																																				ctor: '::',
-																																																																																																																																																				_0: _jackgene$live_deck$Deck_Slide_Immutability$safeSwift,
+																																																																																																																																																				_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(7),
 																																																																																																																																																				_1: {
 																																																																																																																																																					ctor: '::',
-																																																																																																																																																					_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport(7),
+																																																																																																																																																					_0: _jackgene$live_deck$Deck_Slide_SectionCover$conclusion,
 																																																																																																																																																					_1: {
 																																																																																																																																																						ctor: '::',
-																																																																																																																																																						_0: _jackgene$live_deck$Deck_Slide_SectionCover$conclusion,
+																																																																																																																																																						_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport('Go'),
 																																																																																																																																																						_1: {
 																																																																																																																																																							ctor: '::',
-																																																																																																																																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport('Go'),
+																																																																																																																																																							_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport('Python'),
 																																																																																																																																																							_1: {
 																																																																																																																																																								ctor: '::',
-																																																																																																																																																								_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport('Python'),
+																																																																																																																																																								_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport('TypeScript'),
 																																																																																																																																																								_1: {
 																																																																																																																																																									ctor: '::',
-																																																																																																																																																									_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport('TypeScript'),
+																																																																																																																																																									_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport('Kotlin'),
 																																																																																																																																																									_1: {
 																																																																																																																																																										ctor: '::',
-																																																																																																																																																										_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport('Kotlin'),
+																																																																																																																																																										_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport('Swift'),
 																																																																																																																																																										_1: {
 																																																																																																																																																											ctor: '::',
-																																																																																																																																																											_0: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport('Swift'),
+																																																																																																																																																											_0: _jackgene$live_deck$Deck_Slide_Conclusion$introduction,
 																																																																																																																																																											_1: {
 																																																																																																																																																												ctor: '::',
-																																																																																																																																																												_0: _jackgene$live_deck$Deck_Slide_Conclusion$introduction,
+																																																																																																																																																												_0: _jackgene$live_deck$Deck_Slide_Conclusion$enableStricterTypeChecking,
 																																																																																																																																																												_1: {
 																																																																																																																																																													ctor: '::',
-																																																																																																																																																													_0: _jackgene$live_deck$Deck_Slide_Conclusion$enableStricterTypeChecking,
+																																																																																																																																																													_0: _jackgene$live_deck$Deck_Slide_Conclusion$codeGeneration,
 																																																																																																																																																													_1: {
 																																																																																																																																																														ctor: '::',
-																																																																																																																																																														_0: _jackgene$live_deck$Deck_Slide_Conclusion$codeGeneration,
+																																																																																																																																																														_0: _jackgene$live_deck$Deck_Slide_Conclusion$preCompileChecks,
 																																																																																																																																																														_1: {
 																																																																																																																																																															ctor: '::',
-																																																																																																																																																															_0: _jackgene$live_deck$Deck_Slide_Conclusion$preCompileChecks,
+																																																																																																																																																															_0: _jackgene$live_deck$Deck_Slide_Conclusion$testing,
 																																																																																																																																																															_1: {
 																																																																																																																																																																ctor: '::',
-																																																																																																																																																																_0: _jackgene$live_deck$Deck_Slide_Conclusion$testing,
-																																																																																																																																																																_1: {
-																																																																																																																																																																	ctor: '::',
-																																																																																																																																																																	_0: _jackgene$live_deck$Deck_Slide_SectionCover$questions,
-																																																																																																																																																																	_1: {
-																																																																																																																																																																		ctor: '::',
-																																																																																																																																																																		_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(0),
-																																																																																																																																																																		_1: {
-																																																																																																																																																																			ctor: '::',
-																																																																																																																																																																			_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(1),
-																																																																																																																																																																			_1: {
-																																																																																																																																																																				ctor: '::',
-																																																																																																																																																																				_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(2),
-																																																																																																																																																																				_1: {
-																																																																																																																																																																					ctor: '::',
-																																																																																																																																																																					_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(3),
-																																																																																																																																																																					_1: {
-																																																																																																																																																																						ctor: '::',
-																																																																																																																																																																						_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(4),
-																																																																																																																																																																						_1: {
-																																																																																																																																																																							ctor: '::',
-																																																																																																																																																																							_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(5),
-																																																																																																																																																																							_1: {
-																																																																																																																																																																								ctor: '::',
-																																																																																																																																																																								_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(6),
-																																																																																																																																																																								_1: {
-																																																																																																																																																																									ctor: '::',
-																																																																																																																																																																									_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(7),
-																																																																																																																																																																									_1: {
-																																																																																																																																																																										ctor: '::',
-																																																																																																																																																																										_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(8),
-																																																																																																																																																																										_1: {
-																																																																																																																																																																											ctor: '::',
-																																																																																																																																																																											_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(9),
-																																																																																																																																																																											_1: {
-																																																																																																																																																																												ctor: '::',
-																																																																																																																																																																												_0: _jackgene$live_deck$Deck_Slide_SectionCover$thankYou,
-																																																																																																																																																																												_1: {ctor: '[]'}
-																																																																																																																																																																											}
-																																																																																																																																																																										}
-																																																																																																																																																																									}
-																																																																																																																																																																								}
-																																																																																																																																																																							}
-																																																																																																																																																																						}
-																																																																																																																																																																					}
-																																																																																																																																																																				}
-																																																																																																																																																																			}
-																																																																																																																																																																		}
-																																																																																																																																																																	}
-																																																																																																																																																																}
+																																																																																																																																																																_0: _jackgene$live_deck$Deck_Slide_SectionCover$questions,
+																																																																																																																																																																_1: {ctor: '[]'}
 																																																																																																																																																															}
 																																																																																																																																																														}
 																																																																																																																																																													}
@@ -48787,7 +48777,25 @@ var _jackgene$live_deck$Deck_Slide$slidesList = A2(
 				}
 			}
 		}
+	}
+};
+var _jackgene$live_deck$Deck_Slide$firstQuestionIndex = _elm_lang$core$List$length(_jackgene$live_deck$Deck_Slide$preQuestionSlides);
+var _jackgene$live_deck$Deck_Slide$indexSlide = F2(
+	function (index, unindexedSlide) {
+		return _jackgene$live_deck$Deck_Common$Slide(
+			{
+				active: unindexedSlide.active,
+				update: unindexedSlide.update,
+				view: unindexedSlide.view(index),
+				index: index,
+				eventsWsPath: unindexedSlide.eventsWsPath,
+				animationFrames: unindexedSlide.animationFrames
+			});
 	});
+var _jackgene$live_deck$Deck_Slide$slidesList = A2(
+	_elm_lang$core$List$indexedMap,
+	_jackgene$live_deck$Deck_Slide$indexSlide,
+	A2(_elm_lang$core$Basics_ops['++'], _jackgene$live_deck$Deck_Slide$preQuestionSlides, _jackgene$live_deck$Deck_Slide$questionSlides));
 var _jackgene$live_deck$Deck_Slide$slides = _elm_lang$core$Array$fromList(_jackgene$live_deck$Deck_Slide$slidesList);
 var _jackgene$live_deck$Deck_Slide$activeNavigationOf = function (model) {
 	var _p0 = A3(
@@ -48940,6 +48948,75 @@ var _jackgene$live_deck$Deck$view = function (model) {
 	var _p3 = model.currentSlide;
 	return A2(_jackgene$live_deck$Deck_Slide$slideView, model, _p3._0);
 };
+var _jackgene$live_deck$Deck$webSocketBaseUrl = function (location) {
+	return ((!_elm_lang$core$Native_Utils.eq(location.protocol, 'http:')) || (!_elm_lang$core$Native_Utils.eq(location.hostname, 'localhost'))) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			'ws',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				A2(_elm_lang$core$String$dropLeft, 4, location.protocol),
+				A2(_elm_lang$core$Basics_ops['++'], '//', location.host))));
+};
+var _jackgene$live_deck$Deck$init = function (location) {
+	return {
+		ctor: '_Tuple2',
+		_0: function () {
+			var incompleteModel = {
+				eventsWsUrl: A2(
+					_elm_lang$core$Maybe$map,
+					function (baseUrl) {
+						return A2(_elm_lang$core$Basics_ops['++'], baseUrl, '/event');
+					},
+					_jackgene$live_deck$Deck$webSocketBaseUrl(location)),
+				activeNavigation: _elm_lang$core$Array$empty,
+				currentSlide: _jackgene$live_deck$Deck_Slide$slideFromLocationHash(location.hash),
+				animationFramesRemaining: 0,
+				languagesAndCounts: {ctor: '[]'},
+				typeScriptVsJavaScript: {typeScriptFraction: 0.0, lastVoteTypeScript: false},
+				questions: _elm_lang$core$Array$empty
+			};
+			var activeNavigation = _jackgene$live_deck$Deck_Slide$activeNavigationOf(incompleteModel);
+			return _elm_lang$core$Native_Utils.update(
+				incompleteModel,
+				{activeNavigation: activeNavigation});
+		}(),
+		_1: _elm_lang$core$Platform_Cmd$none
+	};
+};
+var _jackgene$live_deck$Deck$Questions = function (a) {
+	return {ctor: 'Questions', _0: a};
+};
+var _jackgene$live_deck$Deck$LanguagesByCount = function (a) {
+	return {ctor: 'LanguagesByCount', _0: a};
+};
+var _jackgene$live_deck$Deck$eventBodyDecoder = _elm_lang$core$Json_Decode$oneOf(
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$core$Json_Decode$map,
+			_jackgene$live_deck$Deck$LanguagesByCount,
+			_elm_lang$core$Json_Decode$list(
+				A3(
+					_elm_lang$core$Json_Decode$map2,
+					F2(
+						function (l, r) {
+							return {ctor: '_Tuple2', _0: l, _1: r};
+						}),
+					A2(_elm_lang$core$Json_Decode$index, 0, _elm_lang$core$Json_Decode$int),
+					A2(
+						_elm_lang$core$Json_Decode$index,
+						1,
+						_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string))))),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_elm_lang$core$Json_Decode$map,
+				_jackgene$live_deck$Deck$Questions,
+				_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)),
+			_1: {ctor: '[]'}
+		}
+	});
 var _jackgene$live_deck$Deck$update = F2(
 	function (msg, model) {
 		var _p4 = msg;
@@ -49014,26 +49091,11 @@ var _jackgene$live_deck$Deck$update = F2(
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'Event':
-				var _p20 = _p4._0;
-				var langsByCountRes = A2(
-					_elm_lang$core$Json_Decode$decodeString,
-					_elm_lang$core$Json_Decode$list(
-						A3(
-							_elm_lang$core$Json_Decode$map2,
-							F2(
-								function (l, r) {
-									return {ctor: '_Tuple2', _0: l, _1: r};
-								}),
-							A2(_elm_lang$core$Json_Decode$index, 0, _elm_lang$core$Json_Decode$int),
-							A2(
-								_elm_lang$core$Json_Decode$index,
-								1,
-								_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)))),
-					_p20);
-				var langsAndCountsRes = A2(
-					_elm_lang$core$Result$map,
-					function (langsByCount) {
-						return A3(
+				var _p21 = _p4._0;
+				var _p8 = A2(_elm_lang$core$Json_Decode$decodeString, _jackgene$live_deck$Deck$eventBodyDecoder, _p21);
+				if (_p8.ctor === 'Ok') {
+					if (_p8._0.ctor === 'LanguagesByCount') {
+						var langsAndCounts = A3(
 							_elm_lang$core$Dict$foldr,
 							F3(
 								function (count, langs, accum) {
@@ -49048,69 +49110,94 @@ var _jackgene$live_deck$Deck$update = F2(
 											langs));
 								}),
 							{ctor: '[]'},
-							_elm_lang$core$Dict$fromList(langsByCount));
-					},
-					langsByCountRes);
-				var _p8 = langsAndCountsRes;
-				if (_p8.ctor === 'Ok') {
-					var _p18 = _p8._0;
-					var _p9 = A3(
-						_elm_lang$core$List$foldl,
-						F2(
-							function (_p11, _p10) {
-								var _p12 = _p11;
-								var _p17 = _p12._1;
-								var _p13 = _p10;
-								var _p16 = _p13._1;
-								var _p15 = _p13._0;
-								var _p14 = _p12._0;
-								switch (_p14) {
-									case 'JavaScript':
-										return {
-											ctor: '_Tuple2',
-											_0: _elm_lang$core$Basics$toFloat(_p17),
-											_1: _p16
-										};
-									case 'TypeScript':
-										return {
-											ctor: '_Tuple2',
-											_0: _p15,
-											_1: _elm_lang$core$Basics$toFloat(_p17)
-										};
-									default:
-										return {ctor: '_Tuple2', _0: _p15, _1: _p16};
+							_elm_lang$core$Dict$fromList(_p8._0._0));
+						var _p9 = A3(
+							_elm_lang$core$List$foldl,
+							F2(
+								function (_p11, _p10) {
+									var _p12 = _p11;
+									var _p17 = _p12._1;
+									var _p13 = _p10;
+									var _p16 = _p13._1;
+									var _p15 = _p13._0;
+									var _p14 = _p12._0;
+									switch (_p14) {
+										case 'JavaScript':
+											return {
+												ctor: '_Tuple2',
+												_0: _elm_lang$core$Basics$toFloat(_p17),
+												_1: _p16
+											};
+										case 'TypeScript':
+											return {
+												ctor: '_Tuple2',
+												_0: _p15,
+												_1: _elm_lang$core$Basics$toFloat(_p17)
+											};
+										default:
+											return {ctor: '_Tuple2', _0: _p15, _1: _p16};
+									}
+								}),
+							{ctor: '_Tuple2', _0: 0.0, _1: 0.0},
+							langsAndCounts);
+						var jsCount = _p9._0;
+						var tsCount = _p9._1;
+						var tsFrac = tsCount / (tsCount + jsCount);
+						var statsUpdatedModel = _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								languagesAndCounts: langsAndCounts,
+								typeScriptVsJavaScript: {
+									typeScriptFraction: tsFrac,
+									lastVoteTypeScript: _elm_lang$core$Native_Utils.cmp(tsFrac, model.typeScriptVsJavaScript.typeScriptFraction) > 0
 								}
-							}),
-						{ctor: '_Tuple2', _0: 0.0, _1: 0.0},
-						_p18);
-					var jsCount = _p9._0;
-					var tsCount = _p9._1;
-					var tsFrac = tsCount / (tsCount + jsCount);
-					var statsUpdatedModel = _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							languagesAndCounts: _p18,
-							typeScriptVsJavaScript: {
-								typeScriptFraction: tsFrac,
-								lastVoteTypeScript: _elm_lang$core$Native_Utils.cmp(tsFrac, model.typeScriptVsJavaScript.typeScriptFraction) > 0
-							}
-						});
-					var activeNavigation = _jackgene$live_deck$Deck_Slide$activeNavigationOf(statsUpdatedModel);
-					return {
-						ctor: '_Tuple2',
-						_0: _elm_lang$core$Native_Utils.update(
-							statsUpdatedModel,
-							{activeNavigation: activeNavigation}),
-						_1: _elm_lang$core$Platform_Cmd$none
-					};
+							});
+						var activeNavigation = _jackgene$live_deck$Deck_Slide$activeNavigationOf(statsUpdatedModel);
+						return {
+							ctor: '_Tuple2',
+							_0: _elm_lang$core$Native_Utils.update(
+								statsUpdatedModel,
+								{activeNavigation: activeNavigation}),
+							_1: _elm_lang$core$Platform_Cmd$none
+						};
+					} else {
+						var _p19 = _p8._0._0;
+						var isCurrentQuestion = function () {
+							var _p18 = model.currentSlide;
+							return _elm_lang$core$Native_Utils.eq(
+								(_p18._0.index - _jackgene$live_deck$Deck_Slide$firstQuestionIndex) + 1,
+								_elm_lang$core$List$length(_p19));
+						}();
+						var questionUpdatedModel = _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								animationFramesRemaining: isCurrentQuestion ? (_jackgene$live_deck$Deck_Common$typingSpeedMultiplier * A2(
+									_elm_lang$core$Maybe$withDefault,
+									0,
+									A2(
+										_elm_lang$core$Maybe$map,
+										_elm_lang$core$String$length,
+										_elm_lang$core$List$head(_p19)))) : 0,
+								questions: _elm_lang$core$Array$fromList(
+									_elm_lang$core$List$reverse(_p19))
+							});
+						var activeNavigation = _jackgene$live_deck$Deck_Slide$activeNavigationOf(questionUpdatedModel);
+						return {
+							ctor: '_Tuple2',
+							_0: _elm_lang$core$Native_Utils.update(
+								questionUpdatedModel,
+								{activeNavigation: activeNavigation}),
+							_1: _elm_lang$core$Platform_Cmd$none
+						};
+					}
 				} else {
-					var _p19 = A2(
+					var _p20 = A2(
 						_elm_lang$core$Debug$log,
 						A2(
 							_elm_lang$core$Basics_ops['++'],
 							'Error parsing JSON: ',
 							A2(_elm_lang$core$Basics_ops['++'], _p8._0, ' for input')),
-						_p20);
+						_p21);
 					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 				}
 			case 'AnimationTick':
@@ -49125,51 +49212,15 @@ var _jackgene$live_deck$Deck$update = F2(
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		}
 	});
-var _jackgene$live_deck$Deck$webSocketBaseUrl = function (location) {
-	return ((!_elm_lang$core$Native_Utils.eq(location.protocol, 'http:')) || (!_elm_lang$core$Native_Utils.eq(location.hostname, 'localhost'))) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			'ws',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				A2(_elm_lang$core$String$dropLeft, 4, location.protocol),
-				A2(_elm_lang$core$Basics_ops['++'], '//', location.host))));
-};
-var _jackgene$live_deck$Deck$init = function (location) {
-	return {
-		ctor: '_Tuple2',
-		_0: function () {
-			var incompleteModel = {
-				eventsWsUrl: A2(
-					_elm_lang$core$Maybe$map,
-					function (baseUrl) {
-						return A2(_elm_lang$core$Basics_ops['++'], baseUrl, '/event');
-					},
-					_jackgene$live_deck$Deck$webSocketBaseUrl(location)),
-				activeNavigation: _elm_lang$core$Array$empty,
-				currentSlide: _jackgene$live_deck$Deck_Slide$slideFromLocationHash(location.hash),
-				animationFramesRemaining: 0,
-				languagesAndCounts: {ctor: '[]'},
-				typeScriptVsJavaScript: {typeScriptFraction: 0.0, lastVoteTypeScript: false},
-				questions: _elm_lang$core$Array$empty
-			};
-			var activeNavigation = _jackgene$live_deck$Deck_Slide$activeNavigationOf(incompleteModel);
-			return _elm_lang$core$Native_Utils.update(
-				incompleteModel,
-				{activeNavigation: activeNavigation});
-		}(),
-		_1: _elm_lang$core$Platform_Cmd$none
-	};
-};
 var _jackgene$live_deck$Deck$main = A2(
 	_elm_lang$navigation$Navigation$program,
 	_jackgene$live_deck$Deck_Common$NewLocation,
 	{
 		init: _jackgene$live_deck$Deck$init,
 		update: _jackgene$live_deck$Deck$update,
-		view: function (_p21) {
+		view: function (_p22) {
 			return _rtfeldman$elm_css$Html_Styled$toUnstyled(
-				_jackgene$live_deck$Deck$view(_p21));
+				_jackgene$live_deck$Deck$view(_p22));
 		},
 		subscriptions: _jackgene$live_deck$Deck$subscriptions
 	})();

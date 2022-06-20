@@ -2,8 +2,10 @@ module Deck exposing (main)
 
 import AnimationFrame
 import Array exposing (Array)
-import Deck.Common exposing (Model, Msg(..), Navigation, Slide(Slide), SlideModel)
-import Deck.Slide exposing (activeNavigationOf, slideFromLocationHash, slideView)
+import Deck.Common exposing
+  ( Model, Msg(..), Navigation, Slide(Slide), SlideModel, typingSpeedMultiplier )
+import Deck.Slide exposing
+  ( activeNavigationOf, slideFromLocationHash, slideView, firstQuestionIndex )
 import Dict exposing (Dict)
 import Html.Styled exposing (Html)
 import Json.Decode as Decode exposing (Decoder)
@@ -51,6 +53,24 @@ init location =
 
 
 -- Update
+type EventBody
+  = LanguagesByCount (List (Int, (List String)))
+  | Questions (List String)
+
+
+eventBodyDecoder : Decoder EventBody
+eventBodyDecoder =
+  Decode.oneOf
+  [ Decode.map LanguagesByCount
+    ( Decode.list
+      ( Decode.map2 (\l r -> (l, r))
+        (Decode.index 0 Decode.int)
+        (Decode.index 1 (Decode.list Decode.string))
+      )
+    )
+  , Decode.map Questions (Decode.list Decode.string)
+  ]
+
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
@@ -115,23 +135,12 @@ update msg model =
       )
 
     Event body ->
-      let
-        langsByCountRes : Result String (List (Int, (List String)))
-        langsByCountRes =
-          Decode.decodeString
-          ( Decode.list
-            ( Decode.map2 (\l r -> (l, r))
-              (Decode.index 0 Decode.int)
-              (Decode.index 1 (Decode.list Decode.string))
-            )
-          )
-          body
-
-        langsAndCountsRes : Result String (List (String, Int))
-        langsAndCountsRes =
-          Result.map
-          ( \langsByCount ->
-            ( Dict.foldr
+      case Decode.decodeString eventBodyDecoder body of
+        Ok (LanguagesByCount langsByCount) ->
+          let
+            langsAndCounts : List (String, Int)
+            langsAndCounts =
+              Dict.foldr
               ( \count langs accum ->
                 accum ++ (
                   List.map
@@ -141,13 +150,7 @@ update msg model =
               )
               []
               ( Dict.fromList langsByCount ) -- Sorts by count
-            )
-          )
-          langsByCountRes
-      in
-      case langsAndCountsRes of
-        Ok langsAndCounts ->
-          let
+
             (jsCount, tsCount) =
               List.foldl
               ( \(lang, count) (jsCountAcc, tsCountAcc) ->
@@ -179,6 +182,38 @@ update msg model =
           ( { statsUpdatedModel | activeNavigation = activeNavigation }
           , Cmd.none
           )
+
+        Ok (Questions questionsReversed) ->
+          let
+            -- Event updates slide being displayed
+            isCurrentQuestion : Bool
+            isCurrentQuestion =
+              case model.currentSlide of
+                Slide slideModel ->
+                  (slideModel.index - firstQuestionIndex + 1) == List.length questionsReversed
+
+            questionUpdatedModel : Model
+            questionUpdatedModel =
+              { model
+              | animationFramesRemaining =
+                if isCurrentQuestion then
+                  typingSpeedMultiplier *
+                  ( Maybe.withDefault 0
+                    ( Maybe.map String.length
+                      (List.head questionsReversed)
+                    )
+                  )
+                else 0
+              , questions = Array.fromList (List.reverse questionsReversed)
+              }
+
+            activeNavigation : Array Navigation
+            activeNavigation = activeNavigationOf questionUpdatedModel
+          in
+          ( { questionUpdatedModel | activeNavigation = activeNavigation }
+          , Cmd.none
+          )
+
         Err jsonErr ->
           let
             _ = Debug.log ("Error parsing JSON: " ++ jsonErr ++ " for input") body
