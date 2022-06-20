@@ -19932,9 +19932,9 @@ var _jackgene$live_deck$Deck_Common$Navigation = F2(
 	function (a, b) {
 		return {nextSlideIndex: a, lastSlideIndex: b};
 	});
-var _jackgene$live_deck$Deck_Common$Model = F5(
-	function (a, b, c, d, e) {
-		return {eventsWsUrl: a, activeNavigation: b, currentSlide: c, languagesAndCounts: d, typeScriptVsJavaScript: e};
+var _jackgene$live_deck$Deck_Common$Model = F7(
+	function (a, b, c, d, e, f, g) {
+		return {eventsWsUrl: a, activeNavigation: b, currentSlide: c, animationFramesRemaining: d, languagesAndCounts: e, typeScriptVsJavaScript: f, questions: g};
 	});
 var _jackgene$live_deck$Deck_Common$NoOp = {ctor: 'NoOp'};
 var _jackgene$live_deck$Deck_Common$AnimationTick = {ctor: 'AnimationTick'};
@@ -20538,7 +20538,7 @@ var _jackgene$live_deck$Deck_Slide_Common$baseSlideModel = {
 			return _rtfeldman$elm_css$Html_Styled$text('(Placeholder)');
 		}),
 	eventsWsPath: _elm_lang$core$Maybe$Nothing,
-	animationFrames: 0
+	animationFrames: _elm_lang$core$Basics$always(0)
 };
 var _jackgene$live_deck$Deck_Slide_Common$transitionDurationMs = 500;
 var _jackgene$live_deck$Deck_Slide_Common$UnindexedSlideModel = F5(
@@ -28358,19 +28358,141 @@ var _jackgene$live_deck$Deck_Slide_Template$sectionCoverSlideView = F2(
 				}
 			});
 	});
-var _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide = _elm_lang$core$Native_Utils.update(
-	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
-	{
-		view: F2(
-			function (page, _p0) {
-				return A4(
-					_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
-					page,
-					'Audience Questions',
-					'Questions and Maybe Answers',
-					_rtfeldman$elm_css$Html_Styled$text(''));
-			})
-	});
+var _jackgene$live_deck$Deck_Slide_QuestionAnswer$typingSpeedMultiplier = 3;
+var _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide = function (index) {
+	return _elm_lang$core$Native_Utils.update(
+		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+		{
+			active: function (_p0) {
+				var _p1 = _p0;
+				return _elm_lang$core$Native_Utils.cmp(
+					index,
+					_elm_lang$core$Array$length(_p1.questions)) < 1;
+			},
+			animationFrames: function (_p2) {
+				var _p3 = _p2;
+				return A2(
+					_elm_lang$core$Maybe$withDefault,
+					0,
+					A2(
+						_elm_lang$core$Maybe$map,
+						function (question) {
+							return _elm_lang$core$String$length(question) * _jackgene$live_deck$Deck_Slide_QuestionAnswer$typingSpeedMultiplier;
+						},
+						A2(_elm_lang$core$Array$get, index, _p3.questions)));
+			},
+			view: F2(
+				function (page, model) {
+					return A4(
+						_jackgene$live_deck$Deck_Slide_Template$standardSlideView,
+						page,
+						'Audience Questions',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'Question #',
+							_elm_lang$core$Basics$toString(index + 1)),
+						A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+									{
+										ctor: '::',
+										_0: A2(_rtfeldman$elm_css$Css$property, 'display', 'grid'),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$width(
+													_rtfeldman$elm_css$Css$vw(84)),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Css$height(
+														_rtfeldman$elm_css$Css$vw(20)),
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$div,
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$margin(_rtfeldman$elm_css$Css$auto),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Css$fontSize(
+														_rtfeldman$elm_css$Css$vw(4)),
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: function () {
+											var _p4 = A2(_elm_lang$core$Array$get, index, model.questions);
+											if (_p4.ctor === 'Just') {
+												return _rtfeldman$elm_css$Html_Styled$text(
+													A2(_elm_lang$core$String$dropRight, (model.animationFramesRemaining / _jackgene$live_deck$Deck_Slide_QuestionAnswer$typingSpeedMultiplier) | 0, _p4._0));
+											} else {
+												return A2(
+													_rtfeldman$elm_css$Html_Styled$input,
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled_Attributes$type_('text'),
+														_1: {
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled_Attributes$autofocus(true),
+															_1: {
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																	{
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Css$width(
+																			_rtfeldman$elm_css$Css$vw(0.1)),
+																		_1: {
+																			ctor: '::',
+																			_0: _rtfeldman$elm_css$Css$border(_rtfeldman$elm_css$Css$zero),
+																			_1: {
+																				ctor: '::',
+																				_0: _rtfeldman$elm_css$Css$outline(_rtfeldman$elm_css$Css$none),
+																				_1: {
+																					ctor: '::',
+																					_0: _rtfeldman$elm_css$Css$fontSize(
+																						_rtfeldman$elm_css$Css$vw(4)),
+																					_1: {
+																						ctor: '::',
+																						_0: _rtfeldman$elm_css$Css$fontWeight(
+																							_rtfeldman$elm_css$Css$int(900)),
+																						_1: {ctor: '[]'}
+																					}
+																				}
+																			}
+																		}
+																	}),
+																_1: {ctor: '[]'}
+															}
+														}
+													},
+													{ctor: '[]'});
+											}
+										}(),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}));
+				})
+		});
+};
 var _jackgene$live_deck$Deck_Slide_Cover$cover = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
@@ -30191,11 +30313,19 @@ var _jackgene$live_deck$Deck_Slide_AudiencePoll$jsVsTs = _elm_lang$core$Native_U
 			}),
 		eventsWsPath: _elm_lang$core$Maybe$Just('language-poll')
 	});
-var _jackgene$live_deck$Deck_Slide_SectionCover$questions = _elm_lang$core$Native_Utils.update(
+var _jackgene$live_deck$Deck_Slide_SectionCover$thankYou = _elm_lang$core$Native_Utils.update(
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
 		view: F2(
 			function (_p1, _p0) {
+				return A2(_jackgene$live_deck$Deck_Slide_Template$sectionCoverSlideView, 5, 'Thank You');
+			})
+	});
+var _jackgene$live_deck$Deck_Slide_SectionCover$questions = _elm_lang$core$Native_Utils.update(
+	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
+	{
+		view: F2(
+			function (_p3, _p2) {
 				return A2(_jackgene$live_deck$Deck_Slide_Template$sectionCoverSlideView, 4, 'Audience Questions');
 			})
 	});
@@ -30203,7 +30333,7 @@ var _jackgene$live_deck$Deck_Slide_SectionCover$conclusion = _elm_lang$core$Nati
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
 		view: F2(
-			function (_p3, _p2) {
+			function (_p5, _p4) {
 				return A2(_jackgene$live_deck$Deck_Slide_Template$sectionCoverSlideView, 3, 'Strong Typing & Quality Software');
 			})
 	});
@@ -30211,7 +30341,7 @@ var _jackgene$live_deck$Deck_Slide_SectionCover$typeSystemProperties = _elm_lang
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
 		view: F2(
-			function (_p5, _p4) {
+			function (_p7, _p6) {
 				return A2(_jackgene$live_deck$Deck_Slide_Template$sectionCoverSlideView, 2, 'Type System Properties');
 			})
 	});
@@ -30219,7 +30349,7 @@ var _jackgene$live_deck$Deck_Slide_SectionCover$introduction = _elm_lang$core$Na
 	_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 	{
 		view: F2(
-			function (_p7, _p6) {
+			function (_p9, _p8) {
 				return A2(_jackgene$live_deck$Deck_Slide_Template$sectionCoverSlideView, 1, 'Introduction');
 			})
 	});
@@ -30862,7 +30992,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreNumberView = functi
 		48,
 		{
 			ctor: '::',
-			_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+			_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 				{
 					ctor: '::',
 					_0: _rtfeldman$elm_css$Css$width(
@@ -31429,7 +31559,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport = 
 							_rtfeldman$elm_css$Html_Styled$div,
 							{
 								ctor: '::',
-								_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+								_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 									{
 										ctor: '::',
 										_0: _rtfeldman$elm_css$Css$fontSize(
@@ -31444,7 +31574,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport = 
 									_rtfeldman$elm_css$Html_Styled$div,
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+										_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 											{
 												ctor: '::',
 												_0: _rtfeldman$elm_css$Css$displayFlex,
@@ -31465,7 +31595,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport = 
 												_rtfeldman$elm_css$Html_Styled$div,
 												{
 													ctor: '::',
-													_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+													_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 														{
 															ctor: '::',
 															_0: A2(_rtfeldman$elm_css$Css$property, 'display', 'grid'),
@@ -31490,7 +31620,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport = 
 														_rtfeldman$elm_css$Html_Styled$div,
 														{
 															ctor: '::',
-															_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+															_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																{
 																	ctor: '::',
 																	_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
@@ -31551,7 +31681,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport = 
 													_rtfeldman$elm_css$Html_Styled$div,
 													{
 														ctor: '::',
-														_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+														_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 															{
 																ctor: '::',
 																_0: A2(
@@ -31568,7 +31698,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$errorPreventionReport = 
 															_rtfeldman$elm_css$Html_Styled$div,
 															{
 																ctor: '::',
-																_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+																_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																	{
 																		ctor: '::',
 																		_0: _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$inlineBlock),
@@ -31647,7 +31777,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent = functio
 								_rtfeldman$elm_css$Html_Styled$div,
 								{
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+									_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 										{
 											ctor: '::',
 											_0: A2(
@@ -31667,7 +31797,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent = functio
 												_rtfeldman$elm_css$Html_Styled$div,
 												{
 													ctor: '::',
-													_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+													_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 														{
 															ctor: '::',
 															_0: _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$inlineBlock),
@@ -31710,7 +31840,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$tableOfContent = functio
 														64,
 														{
 															ctor: '::',
-															_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+															_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																{
 																	ctor: '::',
 																	_0: _rtfeldman$elm_css$Css$width(
@@ -31785,7 +31915,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$methodology = _elm_lang$
 										_rtfeldman$elm_css$Html_Styled$table,
 										{
 											ctor: '::',
-											_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+											_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 												{
 													ctor: '::',
 													_0: _rtfeldman$elm_css$Css$width(
@@ -31808,7 +31938,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$methodology = _elm_lang$
 												_rtfeldman$elm_css$Html_Styled$tr,
 												{
 													ctor: '::',
-													_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+													_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 														{
 															ctor: '::',
 															_0: _jackgene$live_deck$Deck_Slide_Common$subHeaderStyle,
@@ -31822,7 +31952,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$methodology = _elm_lang$
 														_rtfeldman$elm_css$Html_Styled$th,
 														{
 															ctor: '::',
-															_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+															_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																{
 																	ctor: '::',
 																	_0: _rtfeldman$elm_css$Css$width(
@@ -31850,7 +31980,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$methodology = _elm_lang$
 															_rtfeldman$elm_css$Html_Styled$th,
 															{
 																ctor: '::',
-																_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+																_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																	{
 																		ctor: '::',
 																		_0: _rtfeldman$elm_css$Css$width(
@@ -31882,7 +32012,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$methodology = _elm_lang$
 																_rtfeldman$elm_css$Html_Styled$th,
 																{
 																	ctor: '::',
-																	_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+																	_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																		{
 																			ctor: '::',
 																			_0: _rtfeldman$elm_css$Css$width(
@@ -32044,7 +32174,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport = functio
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
-			animationFrames: 1,
+			animationFrames: _elm_lang$core$Basics$always(1),
 			view: function () {
 				var property = _elm_lang$core$Tuple$first(
 					A3(
@@ -32097,7 +32227,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport = functio
 											_rtfeldman$elm_css$Html_Styled$div,
 											{
 												ctor: '::',
-												_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+												_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 													{
 														ctor: '::',
 														_0: _rtfeldman$elm_css$Css$width(
@@ -32116,7 +32246,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport = functio
 													_rtfeldman$elm_css$Html_Styled$div,
 													{
 														ctor: '::',
-														_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+														_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 															{
 																ctor: '::',
 																_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
@@ -32138,7 +32268,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport = functio
 																	_rtfeldman$elm_css$Html_Styled$div,
 																	{
 																		ctor: '::',
-																		_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+																		_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																			{
 																				ctor: '::',
 																				_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
@@ -32172,17 +32302,14 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport = functio
 															_elm_lang$core$List$map,
 															function (_p42) {
 																var _p43 = _p42;
-																var _p46 = _p43._0;
-																var _p45 = _p43._1;
-																var score = function () {
-																	var _p44 = model.currentSlide;
-																	return _elm_lang$core$Native_Utils.eq(_p44._0.animationFrames, 0) ? _p45.current : _p45.previous;
-																}();
+																var _p45 = _p43._0;
+																var _p44 = _p43._1;
+																var score = _elm_lang$core$Native_Utils.eq(model.animationFramesRemaining, 0) ? _p44.current : _p44.previous;
 																return A2(
 																	_rtfeldman$elm_css$Html_Styled$div,
 																	{
 																		ctor: '::',
-																		_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+																		_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																			{
 																				ctor: '::',
 																				_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
@@ -32216,7 +32343,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport = functio
 																			_rtfeldman$elm_css$Html_Styled$div,
 																			{
 																				ctor: '::',
-																				_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+																				_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																					{
 																						ctor: '::',
 																						_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
@@ -32245,8 +32372,8 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport = functio
 																				ctor: '::',
 																				_0: A2(
 																					_elm_lang$core$Maybe$withDefault,
-																					_rtfeldman$elm_css$Html_Styled$text(_p46),
-																					A2(_elm_lang$core$Dict$get, _p46, _jackgene$live_deck$Deck_Slide_Graphics$logosByLanguage)),
+																					_rtfeldman$elm_css$Html_Styled$text(_p45),
+																					A2(_elm_lang$core$Dict$get, _p45, _jackgene$live_deck$Deck_Slide_Graphics$logosByLanguage)),
 																				_1: {ctor: '[]'}
 																			}),
 																		_1: {
@@ -32255,7 +32382,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport = functio
 																				_rtfeldman$elm_css$Html_Styled$div,
 																				{
 																					ctor: '::',
-																					_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+																					_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																						{
 																							ctor: '::',
 																							_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
@@ -32282,7 +32409,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport = functio
 																						_rtfeldman$elm_css$Html_Styled$div,
 																						{
 																							ctor: '::',
-																							_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+																							_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																								{
 																									ctor: '::',
 																									_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
@@ -32338,7 +32465,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport = functio
 														_rtfeldman$elm_css$Html_Styled$div,
 														{
 															ctor: '::',
-															_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+															_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																{
 																	ctor: '::',
 																	_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
@@ -32353,7 +32480,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$languageReport = functio
 																	_rtfeldman$elm_css$Html_Styled$div,
 																	{
 																		ctor: '::',
-																		_0: _rtfeldman$elm_css$Svg_Styled_Attributes$css(
+																		_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																			{
 																				ctor: '::',
 																				_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
@@ -48458,8 +48585,48 @@ var _jackgene$live_deck$Deck_Slide$slidesList = A2(
 																																																																																																																																																																	_0: _jackgene$live_deck$Deck_Slide_SectionCover$questions,
 																																																																																																																																																																	_1: {
 																																																																																																																																																																		ctor: '::',
-																																																																																																																																																																		_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide,
-																																																																																																																																																																		_1: {ctor: '[]'}
+																																																																																																																																																																		_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(0),
+																																																																																																																																																																		_1: {
+																																																																																																																																																																			ctor: '::',
+																																																																																																																																																																			_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(1),
+																																																																																																																																																																			_1: {
+																																																																																																																																																																				ctor: '::',
+																																																																																																																																																																				_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(2),
+																																																																																																																																																																				_1: {
+																																																																																																																																																																					ctor: '::',
+																																																																																																																																																																					_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(3),
+																																																																																																																																																																					_1: {
+																																																																																																																																																																						ctor: '::',
+																																																																																																																																																																						_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(4),
+																																																																																																																																																																						_1: {
+																																																																																																																																																																							ctor: '::',
+																																																																																																																																																																							_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(5),
+																																																																																																																																																																							_1: {
+																																																																																																																																																																								ctor: '::',
+																																																																																																																																																																								_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(6),
+																																																																																																																																																																								_1: {
+																																																																																																																																																																									ctor: '::',
+																																																																																																																																																																									_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(7),
+																																																																																																																																																																									_1: {
+																																																																																																																																																																										ctor: '::',
+																																																																																																																																																																										_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(8),
+																																																																																																																																																																										_1: {
+																																																																																																																																																																											ctor: '::',
+																																																																																																																																																																											_0: _jackgene$live_deck$Deck_Slide_QuestionAnswer$slide(9),
+																																																																																																																																																																											_1: {
+																																																																																																																																																																												ctor: '::',
+																																																																																																																																																																												_0: _jackgene$live_deck$Deck_Slide_SectionCover$thankYou,
+																																																																																																																																																																												_1: {ctor: '[]'}
+																																																																																																																																																																											}
+																																																																																																																																																																										}
+																																																																																																																																																																									}
+																																																																																																																																																																								}
+																																																																																																																																																																							}
+																																																																																																																																																																						}
+																																																																																																																																																																					}
+																																																																																																																																																																				}
+																																																																																																																																																																			}
+																																																																																																																																																																		}
 																																																																																																																																																																	}
 																																																																																																																																																																}
 																																																																																																																																																															}
@@ -48740,17 +48907,14 @@ var _jackgene$live_deck$Deck$subscriptions = function (model) {
 			}(),
 			_1: {
 				ctor: '::',
-				_0: function () {
-					var _p2 = model.currentSlide;
-					return (_elm_lang$core$Native_Utils.cmp(_p2._0.animationFrames, 0) < 1) ? _elm_lang$core$Platform_Sub$none : _elm_lang$animation_frame$AnimationFrame$times(
-						_elm_lang$core$Basics$always(_jackgene$live_deck$Deck_Common$AnimationTick));
-				}(),
+				_0: (_elm_lang$core$Native_Utils.cmp(model.animationFramesRemaining, 0) < 1) ? _elm_lang$core$Platform_Sub$none : _elm_lang$animation_frame$AnimationFrame$times(
+					_elm_lang$core$Basics$always(_jackgene$live_deck$Deck_Common$AnimationTick)),
 				_1: {
 					ctor: '::',
 					_0: _elm_lang$keyboard$Keyboard$ups(
 						function (keyCode) {
-							var _p3 = keyCode;
-							switch (_p3) {
+							var _p2 = keyCode;
+							switch (_p2) {
 								case 13:
 									return _jackgene$live_deck$Deck_Common$Next;
 								case 32:
@@ -48773,21 +48937,21 @@ var _jackgene$live_deck$Deck$subscriptions = function (model) {
 		});
 };
 var _jackgene$live_deck$Deck$view = function (model) {
-	var _p4 = model.currentSlide;
-	return A2(_jackgene$live_deck$Deck_Slide$slideView, model, _p4._0);
+	var _p3 = model.currentSlide;
+	return A2(_jackgene$live_deck$Deck_Slide$slideView, model, _p3._0);
 };
 var _jackgene$live_deck$Deck$update = F2(
 	function (msg, model) {
-		var _p5 = msg;
-		switch (_p5.ctor) {
+		var _p4 = msg;
+		switch (_p4.ctor) {
 			case 'Next':
 				return {
 					ctor: '_Tuple2',
 					_0: model,
 					_1: function () {
 						var curSlideIdx = function () {
-							var _p6 = model.currentSlide;
-							return _p6._0.index;
+							var _p5 = model.currentSlide;
+							return _p5._0.index;
 						}();
 						var newSlideIdx = A2(
 							_elm_lang$core$Maybe$withDefault,
@@ -48811,8 +48975,8 @@ var _jackgene$live_deck$Deck$update = F2(
 					_0: model,
 					_1: function () {
 						var curSlideIdx = function () {
-							var _p7 = model.currentSlide;
-							return _p7._0.index;
+							var _p6 = model.currentSlide;
+							return _p6._0.index;
 						}();
 						var newSlideIdx = A2(
 							_elm_lang$core$Maybe$withDefault,
@@ -48834,15 +48998,23 @@ var _jackgene$live_deck$Deck$update = F2(
 				return {
 					ctor: '_Tuple2',
 					_0: function () {
-						var newSlide = _jackgene$live_deck$Deck_Slide$slideFromLocationHash(_p5._0.hash);
-						return _elm_lang$core$Native_Utils.update(
+						var newSlide = _jackgene$live_deck$Deck_Slide$slideFromLocationHash(_p4._0.hash);
+						var newModel = _elm_lang$core$Native_Utils.update(
 							model,
 							{currentSlide: newSlide});
+						return _elm_lang$core$Native_Utils.update(
+							newModel,
+							{
+								animationFramesRemaining: function () {
+									var _p7 = newSlide;
+									return _p7._0.animationFrames(newModel);
+								}()
+							});
 					}(),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'Event':
-				var _p20 = _p5._0;
+				var _p20 = _p4._0;
 				var langsByCountRes = A2(
 					_elm_lang$core$Json_Decode$decodeString,
 					_elm_lang$core$Json_Decode$list(
@@ -48944,18 +49116,9 @@ var _jackgene$live_deck$Deck$update = F2(
 			case 'AnimationTick':
 				return {
 					ctor: '_Tuple2',
-					_0: function () {
-						var _p21 = model.currentSlide;
-						var _p22 = _p21._0;
-						return _elm_lang$core$Native_Utils.update(
-							model,
-							{
-								currentSlide: _jackgene$live_deck$Deck_Common$Slide(
-									_elm_lang$core$Native_Utils.update(
-										_p22,
-										{animationFrames: _p22.animationFrames - 1}))
-							});
-					}(),
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{animationFramesRemaining: model.animationFramesRemaining - 1}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
@@ -48985,8 +49148,10 @@ var _jackgene$live_deck$Deck$init = function (location) {
 					_jackgene$live_deck$Deck$webSocketBaseUrl(location)),
 				activeNavigation: _elm_lang$core$Array$empty,
 				currentSlide: _jackgene$live_deck$Deck_Slide$slideFromLocationHash(location.hash),
+				animationFramesRemaining: 0,
 				languagesAndCounts: {ctor: '[]'},
-				typeScriptVsJavaScript: {typeScriptFraction: 0.0, lastVoteTypeScript: false}
+				typeScriptVsJavaScript: {typeScriptFraction: 0.0, lastVoteTypeScript: false},
+				questions: _elm_lang$core$Array$empty
 			};
 			var activeNavigation = _jackgene$live_deck$Deck_Slide$activeNavigationOf(incompleteModel);
 			return _elm_lang$core$Native_Utils.update(
@@ -49002,9 +49167,9 @@ var _jackgene$live_deck$Deck$main = A2(
 	{
 		init: _jackgene$live_deck$Deck$init,
 		update: _jackgene$live_deck$Deck$update,
-		view: function (_p23) {
+		view: function (_p21) {
 			return _rtfeldman$elm_css$Html_Styled$toUnstyled(
-				_jackgene$live_deck$Deck$view(_p23));
+				_jackgene$live_deck$Deck$view(_p21));
 		},
 		subscriptions: _jackgene$live_deck$Deck$subscriptions
 	})();

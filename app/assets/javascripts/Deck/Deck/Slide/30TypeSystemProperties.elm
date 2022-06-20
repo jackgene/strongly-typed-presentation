@@ -18,13 +18,12 @@ import Css exposing
   , auto, collapse, displayFlex, inlineBlock, left, num, solid
   )
 import Css.Transitions exposing (easeInOut, transition)
-import Deck.Common exposing (Slide(Slide), SlideModel)
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Graphics exposing (logosByLanguage, numberedGoodRxPoint)
 import Deck.Slide.Template exposing (standardSlideView)
 import Dict exposing (Dict)
 import Html.Styled exposing (Html, text, div, p, table, td, th, tr)
-import Svg.Styled.Attributes exposing (css)
+import Html.Styled.Attributes exposing (css)
 
 
 -- Type
@@ -384,7 +383,7 @@ labelWidthPct = 7.5
 languageReport : Int -> UnindexedSlideModel
 languageReport propertyIndex =
   { baseSlideModel
-  | animationFrames = 1
+  | animationFrames = always 1
   , view =
     let
       property : TypeSystemProperty
@@ -432,11 +431,8 @@ languageReport propertyIndex =
                 let
                   score : Score
                   score =
-                    case model.currentSlide of
-                      Slide slideModel ->
-                        if slideModel.animationFrames == 0 then
-                          cumScore.current
-                        else cumScore.previous
+                    if model.animationFramesRemaining == 0 then cumScore.current
+                    else cumScore.previous
                 in
                 div
                 [ css

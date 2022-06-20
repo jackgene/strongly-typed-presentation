@@ -31,11 +31,13 @@ init location =
           )
         , activeNavigation = Array.empty
         , currentSlide = slideFromLocationHash location.hash
+        , animationFramesRemaining = 0
         , languagesAndCounts = []
         , typeScriptVsJavaScript =
           { typeScriptFraction = 0.0
           , lastVoteTypeScript = False
           }
+        , questions = Array.empty
         }
 
       activeNavigation : Array Navigation
@@ -100,8 +102,15 @@ update msg model =
       ( let
           newSlide : Slide
           newSlide = slideFromLocationHash location.hash
+
+          newModel : Model
+          newModel = { model | currentSlide = newSlide }
         in
-        { model | currentSlide = newSlide }
+        { newModel
+        | animationFramesRemaining =
+          case newSlide of
+            Slide slideModel -> slideModel.animationFrames newModel
+        }
       , Cmd.none
       )
 
@@ -176,12 +185,7 @@ update msg model =
           in (model, Cmd.none)
 
     AnimationTick ->
-      ( case model.currentSlide of
-          Slide slideModel ->
-            { model
-            | currentSlide =
-              Slide { slideModel | animationFrames = slideModel.animationFrames - 1 }
-            }
+      ( { model | animationFramesRemaining = model.animationFramesRemaining - 1 }
       , Cmd.none
       )
 
@@ -209,10 +213,8 @@ subscriptions model =
       (Just url, Just path) ->
         WebSocket.listen (url ++ "/" ++ path) Event
       _ -> Sub.none
-  , case model.currentSlide of
-      Slide slideModel ->
-        if slideModel.animationFrames <= 0 then Sub.none
-        else AnimationFrame.times (always AnimationTick)
+  , if model.animationFramesRemaining <= 0 then Sub.none
+    else AnimationFrame.times (always AnimationTick)
   , Keyboard.ups
     ( \keyCode ->
       case keyCode of

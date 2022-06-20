@@ -219,7 +219,19 @@ slidesList =
 
   -- Q & A
   , SectionCover.questions
-  , QuestionAnswer.slide
+  , QuestionAnswer.slide 0
+  , QuestionAnswer.slide 1
+  , QuestionAnswer.slide 2
+  , QuestionAnswer.slide 3
+  , QuestionAnswer.slide 4
+  , QuestionAnswer.slide 5
+  , QuestionAnswer.slide 6
+  , QuestionAnswer.slide 7
+  , QuestionAnswer.slide 8
+  , QuestionAnswer.slide 9
+
+  -- Thank you
+  , SectionCover.thankYou
   ]
 
 

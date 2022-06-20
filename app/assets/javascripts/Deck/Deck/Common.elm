@@ -22,7 +22,7 @@ type alias SlideModel =
   , view : Model -> Html Msg
   , index : Int
   , eventsWsPath : Maybe String
-  , animationFrames : Int
+  , animationFrames : Model -> Int
   }
 
 
@@ -38,10 +38,12 @@ type alias Navigation =
 type alias Model =
   { eventsWsUrl : Maybe String
   , activeNavigation : Array Navigation
-  , currentSlide: Slide
+  , currentSlide : Slide
+  , animationFramesRemaining : Int
   , languagesAndCounts : List (String, Int)
   , typeScriptVsJavaScript :
     { typeScriptFraction : Float
     , lastVoteTypeScript : Bool
     }
+  , questions : Array String
   }

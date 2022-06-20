@@ -1,17 +1,71 @@
 module Deck.Slide.QuestionAnswer exposing (slide)
 
+import Array
+import Css exposing
+  ( property
+  -- Container
+  , border, height, margin, width, outline, position
+  -- Content
+  , fontSize, fontWeight
+  -- Units
+  , auto, int, vw, zero
+  -- Alignments & Positions
+  , absolute
+  -- Other values
+  , none
+  )
 import Deck.Slide.Common exposing (..)
 import Deck.Slide.Template exposing (standardSlideView)
-import Html.Styled exposing (Html, text)
+import Html.Styled exposing (Html, div, input, text)
+import Html.Styled.Attributes exposing (autofocus, css, type_)
 
 
-slide : UnindexedSlideModel
-slide =
+typingSpeedMultiplier : Int
+typingSpeedMultiplier = 3
+
+
+slide : Int -> UnindexedSlideModel
+slide index =
   { baseSlideModel
-  | view =
-    ( \page _ -> standardSlideView page
+  | active = (\{questions} -> index <= Array.length questions)
+  , animationFrames =
+    ( \{questions} ->
+      ( Maybe.withDefault 0
+        ( Maybe.map
+          ( \question -> String.length question * typingSpeedMultiplier )
+          ( Array.get index questions )
+        )
+      )
+    )
+  , view =
+    ( \page model -> standardSlideView page
       "Audience Questions"
-      "Questions and Maybe Answers"
-      (text "")
+      ( "Question #" ++ (toString (index + 1)) )
+      ( div
+        [ css
+         [ property "display" "grid", position absolute
+         , width (vw 84), height (vw 20)
+         ]
+        ]
+        [ div [ css [ margin auto, fontSize (vw 4) ] ]
+          [ case Array.get index model.questions of
+            Just question ->
+              text
+              ( String.dropRight
+                (model.animationFramesRemaining // typingSpeedMultiplier)
+                question
+              )
+            Nothing ->
+              input
+              [ type_ "text", autofocus True
+              , css
+                [ width (vw 0.1), border zero, outline none
+                , fontSize (vw 4), fontWeight (int 900)
+                ]
+              ]
+              []
+          ]
+        ]
+      )
     )
   }
