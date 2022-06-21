@@ -529,7 +529,7 @@ errorPreventionReport language =
         legendAndScores =
           [ ("Error Prevented", scoreRequired)
           , ("Error Probably Prevented", scoreDefeatable)
-          , ("Error May or May Not Be Prevented", scoreOptional)
+          , ("Error Possibly Prevented", scoreOptional)
           , ("Error Probably Not Prevented", scorePartialAndOptional)
           , ("Error Not Prevented", scoreUnsupported)
           ]
