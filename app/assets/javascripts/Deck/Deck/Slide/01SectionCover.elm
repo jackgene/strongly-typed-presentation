@@ -29,6 +29,7 @@ questions : UnindexedSlideModel
 questions =
   { baseSlideModel
   | view = ( \_ _ -> sectionCoverSlideView 4 "Audience Questions" )
+  , eventsWsPath = Just "question"
   }
 
 
