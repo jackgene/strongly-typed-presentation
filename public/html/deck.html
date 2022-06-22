@@ -34920,9 +34920,7 @@ var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isPunctuaction = fu
 	return A2(_elm_lang$core$Set$member, c, _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$punctuactorSet);
 };
 var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isIdentifierNameChar = function (c) {
-	return !(_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isPunctuaction(c) || (_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isStringLiteralChar(c) || (_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isCommentChar(c) || (_jackgene$live_deck$SyntaxHighlight_Language_Common$isWhitespace(c) || _elm_lang$core$Native_Utils.eq(
-		c,
-		_elm_lang$core$Native_Utils.chr('1'))))));
+	return !(_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isPunctuaction(c) || (_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isStringLiteralChar(c) || (_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isCommentChar(c) || _jackgene$live_deck$SyntaxHighlight_Language_Common$isWhitespace(c))));
 };
 var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$annotationLoop = function (at) {
 	return A2(
@@ -34972,7 +34970,14 @@ var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$typeReferenceLoop =
 											_1: {ctor: '[]'}
 										};
 									},
-									A2(_elm_tools$parser$Parser$keep, _elm_tools$parser$Parser$oneOrMore, _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isIdentifierNameChar)),
+									A2(
+										_elm_tools$parser$Parser$keep,
+										_elm_tools$parser$Parser$oneOrMore,
+										function (c) {
+											return !(_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isPunctuaction(c) || (_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isStringLiteralChar(c) || (_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isCommentChar(c) || (_jackgene$live_deck$SyntaxHighlight_Language_Common$isWhitespace(c) || _elm_lang$core$Native_Utils.eq(
+												c,
+												_elm_lang$core$Native_Utils.chr('1'))))));
+										})),
 								_1: {
 									ctor: '::',
 									_0: A2(
@@ -39590,7 +39595,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$pythonTypeHintWrongRun = _elm_lang
 												_0: _rtfeldman$elm_css$Html_Styled$text('It is up to programming teams to incorporate these type checkers in their build process, '),
 												_1: {
 													ctor: '::',
-													_0: _rtfeldman$elm_css$Html_Styled$text('where they’d use a dedicate type checker like MyPy, PyRight, or Pyre.'),
+													_0: _rtfeldman$elm_css$Html_Styled$text('where they’d use a dedicate type checker like mypy, Pyright, or Pyre.'),
 													_1: {ctor: '[]'}
 												}
 											}),

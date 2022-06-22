@@ -463,7 +463,7 @@ pythonTypeHintWrongRun =
           ]
         , p []
           [ text "It is up to programming teams to incorporate these type checkers in their build process, "
-          , text "where they’d use a dedicate type checker like MyPy, PyRight, or Pyre."
+          , text "where they’d use a dedicate type checker like mypy, Pyright, or Pyre."
           ]
         ]
       )
