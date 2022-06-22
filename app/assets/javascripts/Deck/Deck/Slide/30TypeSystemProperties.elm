@@ -24,6 +24,7 @@ import Deck.Slide.Template exposing (standardSlideView)
 import Dict exposing (Dict)
 import Html.Styled exposing (Html, text, div, p, table, td, th, tr)
 import Html.Styled.Attributes exposing (css)
+import Svg.Styled.Attributes as SvgAttributes
 
 
 -- Type
@@ -313,7 +314,7 @@ tableOfContent maybePropertyIndex =
               ]
             ]
             [ numberedGoodRxPoint (toString (idx + 1)) 64
-              [ css [ width (vw 5), margin2 (em 0.2) (em 0.5), verticalAlign middle ] ]
+              [ SvgAttributes.css [ width (vw 5), margin2 (em 0.2) (em 0.5), verticalAlign middle ] ]
             , text name
             ]
           )
@@ -326,7 +327,7 @@ tableOfContent maybePropertyIndex =
 
 scoreNumberView : String -> Html msg
 scoreNumberView score =
-  numberedGoodRxPoint score 48 [ css [ width (vw 4), margin2 (em 0.2) (em 0.5), verticalAlign middle ] ]
+  numberedGoodRxPoint score 48 [ SvgAttributes.css [ width (vw 4), margin2 (em 0.2) (em 0.5), verticalAlign middle ] ]
 
 
 methodology : UnindexedSlideModel
