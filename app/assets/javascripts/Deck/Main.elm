@@ -61,14 +61,14 @@ type EventBody
 eventBodyDecoder : Decoder EventBody
 eventBodyDecoder =
   Decode.oneOf
-  [ Decode.map LanguagesByCount
+  [ Decode.map Questions (Decode.list Decode.string)
+  , Decode.map LanguagesByCount
     ( Decode.list
       ( Decode.map2 (\l r -> (l, r))
         (Decode.index 0 Decode.int)
         (Decode.index 1 (Decode.list Decode.string))
       )
     )
-  , Decode.map Questions (Decode.list Decode.string)
   ]
 
 update : Msg -> Model -> (Model, Cmd Msg)

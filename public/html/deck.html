@@ -48996,25 +48996,25 @@ var _jackgene$live_deck$Deck$eventBodyDecoder = _elm_lang$core$Json_Decode$oneOf
 		ctor: '::',
 		_0: A2(
 			_elm_lang$core$Json_Decode$map,
-			_jackgene$live_deck$Deck$LanguagesByCount,
-			_elm_lang$core$Json_Decode$list(
-				A3(
-					_elm_lang$core$Json_Decode$map2,
-					F2(
-						function (l, r) {
-							return {ctor: '_Tuple2', _0: l, _1: r};
-						}),
-					A2(_elm_lang$core$Json_Decode$index, 0, _elm_lang$core$Json_Decode$int),
-					A2(
-						_elm_lang$core$Json_Decode$index,
-						1,
-						_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string))))),
+			_jackgene$live_deck$Deck$Questions,
+			_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)),
 		_1: {
 			ctor: '::',
 			_0: A2(
 				_elm_lang$core$Json_Decode$map,
-				_jackgene$live_deck$Deck$Questions,
-				_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)),
+				_jackgene$live_deck$Deck$LanguagesByCount,
+				_elm_lang$core$Json_Decode$list(
+					A3(
+						_elm_lang$core$Json_Decode$map2,
+						F2(
+							function (l, r) {
+								return {ctor: '_Tuple2', _0: l, _1: r};
+							}),
+						A2(_elm_lang$core$Json_Decode$index, 0, _elm_lang$core$Json_Decode$int),
+						A2(
+							_elm_lang$core$Json_Decode$index,
+							1,
+							_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string))))),
 			_1: {ctor: '[]'}
 		}
 	});
