@@ -156,8 +156,7 @@ from typing import Optional, TypeVar
 T = TypeVar("T")
 
 def safe_get(xs: list[T], idx: int) -> Optional[T]:
-    if -len(xs) <= idx < len(xs):
-        return xs[idx]
+    return xs[idx] if -len(xs) <= idx < len(xs) else None
 
 words: list[str] = ["one", "two", "three"]
 word: Optional[str] = safe_get(words, 3)
@@ -420,6 +419,7 @@ let word: String? = words[safe: -1]
       ( div []
         [ p []
           [ text "But can be made safe by extending Swift’s collection:" ]
+        , div [] [] -- skip transition animation
         , div [] [ codeBlock ]
         , p []
           [ text "Source: "

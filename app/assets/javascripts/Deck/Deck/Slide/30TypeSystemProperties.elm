@@ -115,7 +115,7 @@ typeSystemProperties =
           [ ( "Go", scoreUnsupported )
           , ( "Python", scorePartialAndOptional )
           , ( "TypeScript", scoreOptional )
-          , ( "Kotlin", scorePartialAndOptional )
+          , ( "Kotlin", scoreOptional )
           , ( "Swift", scorePartialAndOptional )
           ]
         )

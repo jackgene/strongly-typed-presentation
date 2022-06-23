@@ -31137,7 +31137,7 @@ var _jackgene$live_deck$Deck_Slide_TypeSystemProperties$typeSystemProperties = f
 									_0: {ctor: '_Tuple2', _0: 'TypeScript', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreOptional},
 									_1: {
 										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'Kotlin', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scorePartialAndOptional},
+										_0: {ctor: '_Tuple2', _0: 'Kotlin', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scoreOptional},
 										_1: {
 											ctor: '::',
 											_0: {ctor: '_Tuple2', _0: 'Swift', _1: _jackgene$live_deck$Deck_Slide_TypeSystemProperties$scorePartialAndOptional},
@@ -44466,7 +44466,7 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safePython = function () {
 		_elm_lang$core$Dict$empty,
 		_elm_lang$core$Dict$empty,
 		{ctor: '[]'},
-		'\nfrom typing import Optional, TypeVar\nT = TypeVar(\"T\")\n\ndef safe_get(xs: list[T], idx: int) -> Optional[T]:\n    if -len(xs) <= idx < len(xs):\n        return xs[idx]\n\nwords: list[str] = [\"one\", \"two\", \"three\"]\nword: Optional[str] = safe_get(words, 3)\nif word is not None:\n    word = word.upper()\n');
+		'\nfrom typing import Optional, TypeVar\nT = TypeVar(\"T\")\n\ndef safe_get(xs: list[T], idx: int) -> Optional[T]:\n    return xs[idx] if -len(xs) <= idx < len(xs) else None\n\nwords: list[str] = [\"one\", \"two\", \"three\"]\nword: Optional[str] = safe_get(words, 3)\nif word is not None:\n    word = word.upper()\n');
 	return _elm_lang$core$Native_Utils.update(
 		_jackgene$live_deck$Deck_Slide_Common$baseSlideModel,
 		{
@@ -45010,41 +45010,48 @@ var _jackgene$live_deck$Deck_Slide_SafeArrayAccess$safeSwift = function () {
 									_0: A2(
 										_rtfeldman$elm_css$Html_Styled$div,
 										{ctor: '[]'},
-										{
-											ctor: '::',
-											_0: codeBlock,
-											_1: {ctor: '[]'}
-										}),
+										{ctor: '[]'}),
 									_1: {
 										ctor: '::',
 										_0: A2(
-											_rtfeldman$elm_css$Html_Styled$p,
+											_rtfeldman$elm_css$Html_Styled$div,
 											{ctor: '[]'},
 											{
 												ctor: '::',
-												_0: _rtfeldman$elm_css$Html_Styled$text('Source: '),
-												_1: {
-													ctor: '::',
-													_0: A2(
-														_rtfeldman$elm_css$Html_Styled$a,
-														{
-															ctor: '::',
-															_0: _rtfeldman$elm_css$Html_Styled_Attributes$href('https://stackoverflow.com/a/30593673/31506'),
-															_1: {
-																ctor: '::',
-																_0: _rtfeldman$elm_css$Html_Styled_Attributes$target('_blank'),
-																_1: {ctor: '[]'}
-															}
-														},
-														{
-															ctor: '::',
-															_0: _rtfeldman$elm_css$Html_Styled$text('https://stackoverflow.com/a/30593673/31506'),
-															_1: {ctor: '[]'}
-														}),
-													_1: {ctor: '[]'}
-												}
+												_0: codeBlock,
+												_1: {ctor: '[]'}
 											}),
-										_1: {ctor: '[]'}
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_rtfeldman$elm_css$Html_Styled$p,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled$text('Source: '),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_rtfeldman$elm_css$Html_Styled$a,
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled_Attributes$href('https://stackoverflow.com/a/30593673/31506'),
+																_1: {
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Html_Styled_Attributes$target('_blank'),
+																	_1: {ctor: '[]'}
+																}
+															},
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled$text('https://stackoverflow.com/a/30593673/31506'),
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													}
+												}),
+											_1: {ctor: '[]'}
+										}
 									}
 								}
 							}));
