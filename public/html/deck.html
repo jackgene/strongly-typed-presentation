@@ -48961,6 +48961,21 @@ var _jackgene$live_deck$Deck$view = function (model) {
 	var _p3 = model.currentSlide;
 	return A2(_jackgene$live_deck$Deck_Slide$slideView, model, _p3._0);
 };
+var _jackgene$live_deck$Deck$updateModelWithLocationHash = F2(
+	function (hash, model) {
+		var newSlide = _jackgene$live_deck$Deck_Slide$slideFromLocationHash(hash);
+		var newModel = _elm_lang$core$Native_Utils.update(
+			model,
+			{currentSlide: newSlide});
+		return _elm_lang$core$Native_Utils.update(
+			newModel,
+			{
+				animationFramesRemaining: function () {
+					var _p4 = newSlide;
+					return _p4._0.animationFrames(newModel);
+				}()
+			});
+	});
 var _jackgene$live_deck$Deck$webSocketBaseUrl = function (location) {
 	return ((!_elm_lang$core$Native_Utils.eq(location.protocol, 'http:')) || (!_elm_lang$core$Native_Utils.eq(location.hostname, 'localhost'))) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
 		A2(
@@ -48975,20 +48990,23 @@ var _jackgene$live_deck$Deck$init = function (location) {
 	return {
 		ctor: '_Tuple2',
 		_0: function () {
-			var incompleteModel = {
-				eventsWsUrl: A2(
-					_elm_lang$core$Maybe$map,
-					function (baseUrl) {
-						return A2(_elm_lang$core$Basics_ops['++'], baseUrl, '/event');
-					},
-					_jackgene$live_deck$Deck$webSocketBaseUrl(location)),
-				activeNavigation: _elm_lang$core$Array$empty,
-				currentSlide: _jackgene$live_deck$Deck_Slide$slideFromLocationHash(location.hash),
-				animationFramesRemaining: 0,
-				languagesAndCounts: {ctor: '[]'},
-				typeScriptVsJavaScript: {typeScriptFraction: 0.0, lastVoteTypeScript: false},
-				questions: _elm_lang$core$Array$empty
-			};
+			var incompleteModel = A2(
+				_jackgene$live_deck$Deck$updateModelWithLocationHash,
+				location.hash,
+				{
+					eventsWsUrl: A2(
+						_elm_lang$core$Maybe$map,
+						function (baseUrl) {
+							return A2(_elm_lang$core$Basics_ops['++'], baseUrl, '/event');
+						},
+						_jackgene$live_deck$Deck$webSocketBaseUrl(location)),
+					activeNavigation: _elm_lang$core$Array$empty,
+					currentSlide: _jackgene$live_deck$Deck_Slide$slideFromLocationHash('#'),
+					animationFramesRemaining: 0,
+					languagesAndCounts: {ctor: '[]'},
+					typeScriptVsJavaScript: {typeScriptFraction: 0.0, lastVoteTypeScript: false},
+					questions: _elm_lang$core$Array$empty
+				});
 			var activeNavigation = _jackgene$live_deck$Deck_Slide$activeNavigationOf(incompleteModel);
 			return _elm_lang$core$Native_Utils.update(
 				incompleteModel,
@@ -49032,16 +49050,16 @@ var _jackgene$live_deck$Deck$eventBodyDecoder = _elm_lang$core$Json_Decode$oneOf
 	});
 var _jackgene$live_deck$Deck$update = F2(
 	function (msg, model) {
-		var _p4 = msg;
-		switch (_p4.ctor) {
+		var _p5 = msg;
+		switch (_p5.ctor) {
 			case 'Next':
 				return {
 					ctor: '_Tuple2',
 					_0: model,
 					_1: function () {
 						var curSlideIdx = function () {
-							var _p5 = model.currentSlide;
-							return _p5._0.index;
+							var _p6 = model.currentSlide;
+							return _p6._0.index;
 						}();
 						var newSlideIdx = A2(
 							_elm_lang$core$Maybe$withDefault,
@@ -49065,8 +49083,8 @@ var _jackgene$live_deck$Deck$update = F2(
 					_0: model,
 					_1: function () {
 						var curSlideIdx = function () {
-							var _p6 = model.currentSlide;
-							return _p6._0.index;
+							var _p7 = model.currentSlide;
+							return _p7._0.index;
 						}();
 						var newSlideIdx = A2(
 							_elm_lang$core$Maybe$withDefault,
@@ -49088,7 +49106,7 @@ var _jackgene$live_deck$Deck$update = F2(
 				return {
 					ctor: '_Tuple2',
 					_0: function () {
-						var newSlide = _jackgene$live_deck$Deck_Slide$slideFromLocationHash(_p4._0.hash);
+						var newSlide = _jackgene$live_deck$Deck_Slide$slideFromLocationHash(_p5._0.hash);
 						var newModel = _elm_lang$core$Native_Utils.update(
 							model,
 							{currentSlide: newSlide});
@@ -49096,18 +49114,18 @@ var _jackgene$live_deck$Deck$update = F2(
 							newModel,
 							{
 								animationFramesRemaining: function () {
-									var _p7 = newSlide;
-									return _p7._0.animationFrames(newModel);
+									var _p8 = newSlide;
+									return _p8._0.animationFrames(newModel);
 								}()
 							});
 					}(),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'Event':
-				var _p21 = _p4._0;
-				var _p8 = A2(_elm_lang$core$Json_Decode$decodeString, _jackgene$live_deck$Deck$eventBodyDecoder, _p21);
-				if (_p8.ctor === 'Ok') {
-					if (_p8._0.ctor === 'LanguagesByCount') {
+				var _p22 = _p5._0;
+				var _p9 = A2(_elm_lang$core$Json_Decode$decodeString, _jackgene$live_deck$Deck$eventBodyDecoder, _p22);
+				if (_p9.ctor === 'Ok') {
+					if (_p9._0.ctor === 'LanguagesByCount') {
 						var langsAndCounts = A3(
 							_elm_lang$core$Dict$foldr,
 							F3(
@@ -49123,38 +49141,38 @@ var _jackgene$live_deck$Deck$update = F2(
 											langs));
 								}),
 							{ctor: '[]'},
-							_elm_lang$core$Dict$fromList(_p8._0._0));
-						var _p9 = A3(
+							_elm_lang$core$Dict$fromList(_p9._0._0));
+						var _p10 = A3(
 							_elm_lang$core$List$foldl,
 							F2(
-								function (_p11, _p10) {
-									var _p12 = _p11;
-									var _p17 = _p12._1;
-									var _p13 = _p10;
-									var _p16 = _p13._1;
+								function (_p12, _p11) {
+									var _p13 = _p12;
+									var _p18 = _p13._1;
+									var _p14 = _p11;
+									var _p17 = _p14._1;
+									var _p16 = _p14._0;
 									var _p15 = _p13._0;
-									var _p14 = _p12._0;
-									switch (_p14) {
+									switch (_p15) {
 										case 'JavaScript':
 											return {
 												ctor: '_Tuple2',
-												_0: _elm_lang$core$Basics$toFloat(_p17),
-												_1: _p16
+												_0: _elm_lang$core$Basics$toFloat(_p18),
+												_1: _p17
 											};
 										case 'TypeScript':
 											return {
 												ctor: '_Tuple2',
-												_0: _p15,
-												_1: _elm_lang$core$Basics$toFloat(_p17)
+												_0: _p16,
+												_1: _elm_lang$core$Basics$toFloat(_p18)
 											};
 										default:
-											return {ctor: '_Tuple2', _0: _p15, _1: _p16};
+											return {ctor: '_Tuple2', _0: _p16, _1: _p17};
 									}
 								}),
 							{ctor: '_Tuple2', _0: 0.0, _1: 0.0},
 							langsAndCounts);
-						var jsCount = _p9._0;
-						var tsCount = _p9._1;
+						var jsCount = _p10._0;
+						var tsCount = _p10._1;
 						var tsFrac = tsCount / (tsCount + jsCount);
 						var statsUpdatedModel = _elm_lang$core$Native_Utils.update(
 							model,
@@ -49174,12 +49192,12 @@ var _jackgene$live_deck$Deck$update = F2(
 							_1: _elm_lang$core$Platform_Cmd$none
 						};
 					} else {
-						var _p19 = _p8._0._0;
+						var _p20 = _p9._0._0;
 						var isCurrentQuestion = function () {
-							var _p18 = model.currentSlide;
+							var _p19 = model.currentSlide;
 							return _elm_lang$core$Native_Utils.eq(
-								(_p18._0.index - _jackgene$live_deck$Deck_Slide$firstQuestionIndex) + 1,
-								_elm_lang$core$List$length(_p19));
+								(_p19._0.index - _jackgene$live_deck$Deck_Slide$firstQuestionIndex) + 1,
+								_elm_lang$core$List$length(_p20));
 						}();
 						var questionUpdatedModel = _elm_lang$core$Native_Utils.update(
 							model,
@@ -49190,9 +49208,9 @@ var _jackgene$live_deck$Deck$update = F2(
 									A2(
 										_elm_lang$core$Maybe$map,
 										_elm_lang$core$String$length,
-										_elm_lang$core$List$head(_p19)))) : 0,
+										_elm_lang$core$List$head(_p20)))) : 0,
 								questions: _elm_lang$core$Array$fromList(
-									_elm_lang$core$List$reverse(_p19))
+									_elm_lang$core$List$reverse(_p20))
 							});
 						var activeNavigation = _jackgene$live_deck$Deck_Slide$activeNavigationOf(questionUpdatedModel);
 						return {
@@ -49204,13 +49222,13 @@ var _jackgene$live_deck$Deck$update = F2(
 						};
 					}
 				} else {
-					var _p20 = A2(
+					var _p21 = A2(
 						_elm_lang$core$Debug$log,
 						A2(
 							_elm_lang$core$Basics_ops['++'],
 							'Error parsing JSON: ',
-							A2(_elm_lang$core$Basics_ops['++'], _p8._0, ' for input')),
-						_p21);
+							A2(_elm_lang$core$Basics_ops['++'], _p9._0, ' for input')),
+						_p22);
 					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 				}
 			case 'AnimationTick':
@@ -49231,9 +49249,9 @@ var _jackgene$live_deck$Deck$main = A2(
 	{
 		init: _jackgene$live_deck$Deck$init,
 		update: _jackgene$live_deck$Deck$update,
-		view: function (_p22) {
+		view: function (_p23) {
 			return _rtfeldman$elm_css$Html_Styled$toUnstyled(
-				_jackgene$live_deck$Deck$view(_p22));
+				_jackgene$live_deck$Deck$view(_p23));
 		},
 		subscriptions: _jackgene$live_deck$Deck$subscriptions
 	})();

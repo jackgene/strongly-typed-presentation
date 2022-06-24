@@ -21,18 +21,35 @@ webSocketBaseUrl location =
   else Just ("ws" ++ (String.dropLeft 4 location.protocol) ++ "//" ++ location.host)
 
 
+updateModelWithLocationHash : String -> Model -> Model
+updateModelWithLocationHash hash model =
+  let
+    newSlide : Slide
+    newSlide = slideFromLocationHash hash
+
+    newModel : Model
+    newModel = { model | currentSlide = newSlide }
+  in
+  { newModel
+  | animationFramesRemaining =
+    case newSlide of
+      Slide slideModel -> slideModel.animationFrames newModel
+  }
+
+
 init : Location -> (Model, Cmd Msg)
 init location =
   ( let
       incompleteModel : Model
       incompleteModel =
+        updateModelWithLocationHash location.hash
         { eventsWsUrl =
           ( Maybe.map
             ( \baseUrl -> baseUrl ++ "/event" )
             ( webSocketBaseUrl location )
           )
         , activeNavigation = Array.empty
-        , currentSlide = slideFromLocationHash location.hash
+        , currentSlide = slideFromLocationHash "#"
         , animationFramesRemaining = 0
         , languagesAndCounts = []
         , typeScriptVsJavaScript =
