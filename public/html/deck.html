@@ -34922,6 +34922,22 @@ var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isPunctuaction = fu
 var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isIdentifierNameChar = function (c) {
 	return !(_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isPunctuaction(c) || (_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isStringLiteralChar(c) || (_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isCommentChar(c) || _jackgene$live_deck$SyntaxHighlight_Language_Common$isWhitespace(c))));
 };
+var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$identifier = A2(
+	_elm_tools$parser$Parser_ops['|='],
+	A2(
+		_elm_tools$parser$Parser_ops['|='],
+		_elm_tools$parser$Parser$succeed(
+			F2(
+				function (x, y) {
+					return A2(_elm_lang$core$Basics_ops['++'], x, y);
+				})),
+		A2(
+			_elm_tools$parser$Parser$keep,
+			_elm_tools$parser$Parser$Exactly(1),
+			function (c) {
+				return _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isIdentifierNameChar(c) && (!_jackgene$live_deck$SyntaxHighlight_Language_Common$isNumber(c));
+			})),
+	A2(_elm_tools$parser$Parser$keep, _elm_tools$parser$Parser$zeroOrMore, _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isIdentifierNameChar));
 var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$annotationLoop = function (at) {
 	return A2(
 		_elm_tools$parser$Parser$map,
@@ -34936,7 +34952,7 @@ var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$annotationLoop = fu
 				_1: {ctor: '[]'}
 			};
 		},
-		A2(_elm_tools$parser$Parser$keep, _elm_tools$parser$Parser$oneOrMore, _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isIdentifierNameChar));
+		_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$identifier);
 };
 var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$typeReferenceLoop = F2(
 	function (opt, op) {
@@ -34970,14 +34986,7 @@ var _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$typeReferenceLoop =
 											_1: {ctor: '[]'}
 										};
 									},
-									A2(
-										_elm_tools$parser$Parser$keep,
-										_elm_tools$parser$Parser$oneOrMore,
-										function (c) {
-											return !(_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isPunctuaction(c) || (_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isStringLiteralChar(c) || (_jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isCommentChar(c) || (_jackgene$live_deck$SyntaxHighlight_Language_Common$isWhitespace(c) || _elm_lang$core$Native_Utils.eq(
-												c,
-												_elm_lang$core$Native_Utils.chr('1'))))));
-										})),
+									A2(_elm_tools$parser$Parser$keep, _elm_tools$parser$Parser$oneOrMore, _jackgene$live_deck$SyntaxHighlight_Language_CLikeCommon$isIdentifierNameChar)),
 								_1: {
 									ctor: '::',
 									_0: A2(
@@ -35495,19 +35504,11 @@ var _jackgene$live_deck$SyntaxHighlight_Language_Go$go = {
 			_0: 'const',
 			_1: {
 				ctor: '::',
-				_0: 'interface',
+				_0: 'var',
 				_1: {
 					ctor: '::',
-					_0: 'struct',
-					_1: {
-						ctor: '::',
-						_0: 'var',
-						_1: {
-							ctor: '::',
-							_0: 'type',
-							_1: {ctor: '[]'}
-						}
-					}
+					_0: 'type',
+					_1: {ctor: '[]'}
 				}
 			}
 		}),
@@ -36160,7 +36161,7 @@ var _jackgene$live_deck$SyntaxHighlight_Language_Kotlin$kotlin = {
 	typeCheckCastOperator: _elm_tools$parser$Parser$oneOf(
 		{
 			ctor: '::',
-			_0: _elm_tools$parser$Parser$keyword('as?'),
+			_0: _elm_tools$parser$Parser$keyword('as'),
 			_1: {
 				ctor: '::',
 				_0: _elm_tools$parser$Parser$keyword('!is'),
@@ -36466,30 +36467,26 @@ var _jackgene$live_deck$SyntaxHighlight_Language_Python$isPunctuation = function
 var _jackgene$live_deck$SyntaxHighlight_Language_Python$builtInSet = _elm_lang$core$Set$fromList(
 	{
 		ctor: '::',
-		_0: 'any',
+		_0: 'bool',
 		_1: {
 			ctor: '::',
-			_0: 'bool',
+			_0: 'dict',
 			_1: {
 				ctor: '::',
-				_0: 'dict',
+				_0: 'float',
 				_1: {
 					ctor: '::',
-					_0: 'float',
+					_0: 'int',
 					_1: {
 						ctor: '::',
-						_0: 'int',
+						_0: 'list',
 						_1: {
 							ctor: '::',
-							_0: 'list',
+							_0: 'object',
 							_1: {
 								ctor: '::',
-								_0: 'object',
-								_1: {
-									ctor: '::',
-									_0: 'str',
-									_1: {ctor: '[]'}
-								}
+								_0: 'str',
+								_1: {ctor: '[]'}
 							}
 						}
 					}
