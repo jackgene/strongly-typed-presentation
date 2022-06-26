@@ -85,7 +85,7 @@ elmMakeModerator := {
   }
 }
 
-sourceGenerators in Assets += elmMakeModerator.taskValue
+Assets / sourceGenerators += elmMakeModerator.taskValue
 
 val elmMakeDeck = taskKey[Seq[File]]("elm-make-deck")
 
@@ -158,4 +158,4 @@ elmMakeDeck := {
   }
 }
 
-sourceGenerators in Assets += elmMakeDeck.taskValue
+Assets / sourceGenerators += elmMakeDeck.taskValue
