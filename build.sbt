@@ -7,6 +7,37 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.13.8"
 
+scalacOptions ++= Seq(
+  "-deprecation", "-feature",
+  "-Wdead-code",
+  "-Wextra-implicit",
+  "-Wmacros:after",
+  "-Wnumeric-widen",
+  "-Woctal-literal",
+  "-Wunused:imports,patvars,privates,locals,explicits,implicits,params,linted",
+  "-Wvalue-discard",
+  "-Xlint:adapted-args",
+  "-Xlint:constant",
+  "-Xlint:delayedinit-select",
+  "-Xlint:eta-sam",
+  "-Xlint:eta-zero",
+  "-Xlint:implicit-not-found",
+  "-Xlint:implicit-recursion",
+  "-Xlint:inaccessible",
+  "-Xlint:infer-any",
+  "-Xlint:missing-interpolator",
+  "-Xlint:nonlocal-return",
+  "-Xlint:nullary-unit",
+  "-Xlint:option-implicit",
+  "-Xlint:package-object-classes",
+  "-Xlint:poly-implicit-overload",
+  "-Xlint:private-shadow",
+  "-Xlint:serial",
+  "-Xlint:stars-align",
+  "-Xlint:type-parameter-shadow",
+  "-Xlint:valpattern"
+)
+
 libraryDependencies += guice
 libraryDependencies += ws
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test

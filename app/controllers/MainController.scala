@@ -53,8 +53,7 @@ class MainController @Inject() (cc: ControllerComponents)
     }
   }
 
-  def chat(route: String, text: String): Action[Unit] = Action(parse.empty) {
-    implicit request: Request[Unit] =>
+  def chat(route: String, text: String): Action[Unit] = Action(parse.empty) { _: Request[Unit] =>
 
     route match {
       case RoutePattern(sender, recipient) =>
@@ -64,7 +63,7 @@ class MainController @Inject() (cc: ControllerComponents)
     }
   }
 
-  def reset(): Action[Unit] = Action(parse.empty) { implicit request: Request[Unit] =>
+  def reset(): Action[Unit] = Action(parse.empty) { _: Request[Unit] =>
     languagePollActor ! ByTokenBySenderCounterActor.Reset
     questionActor ! FromMeMessageActor.Reset
     NoContent
