@@ -78,7 +78,10 @@ type EventBody
 eventBodyDecoder : Decoder EventBody
 eventBodyDecoder =
   Decode.oneOf
-  [ Decode.map Questions (Decode.list Decode.string)
+  [ Decode.map Questions
+    ( Decode.field "chatText"
+      (Decode.list Decode.string)
+    )
   , Decode.map LanguagesByCount
     ( Decode.list
       ( Decode.map2 (\l r -> (l, r))

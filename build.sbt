@@ -8,6 +8,7 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 scalaVersion := "2.13.8"
 
 scalacOptions ++= Seq(
+  "-Xsource:3",
   "-deprecation", "-feature",
   "-Wdead-code",
   "-Wextra-implicit",

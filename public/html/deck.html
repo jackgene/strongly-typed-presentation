@@ -49024,7 +49024,10 @@ var _jackgene$live_deck$Deck$eventBodyDecoder = _elm_lang$core$Json_Decode$oneOf
 		_0: A2(
 			_elm_lang$core$Json_Decode$map,
 			_jackgene$live_deck$Deck$Questions,
-			_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)),
+			A2(
+				_elm_lang$core$Json_Decode$field,
+				'chatText',
+				_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string))),
 		_1: {
 			ctor: '::',
 			_0: A2(

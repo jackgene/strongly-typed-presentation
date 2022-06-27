@@ -2,7 +2,7 @@ package actors
 
 import akka.actor.{Actor, ActorLogging, ActorRef, Props, Terminated}
 import model.ChatMessage
-import play.api.libs.json.Json
+import play.api.libs.json._
 
 object FromMeMessageActor {
   // Incoming messages
@@ -11,6 +11,10 @@ object FromMeMessageActor {
 
   // Outgoing messages
   case class ChatMessages(text: Seq[String])
+
+  // JSON
+  private implicit val chatMessagesWrites: Writes[ChatMessages] =
+    (chatMessages: ChatMessages) => Json.obj("chatText" -> chatMessages.text)
 
   def props(chatMessageActor: ActorRef, rejectedMessageActor: ActorRef): Props =
     Props(new FromMeMessageActor(chatMessageActor, rejectedMessageActor: ActorRef))
@@ -26,8 +30,8 @@ object FromMeMessageActor {
     counts ! FromMeMessageActor.Register(listener = self)
 
     override def receive: Receive = {
-      case FromMeMessageActor.ChatMessages(text: Seq[String]) =>
-        webSocketClient ! Json.toJson(text)
+      case chatMsgs: FromMeMessageActor.ChatMessages =>
+        webSocketClient ! Json.toJson(chatMsgs)
     }
 
     override def postStop(): Unit = {
