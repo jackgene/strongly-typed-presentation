@@ -34,6 +34,8 @@ class MainController @Inject() (cc: ControllerComponents)
       FromMeMessageActor.props(chatMsgActor, rejectedMsgActor),
       "question"
     )
+  private val transcriptionActor: ActorRef =
+    system.actorOf(TranscriptionActor.props, "transcriptions")
 
   def languagePollEvent(): WebSocket = WebSocket.accept[JsValue,JsValue] { _: RequestHeader =>
     ActorFlow.actorRef { webSocketClient: ActorRef =>
@@ -47,6 +49,12 @@ class MainController @Inject() (cc: ControllerComponents)
     }
   }
 
+  def transcriptionEvent(): WebSocket = WebSocket.accept[JsValue,JsValue] { _: RequestHeader =>
+    ActorFlow.actorRef { webSocketClient: ActorRef =>
+      TranscriptionActor.WebSocketActor.props(webSocketClient, transcriptionActor)
+    }
+  }
+
   def moderationEvent(): WebSocket = WebSocket.accept[JsValue,JsValue] { _: RequestHeader =>
     ActorFlow.actorRef { webSocketClient: ActorRef =>
       ModerationWebSocketActor.props(webSocketClient, rejectedMsgActor)
@@ -54,7 +62,6 @@ class MainController @Inject() (cc: ControllerComponents)
   }
 
   def chat(route: String, text: String): Action[Unit] = Action(parse.empty) { _: Request[Unit] =>
-
     route match {
       case RoutePattern(sender, recipient) =>
         chatMsgActor ! ChatMessageActor.New(ChatMessage(sender, recipient, text))
@@ -66,6 +73,11 @@ class MainController @Inject() (cc: ControllerComponents)
   def reset(): Action[Unit] = Action(parse.empty) { _: Request[Unit] =>
     languagePollActor ! ByTokenBySenderCounterActor.Reset
     questionActor ! FromMeMessageActor.Reset
+    NoContent
+  }
+
+  def transcription(text: String): Action[Unit] = Action(parse.empty) { _: Request[Unit] =>
+    transcriptionActor ! TranscriptionActor.NewTranscriptionText(text)
     NoContent
   }
 }

@@ -21,13 +21,13 @@ object FromMeMessageActor {
 
   // WebSocket actor
   object WebSocketActor {
-    def props(webSocketClient: ActorRef, counts: ActorRef): Props =
-      Props(new WebSocketActor(webSocketClient, counts))
+    def props(webSocketClient: ActorRef, messages: ActorRef): Props =
+      Props(new WebSocketActor(webSocketClient, messages))
   }
-  class WebSocketActor(webSocketClient: ActorRef, counts: ActorRef)
+  class WebSocketActor(webSocketClient: ActorRef, messages: ActorRef)
       extends Actor with ActorLogging {
     log.info("connection opened")
-    counts ! FromMeMessageActor.Register(listener = self)
+    messages ! FromMeMessageActor.Register(listener = self)
 
     override def receive: Receive = {
       case chatMsgs: FromMeMessageActor.ChatMessages =>
