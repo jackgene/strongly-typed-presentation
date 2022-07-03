@@ -4,15 +4,15 @@ import Array exposing (Array)
 import Css exposing
   ( property
   -- Container
-  , height, margin, width, overflow, overflowY, position
+  , bottom, height, margin, maxWidth, width, overflow, overflowY, position, right
   -- Content
-  , backgroundColor, color, fontSize
+  , backgroundColor, color, float, fontSize, opacity
   -- Units
-  , auto, pct, vw
+  , auto, num, pct, vw
   -- Alignments & Positions
   , absolute, relative
   -- Other values
-  , hidden, rgb
+  , hidden, noWrap, rgb, whiteSpace
   )
 import Deck.Common exposing (Model, Msg, Navigation, Slide(Slide), SlideModel)
 import Deck.Font exposing (..)
@@ -387,5 +387,28 @@ slideView model slide =
       , paragraphFontFamily, fontSize (vw 2.2)
       ]
     ]
-    [ slide.view model ]
+    [ slide.view model
+    , if model.transcription.text == "" then div [] []
+      else
+        div
+        [ css
+          [ property "display" "grid", position absolute
+          , bottom (pct 7.5), width (pct 100)
+          ]
+        ]
+        [ div
+          [ css
+            [ margin auto, maxWidth (pct 95), overflow hidden
+            ]
+          ]
+          [ div
+            [ css
+              [ backgroundColor goodRxBlack, color goodRxOffWhite, opacity (num 0.75)
+              , whiteSpace noWrap, float right
+              ]
+            ]
+            [ text model.transcription.text ]
+          ]
+        ]
+    ]
   ]

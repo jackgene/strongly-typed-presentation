@@ -3,6 +3,7 @@ module Deck.Common exposing (..)
 import Array exposing (Array)
 import Html.Styled exposing (Html)
 import Navigation exposing (Location)
+import Time exposing (Time)
 
 
 -- Constants
@@ -16,6 +17,9 @@ type Msg
   | Last
   | NewLocation Location
   | Event String
+  | TranscriptionText String
+  | TranscriptionUpdated Time
+  | TranscriptionClearingTick Time
   | AnimationTick
   | NoOp
 
@@ -51,4 +55,8 @@ type alias Model =
     , lastVoteTypeScript : Bool
     }
   , questions : Array String
+  , transcription :
+    { text : String
+    , updated : Time
+    }
   }

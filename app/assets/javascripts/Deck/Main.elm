@@ -11,6 +11,8 @@ import Html.Styled exposing (Html)
 import Json.Decode as Decode exposing (Decoder)
 import Keyboard
 import Navigation exposing (Location)
+import Task
+import Time exposing (Time)
 import WebSocket
 
 
@@ -57,6 +59,7 @@ init location =
           , lastVoteTypeScript = False
           }
         , questions = Array.empty
+        , transcription = { text = "", updated = 0 }
         }
 
       activeNavigation : Array Navigation
@@ -90,6 +93,12 @@ eventBodyDecoder =
       )
     )
   ]
+
+
+transcriptionDecoder : Decoder String
+transcriptionDecoder =
+  Decode.field "transcriptionText" Decode.string
+
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
@@ -236,8 +245,59 @@ update msg model =
 
         Err jsonErr ->
           let
-            _ = Debug.log ("Error parsing JSON: " ++ jsonErr ++ " for input") body
+            _ = Debug.log ("Error parsing JSON: " ++ jsonErr ++ " for event") body
           in (model, Cmd.none)
+
+    TranscriptionText body ->
+      case Decode.decodeString transcriptionDecoder body of
+        Ok text ->
+          let
+            transcription : { text : String, updated : Time }
+            transcription = model.transcription
+          in
+          ( { model
+            | transcription = { transcription | text = text }
+            }
+          , Task.perform TranscriptionUpdated Time.now
+          )
+
+        Err jsonErr ->
+          let
+            _ = Debug.log ("Error parsing JSON: " ++ jsonErr ++ " for transcription") body
+          in (model, Cmd.none)
+
+    TranscriptionUpdated updated ->
+      let
+        transcription : { text : String, updated : Time }
+        transcription = model.transcription
+      in
+      ( { model
+        | transcription = { transcription | updated = updated }
+        }
+      , Cmd.none
+      )
+
+    TranscriptionClearingTick time ->
+      ( if (time - model.transcription.updated) < (5 * Time.second) then model
+        else
+          let
+            transcription : { text : String, updated : Time }
+            transcription = model.transcription
+
+            charsToDrop : Int
+            charsToDrop =
+              case String.indices " " transcription.text of
+                index :: _ -> index + 1
+                _ -> String.length transcription.text
+          in
+          { model
+          | transcription =
+            { transcription
+            | text = String.dropLeft charsToDrop transcription.text
+            }
+          }
+      , Cmd.none
+      )
 
     AnimationTick ->
       ( { model | animationFramesRemaining = model.animationFramesRemaining - 1 }
@@ -258,15 +318,23 @@ view model =
 subscriptions : Model -> Sub Msg
 subscriptions model =
   Sub.batch
-  [ let
-      eventsWsPath : Maybe String
-      eventsWsPath =
-        case model.currentSlide of
-          Slide slideModel -> slideModel.eventsWsPath
-    in
-    case (model.eventsWsUrl, eventsWsPath) of
-      (Just url, Just path) ->
-        WebSocket.listen (url ++ "/" ++ path) Event
+  [ if model.transcription.text == "" then Sub.none
+    else Time.every (80 * Time.millisecond) TranscriptionClearingTick
+  , case model.eventsWsUrl of
+      Just url ->
+        Sub.batch
+        [ WebSocket.listen (url ++ "/transcription") TranscriptionText
+        , let
+            eventsWsPath : Maybe String
+            eventsWsPath =
+              case model.currentSlide of
+                Slide slideModel -> slideModel.eventsWsPath
+          in
+          case eventsWsPath of
+            Just path ->
+              WebSocket.listen (url ++ "/" ++ path) Event
+            _ -> Sub.none
+        ]
       _ -> Sub.none
   , if model.animationFramesRemaining <= 0 then Sub.none
     else AnimationFrame.times (always AnimationTick)
