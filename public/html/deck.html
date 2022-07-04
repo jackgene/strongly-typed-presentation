@@ -36698,7 +36698,38 @@ var _jackgene$live_deck$SyntaxHighlight_Language_Python$typeReferenceLoop = func
 								};
 							},
 							A2(_elm_tools$parser$Parser$keep, _elm_tools$parser$Parser$oneOrMore, _jackgene$live_deck$SyntaxHighlight_Language_Python$isIdentifierNameChar)),
-						_1: {ctor: '[]'}
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_tools$parser$Parser$map,
+								function (op) {
+									return {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: _jackgene$live_deck$SyntaxHighlight_Model$Operator, _1: op},
+										_1: {ctor: '[]'}
+									};
+								},
+								_elm_tools$parser$Parser$source(
+									_elm_tools$parser$Parser$oneOf(
+										{
+											ctor: '::',
+											_0: _elm_tools$parser$Parser$symbol('['),
+											_1: {
+												ctor: '::',
+												_0: _elm_tools$parser$Parser$symbol(']'),
+												_1: {
+													ctor: '::',
+													_0: _elm_tools$parser$Parser$symbol('|'),
+													_1: {
+														ctor: '::',
+														_0: _elm_tools$parser$Parser$symbol(','),
+														_1: {ctor: '[]'}
+													}
+												}
+											}
+										}))),
+							_1: {ctor: '[]'}
+						}
 					}
 				})));
 };
@@ -37399,14 +37430,22 @@ var _jackgene$live_deck$SyntaxHighlight_Language_Swift$swift = {
 	typeReferenceSymbols: _elm_tools$parser$Parser$oneOf(
 		{
 			ctor: '::',
-			_0: _elm_tools$parser$Parser$symbol('['),
+			_0: _elm_tools$parser$Parser$symbol('<'),
 			_1: {
 				ctor: '::',
-				_0: _elm_tools$parser$Parser$symbol(']'),
+				_0: _elm_tools$parser$Parser$symbol('>'),
 				_1: {
 					ctor: '::',
 					_0: _elm_tools$parser$Parser$symbol(':'),
-					_1: {ctor: '[]'}
+					_1: {
+						ctor: '::',
+						_0: _elm_tools$parser$Parser$symbol(','),
+						_1: {
+							ctor: '::',
+							_0: _elm_tools$parser$Parser$symbol(' '),
+							_1: {ctor: '[]'}
+						}
+					}
 				}
 			}
 		}),
@@ -37654,7 +37693,11 @@ var _jackgene$live_deck$SyntaxHighlight_Language_TypeScript$typescript = {
 			_1: {
 				ctor: '::',
 				_0: 'in',
-				_1: {ctor: '[]'}
+				_1: {
+					ctor: '::',
+					_0: 'instanceof',
+					_1: {ctor: '[]'}
+				}
 			}
 		}),
 	typeReferenceSymbols: _elm_tools$parser$Parser$oneOf(
@@ -37666,8 +37709,16 @@ var _jackgene$live_deck$SyntaxHighlight_Language_TypeScript$typescript = {
 				_0: _elm_tools$parser$Parser$symbol('>'),
 				_1: {
 					ctor: '::',
-					_0: _elm_tools$parser$Parser$symbol(','),
-					_1: {ctor: '[]'}
+					_0: _elm_tools$parser$Parser$symbol('|'),
+					_1: {
+						ctor: '::',
+						_0: _elm_tools$parser$Parser$symbol(','),
+						_1: {
+							ctor: '::',
+							_0: _elm_tools$parser$Parser$symbol(' '),
+							_1: {ctor: '[]'}
+						}
+					}
 				}
 			}
 		}),
@@ -42504,7 +42555,7 @@ var _jackgene$live_deck$Deck_Slide_ExceptionSafety$safeKotlin = function () {
 										_0: _rtfeldman$elm_css$Html_Styled$text('However, it provides an exception safe option, in the form of '),
 										_1: {
 											ctor: '::',
-											_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$Kotlin, '_ : Result<T>'),
+											_0: A2(_jackgene$live_deck$Deck_Slide_SyntaxHighlight$syntaxHighlightedCodeSnippet, _jackgene$live_deck$Deck_Slide_SyntaxHighlight$Kotlin, '_: Result<T>'),
 											_1: {
 												ctor: '::',
 												_0: _rtfeldman$elm_css$Html_Styled$text(':'),

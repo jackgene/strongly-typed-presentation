@@ -401,7 +401,7 @@ urlRes.fold(
       ( div []
         [ p []
           [ text "However, it provides an exception safe option, in the form of "
-          , syntaxHighlightedCodeSnippet Kotlin "_ : Result<T>"
+          , syntaxHighlightedCodeSnippet Kotlin "_: Result<T>"
           , text ":"
           ]
         , div [] [ codeBlock ]
