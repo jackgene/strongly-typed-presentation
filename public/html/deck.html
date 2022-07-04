@@ -33195,7 +33195,7 @@ var _jackgene$live_deck$SyntaxHighlight_View$toBlockHtml = F3(
 										_jackgene$live_deck$SyntaxHighlight_View$numberedLineView,
 										theme,
 										_p31,
-										_p31 + _elm_lang$core$List$length(lines),
+										(_p31 - 1) + _elm_lang$core$List$length(lines),
 										_p28._0,
 										displayIdx,
 										_p28._1);
@@ -33209,7 +33209,7 @@ var _jackgene$live_deck$SyntaxHighlight_View$toBlockHtml = F3(
 									_jackgene$live_deck$SyntaxHighlight_View$numberedLineView,
 									theme,
 									_p31,
-									_p31 + _elm_lang$core$List$length(lines),
+									(_p31 - 1) + _elm_lang$core$List$length(lines),
 									_p30._0,
 									0,
 									_p30._1);
@@ -38991,12 +38991,19 @@ var _jackgene$live_deck$Deck_Slide_TypeSafety$unsafeGo = function () {
 									_0: A2(
 										_rtfeldman$elm_css$Html_Styled$div,
 										{ctor: '[]'},
-										{
-											ctor: '::',
-											_0: codeBlock,
-											_1: {ctor: '[]'}
-										}),
-									_1: {ctor: '[]'}
+										{ctor: '[]'}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$div,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: codeBlock,
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}
 								}
 							}));
 				})

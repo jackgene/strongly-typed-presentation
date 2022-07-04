@@ -214,6 +214,7 @@ var product float64 = Multiply("42", true)
       ( div []
         [ p []
           [ text "While possible, you would have to Go out of your way to defeat the type system:" ]
+        , div [] [] -- skip transition animation
         , div [] [ codeBlock ]
         ]
       )
