@@ -121,7 +121,7 @@ typeSystemProperties =
         )
       , ( "Safe Type Conversion", "Type Conversion Failure"
         , Dict.fromList
-          [ ( "Go", scoreUnsupported )
+          [ ( "Go", scorePartialAndOptional )
           , ( "Python", scorePartialAndOptional )
           , ( "TypeScript", scorePartialAndOptional )
           , ( "Kotlin", scoreDefeatable )

@@ -1,6 +1,6 @@
 module Deck.Slide.SafeTypeConversion exposing
   ( introduction
-  , introGo, unsafeGo, unsafeGoRun
+  , safeGo, introGo, unsafeGo, unsafeGoRun
   , safePython, unsafePythonGoodGuard
   , unsafePythonBadGuard, unsafePythonBadGuardRun, unsafePythonCast
   , safeTypeScript, unsafeTypeScriptGoodPredicateInvalid, unsafeTypeScriptGoodPredicate
@@ -24,13 +24,13 @@ heading : String
 heading = TypeSystemProperties.heading ++ ": Safe Type Conversion"
 
 subheadingGo : String
-subheadingGo = "Go Is Not Type Conversion Safe"
+subheadingGo = "Go Is Not Type Conversion Safe (With Safe Options)"
 
 subheadingPython : String
-subheadingPython = "Python Can Be Type Conversion Safe"
+subheadingPython = "Python Is Not Type Conversion Safe (With Safe Options)"
 
 subheadingTypeScript : String
-subheadingTypeScript = "TypeScript Can Be Type Conversion Safe"
+subheadingTypeScript = "TypeScript Is Not Type Conversion Safe (With Safe Options)"
 
 subheadingKotlin : String
 subheadingKotlin = "Kotlin Is Type Conversion Safe (With Options to Be Unsafe)"
@@ -62,19 +62,21 @@ introduction =
   }
 
 
-introGo : UnindexedSlideModel
-introGo =
+safeGo : UnindexedSlideModel
+safeGo =
   let
     codeBlock : Html msg
     codeBlock =
       syntaxHighlightedCodeBlock Go Dict.empty Dict.empty []
       """
 package main
+import "strings"
 
 func main() {
     var thing interface{} = 42
-    if str, ok := thing.(string); ok {
-        println("thing is the string:", str)
+    switch str := thing.(type) {
+        case string:
+            println(strings.ToUpper(str))
     }
 }
 """
@@ -85,7 +87,42 @@ func main() {
       standardSlideView page heading subheadingGo
       ( div []
         [ p []
-          [ text "This is the idiomatic way to do type assertions:" ]
+          [ text "The safe way to assert types in Go is to use type "
+          , syntaxHighlightedCodeSnippet Go "switch"
+          , text "es:"
+          ]
+        , div [] [ codeBlock ]
+        ]
+      )
+    )
+  }
+
+
+introGo : UnindexedSlideModel
+introGo =
+  let
+    codeBlock : Html msg
+    codeBlock =
+      syntaxHighlightedCodeBlock Go Dict.empty Dict.empty []
+      """
+package main
+import "strings"
+
+func main() {
+    var thing interface{} = 42
+    if str, ok := thing.(string); ok {
+        println(strings.ToUpper(str))
+    }
+}
+"""
+  in
+  { baseSlideModel
+  | view =
+    ( \page _ ->
+      standardSlideView page heading subheadingGo
+      ( div []
+        [ p []
+          [ text "But Go also has type assertions, which is meant to be used like this:" ]
         , div [] [ codeBlock ]
         ]
       )
@@ -101,14 +138,15 @@ unsafeGo =
       syntaxHighlightedCodeBlock Go Dict.empty Dict.empty []
       """
 package main
+import "strings"
 
 func main() {
     var thing interface{} = 42
 
-    text, _ := thing.(string) // non-panicking type assertion
-    println(text)             // let's hope zero-value is ok!
+    str, _ := thing.(string)      // non-panicking type assertion
+    println(strings.ToUpper(str)) // let's hope zero-value is ok!
 
-    text = thing.(string)     // unsafe type assertion - panic!
+    str = thing.(string)          // unsafe type assertion - panic!
 }
 """
   in

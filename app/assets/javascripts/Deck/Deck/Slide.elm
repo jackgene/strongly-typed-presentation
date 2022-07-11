@@ -125,6 +125,7 @@ preQuestionSlides =
   , TypeSystemProperties.languageReport 2
   , TypeSystemProperties.tableOfContent (Just 3)
   , SafeTypeConversion.introduction
+  , SafeTypeConversion.safeGo
   , SafeTypeConversion.introGo
   , SafeTypeConversion.unsafeGo
   , SafeTypeConversion.unsafeGoRun
