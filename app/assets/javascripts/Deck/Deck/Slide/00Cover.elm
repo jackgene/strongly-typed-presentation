@@ -4,7 +4,7 @@ import Css exposing
   -- Container
   ( left, position, top, width, margin, margin2
   -- Content
-  , color, fontSize, fontWeight
+  , backgroundColor, fontSize, fontWeight
   -- Units
   , em, vw, zero
   -- Alignments & Positions
@@ -13,7 +13,7 @@ import Css exposing
   , normal
   )
 import Deck.Slide.Common exposing (..)
-import Deck.Slide.Graphics exposing (goodRxRipple)
+import Deck.Slide.Graphics exposing (goodRxPoint)
 import Html.Styled exposing (Html, br, div, h1, h2, p, text)
 import Html.Styled.Attributes exposing (css)
 
@@ -23,8 +23,8 @@ cover =
   { baseSlideModel
   | view =
     ( \_ _ ->
-      div []
-      [ goodRxRipple
+      div [ css [ backgroundColor goodRxLightYellow2 ] ]
+      [ goodRxPoint
       , div
         [ css
           [ position absolute
@@ -37,10 +37,10 @@ cover =
           , text "a Programming Language to Be Strongly Typed?"
           ]
         , h2
-          [ css [ margin2 (em 0.5) zero, paragraphFontFamily, color goodRxLightGray2, fontWeight (normal), fontSize (vw 2.4) ] ]
+          [ css [ margin2 (em 0.5) zero, paragraphFontFamily, fontWeight (normal), fontSize (vw 2.4) ] ]
           [ text "And How Does it Help Me Produce Reliable Software?" ]
         , p
-          [ css [ margin2 (em 3) zero, color goodRxLightGray3, fontSize (em 0.8) ] ]
+          [ css [ margin2 (em 3) zero, fontSize (em 0.8) ] ]
           [ text "Jack Leow"
           , br [] []
           , text "April 1, 2022"]
