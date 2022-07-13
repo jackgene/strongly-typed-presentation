@@ -1,8 +1,10 @@
 module Transcriber exposing (..)
 
-import Html exposing (..)
-import Html.Attributes exposing (..)
-import Html.Events exposing (..)
+import Css exposing (..)
+import Html
+import Html.Styled exposing (..)
+import Html.Styled.Attributes exposing (..)
+import Html.Styled.Events exposing (onInput)
 import Http
 import Regex
 import Task
@@ -136,7 +138,11 @@ update msg model =
 view : Model -> Html Msg
 view model =
   div []
-  [ textarea [ cols 120, rows 8, onInput NewTranscription ] []
+  [ textarea
+    [ onInput NewTranscription
+    , css [ position absolute, top zero, right zero, bottom zero, left zero ]
+    ]
+    []
   , div [] [ text model.textLastSent ]
   ]
 
@@ -154,5 +160,5 @@ main =
   { init = init
   , update = update
   , subscriptions = subscriptions
-  , view = view
+  , view = toUnstyled << view
   }
