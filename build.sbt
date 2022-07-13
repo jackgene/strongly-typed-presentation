@@ -204,7 +204,9 @@ elmMakeTranscriber := {
   import play.sbt.PlayExceptions.CompilationException
 
   val outputPath: String = "public/html/transcriber.html"
-  val debugFlag: String = "--debug"
+  val debugFlag: String =
+    if (sys.props.getOrElse("elm.debug", "false").toLowerCase != "true") ""
+    else "--debug"
   var outErrLines: List[String] = Nil
   var srcFilePath: Option[String] = None
   var lineNum: Option[String] = None
