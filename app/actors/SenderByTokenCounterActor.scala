@@ -5,7 +5,7 @@ import model.ChatMessage
 import play.api.libs.json.Json
 
 
-object ByTokenBySenderCounterActor {
+object SenderByTokenCounterActor {
   // Incoming messages
   case class Register(listener: ActorRef)
   case object Reset
@@ -18,7 +18,7 @@ object ByTokenBySenderCounterActor {
       chatMessageActor: ActorRef, rejectedMessageActor: ActorRef):
       Props =
     Props(
-      new ByTokenBySenderCounterActor(
+      new SenderByTokenCounterActor(
         extractToken, chatMessageActor, rejectedMessageActor
       )
     )
@@ -31,10 +31,10 @@ object ByTokenBySenderCounterActor {
   class WebSocketActor(webSocketClient: ActorRef, counts: ActorRef)
       extends Actor with ActorLogging {
     log.info("connection opened")
-    counts ! ByTokenBySenderCounterActor.Register(listener = self)
+    counts ! SenderByTokenCounterActor.Register(listener = self)
 
     override def receive: Receive = {
-      case ByTokenBySenderCounterActor.Counts(sendersByCount: Map[Int,Seq[String]]) =>
+      case SenderByTokenCounterActor.Counts(sendersByCount: Map[Int,Seq[String]]) =>
         webSocketClient ! Json.toJson(sendersByCount.toSeq) // JSON keys must be strings
     }
 
@@ -43,11 +43,11 @@ object ByTokenBySenderCounterActor {
     }
   }
 }
-private class ByTokenBySenderCounterActor(
+private class SenderByTokenCounterActor(
     extractToken: String => Option[String],
     chatMessageActor: ActorRef, rejectedMessageActor: ActorRef)
     extends Actor with ActorLogging {
-  import ByTokenBySenderCounterActor._
+  import SenderByTokenCounterActor._
 
   private def paused(
       tokensByMessenger: Map[String,String], tokenCount: ItemCount, meCount: Int):

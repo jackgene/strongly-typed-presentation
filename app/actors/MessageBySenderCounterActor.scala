@@ -3,17 +3,17 @@ package actors
 import akka.actor.{Actor, ActorLogging, ActorRef, Props, Terminated}
 import model.ChatMessage
 
-object ByMessengerCounterActor {
+object MessageBySenderCounterActor {
   // Incoming messages
   case class ListenerRegistration(listener: ActorRef)
 
   // Outgoing messages
   case class Counts(sendersByCount: Map[Int,Seq[String]])
 
-  def props(chatActor: ActorRef): Props = Props(new ByMessengerCounterActor(chatActor))
+  def props(chatActor: ActorRef): Props = Props(new MessageBySenderCounterActor(chatActor))
 }
-private class ByMessengerCounterActor(chatActor: ActorRef) extends Actor with ActorLogging {
-  import ByMessengerCounterActor._
+private class MessageBySenderCounterActor(chatActor: ActorRef) extends Actor with ActorLogging {
+  import MessageBySenderCounterActor._
 
   chatActor ! ChatMessageActor.Register(self)
 
