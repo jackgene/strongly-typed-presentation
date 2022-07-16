@@ -25,8 +25,8 @@ case class ItemCount(
             else newCountItems.prepended(item)
           ).
           filter {
-            case (count: Int, messengers: Seq[String]) =>
-              count > 0 && messengers.nonEmpty
+            case (count: Int, items: Seq[String]) =>
+              count > 0 && items.nonEmpty
           }
       )
     }
