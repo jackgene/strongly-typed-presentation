@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html><head><meta charset="UTF-8"><title>Transcriber</title><style>html,head,body { padding:0; margin:0; }
+<html><head><meta charset="UTF-8"><title>Transcription</title><style>html,head,body { padding:0; margin:0; }
 body { font-family: calibri, helvetica, arial, sans-serif; }</style><script type="text/javascript">
 (function() {
 'use strict';
@@ -14460,21 +14460,21 @@ var _rtfeldman$elm_css$Html_Styled_Events$Options = F2(
 	function (a, b) {
 		return {stopPropagation: a, preventDefault: b};
 	});
-var _jackgene$live_deck$Transcriber$init = {
+var _jackgene$live_deck$Transcription$init = {
 	ctor: '_Tuple2',
 	_0: {transcription: '', textLastSent: '', scheduleNextSend: false},
 	_1: _elm_lang$core$Platform_Cmd$none
 };
-var _jackgene$live_deck$Transcriber$numWords = 20;
-var _jackgene$live_deck$Transcriber$Model = F3(
+var _jackgene$live_deck$Transcription$numWords = 20;
+var _jackgene$live_deck$Transcription$Model = F3(
 	function (a, b, c) {
 		return {transcription: a, textLastSent: b, scheduleNextSend: c};
 	});
-var _jackgene$live_deck$Transcriber$TranscriptionReceived = {ctor: 'TranscriptionReceived'};
-var _jackgene$live_deck$Transcriber$sendTranscription = function (transcription) {
+var _jackgene$live_deck$Transcription$TranscriptionReceived = {ctor: 'TranscriptionReceived'};
+var _jackgene$live_deck$Transcription$sendTranscription = function (transcription) {
 	return A2(
 		_elm_lang$http$Http$send,
-		_elm_lang$core$Basics$always(_jackgene$live_deck$Transcriber$TranscriptionReceived),
+		_elm_lang$core$Basics$always(_jackgene$live_deck$Transcription$TranscriptionReceived),
 		_elm_lang$http$Http$request(
 			{
 				method: 'POST',
@@ -14492,8 +14492,8 @@ var _jackgene$live_deck$Transcriber$sendTranscription = function (transcription)
 				withCredentials: false
 			}));
 };
-var _jackgene$live_deck$Transcriber$ScheduleNextSend = {ctor: 'ScheduleNextSend'};
-var _jackgene$live_deck$Transcriber$update = F2(
+var _jackgene$live_deck$Transcription$ScheduleNextSend = {ctor: 'ScheduleNextSend'};
+var _jackgene$live_deck$Transcription$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
 		switch (_p0.ctor) {
@@ -14513,7 +14513,7 @@ var _jackgene$live_deck$Transcriber$update = F2(
 								'. ',
 								A2(_elm_lang$core$String$right, 1, _p3)));
 					},
-					A2(_elm_lang$core$String$right, _jackgene$live_deck$Transcriber$numWords * 10, _p0._0));
+					A2(_elm_lang$core$String$right, _jackgene$live_deck$Transcription$numWords * 10, _p0._0));
 				var _p4 = function () {
 					var _p5 = _elm_lang$core$List$reverse(
 						A2(_elm_lang$core$String$indices, ' ', adjustedTranscription));
@@ -14528,12 +14528,12 @@ var _jackgene$live_deck$Transcriber$update = F2(
 								_elm_lang$core$String$slice,
 								(_elm_lang$core$Native_Utils.cmp(
 									_elm_lang$core$List$length(_p7),
-									_jackgene$live_deck$Transcriber$numWords - 2) < 0) ? 0 : A2(
+									_jackgene$live_deck$Transcription$numWords - 2) < 0) ? 0 : A2(
 									_elm_lang$core$Maybe$withDefault,
 									0,
 									_elm_lang$core$List$head(
 										_elm_lang$core$List$reverse(
-											A2(_elm_lang$core$List$take, _jackgene$live_deck$Transcriber$numWords - 1, _p7)))),
+											A2(_elm_lang$core$List$take, _jackgene$live_deck$Transcription$numWords - 1, _p7)))),
 								_p6,
 								adjustedTranscription),
 							_1: A2(_elm_lang$core$String$dropLeft, _p6, adjustedTranscription)
@@ -14553,12 +14553,12 @@ var _jackgene$live_deck$Transcriber$update = F2(
 							ctor: '::',
 							_0: A2(
 								_elm_lang$core$Task$perform,
-								_elm_lang$core$Basics$always(_jackgene$live_deck$Transcriber$ScheduleNextSend),
+								_elm_lang$core$Basics$always(_jackgene$live_deck$Transcription$ScheduleNextSend),
 								_elm_lang$core$Task$succeed(
 									{ctor: '_Tuple0'})),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$core$Native_Utils.eq(completeWords, model.textLastSent) ? _elm_lang$core$Platform_Cmd$none : _jackgene$live_deck$Transcriber$sendTranscription(completeWords),
+								_0: _elm_lang$core$Native_Utils.eq(completeWords, model.textLastSent) ? _elm_lang$core$Platform_Cmd$none : _jackgene$live_deck$Transcription$sendTranscription(completeWords),
 								_1: {ctor: '[]'}
 							}
 						})
@@ -14579,23 +14579,23 @@ var _jackgene$live_deck$Transcriber$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{textLastSent: model.transcription, scheduleNextSend: false}),
-					_1: _jackgene$live_deck$Transcriber$sendTranscription(model.transcription)
+					_1: _jackgene$live_deck$Transcription$sendTranscription(model.transcription)
 				};
 			default:
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		}
 	});
-var _jackgene$live_deck$Transcriber$SendFullTranscription = {ctor: 'SendFullTranscription'};
-var _jackgene$live_deck$Transcriber$subscriptions = function (model) {
+var _jackgene$live_deck$Transcription$SendFullTranscription = {ctor: 'SendFullTranscription'};
+var _jackgene$live_deck$Transcription$subscriptions = function (model) {
 	return (!model.scheduleNextSend) ? _elm_lang$core$Platform_Sub$none : A2(
 		_elm_lang$core$Time$every,
 		_elm_lang$core$Time$millisecond * 200,
-		_elm_lang$core$Basics$always(_jackgene$live_deck$Transcriber$SendFullTranscription));
+		_elm_lang$core$Basics$always(_jackgene$live_deck$Transcription$SendFullTranscription));
 };
-var _jackgene$live_deck$Transcriber$NewTranscription = function (a) {
+var _jackgene$live_deck$Transcription$NewTranscription = function (a) {
 	return {ctor: 'NewTranscription', _0: a};
 };
-var _jackgene$live_deck$Transcriber$view = function (model) {
+var _jackgene$live_deck$Transcription$view = function (model) {
 	return A2(
 		_rtfeldman$elm_css$Html_Styled$div,
 		{ctor: '[]'},
@@ -14605,32 +14605,36 @@ var _jackgene$live_deck$Transcriber$view = function (model) {
 				_rtfeldman$elm_css$Html_Styled$textarea,
 				{
 					ctor: '::',
-					_0: _rtfeldman$elm_css$Html_Styled_Events$onInput(_jackgene$live_deck$Transcriber$NewTranscription),
+					_0: _rtfeldman$elm_css$Html_Styled_Events$onInput(_jackgene$live_deck$Transcription$NewTranscription),
 					_1: {
 						ctor: '::',
-						_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-							{
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
-								_1: {
+						_0: _rtfeldman$elm_css$Html_Styled_Attributes$cols(120),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+								{
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$zero),
+									_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
 									_1: {
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Css$right(_rtfeldman$elm_css$Css$zero),
+										_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$zero),
 										_1: {
 											ctor: '::',
-											_0: _rtfeldman$elm_css$Css$bottom(_rtfeldman$elm_css$Css$zero),
+											_0: _rtfeldman$elm_css$Css$right(_rtfeldman$elm_css$Css$zero),
 											_1: {
 												ctor: '::',
-												_0: _rtfeldman$elm_css$Css$left(_rtfeldman$elm_css$Css$zero),
-												_1: {ctor: '[]'}
+												_0: _rtfeldman$elm_css$Css$bottom(_rtfeldman$elm_css$Css$zero),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Css$left(_rtfeldman$elm_css$Css$zero),
+													_1: {ctor: '[]'}
+												}
 											}
 										}
 									}
-								}
-							}),
-						_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
 					}
 				},
 				{ctor: '[]'}),
@@ -14648,20 +14652,20 @@ var _jackgene$live_deck$Transcriber$view = function (model) {
 			}
 		});
 };
-var _jackgene$live_deck$Transcriber$main = _elm_lang$html$Html$program(
+var _jackgene$live_deck$Transcription$main = _elm_lang$html$Html$program(
 	{
-		init: _jackgene$live_deck$Transcriber$init,
-		update: _jackgene$live_deck$Transcriber$update,
-		subscriptions: _jackgene$live_deck$Transcriber$subscriptions,
+		init: _jackgene$live_deck$Transcription$init,
+		update: _jackgene$live_deck$Transcription$update,
+		subscriptions: _jackgene$live_deck$Transcription$subscriptions,
 		view: function (_p8) {
 			return _rtfeldman$elm_css$Html_Styled$toUnstyled(
-				_jackgene$live_deck$Transcriber$view(_p8));
+				_jackgene$live_deck$Transcription$view(_p8));
 		}
 	})();
 var Elm = {};
-Elm['Transcriber'] = Elm['Transcriber'] || {};
-if (typeof _jackgene$live_deck$Transcriber$main !== 'undefined') {
-    _jackgene$live_deck$Transcriber$main(Elm['Transcriber'], 'Transcriber', undefined);
+Elm['Transcription'] = Elm['Transcription'] || {};
+if (typeof _jackgene$live_deck$Transcription$main !== 'undefined') {
+    _jackgene$live_deck$Transcription$main(Elm['Transcription'], 'Transcription', undefined);
 }
 
 if (typeof define === "function" && define['amd'])
@@ -14693,4 +14697,4 @@ for (var publicModule in Elm)
 }
 
 }).call(this);
-</script></head><body><script type="text/javascript">Elm.Transcriber.fullscreen()</script></body></html>
+</script></head><body><script type="text/javascript">Elm.Transcription.fullscreen()</script></body></html>

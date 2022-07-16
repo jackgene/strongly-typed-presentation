@@ -1,4 +1,4 @@
-module Transcriber exposing (..)
+module Transcription exposing (..)
 
 import Css exposing (..)
 import Html
@@ -139,7 +139,7 @@ view : Model -> Html Msg
 view model =
   div []
   [ textarea
-    [ onInput NewTranscription
+    [ onInput NewTranscription, cols 120
     , css [ position absolute, top zero, right zero, bottom zero, left zero ]
     ]
     []

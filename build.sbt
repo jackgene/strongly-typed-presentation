@@ -194,16 +194,16 @@ elmMakeModerator := {
 
 Assets / sourceGenerators += elmMakeModerator.taskValue
 
-// Transcriber Elm app
+// Transcription Elm app
 
-val elmMakeTranscriber = taskKey[Seq[File]]("elm-make-transcriber")
+val elmMakeTranscription = taskKey[Seq[File]]("elm-make-transcription")
 
-elmMakeTranscriber := {
+elmMakeTranscription := {
   import scala.sys.process._
   import com.typesafe.sbt.web.LineBasedProblem
   import play.sbt.PlayExceptions.CompilationException
 
-  val outputPath: String = "public/html/transcriber.html"
+  val outputPath: String = "public/html/transcription.html"
   val debugFlag: String =
     if (sys.props.getOrElse("elm.debug", "false").toLowerCase != "true") ""
     else "--debug"
@@ -214,7 +214,7 @@ elmMakeTranscriber := {
   Seq(
     "bash", "-c",
     "elm-make " +
-      (file("app/assets/javascripts/Transcriber") ** "*.elm").get.mkString(" ") +
+      (file("app/assets/javascripts/Transcription") ** "*.elm").get.mkString(" ") +
       s" --output ${outputPath} " +
       s"--yes ${debugFlag} --warn"
   ).!(
@@ -226,7 +226,7 @@ elmMakeTranscriber := {
 
       override def err(s: => String): Unit = {
         streams.value.log.warn(s)
-        val SrcFilePathExtractor = """-- [A-Z ]+ -+ (app/assets/javascripts/Transcriber/.+\.elm)""".r
+        val SrcFilePathExtractor = """-- [A-Z ]+ -+ (app/assets/javascripts/Transcription/.+\.elm)""".r
         val LineNumExtractor = """([0-9]+)\|.*""".r
         val PosExtractor = """ *\^+ *""".r
         s match {
@@ -245,7 +245,7 @@ elmMakeTranscriber := {
     }
   ) match {
     case 0 =>
-      streams.value.log.success("elm-make (for Transcriber) completed.")
+      streams.value.log.success("elm-make (for Transcription) completed.")
       //      file(outputPath) +: (file("elm-stuff/build-artifacts") ** "*").get()
       Seq(file(outputPath))
 
@@ -267,4 +267,4 @@ elmMakeTranscriber := {
   }
 }
 
-Assets / sourceGenerators += elmMakeTranscriber.taskValue
+Assets / sourceGenerators += elmMakeTranscription.taskValue

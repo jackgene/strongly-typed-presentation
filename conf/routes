@@ -14,7 +14,7 @@ GET         /moderator/event            controllers.MainController.moderationEve
 POST        /chat                       controllers.MainController.chat(route, text)
 GET         /reset                      controllers.MainController.reset()
 
-GET         /transcriber                controllers.Assets.at(path="/public", file="html/transcriber.html")
+GET         /transcription              controllers.Assets.at(path="/public", file="html/transcription.html")
 POST        /transcription              controllers.MainController.transcription(text)
 
 # Map static resources from the /public folder to the /assets URL path
