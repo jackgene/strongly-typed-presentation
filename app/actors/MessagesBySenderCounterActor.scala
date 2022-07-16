@@ -17,29 +17,29 @@ private class MessagesBySenderCounterActor(chatActor: ActorRef) extends Actor wi
 
   chatActor ! ChatMessageActor.Register(self)
 
-  private def running(messengerCount: ItemCount, listeners: Set[ActorRef]): Receive = {
+  private def running(senderFrequencies: Frequencies, listeners: Set[ActorRef]): Receive = {
     case ChatMessageActor.New(msg: ChatMessage) =>
-      val messenger: String = msg.sender
-      val newMessengerCount: ItemCount = messengerCount.updated(messenger, 1)
+      val sender: String = msg.sender
+      val newSenderFrequencies: Frequencies = senderFrequencies.updated(sender, 1)
       for (listener: ActorRef <- listeners) {
-        listener ! Counts(newMessengerCount.itemsByCount)
+        listener ! Counts(newSenderFrequencies.itemsByCount)
       }
       context.become(
-        running(newMessengerCount, listeners)
+        running(newSenderFrequencies, listeners)
       )
 
     case ListenerRegistration(listener: ActorRef) =>
-      listener ! Counts(messengerCount.itemsByCount)
+      listener ! Counts(senderFrequencies.itemsByCount)
       context.watch(listener)
       context.become(
-        running(messengerCount, listeners + listener)
+        running(senderFrequencies, listeners + listener)
       )
 
     case Terminated(listener: ActorRef) if listeners.contains(listener) =>
       context.become(
-        running(messengerCount, listeners - listener)
+        running(senderFrequencies, listeners - listener)
       )
   }
 
-  override def receive: Receive = running(ItemCount(), Set())
+  override def receive: Receive = running(Frequencies(), Set())
 }

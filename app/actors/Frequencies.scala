@@ -1,10 +1,10 @@
 package actors
 
-case class ItemCount(
+case class Frequencies(
   countsByItem: Map[String,Int] = Map(),
   itemsByCount: Map[Int,Seq[String]] = Map()
 ) {
-  def updated(item: String, delta: Int): ItemCount = {
+  def updated(item: String, delta: Int): Frequencies = {
     if (delta == 0) this
     else {
       val oldCount: Int = countsByItem.getOrElse(item, 0)
@@ -12,7 +12,7 @@ case class ItemCount(
       val newCountItems: Seq[String] =
         itemsByCount.getOrElse(newCount, IndexedSeq())
 
-      ItemCount(
+      Frequencies(
         countsByItem.updated(item, newCount),
         itemsByCount.
           updated(

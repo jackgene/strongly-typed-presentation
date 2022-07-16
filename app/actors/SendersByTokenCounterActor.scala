@@ -50,10 +50,10 @@ private class SendersByTokenCounterActor(
   import SendersByTokenCounterActor._
 
   private def paused(
-      tokensBySender: Map[String,String], tokenCount: ItemCount):
+      tokensBySender: Map[String,String], tokenCount: Frequencies):
       Receive = {
     case Reset =>
-      context.become(paused(Map(), ItemCount()))
+      context.become(paused(Map(), Frequencies()))
 
     case Register(listener: ActorRef) =>
       chatMessageActor ! ChatMessageActor.Register(self)
@@ -65,7 +65,7 @@ private class SendersByTokenCounterActor(
   }
 
   private def running(
-      tokensBySender: Map[String,String], tokenCount: ItemCount,
+      tokensBySender: Map[String,String], tokenFrequencies: Frequencies,
       listeners: Set[ActorRef]): Receive = {
     case event @ ChatMessageActor.New(msg: ChatMessage) =>
       val senderOpt: Option[String] = Option(msg.sender).filter { _ != "Me" }
@@ -75,15 +75,15 @@ private class SendersByTokenCounterActor(
       newTokenOpt match {
         case Some(newToken: String) =>
           log.info(s"Extracted token \"${newToken}\"")
-          val newTokenCount: ItemCount = oldTokenOpt.
+          val newTokenFrequencies: Frequencies = oldTokenOpt.
             // Only remove old token if there's a valid new token replacing it
-            foldLeft(tokenCount) { (tokenCount: ItemCount, oldToken: String) =>
-              tokenCount.updated(oldToken, -1)
+            foldLeft(tokenFrequencies) { (freqs: Frequencies, oldToken: String) =>
+              freqs.updated(oldToken, -1)
             }.
             updated(newToken, 1)
 
           for (listener: ActorRef <- listeners) {
-            listener ! Counts(newTokenCount.itemsByCount)
+            listener ! Counts(newTokenFrequencies.itemsByCount)
           }
           context.become(
             running(
@@ -91,7 +91,7 @@ private class SendersByTokenCounterActor(
                 case Some(sender: String) => tokensBySender.updated(sender, newToken)
                 case None => tokensBySender
               },
-              newTokenCount,
+              newTokenFrequencies,
               listeners
             )
           )
@@ -106,27 +106,27 @@ private class SendersByTokenCounterActor(
         listener ! Counts(Map())
       }
       context.become(
-        running(Map(), ItemCount(), listeners)
+        running(Map(), Frequencies(), listeners)
       )
 
     case Register(listener: ActorRef) =>
-      listener ! Counts(tokenCount.itemsByCount)
+      listener ! Counts(tokenFrequencies.itemsByCount)
       context.watch(listener)
       context.become(
-        running(tokensBySender, tokenCount, listeners + listener)
+        running(tokensBySender, tokenFrequencies, listeners + listener)
       )
 
     case Terminated(listener: ActorRef) if listeners.contains(listener) =>
       val remainingListeners: Set[ActorRef] = listeners - listener
       if (remainingListeners.nonEmpty) {
         context.become(
-          running(tokensBySender, tokenCount, remainingListeners)
+          running(tokensBySender, tokenFrequencies, remainingListeners)
         )
       } else {
         chatMessageActor ! ChatMessageActor.Unregister(self)
-        context.become(paused(tokensBySender, tokenCount))
+        context.become(paused(tokensBySender, tokenFrequencies))
       }
   }
 
-  override def receive: Receive = paused(Map(), ItemCount())
+  override def receive: Receive = paused(Map(), Frequencies())
 }
