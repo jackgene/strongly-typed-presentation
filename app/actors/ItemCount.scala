@@ -5,24 +5,30 @@ case class ItemCount(
   itemsByCount: Map[Int,Seq[String]] = Map()
 ) {
   def updated(item: String, delta: Int): ItemCount = {
-    val oldCount: Int = countsByItem.getOrElse(item, 0)
-    val newCount: Int = oldCount + delta
+    if (delta == 0) this
+    else {
+      val oldCount: Int = countsByItem.getOrElse(item, 0)
+      val newCount: Int = oldCount + delta
+      val newCountItems: Seq[String] =
+        itemsByCount.getOrElse(newCount, IndexedSeq())
 
-    ItemCount(
-      countsByItem.updated(item, newCount),
-      itemsByCount.
-        updated(
-          oldCount,
-          itemsByCount.getOrElse(oldCount, IndexedSeq()).diff(Seq(item))
-        ).
-        updated(
-          newCount,
-          itemsByCount.getOrElse(newCount, IndexedSeq()).appended(item)
-        ).
-        filter {
-          case (count: Int, messengers: Seq[String]) =>
-            count > 0 && messengers.nonEmpty
-        }
-    )
+      ItemCount(
+        countsByItem.updated(item, newCount),
+        itemsByCount.
+          updated(
+            oldCount,
+            itemsByCount.getOrElse(oldCount, IndexedSeq()).diff(Seq(item))
+          ).
+          updated(
+            newCount,
+            if (delta > 0) newCountItems.appended(item)
+            else newCountItems.prepended(item)
+          ).
+          filter {
+            case (count: Int, messengers: Seq[String]) =>
+              count > 0 && messengers.nonEmpty
+          }
+      )
+    }
   }
 }
