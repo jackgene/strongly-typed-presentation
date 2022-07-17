@@ -4,7 +4,7 @@ import akka.actor.{Actor, ActorLogging, ActorRef, Props, Terminated}
 import model.ChatMessage
 import play.api.libs.json._
 
-object FromMeMessageActor {
+object ApprovalRouterActor {
   // Incoming messages
   case class Register(listener: ActorRef)
   case object Reset
@@ -17,7 +17,7 @@ object FromMeMessageActor {
     (chatMessages: ChatMessages) => Json.obj("chatText" -> chatMessages.text)
 
   def props(chatMessageActor: ActorRef, rejectedMessageActor: ActorRef): Props =
-    Props(new FromMeMessageActor(chatMessageActor, rejectedMessageActor: ActorRef))
+    Props(new ApprovalRouterActor(chatMessageActor, rejectedMessageActor: ActorRef))
 
   // WebSocket actor
   object WebSocketActor {
@@ -27,10 +27,10 @@ object FromMeMessageActor {
   class WebSocketActor(webSocketClient: ActorRef, messages: ActorRef)
       extends Actor with ActorLogging {
     log.info("connection opened")
-    messages ! FromMeMessageActor.Register(listener = self)
+    messages ! ApprovalRouterActor.Register(listener = self)
 
     override def receive: Receive = {
-      case chatMsgs: FromMeMessageActor.ChatMessages =>
+      case chatMsgs: ApprovalRouterActor.ChatMessages =>
         webSocketClient ! Json.toJson(chatMsgs)
     }
 
@@ -39,10 +39,10 @@ object FromMeMessageActor {
     }
   }
 }
-private class FromMeMessageActor(
+private class ApprovalRouterActor(
     chatMessageActor: ActorRef, rejectedMessageActor: ActorRef)
     extends Actor with ActorLogging {
-  import FromMeMessageActor._
+  import ApprovalRouterActor._
 
   private def paused(text: List[String]): Receive = {
     case Reset =>
