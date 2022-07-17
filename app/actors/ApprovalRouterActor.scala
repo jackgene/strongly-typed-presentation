@@ -50,7 +50,7 @@ private class ApprovalRouterActor(
       context.become(
         running(text, Set(listener))
       )
-      log.info(s"+1 approved message listener (=1)")
+      log.info(s"+1 ${self.path.name} listener (=1)")
   }
 
   private def running(text: List[String], listeners: Set[ActorRef]): Receive = {
@@ -75,7 +75,7 @@ private class ApprovalRouterActor(
       listener ! ChatMessages(text)
       context.watch(listener)
       context.become(running(text, listeners + listener))
-      log.info(s"+1 approved message listener (=${listeners.size + 1})")
+      log.info(s"+1 ${self.path.name} listener (=${listeners.size + 1})")
 
     case Terminated(listener: ActorRef) if listeners.contains(listener) =>
       val remainingListeners: Set[ActorRef] = listeners - listener
@@ -85,7 +85,7 @@ private class ApprovalRouterActor(
         chatMessageActor ! ChatMessageActor.Unregister(self)
         context.become(paused(text))
       }
-      log.info(s"-1 approved message listener (=${listeners.size - 1})")
+      log.info(s"-1 ${self.path.name} listener (=${listeners.size - 1})")
   }
 
   override def receive: Receive = paused(Nil)
