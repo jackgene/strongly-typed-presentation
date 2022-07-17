@@ -26,16 +26,11 @@ object ApprovalRouterActor {
   }
   class WebSocketActor(webSocketClient: ActorRef, messages: ActorRef)
       extends Actor with ActorLogging {
-    log.info("connection opened")
     messages ! ApprovalRouterActor.Register(listener = self)
 
     override def receive: Receive = {
       case chatMsgs: ApprovalRouterActor.ChatMessages =>
         webSocketClient ! Json.toJson(chatMsgs)
-    }
-
-    override def postStop(): Unit = {
-      log.info("connection closed")
     }
   }
 }

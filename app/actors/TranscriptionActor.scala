@@ -24,16 +24,11 @@ object TranscriptionActor {
   }
   class WebSocketActor(webSocketClient: ActorRef, transcriptions: ActorRef)
       extends Actor with ActorLogging {
-    log.info("connection opened")
     transcriptions ! TranscriptionActor.Register(listener = self)
 
     override def receive: Receive = {
       case transcriptions: TranscriptionActor.Transcription =>
         webSocketClient ! Json.toJson(transcriptions)
-    }
-
-    override def postStop(): Unit = {
-      log.info("connection closed")
     }
   }
 }

@@ -30,16 +30,11 @@ object SendersByTokenCounterActor {
   }
   class WebSocketActor(webSocketClient: ActorRef, counts: ActorRef)
       extends Actor with ActorLogging {
-    log.info("connection opened")
     counts ! SendersByTokenCounterActor.Register(listener = self)
 
     override def receive: Receive = {
       case SendersByTokenCounterActor.Counts(tokensByCount: Map[Int,Seq[String]]) =>
         webSocketClient ! Json.toJson(tokensByCount.toSeq) // JSON keys must be strings
-    }
-
-    override def postStop(): Unit = {
-      log.info("connection closed")
     }
   }
 }
