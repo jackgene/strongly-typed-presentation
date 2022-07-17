@@ -28,7 +28,7 @@ cover =
       , div
         [ css
           [ position absolute
-          , top (vw 16), left (vw 35), width (vw 58)
+          , top (vw 15), left (vw 35), width (vw 58)
           ]
         ]
         [ h1 [ css [ margin zero, headerFontFamily, fontSize (vw 4.5) ] ]
@@ -37,13 +37,13 @@ cover =
           , text "a Programming Language to Be Strongly Typed?"
           ]
         , h2
-          [ css [ margin2 (em 0.5) zero, paragraphFontFamily, fontWeight (normal), fontSize (vw 2.4) ] ]
-          [ text "And How Does it Help Me Produce Reliable Software?" ]
+          [ css [ margin2 (em 0.5) zero, headerFontFamily, fontWeight (normal), fontSize (vw 2.5) ] ]
+          [ text "How Does it Help Me Produce Reliable Software?" ]
         , p
-          [ css [ margin2 (em 3) zero, fontSize (em 0.8) ] ]
+          [ css [ margin2 (em 2.5) zero, fontSize (em 0.875) ] ]
           [ text "Jack Leow"
           , br [] []
-          , text "April 1, 2022"]
+          , text "August 1, 2022"]
         ]
       ]
     )

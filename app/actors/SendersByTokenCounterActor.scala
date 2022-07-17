@@ -57,6 +57,9 @@ private class SendersByTokenCounterActor(
       context.become(
         running(tokensBySender, tokenCount, Set(listener))
       )
+      log.info(
+        s"+1 senders by token count listener (=1)"
+      )
   }
 
   private def running(
@@ -110,6 +113,9 @@ private class SendersByTokenCounterActor(
       context.become(
         running(tokensBySender, tokenFrequencies, listeners + listener)
       )
+      log.info(
+        s"+1 senders by token count listener (=${listeners.size + 1})"
+      )
 
     case Terminated(listener: ActorRef) if listeners.contains(listener) =>
       val remainingListeners: Set[ActorRef] = listeners - listener
@@ -121,6 +127,9 @@ private class SendersByTokenCounterActor(
         chatMessageActor ! ChatMessageActor.Unregister(self)
         context.become(paused(tokensBySender, tokenFrequencies))
       }
+      log.info(
+        s"-1 senders by token count listener (=${listeners.size - 1})"
+      )
   }
 
   override def receive: Receive = paused(Map(), Frequencies())

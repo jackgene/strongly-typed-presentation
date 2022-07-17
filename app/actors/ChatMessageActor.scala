@@ -28,16 +28,20 @@ private class ChatMessageActor extends Actor with ActorLogging {
       context.become(
         running(listeners + listener)
       )
+      log.info(
+        s"+1 ${self.path.name} message listener (=${listeners.size + 1})"
+      )
 
     case Unregister(listener: ActorRef) =>
       context.become(
         running(listeners - listener)
       )
+      log.info(
+        s"-1 ${self.path.name} message listener (=${listeners.size - 1})"
+      )
 
     case Terminated(listener: ActorRef) if listeners.contains(listener) =>
-      context.become(
-        running(listeners - listener)
-      )
+      self ! Unregister(listener)
   }
 
   override val receive: Receive = running(Set())

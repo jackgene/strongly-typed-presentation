@@ -47,9 +47,11 @@ private class TranscriptionActor extends Actor with ActorLogging {
       listener ! Transcription(text)
       context.watch(listener)
       context.become(running(text, listeners + listener))
+      log.info(s"+1 transcription listener (=${listeners.size + 1})")
 
     case Terminated(listener: ActorRef) if listeners.contains(listener) =>
       context.become(running(text, listeners - listener))
+      log.info(s"-1 transcription listener (=${listeners.size - 1})")
   }
 
   override def receive: Receive = running("", Set())

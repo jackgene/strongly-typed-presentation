@@ -5,7 +5,7 @@ import model.ChatMessage
 
 object MessagesBySenderCounterActor {
   // Incoming messages
-  case class ListenerRegistration(listener: ActorRef)
+  case class Register(listener: ActorRef)
 
   // Outgoing messages
   case class Counts(sendersByCount: Map[Int,Seq[String]])
@@ -28,16 +28,22 @@ private class MessagesBySenderCounterActor(chatActor: ActorRef) extends Actor wi
         running(newSenderFrequencies, listeners)
       )
 
-    case ListenerRegistration(listener: ActorRef) =>
+    case Register(listener: ActorRef) =>
       listener ! Counts(senderFrequencies.itemsByCount)
       context.watch(listener)
       context.become(
         running(senderFrequencies, listeners + listener)
       )
+      log.info(
+        s"+1 messages by sender count listener (=${listeners.size + 1})"
+      )
 
     case Terminated(listener: ActorRef) if listeners.contains(listener) =>
       context.become(
         running(senderFrequencies, listeners - listener)
+      )
+      log.info(
+        s"-1 messages by sender count listener (=${listeners.size - 1})"
       )
   }
 
