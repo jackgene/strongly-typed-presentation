@@ -114,7 +114,7 @@ private class SendersByTokenCounterActor(
         running(tokensBySender, tokenFrequencies, listeners + listener)
       )
       log.info(
-        s"+1 senders by token count listener (=${listeners.size + 1})"
+        s"+1 ${self.path.name} count listener (=${listeners.size + 1})"
       )
 
     case Terminated(listener: ActorRef) if listeners.contains(listener) =>
@@ -128,7 +128,7 @@ private class SendersByTokenCounterActor(
         context.become(paused(tokensBySender, tokenFrequencies))
       }
       log.info(
-        s"-1 senders by token count listener (=${listeners.size - 1})"
+        s"-1 ${self.path.name} count listener (=${listeners.size - 1})"
       )
   }
 
