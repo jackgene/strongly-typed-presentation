@@ -125,7 +125,9 @@ private class SendersByTokenCounterActor(
         )
       } else {
         chatMessageActor ! ChatMessageActor.Unregister(self)
-        context.become(paused(tokensBySender, tokenFrequencies))
+        context.become(
+          paused(tokensBySender, tokenFrequencies)
+        )
       }
       log.info(
         s"-1 ${self.path.name} count listener (=${listeners.size - 1})"
