@@ -69,21 +69,29 @@ private class ApprovalRouterActor(
       for (listener: ActorRef <- listeners) {
         listener ! ChatMessages(Nil)
       }
-      context.become(running(Nil, listeners))
+      context.become(
+        running(Nil, listeners)
+      )
 
     case Register(listener: ActorRef) =>
       listener ! ChatMessages(text)
       context.watch(listener)
-      context.become(running(text, listeners + listener))
+      context.become(
+        running(text, listeners + listener)
+      )
       log.info(s"+1 ${self.path.name} listener (=${listeners.size + 1})")
 
     case Terminated(listener: ActorRef) if listeners.contains(listener) =>
       val remainingListeners: Set[ActorRef] = listeners - listener
       if (remainingListeners.nonEmpty) {
-        context.become(running(text, remainingListeners))
+        context.become(
+          running(text, remainingListeners)
+        )
       } else {
         chatMessageActor ! ChatMessageActor.Unregister(self)
-        context.become(paused(text))
+        context.become(
+          paused(text)
+        )
       }
       log.info(s"-1 ${self.path.name} listener (=${listeners.size - 1})")
   }
