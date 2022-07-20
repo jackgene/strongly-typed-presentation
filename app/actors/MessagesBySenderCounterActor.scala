@@ -34,17 +34,13 @@ private class MessagesBySenderCounterActor(chatActor: ActorRef) extends Actor wi
       context.become(
         running(senderFrequencies, listeners + listener)
       )
-      log.info(
-        s"+1 messages by sender count listener (=${listeners.size + 1})"
-      )
+      log.info(s"+1 ${self.path.name} listener (=${listeners.size + 1})")
 
     case Terminated(listener: ActorRef) if listeners.contains(listener) =>
       context.become(
         running(senderFrequencies, listeners - listener)
       )
-      log.info(
-        s"-1 messages by sender count listener (=${listeners.size - 1})"
-      )
+      log.info(s"-1 ${self.path.name} listener (=${listeners.size - 1})")
   }
 
   override def receive: Receive = running(Frequencies(), Set())
