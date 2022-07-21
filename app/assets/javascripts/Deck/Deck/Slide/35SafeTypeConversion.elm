@@ -363,8 +363,8 @@ safeTypeScript =
     codeBlock : Html msg
     codeBlock =
       syntaxHighlightedCodeBlock TypeScript Dict.empty
-      ( Dict.fromList [ (2, [ ColumnEmphasis Error 6 13 ] ) ] )
-      [ CodeBlockError 2 4
+      ( Dict.fromList [ (3, [ ColumnEmphasis Error 6 13 ] ) ] )
+      [ CodeBlockError 3 4
         [ div []
           [ text "TS2339: Property 'toUpperCase' does not exist on type 'string | number'."
           , br [] []
@@ -372,7 +372,8 @@ safeTypeScript =
         ]
       ]
       """
-const thing: number|string = Math.random() < 0.5 ? 42 : "forty-two"
+const thing: number|string =
+    Math.random() < 0.5 ? 42 : "forty-two"
 
 thing.toUpperCase()
 
